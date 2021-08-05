@@ -1,0 +1,254 @@
+{
+  "components": {
+    "Address1": {
+      "invalid": "This value is not valid.",
+      "label": "Address 1"
+    },
+    "Address2": {
+      "invalid": "This value is not valid.",
+      "label": "Address 2"
+    },
+    "AddressBoxInfo": {
+      "address1": "Address: {address1}",
+      "address2": "Address: {address2}",
+      "country": "Country: {country_name}",
+      "district": "District: {district_name}",
+      "houseNumberAndName": "House number, name: {house_number}",
+      "name": "Name: {firstname} {lastname}",
+      "postcode": "Postcode: {zipcode}",
+      "state": "State: {state_name}",
+      "subDistrict": "Subdistrict: {city}"
+    },
+    "CardCode": {
+      "invalid": "This card code is not valid.",
+      "label": "CVV"
+    },
+    "CardExpiry": {
+      "invalid": "This card code is not valid.",
+      "label": "MM/YYYY"
+    },
+    "CardName": {
+      "invalid": "This card name is not valid.",
+      "label": "Name on Card "
+    },
+    "CardNumber": {
+      "invalid": "This card number is not valid.",
+      "label": "Card Number"
+    },
+    "CostBreakdown": {
+      "cost": "Cost",
+      "costBreakdown": "Cost Breakdown",
+      "item": "Item",
+      "quantity": "Quantity",
+      "quantitySmall": "Qty.",
+      "total": "Total"
+    },
+    "CountrySelectBox": {
+      "label": "Country"
+    },
+    "District": {
+      "invalid": "This value is not valid.",
+      "label": "District"
+    },
+    "DistrictSelectBox": {
+      "label": "District"
+    },
+    "HouseNumber": {
+      "invalid": "This value is not valid.",
+      "label": "House number, house name"
+    },
+    "MedicalDeclaration": {
+      "Definition": {
+        "nextButtonLabel": "Confirm",
+        "question1": "Have you visited a dentist in the last 24 months? *",
+        "question2": "Do you have any untreated tooth decay? *",
+        "question3": "Do you have any gum disease or other discomfort? *",
+        "subTitle": "Before payment please respond on the condition of your teeth as truthfully as possible",
+        "termOrCondition1": "I declare all the information given by me as true and complete.",
+        "termOrCondition2": "I am aware that the provision of false or misleading information may increase the risk of adverse effects of using aligners.",
+        "termOrCondition3": "I understand that certain conditions could render aligner treatment ineffective."
+      },
+      "Rejection": {
+        "body": "Someone from selfie will get in touch with you shortly",
+        "subTitle": "Stop",
+        "title": "Rejection"
+      }
+    },
+    "Notification": {
+      "check_email_confirmation": "A message was sent to your email with the institutions for the confirmation of your account.",
+      "check_email_forgot_password": "A message was sent to your email with the institutions for the reset of your password.",
+      "invalid_grant": "Invalid credentials",
+      "need_email_confirmation": "Please verify your account via email.",
+      "sent_a_new_email": "Send me a new email",
+      "success_reset_password": "Your password was reset successfully.",
+      "user_denied": "Permissions error, user denied"
+    },
+    "PasswordStrength": {
+      "characters_minimum": "{minChars} characters minimum",
+      "fair": "Fair",
+      "strong": "Strong",
+      "weak": "Weak"
+    },
+    "PaymentBoxInfo": {
+      "paymentChannel": "Payment Channel: {paymentChannel}",
+      "paymentPlan": "Payment Plan: {paymentPlan}",
+      "title": "Payment Options"
+    },
+    "Postcode": {
+      "invalid": "This value is not valid.",
+      "label": "Postcode"
+    },
+    "ProvinceSelectBox": {
+      "label": "Province"
+    },
+    "SignUp": {
+      "Step2": {
+        "deliveryAddress": "State your delivery address"
+      },
+      "Step3": {
+        "createProfile": "Create profile",
+        "deliveryAddress": "Delivery address",
+        "houseNumberLabel": "House number, house name",
+        "unsupportedDeliveryArea": "AYOH! :({br}We do not deliver yet in your area.{br}{br}CONTINUE TO CREATE PROFILE so we can notify you when Selfie will be available in your area.",
+        "updateProfile": "Update profile"
+      }
+    },
+    "SimpleAgreeQuestion": {
+      "label": "Agree"
+    },
+    "SimpleAnswerQuestion": {
+      "no": "No",
+      "notSure": "Not sure",
+      "yes": "Yes"
+    },
+    "SimpleTextBox": {
+      "invalid": "This value is not value"
+    },
+    "SubDistrict": {
+      "invalid": "This value is not valid.",
+      "label": "Sub District"
+    },
+    "User": {
+      "Birthday": {
+        "birthday": "Birthday",
+        "invalidBirthday": "Not valid birthday"
+      },
+      "EMail": {
+        "header": "EMail",
+        "invalidEMail": "Not valid email"
+      },
+      "Password": {
+        "hidePassword": "Hide secret",
+        "password": "Password",
+        "showPassword": "Show secret"
+      },
+      "PasswordActions": {
+        "forgotPassword": "Forgot password",
+        "rememberMe": "Remember me"
+      }
+    },
+    "UserFirstName": {
+      "invalid": "Invalid first name",
+      "label": "First name"
+    },
+    "UserLastName": {
+      "invalid": "Invalid last phone",
+      "label": "Phone"
+    },
+    "UserOwnName": {
+      "invalid": "Invalid first name",
+      "label": "First name"
+    },
+    "WearingBraces": {
+      "no": "No",
+      "notSure": "Not sure",
+      "wearingBraces": "Are you wearing braces at this point (front or back of teeth) *",
+      "yes": "Yes"
+    }
+  },
+  "containers": {
+    "Checkout": {
+      "defaultShippingAddress": "Shipping Address",
+      "payChannelLabel1": "Credit Card",
+      "payChannelLabel2": "Debit Card",
+      "payChannelLabel3": "Internet Banking",
+      "payChannelLabel4": "Wallet",
+      "payChannelLabel5": "Bill Payment",
+      "payChannelLabel6": "Installments",
+      "payPlanLabel1": "Save $$$ pay in one go",
+      "payPlanLabel2": "Save $$$ pay in installments 06 mths",
+      "payPlanLabel3": "Save $$$ pay in installments 12 mths",
+      "payPlanLabel4": "Save 800$ down payment + installments",
+      "payPlanLabel5": "Pay $80 usd now, pay later treatment",
+      "subTitle1": "<s1>Yes!! I Want to have the full experience</s1>{br}<s2>Incl. Diagnosis, Treatment plan, Aligners + Professional progress tracking</s2>"
+    },
+    "ConfirmOrder": {
+      "nextButtonLabel": "Confirm",
+      "title": "Confirm Order"
+    },
+    "Dashboard": {
+      "congratulations": "CONGRATULATIONS!",
+      "select_payment_plan": "Select Payment Plan",
+      "take_me_to_dashboard": "Take me to Dashboard",
+      "title": "Dashboard"
+    },
+    "ForgotPassword": {
+      "nextButtonLabel": "Send",
+      "title": "Forgot Password"
+    },
+    "Invoice": {
+      "nextButtonLabel": "Close",
+      "orderNumber": "<s1>Number:</s1> <s2>{number}</s2>",
+      "orderState": "<s1>State:</s1> <s2>{state}</s2>",
+      "title": "Invoice"
+    },
+    "MedicalDeclaration": {
+      "contactLabel": "Contact selfie i have done mistake input",
+      "nextButtonLabel": "Ok",
+      "title": "Medical Declaration"
+    },
+    "NotFound": {
+      "msg": "Sorry, the page you requested was not found!"
+    },
+    "ResetPassword": {
+      "nextButtonLabel": "Send",
+      "title": "Reset Password"
+    },
+    "SelectPaymentChannel": {
+      "nextButtonLabel": "Cancel",
+      "title": "Payment Channel"
+    },
+    "SelectPaymentPlan": {
+      "nextButtonLabel": "Cancel",
+      "payPlanText5": "<s1>LET ME TEST RUN SELFIE.</s1><s2> DIAGNOSIS ONLY</s2>",
+      "title": "Select Payment Plan"
+    },
+    "ShippingAddress": {
+      "nextButtonLabel": "Confirm",
+      "title": "Shipping Address"
+    },
+    "ShippingAddressEdit": {
+      "nextButtonLabel": "Confirm",
+      "title": "Shipping Address"
+    },
+    "SignIn": {
+      "login": "Login"
+    },
+    "SignUp": {
+      "next": "Next",
+      "title": "Sign up"
+    },
+    "StartUp": {
+      "signIn": "Login",
+      "signUp": "Create profile",
+      "title": "SELF-IE"
+    },
+    "Welcome": {
+      "congratulations": "CONGRATULATIONS!",
+      "continue_with_last_order": "Continue with the last order",
+      "select_payment_plan": "Select Payment Plan",
+      "take_me_to_dashboard": "Take me to Dashboard",
+      "title": "Welcome to Selfie!"
+    }
+  }
+}
