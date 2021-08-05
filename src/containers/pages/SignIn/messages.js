@@ -15,7 +15,7 @@ export default defineMessages({
   },
   content: {
     id: `${scope}.content`,
-    defaultMessage: 'Manage multiple sales channels efficiently with OMNA. Integrated with leading e-commerce marketplaces, everything is just one click away.',
+    defaultMessage: 'Manage multiple sales channels efficiently with ePasser. Integrated with leading e-commerce marketplaces, everything is just one click away.',
   },
   waitFortAuthToken: {
     id: `${scope}.waitFortAuthToken`,

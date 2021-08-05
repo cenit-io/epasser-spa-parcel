@@ -1,7 +1,7 @@
 import axios from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
 
-axios.defaults.baseURL = `${process.env.OMNA_API_BASE_URL}`;
+axios.defaults.baseURL = `${process.env.eCAPI_BASE_URL}`;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
 
@@ -11,7 +11,7 @@ let dataCredentials = null;
 function authenticate() {
   const authRequest = axios.create();
   const config = {
-    url: `${process.env.OMNA_API_BASE_URL}/oauth/token`,
+    url: `${process.env.eCAPI_BASE_URL}/oauth/token`,
     method: 'POST',
     data: dataCredentials,
   };

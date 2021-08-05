@@ -50,13 +50,13 @@ export class SignIn extends AbstractPage {
       dispatch(doAuthenticateWithAuthCode(authCode));
     } else {
       const redirectUri = window.location.href.replace(/\?.*$/, '');
-      window.location = `${process.env.OMNA_API_BASE_URL}/sign_in?redirect_uri=${redirectUri}`;
+      window.location = `${process.env.eCAPI_BASE_URL}/sign_in?redirect_uri=${redirectUri}`;
     }
   }
 
   onGotoCenitIOSignInPage = () => {
     const redirectUri = window.location.href.replace(/\?.*$/, '');
-    window.location = `${process.env.OMNA_API_BASE_URL}/sign_in?redirect_uri=${redirectUri}`;
+    window.location = `${process.env.eCAPI_BASE_URL}/sign_in?redirect_uri=${redirectUri}`;
   }
 
   render() {
@@ -65,13 +65,13 @@ export class SignIn extends AbstractPage {
     return (
       <div className={classes.root}>
         <Helmet>
-          <title>OMNA: SignIN</title>
+          <title>ePasser: SignIN</title>
         </Helmet>
 
         <PageContent>
           <Card>
             <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
-            <CardMedia image="/images/logo.png" title="OMNA" />
+            <CardMedia image="/images/logo.png" title="ePasser" />
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
                 <FormattedMessage {...messages.content} />
