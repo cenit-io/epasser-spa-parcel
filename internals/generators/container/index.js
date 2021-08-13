@@ -78,6 +78,12 @@ module.exports = {
         templateFile: './internals/generators/container/class.js.hbs',
         abortOnFail: true,
       },
+      {
+        type: 'add',
+        path: '{{pathBase}}/{{properCase name}}/styles.jss.js',
+        templateFile: './internals/generators/container/styles.jss.js.hbs',
+        abortOnFail: true,
+      },
     ];
 
     // If component wants messages

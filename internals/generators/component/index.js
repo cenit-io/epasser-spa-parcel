@@ -54,6 +54,12 @@ module.exports = {
         templateFile: './internals/generators/component/class.js.hbs',
         abortOnFail: true,
       },
+      {
+        type: 'add',
+        path: './src/components/{{properCase name}}/styles.jss.js',
+        templateFile: './internals/generators/component/styles.jss.js.hbs',
+        abortOnFail: true,
+      },
     ];
 
     // If they want a i18n messages file
