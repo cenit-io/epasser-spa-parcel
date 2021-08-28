@@ -7,7 +7,7 @@
 import { fromJS } from 'immutable';
 import { TOGGLE_LEFT_DRAWER_MENU } from './constants';
 
-export const initialState = fromJS({ open: true });
+export const initialState = fromJS({ open: true, size: 300 });
 
 function leftSliderReducer(state = initialState, action) {
   switch (action.type) {

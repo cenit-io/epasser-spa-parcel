@@ -38,18 +38,15 @@ class LeftSlider extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
-    leftSliderState: PropTypes.instanceOf(Object).isRequired,
-    width: PropTypes.number,
+    leftSlider: PropTypes.instanceOf(Object).isRequired,
   }
-
-  static defaultProps = { width: 300 }
 
   onTapItem = (item) => {
     this.props.dispatch(doOpenTabPage(item));
   }
 
   render() {
-    const { classes, leftSliderState: { open } } = this.props;
+    const { classes, leftSlider: { open } } = this.props;
 
     return (
       <Drawer className={classes.drawer} variant="persistent" open={open}
@@ -74,7 +71,7 @@ class LeftSlider extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  leftSliderState: makeSelectLeftSlider(),
+  leftSlider: makeSelectLeftSlider(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

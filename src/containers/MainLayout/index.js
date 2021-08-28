@@ -33,19 +33,19 @@ class MainLayout extends React.Component {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
     pageTitle: PropTypes.string.isRequired,
-    leftSliderSize: PropTypes.number,
+    leftSlider: PropTypes.instanceOf(Object).isRequired,
     children: PropTypes.node,
   }
 
-  static defaultProps = { children: null, style: null, leftSliderSize: 300 }
+  static defaultProps = { children: null, style: null }
 
   onToggleLeftDrawer = () => {
-    const { dispatch, leftSliderState: { open } } = this.props;
+    const { dispatch, leftSlider: { open } } = this.props;
     dispatch(doToggleLeftSlider(!open));
   }
 
   render() {
-    const { classes, pageTitle, leftSliderSize, children } = this.props;
+    const { classes, pageTitle, children, leftSlider: { size } } = this.props;
 
     // if (!this.isAuthenticate) return <Redirect to="/sign/in" />;
 
@@ -68,7 +68,7 @@ class MainLayout extends React.Component {
           </Toolbar>
         </AppBar>
 
-        <LeftSlider width={leftSliderSize} />
+        <LeftSlider width={size} />
 
         <main className={classes.mainContent}>
           {children}
@@ -80,7 +80,7 @@ class MainLayout extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   signInState: makeSelectSignIn(),
-  leftSliderState: makeSelectLeftSlider(),
+  leftSlider: makeSelectLeftSlider(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
