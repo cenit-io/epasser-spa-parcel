@@ -11,10 +11,10 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectReducer } from 'redux-injectors';
 import { withStyles } from '@material-ui/core/styles';
+import { makeSelectActiveTab } from "../MainTabs/selectors";
 
 import styles from './styles.jss';
 import makeSelectSearchByTerm from './selectors';
-import makeSelectMainTabs, { makeSelectActiveTab } from "../MainTabs/selectors";
 import reducer from './reducer';
 
 import { doApplySearchTerm, doChangeSearchTerm } from "./actions";
@@ -27,24 +27,23 @@ class SearchByTerm extends React.Component {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
     searchByTermState: PropTypes.instanceOf(Object).isRequired,
-    mainTabsState: PropTypes.instanceOf(Object).isRequired,
+    activeTab: PropTypes.string,
   }
 
   onChange = (event) => {
-    const { dispatch, mainTabsState: { activeTab } } = this.props;
-    console.log(2222, activeTab);
+    const { dispatch, activeTab } = this.props;
     dispatch(doChangeSearchTerm(event.target.value, activeTab));
   }
 
   onApplySearchTerm = () => {
-    const { dispatch, mainTabsState: { activeTab } } = this.props;
+    const { dispatch, activeTab } = this.props;
 
     dispatch(doApplySearchTerm(activeTab));
   }
 
   render() {
-    const { classes, searchByTermState, mainTabsState: { activeTab } } = this.props;
-    console.log(1111, activeTab);
+    const { classes, searchByTermState, activeTab } = this.props;
+
     if (activeTab === null) return null;
 
     const value = searchByTermState[activeTab] ? searchByTermState[activeTab].searchTerm : '';
@@ -69,7 +68,7 @@ class SearchByTerm extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  mainTabsState: makeSelectMainTabs(),
+  activeTab: makeSelectActiveTab(),
   searchByTermState: makeSelectSearchByTerm()
 });
 
