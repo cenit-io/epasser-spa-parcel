@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { injectReducer } from 'redux-injectors';
-import { doChangeTabPage, doCloseTabPage } from "./actions";
+import { doChangeTabPage, doCloseTabPage, doOpenTabPage } from "./actions";
 
 import styles from './styles.jss';
 import makeSelectMainTabs from './selectors';
@@ -94,6 +94,7 @@ class MainTabs extends React.Component {
     if (activeTab === null) return <Loading />
 
     const modules = Object.values(tabs);
+    console.log(tabs);
 
     return (
       <div className={classes.root}>
@@ -114,6 +115,10 @@ class MainTabs extends React.Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount = () => {
+    this.props.dispatch(doOpenTabPage(Dashboard));
   }
 }
 
