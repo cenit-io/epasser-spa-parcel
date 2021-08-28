@@ -6,7 +6,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { doSetSearchTerm } from "../../SearchByTerm/actions";
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends React.Component {
@@ -57,11 +56,6 @@ export default class AbstractPage extends React.Component {
     return values;
   }
 
-  setSearchTerm() {
-    const { dispatch } = this.props;
-    dispatch(doSetSearchTerm(this.searchTerm, this));
-  }
-
   parseStringValue = (value) => {
     if (value === null || value === undefined) return undefined;
     return String(value);
@@ -72,20 +66,5 @@ export default class AbstractPage extends React.Component {
   goto = (path) => {
     const { history } = this.props;
     history.push(path);
-  }
-
-  componentDidMount = () => {
-    this.setSearchTerm();
-  }
-
-  componentDidUpdate = () => {
-    this.setSearchTerm();
-  }
-
-  shouldComponentUpdate = (nextProps, nextState) => {
-    const { searchByTermState: { activeTab, applied } } = nextProps;
-    console.log('shouldComponentUpdate', applied && activeTab === this);
-
-    return applied && activeTab === this;
   }
 }
