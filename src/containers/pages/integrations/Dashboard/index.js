@@ -16,6 +16,7 @@ import styles from '../../../../styles';
 import messages from './messages';
 import AbstractPage from '../../AbstractPage';
 import makeSelectSignIn from '../../SignIn/selectors';
+import makeSelectSearchByTerm from "../../../SearchByTerm/selectors";
 
 import Typography from '@material-ui/core/Typography';
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -31,7 +32,7 @@ export class Dashboard extends AbstractPage {
   static icon = DashboardIcon;
 
   render() {
-    const { classes } = this.props;
+    const { classes, searchByTermState } = this.props;
 
     return (
       <div>
@@ -46,6 +47,7 @@ export class Dashboard extends AbstractPage {
 
 const mapStateToProps = createStructuredSelector({
   signInState: makeSelectSignIn(),
+  searchByTermState: makeSelectSearchByTerm(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

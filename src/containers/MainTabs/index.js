@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { injectReducer } from 'redux-injectors';
-import { doChangeTabPage, doOpenTabPage } from "./actions";
+import { doChangeTabPage, doCloseTabPage } from "./actions";
 
 import styles from './styles.jss';
 import makeSelectMainTabs from './selectors';
@@ -20,8 +20,20 @@ import reducer from './reducer';
 import Tabs from "@material-ui/core/Tabs";
 import Divider from "../../components/Divider";
 import Loading from "../../components/Loading";
-import TabItem from "../../components/TabItem";
+import TapButton from "../../components/TabButton";
+
 import Dashboard from "../pages/integrations/Dashboard";
+import AvailableIntegrations from "../pages/integrations/AvailableIntegrations";
+import ConnectedIntegrations from "../pages/integrations/ConnectedIntegrations";
+
+import Orders from "../pages/logistics/Orders";
+import Products from "../pages/logistics/Products";
+import StockItems from "../pages/logistics/StockItems";
+import StockLocations from "../pages/logistics/StockLocations";
+
+import Flows from "../pages/workflows/Flows";
+import Tasks from "../pages/workflows/Tasks";
+import Webhooks from "../pages/workflows/Webhooks";
 
 class MainTabs extends React.Component {
   static propTypes = {
@@ -30,24 +42,48 @@ class MainTabs extends React.Component {
     mainTabsState: PropTypes.instanceOf(Object).isRequired,
   }
 
-  onTabChange = (event, newTabValue) => {
+  onChangeTab = (event, tabId) => {
     const { dispatch } = this.props;
-    dispatch(doChangeTabPage(newTabValue));
+    dispatch(doChangeTabPage(tabId));
   }
 
-  renderTap(tab, idx) {
-    return <TabItem tab={tab} value={tab.id} key={idx} />
+  onCloseTab = (event, tabId) => {
+    const { dispatch } = this.props;
+    dispatch(doCloseTabPage(tabId));
   }
 
-  renderTapPage(tab, idx) {
-    const { mainTabsState: { activeTab, tabs } } = this.props;
+  renderTapButton(tab, idx) {
+    return (
+      <TapButton tab={tab} value={tab.id} onClose={tab.id != 'Dashboard' ? this.onCloseTab : undefined} key={idx} />
+    )
+  }
 
-    let TapPageElement = tabs.find((t) => t.id === activeTab);
+  renderModule(moduleId) {
+    // Integrations modules
+    if (moduleId === 'Dashboard') return <Dashboard />
+    if (moduleId === 'AvailableIntegrations') return <AvailableIntegrations />
+    if (moduleId === 'ConnectedIntegrations') return <ConnectedIntegrations />
+
+    // Workflows modules
+    if (moduleId === 'Orders') return <Orders />
+    if (moduleId === 'Products') return <Products />
+    if (moduleId === 'StockItems') return <StockItems />
+    if (moduleId === 'StockLocations') return <StockLocations />
+
+    // Logistics modules
+    if (moduleId === 'Flows') return <Flows />
+    if (moduleId === 'Tasks') return <Tasks />
+    if (moduleId === 'Webhooks') return <Webhooks />
+
+    throw Error(`Invalid module id: ${moduleId}`);
+  }
+
+  renderTapContent(tab, idx) {
+    const { mainTabsState: { activeTab } } = this.props;
 
     return (
-      <div id={`tabpanel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} key={idx}
-           role="tabpanel" hidden={activeTab !== tab.id}>
-        <TapPageElement />
+      <div id={`tabpanel-${tab.id}`} role="tabpanel" hidden={activeTab !== tab.id} key={idx}>
+        {this.renderModule(tab.id)}
       </div>
     )
   }
@@ -57,6 +93,8 @@ class MainTabs extends React.Component {
 
     if (activeTab === null) return <Loading />
 
+    const modules = Object.values(tabs);
+
     return (
       <div className={classes.root}>
         <Tabs className={classes.tabsBar} value={activeTab}
@@ -64,28 +102,25 @@ class MainTabs extends React.Component {
               indicatorColor="primary"
               textColor="primary"
               scrollButtons="auto"
-              onChange={this.onTabChange}
+              onChange={this.onChangeTab}
               classes={{
-                flexContainer: classes.tabsContainer
+                flexContainer: classes.tabsContainer,
               }}>
-          {tabs.map((tab, idx) => this.renderTap(tab, idx))}
+          {modules.map((tab, idx) => this.renderTapButton(tab, idx))}
         </Tabs>
         <Divider className={classes.separator} />
         <div className={classes.content}>
-          {tabs.map((tab, idx) => this.renderTapPage(tab, idx))}
+          {modules.map((tab, idx) => this.renderTapContent(tab, idx))}
         </div>
       </div>
     );
-  }
-
-  componentDidMount = () => {
-    this.props.dispatch(doOpenTabPage(Dashboard));
   }
 }
 
 const mapStateToProps = createStructuredSelector({
   mainTabsState: makeSelectMainTabs(),
 });
+
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 const withConnect = connect(

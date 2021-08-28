@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { doToggleNextButtonStatus } from '../../Buttons/NextButton/actions';
+import { doSetSearchTerm } from "../../SearchByTerm/actions";
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends React.Component {
@@ -14,9 +14,18 @@ export default class AbstractPage extends React.Component {
     history: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
     signInState: PropTypes.instanceOf(Object).isRequired,
+    searchByTermState: PropTypes.instanceOf(Object),
   }
 
+  static defaultProps = { searchByTermState: null };
+
   data = {}
+  searchTerm = ''
+
+  constructor(props) {
+    super(props);
+    console.log(`constructor: ${this.constructor.id}`);
+  }
 
   get currentAccount() {
     const { signInState: { account } } = this.props;
@@ -48,15 +57,14 @@ export default class AbstractPage extends React.Component {
     return values;
   }
 
+  setSearchTerm() {
+    const { dispatch } = this.props;
+    dispatch(doSetSearchTerm(this.searchTerm, this));
+  }
+
   parseStringValue = (value) => {
     if (value === null || value === undefined) return undefined;
     return String(value);
-  }
-
-  onChange = (attr, value, isValid) => {
-    const { dispatch } = this.props;
-    this.data[attr] = { value, isValid };
-    // dispatch(doToggleNextButtonStatus(this.isValid));
   }
 
   onGoto = (path) => () => this.goto(path);
@@ -64,5 +72,20 @@ export default class AbstractPage extends React.Component {
   goto = (path) => {
     const { history } = this.props;
     history.push(path);
+  }
+
+  componentDidMount = () => {
+    this.setSearchTerm();
+  }
+
+  componentDidUpdate = () => {
+    this.setSearchTerm();
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    const { searchByTermState: { activeTab, applied } } = nextProps;
+    console.log('shouldComponentUpdate', applied && activeTab === this);
+
+    return applied && activeTab === this;
   }
 }

@@ -16,6 +16,7 @@ import styles from '../../../../styles';
 import messages from './messages';
 import AbstractPage from '../../AbstractPage';
 import makeSelectSignIn from '../../SignIn/selectors';
+import makeSelectSearchByTerm from "../../../SearchByTerm/selectors";
 
 import Typography from '@material-ui/core/Typography';
 import AvailableIntegrationsIcon from "@material-ui/icons/SettingsBluetooth";
@@ -31,114 +32,10 @@ export class AvailableIntegrations extends AbstractPage {
   static icon = AvailableIntegrationsIcon;
 
   render() {
-    const { classes } = this.props;
+    const { classes, searchByTermState } = this.props;
 
     return (
       <div>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
         <Typography paragraph>
           <FormattedMessage {...messages.title} />
           TODO: ....
@@ -150,6 +47,7 @@ export class AvailableIntegrations extends AbstractPage {
 
 const mapStateToProps = createStructuredSelector({
   signInState: makeSelectSignIn(),
+  searchByTermState: makeSelectSearchByTerm(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

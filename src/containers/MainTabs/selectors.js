@@ -11,13 +11,14 @@ const selectMainTabsDomain = (state) => state.get('mainTabsState', initialState)
  * Other specific selectors
  */
 
+const makeSelectTabsItems = () => createSelector(makeSelectMainTabs(), (state) => state.tabs);
+const makeSelectActiveTab = () => createSelector(makeSelectMainTabs(), (state) => state.activeTab);
+
 /**
  * Default selector used by MainTabs
  */
 
-const makeSelectMainTabs = () => createSelector(
-  selectMainTabsDomain, (mainTabsState) => mainTabsState.toJS(),
-);
+const makeSelectMainTabs = () => createSelector(selectMainTabsDomain, (state) => state.toJS());
 
 export default makeSelectMainTabs;
-export { selectMainTabsDomain };
+export { makeSelectMainTabs, makeSelectTabsItems, makeSelectActiveTab };
