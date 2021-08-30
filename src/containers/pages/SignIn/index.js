@@ -37,8 +37,8 @@ import { doHideNotification, doShowNotification } from "../../Notification/actio
 export class SignIn extends AbstractPage {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    signInState: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   onAuthWithAuthCode() {
@@ -105,7 +105,7 @@ export class SignIn extends AbstractPage {
   }
 }
 
-const mapStateToProps = createStructuredSelector({ signInState: makeSelectSignIn() });
+const mapStateToProps = createStructuredSelector({ state: makeSelectSignIn() });
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'signInState', reducer });

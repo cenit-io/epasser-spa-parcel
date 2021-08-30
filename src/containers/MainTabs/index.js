@@ -39,7 +39,7 @@ class MainTabs extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
-    mainTabsState: PropTypes.instanceOf(Object).isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   onChangeTab = (event, tabId) => {
@@ -79,7 +79,7 @@ class MainTabs extends React.Component {
   }
 
   renderTapContent(tab, idx) {
-    const { mainTabsState: { activeTab } } = this.props;
+    const { state: { activeTab } } = this.props;
 
     return (
       <div id={`tabpanel-${tab.id}`} role="tabpanel" hidden={activeTab !== tab.id} key={idx}>
@@ -89,12 +89,11 @@ class MainTabs extends React.Component {
   }
 
   render() {
-    const { classes, mainTabsState: { activeTab, tabs } } = this.props;
+    const { classes, state: { activeTab, tabs } } = this.props;
 
     if (activeTab === null) return <Loading />
 
     const modules = Object.values(tabs);
-    console.log(tabs);
 
     return (
       <div className={classes.root}>
@@ -123,7 +122,7 @@ class MainTabs extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  mainTabsState: makeSelectMainTabs(),
+  state: makeSelectMainTabs(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

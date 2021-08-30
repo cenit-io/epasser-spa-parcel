@@ -9,16 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { injectReducer } from 'redux-injectors';
 import { withStyles } from '@material-ui/core/styles';
 import { makeSelectActiveTab } from "../MainTabs/selectors";
 
 import styles from './styles.jss';
-import makeSelectSearchByTerm from './selectors';
-import reducer from './reducer';
 import eventEmitter from '../../components/EventEmitter';
 
-import { doApplySearchTerm, doChangeSearchTerm } from "./actions";
 
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
@@ -27,26 +23,35 @@ class SearchByTerm extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
-    activeTab: PropTypes.string,
+    activeModuleId: PropTypes.string,
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
   onChange = (event) => {
-    const { dispatch, activeTab } = this.props;
-    dispatch(doChangeSearchTerm(event.target.value, activeTab));
+    const { activeModuleId } = this.props;
+    const searchTerm = event.target.value;
+
+    this.setState((state) => {
+      state[activeModuleId] = searchTerm;
+      return state;
+    })
   }
 
   onApplySearchTerm = () => {
-    const { activeTab, state } = this.props;
-    eventEmitter.emit('changeSearchTerm', activeTab, state[activeTab].searchTerm);
+    const { activeModuleId } = this.props;
+    eventEmitter.emit('changeSearchTerm', activeModuleId, this.state[activeModuleId]);
   }
 
   render() {
-    const { classes, state, activeTab } = this.props;
+    const { classes, activeModuleId } = this.props;
 
-    if (activeTab === null) return null;
+    if (activeModuleId === null) return null;
 
-    const value = state[activeTab] ? state[activeTab].searchTerm : '';
+    const searchTerm = this.state[activeModuleId] || '';
 
     return (
       <div className={classes.search}>
@@ -54,7 +59,7 @@ class SearchByTerm extends React.Component {
           <SearchIcon />
         </div>
         <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
-                   value={value}
+                   value={searchTerm}
                    onChange={this.onChange}
                    onBlur={this.onApplySearchTerm}
                    classes={{
@@ -67,16 +72,10 @@ class SearchByTerm extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  activeTab: makeSelectActiveTab(),
-  state: makeSelectSearchByTerm()
-});
-
+const mapStateToProps = createStructuredSelector({ activeModuleId: makeSelectActiveTab() });
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer({ key: 'searchByTermState', reducer });
 
 export default compose(
-  withReducer,
   withConnect,
 )(withStyles(styles)(SearchByTerm));

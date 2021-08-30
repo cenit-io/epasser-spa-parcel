@@ -23,11 +23,11 @@ import messages from './messages';
 
 class Notification extends React.Component {
   static propTypes = {
-    notificationState: PropTypes.instanceOf(Object),
+    state: PropTypes.instanceOf(Object),
     dispatch: PropTypes.func.isRequired,
   }
 
-  static defaultProps = { notificationState: { message: null } };
+  static defaultProps = { state: { message: null } };
 
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ class Notification extends React.Component {
   }
 
   get message() {
-    const { notificationState: { message: msg } } = this.props;
+    const { state: { message: msg } } = this.props;
     const { response } = msg;
 
     let id;
@@ -58,7 +58,7 @@ class Notification extends React.Component {
   }
 
   get severity() {
-    const { notificationState: { message, severity } } = this.props;
+    const { state: { message, severity } } = this.props;
 
     switch (this.message.id) {
       case 'need_email_confirmation':
@@ -88,7 +88,7 @@ class Notification extends React.Component {
   }
 
   onSendConfirmationEmail = () => {
-    const { dispatch, notificationState: { message: msg } } = this.props;
+    const { dispatch, state: { message: msg } } = this.props;
 
     const urlParams = new URLSearchParams(msg.response.config.data);
     const email = urlParams.get('username');
@@ -103,12 +103,12 @@ class Notification extends React.Component {
   }
 
   componentDidUpdate = () => {
-    const { notificationState: { message } } = this.props;
+    const { state: { message } } = this.props;
     if (message && message !== '') this.elRef.current.scrollIntoView();
   }
 
   render() {
-    const { notificationState: { message } } = this.props;
+    const { state: { message } } = this.props;
 
     if (!message || message === '') return null;
 

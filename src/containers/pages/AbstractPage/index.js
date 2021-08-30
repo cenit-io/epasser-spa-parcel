@@ -43,4 +43,8 @@ export default class AbstractPage extends React.Component {
   onChangeSearchTerm = (moduleId, searchTerm) => {
     if (moduleId === this.constructor.id) this.setState({ searchTerm });
   }
+
+  componentWillUnmount = () => {
+    this._changeSearchTermToken.remove();
+  }
 }

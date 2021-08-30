@@ -7,8 +7,6 @@
 import { fromJS } from 'immutable';
 import { CHANGE_TAB_PAGE, OPEN_TAB_PAGE, CLOSE_TAB_PAGE } from './constants';
 
-import Dashboard from "../pages/integrations/Dashboard";
-
 export const initialState = fromJS({
   activeTab: null,
   tabs: {},
