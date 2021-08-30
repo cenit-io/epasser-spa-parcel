@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
-import makeSelectMainTabs from "../MainTabs/selectors";
 
 /**
  * Direct selector to the searchByTerm state domain
@@ -12,7 +11,7 @@ const selectSearchByTermDomain = (state) => state.get('searchByTermState', initi
  * Other specific selectors
  */
 
-const makeSelectActiveSearchTerm = (activeTab) => createSelector(makeSelectSearchByTerm(), (state) => state[activeTab]);
+const makeSelectModuleSearchTerm = (moduleId) => createSelector(makeSelectSearchByTerm(), (state) => state[moduleId]);
 
 /**
  * Default selector used by SearchByTerm
@@ -23,4 +22,4 @@ const makeSelectSearchByTerm = () => createSelector(
 );
 
 export default makeSelectSearchByTerm;
-export { selectSearchByTermDomain };
+export { selectSearchByTermDomain, makeSelectModuleSearchTerm };

@@ -16,6 +16,7 @@ import { makeSelectActiveTab } from "../MainTabs/selectors";
 import styles from './styles.jss';
 import makeSelectSearchByTerm from './selectors';
 import reducer from './reducer';
+import eventEmitter from '../../components/EventEmitter';
 
 import { doApplySearchTerm, doChangeSearchTerm } from "./actions";
 
@@ -26,7 +27,7 @@ class SearchByTerm extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
-    searchByTermState: PropTypes.instanceOf(Object).isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
     activeTab: PropTypes.string,
   }
 
@@ -36,17 +37,16 @@ class SearchByTerm extends React.Component {
   }
 
   onApplySearchTerm = () => {
-    const { dispatch, activeTab } = this.props;
-
-    dispatch(doApplySearchTerm(activeTab));
+    const { activeTab, state } = this.props;
+    eventEmitter.emit('changeSearchTerm', activeTab, state[activeTab].searchTerm);
   }
 
   render() {
-    const { classes, searchByTermState, activeTab } = this.props;
+    const { classes, state, activeTab } = this.props;
 
     if (activeTab === null) return null;
 
-    const value = searchByTermState[activeTab] ? searchByTermState[activeTab].searchTerm : '';
+    const value = state[activeTab] ? state[activeTab].searchTerm : '';
 
     return (
       <div className={classes.search}>
@@ -69,7 +69,7 @@ class SearchByTerm extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   activeTab: makeSelectActiveTab(),
-  searchByTermState: makeSelectSearchByTerm()
+  state: makeSelectSearchByTerm()
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

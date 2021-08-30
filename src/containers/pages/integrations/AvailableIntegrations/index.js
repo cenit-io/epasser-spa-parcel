@@ -16,7 +16,6 @@ import styles from '../../../../styles';
 import messages from './messages';
 import AbstractPage from '../../AbstractPage';
 import makeSelectSignIn from '../../SignIn/selectors';
-import makeSelectSearchByTerm from "../../../SearchByTerm/selectors";
 
 import Typography from '@material-ui/core/Typography';
 import AvailableIntegrationsIcon from "@material-ui/icons/SettingsBluetooth";
@@ -24,7 +23,6 @@ import AvailableIntegrationsIcon from "@material-ui/icons/SettingsBluetooth";
 export class AvailableIntegrations extends AbstractPage {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    signInState: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'AvailableIntegrations';
@@ -32,13 +30,16 @@ export class AvailableIntegrations extends AbstractPage {
   static icon = AvailableIntegrationsIcon;
 
   render() {
-    const { classes, searchByTermState } = this.props;
+    const { classes } = this.props;
+    const { searchTerm } = this.state;
 
+    console.log(this.constructor.id, searchTerm);
     return (
       <div>
         <Typography paragraph>
           <FormattedMessage {...messages.title} />
           TODO: ....
+          {searchTerm}
         </Typography>
       </div>
     );
@@ -46,8 +47,7 @@ export class AvailableIntegrations extends AbstractPage {
 }
 
 const mapStateToProps = createStructuredSelector({
-  signInState: makeSelectSignIn(),
-  searchByTermState: makeSelectSearchByTerm(),
+  state: makeSelectSignIn(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

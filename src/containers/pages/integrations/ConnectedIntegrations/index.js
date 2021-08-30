@@ -23,7 +23,6 @@ import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
 export class ConnectedIntegrations extends AbstractPage {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    signInState: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'ConnectedIntegrations';
@@ -32,6 +31,9 @@ export class ConnectedIntegrations extends AbstractPage {
 
   render() {
     const { classes } = this.props;
+    const { searchTerm } = this.state;
+
+    console.log(this.constructor.id, searchTerm);
 
     return (
       <div>
@@ -45,7 +47,7 @@ export class ConnectedIntegrations extends AbstractPage {
 }
 
 const mapStateToProps = createStructuredSelector({
-  signInState: makeSelectSignIn(),
+  state: makeSelectSignIn(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
