@@ -33,8 +33,6 @@ export class Dashboard extends AbstractPage {
     const { classes } = this.props;
     const { searchTerm } = this.state;
 
-    console.log(this.constructor.id, searchTerm);
-
     return (
       <div>
         <Typography paragraph>

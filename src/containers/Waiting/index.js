@@ -19,11 +19,11 @@ import reducer from './reducer';
 class Waiting extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    waitingState: PropTypes.instanceOf(Object).isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   render() {
-    const { classes, waitingState: { enabled } } = this.props;
+    const { classes, state: { enabled } } = this.props;
 
     return (
       <Backdrop className={classes.backdrop} open={enabled !== 0}>
@@ -33,7 +33,7 @@ class Waiting extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({ waitingState: makeSelectWaiting() });
+const mapStateToProps = createStructuredSelector({ state: makeSelectWaiting() });
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'waitingState', reducer });

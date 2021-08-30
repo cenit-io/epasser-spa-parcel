@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import AbstractComponent from "../../components/AbstractComponent";
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -13,13 +14,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { makeSelectActiveTab } from "../MainTabs/selectors";
 
 import styles from './styles.jss';
-import eventEmitter from '../../components/EventEmitter';
-
 
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
-class SearchByTerm extends React.Component {
+class SearchByTerm extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -31,7 +30,7 @@ class SearchByTerm extends React.Component {
     this.state = {};
   }
 
-  onChange = (event) => {
+  onChangeSearchTerm = (event) => {
     const { activeModuleId } = this.props;
     const searchTerm = event.target.value;
 
@@ -43,7 +42,7 @@ class SearchByTerm extends React.Component {
 
   onApplySearchTerm = () => {
     const { activeModuleId } = this.props;
-    eventEmitter.emit('changeSearchTerm', activeModuleId, this.state[activeModuleId]);
+    this.emit('changeSearchTerm', this.state[activeModuleId], activeModuleId);
   }
 
   render() {
@@ -60,7 +59,7 @@ class SearchByTerm extends React.Component {
         </div>
         <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
                    value={searchTerm}
-                   onChange={this.onChange}
+                   onChange={this.onChangeSearchTerm}
                    onBlur={this.onApplySearchTerm}
                    classes={{
                      root: classes.searchInputRoot,

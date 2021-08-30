@@ -6,10 +6,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import eventEmitter from '../../../components/EventEmitter';
+import AbstractComponent from "../../../components/AbstractComponent";
 
 /* eslint class-methods-use-this: ["off"] */
-export default class AbstractPage extends React.Component {
+export default class AbstractPage extends AbstractComponent {
   static propTypes = {
     history: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -19,7 +19,7 @@ export default class AbstractPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { searchTerm: '' };
-    this._changeSearchTermToken = eventEmitter.addListener('changeSearchTerm', this.onChangeSearchTerm);
+    this.on('changeSearchTerm', this.onChangeSearchTerm, this.constructor.id);
 
     console.log('constructor', this.constructor.id);
   }
@@ -40,11 +40,7 @@ export default class AbstractPage extends React.Component {
     history.push(path);
   }
 
-  onChangeSearchTerm = (moduleId, searchTerm) => {
-    if (moduleId === this.constructor.id) this.setState({ searchTerm });
-  }
-
-  componentWillUnmount = () => {
-    this._changeSearchTermToken.remove();
+  onChangeSearchTerm = (searchTerm) => {
+    this.setState({ searchTerm });
   }
 }
