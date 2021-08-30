@@ -6,12 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractComponent from "../../components/AbstractComponent";
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import AbstractComponent from "../AbstractComponent";
 import { withStyles } from '@material-ui/core/styles';
-import { makeSelectActiveTab } from "../MainTabs/selectors";
 
 import styles from './styles.jss';
 
@@ -21,17 +17,16 @@ import InputBase from "@material-ui/core/InputBase";
 class SearchByTerm extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    dispatch: PropTypes.func.isRequired,
-    activeModuleId: PropTypes.string,
   }
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { activeModuleId: null };
+    this.addMessagingListener('changeActiveTabModule', this.onChangeActiveModule, 'MainTabs');
   }
 
   onChangeSearchTerm = (event) => {
-    const { activeModuleId } = this.props;
+    const { activeModuleId } = this.state;
     const searchTerm = event.target.value;
 
     this.setState((state) => {
@@ -41,12 +36,17 @@ class SearchByTerm extends AbstractComponent {
   }
 
   onApplySearchTerm = () => {
-    const { activeModuleId } = this.props;
-    this.emit('changeSearchTerm', this.state[activeModuleId], activeModuleId);
+    const { activeModuleId } = this.state;
+    this.emitMessage('changeSearchTerm', this.state[activeModuleId], activeModuleId);
+  }
+
+  onChangeActiveModule = (activeModuleId) => {
+    this.setState({ activeModuleId });
   }
 
   render() {
-    const { classes, activeModuleId } = this.props;
+    const { classes } = this.props;
+    const { activeModuleId } = this.state;
 
     if (activeModuleId === null) return null;
 
@@ -71,10 +71,4 @@ class SearchByTerm extends AbstractComponent {
   }
 }
 
-const mapStateToProps = createStructuredSelector({ activeModuleId: makeSelectActiveTab() });
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(SearchByTerm));
+export default withStyles(styles)(SearchByTerm);

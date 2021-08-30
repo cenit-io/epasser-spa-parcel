@@ -5,32 +5,31 @@
  */
 
 import React from 'react';
-import eventEmitter from '../../components/EventEmitter';
+import messaging from '../Messaging';
 
 export default class AbstractComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this._eventSubscritions = [];
-    window.xx = this.constructor
+    this._subscritions = [];
   }
 
-  on(eventType, callBack, namespace) {
-    eventType = `${namespace || 'Global'}/${eventType}`;
+  addMessagingListener(messageId, callBack, namespace) {
+    messageId = `${namespace || 'Global'}/${messageId}`;
 
-    const subscription = eventEmitter.addListener(eventType, callBack);
-    this._eventSubscritions.push(subscription);
+    const subscription = messaging.addListener(messageId, callBack);
+    this._subscritions.push(subscription);
 
     return subscription;
   }
 
-  emit(eventType, data, namespace) {
-    eventType = `${namespace || 'Global'}/${eventType}`;
+  emitMessage(messageId, data, namespace) {
+    messageId = `${namespace || 'Global'}/${messageId}`;
     data = data instanceof Array ? data : [data];
-    eventEmitter.emit(eventType, ...data);
+    messaging.emit(messageId, ...data);
   }
 
   componentWillUnmount = () => {
-    this._eventSubscritions.forEach(subscription => subscription.remove());
+    this._subscritions.forEach(subscription => subscription.remove());
   }
 }

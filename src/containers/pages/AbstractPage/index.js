@@ -19,7 +19,7 @@ export default class AbstractPage extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state = { searchTerm: '' };
-    this.on('changeSearchTerm', this.onChangeSearchTerm, this.constructor.id);
+    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm, this.constructor.id);
 
     console.log('constructor', this.constructor.id);
   }

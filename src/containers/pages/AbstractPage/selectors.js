@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import makeSelectSignIn from "../SignIn/selectors";
-import { makeSelectModuleSearchTerm } from "../../SearchByTerm/selectors";
+import { makeSelectModuleSearchTerm } from "../../../components/SearchByTerm/selectors";
 
 /**
  * Default selector used by any Page

@@ -24,7 +24,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LeftSlider from "../LeftSlider";
-import SearchByTerm from "../SearchByTerm";
+import SearchByTerm from "../../components/SearchByTerm";
 
 import { doToggleLeftSlider } from "../LeftSlider/actions";
 

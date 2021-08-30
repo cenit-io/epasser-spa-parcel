@@ -11,12 +11,12 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { injectReducer } from 'redux-injectors';
-import { doChangeTabPage, doCloseTabPage, doOpenTabPage } from "./actions";
 
 import styles from './styles.jss';
 import makeSelectMainTabs from './selectors';
 import reducer from './reducer';
 
+import AbstractComponent from "../../components/AbstractComponent";
 import Tabs from "@material-ui/core/Tabs";
 import Divider from "../../components/Divider";
 import Loading from "../../components/Loading";
@@ -35,26 +35,45 @@ import Flows from "../pages/workflows/Flows";
 import Tasks from "../pages/workflows/Tasks";
 import Webhooks from "../pages/workflows/Webhooks";
 
-class MainTabs extends React.Component {
+class MainTabs extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
     state: PropTypes.instanceOf(Object).isRequired,
   }
 
-  onChangeTab = (event, tabId) => {
-    const { dispatch } = this.props;
-    dispatch(doChangeTabPage(tabId));
+  constructor(props) {
+    super(props);
+    this.state = { activeTab: null, tabsModules: {} };
+    this.addMessagingListener('openModule', this.onOpenTab, 'MainTabs');
   }
 
-  onCloseTab = (event, tabId) => {
-    const { dispatch } = this.props;
-    dispatch(doCloseTabPage(tabId));
+  setActiveTabModule(activeTab){
+    this.setState({ activeTab });
+    this.emitMessage('changeActiveTabModule', activeTab, 'MainTabs');
   }
 
-  renderTapButton(tab, idx) {
+  onChangeTab = (event, activeTab) => {
+    this.setActiveTabModule(activeTab);
+  }
+
+  onOpenTab = (module) => {
+    const { tabsModules } = this.state;
+
+    tabsModules[module.id] = module;
+    this.setActiveTabModule(module.id);
+  }
+
+  onCloseTab = (event, moduleId) => {
+    const { tabsModules } = this.state;
+    delete tabsModules[moduleId];
+    this.setActiveTabModule('Dashboard');
+  }
+
+  renderTapButton(module, idx) {
     return (
-      <TapButton tab={tab} value={tab.id} onClose={tab.id != 'Dashboard' ? this.onCloseTab : undefined} key={idx} />
+      <TapButton tab={module} value={module.id} key={idx}
+                 onClose={module.id != 'Dashboard' ? this.onCloseTab : undefined} />
     )
   }
 
@@ -78,22 +97,23 @@ class MainTabs extends React.Component {
     throw Error(`Invalid module id: ${moduleId}`);
   }
 
-  renderTapContent(tab, idx) {
-    const { state: { activeTab } } = this.props;
+  renderTapContent(module, idx) {
+    const { activeTab } = this.state;
 
     return (
-      <div id={`tabpanel-${tab.id}`} role="tabpanel" hidden={activeTab !== tab.id} key={idx}>
-        {this.renderModule(tab.id)}
+      <div id={`tabpanel-${module.id}`} role="tabpanel" hidden={activeTab !== module.id} key={idx}>
+        {this.renderModule(module.id)}
       </div>
     )
   }
 
   render() {
-    const { classes, state: { activeTab, tabs } } = this.props;
+    const { classes } = this.props;
+    const { activeTab, tabsModules } = this.state;
 
     if (activeTab === null) return <Loading />
 
-    const modules = Object.values(tabs);
+    const modules = Object.values(tabsModules);
 
     return (
       <div className={classes.root}>
@@ -106,7 +126,7 @@ class MainTabs extends React.Component {
               classes={{
                 flexContainer: classes.tabsContainer,
               }}>
-          {modules.map((tab, idx) => this.renderTapButton(tab, idx))}
+          {modules.map((module, idx) => this.renderTapButton(module, idx))}
         </Tabs>
         <Divider className={classes.separator} />
         <div className={classes.content}>
@@ -117,7 +137,7 @@ class MainTabs extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.dispatch(doOpenTabPage(Dashboard));
+    this.emitMessage('openModule', Dashboard, 'MainTabs');
   }
 }
 

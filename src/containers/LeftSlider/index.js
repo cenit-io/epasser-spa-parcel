@@ -18,8 +18,7 @@ import makeSelectLeftSlider from './selectors';
 import reducer from './reducer';
 import messages from "./messages";
 
-import { doOpenTabPage } from "../MainTabs/actions";
-
+import AbstractComponent from "../../components/AbstractComponent";
 import Toolbar from "@material-ui/core/Toolbar";
 import Drawer from "@material-ui/core/Drawer";
 import SubMenuModules from "../../components/SubMenuModules";
@@ -34,7 +33,7 @@ import Flows from "../pages/workflows/Flows";
 import Tasks from "../pages/workflows/Tasks";
 import Webhooks from "../pages/workflows/Webhooks";
 
-class LeftSlider extends React.Component {
+class LeftSlider extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -42,7 +41,7 @@ class LeftSlider extends React.Component {
   }
 
   onTapItem = (item) => {
-    this.props.dispatch(doOpenTabPage(item));
+    this.emitMessage('openModule', item, 'MainTabs')
   }
 
   render() {
