@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
-import makeSelectMainTabs from "../MainTabs/selectors";
 
 /**
  * Direct selector to the leftSlider state domain

@@ -15,7 +15,7 @@ import { compose } from 'redux';
 import { injectReducer, injectSaga } from 'redux-injectors';
 import { withStyles } from '@material-ui/core/styles';
 
-import styles from '../../../styles';
+import styles from './styles.jss';
 import makeSelectSignIn from './selectors';
 import reducer from './reducer';
 import saga from './saga';

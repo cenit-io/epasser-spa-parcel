@@ -4,8 +4,6 @@
  *
  */
 
-import { alpha } from '@material-ui/core/styles';
-
 const styles = (theme) => ({
 
   drawer: props => ({

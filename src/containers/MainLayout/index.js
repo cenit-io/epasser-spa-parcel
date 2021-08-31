@@ -9,15 +9,15 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Redirect } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
-import styles from '../../styles';
+import styles from './styles.jss';
 import makeSelectSignIn from "../pages/SignIn/selectors";
 import makeSelectLeftSlider from "../LeftSlider/selectors";
 
+import AbstractComponent from "../../components/AbstractComponent";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -26,9 +26,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LeftSlider from "../LeftSlider";
 import SearchByTerm from "../../components/SearchByTerm";
 
-import { doToggleLeftSlider } from "../LeftSlider/actions";
-
-class MainLayout extends React.Component {
+class MainLayout extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -40,8 +38,9 @@ class MainLayout extends React.Component {
   static defaultProps = { children: null, style: null }
 
   onToggleLeftDrawer = () => {
-    const { dispatch, leftSlider: { open } } = this.props;
-    dispatch(doToggleLeftSlider(!open));
+    this.emitMessage('toggle', null, 'LeftSlider')
+    // const { dispatch, leftSlider: { open } } = this.props;
+    // dispatch(doToggleLeftSlider(!open));
   }
 
   render() {

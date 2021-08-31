@@ -6,15 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import { injectReducer } from 'redux-injectors';
 
 import styles from './styles.jss';
-import makeSelectMainTabs from './selectors';
-import reducer from './reducer';
 
 import AbstractComponent from "../../components/AbstractComponent";
 import Tabs from "@material-ui/core/Tabs";
@@ -38,8 +32,6 @@ import Webhooks from "../pages/workflows/Webhooks";
 class MainTabs extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    dispatch: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   constructor(props) {
@@ -48,7 +40,7 @@ class MainTabs extends AbstractComponent {
     this.addMessagingListener('openModule', this.onOpenTab, 'MainTabs');
   }
 
-  setActiveTabModule(activeTab){
+  setActiveTabModule(activeTab) {
     this.setState({ activeTab });
     this.emitMessage('changeActiveTabModule', activeTab, 'MainTabs');
   }
@@ -141,20 +133,4 @@ class MainTabs extends AbstractComponent {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  state: makeSelectMainTabs(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-const withReducer = injectReducer({ key: 'mainTabsState', reducer });
-
-export default compose(
-  withReducer,
-  withConnect,
-)(withStyles(styles)(MainTabs));
+export default withStyles(styles)(MainTabs);
