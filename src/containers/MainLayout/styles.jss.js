@@ -25,12 +25,11 @@ const styles = (theme) => ({
     }
   },
 
-  mainContent: props => ({
+  mainContent: {
     flexGrow: 1,
     padding: theme.spacing(3),
     marginTop: 50,
-    width: props.leftSliderState && props.leftSliderState.open ? `calc(100% - ${props.leftSliderSize}px)` : '100%',
-  }),
+  },
 });
 
 export default styles;

@@ -7,15 +7,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import { injectReducer } from 'redux-injectors';
 
 import styles from './styles.jss';
-import makeSelectLeftSlider from './selectors';
-import reducer from './reducer';
 import messages from "./messages";
 
 import AbstractComponent from "../../components/AbstractComponent";
@@ -36,8 +30,8 @@ import Webhooks from "../pages/workflows/Webhooks";
 class LeftSlider extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    dispatch: PropTypes.func.isRequired,
-    leftSlider: PropTypes.instanceOf(Object).isRequired,
+    open: PropTypes.bool.isRequired,
+    size: PropTypes.number.isRequired,
   }
 
   onTapItem = (item) => {
@@ -45,7 +39,7 @@ class LeftSlider extends AbstractComponent {
   }
 
   render() {
-    const { classes, leftSlider: { open } } = this.props;
+    const { classes, open } = this.props;
 
     return (
       <Drawer className={classes.drawer} variant="persistent" open={open}
@@ -69,15 +63,4 @@ class LeftSlider extends AbstractComponent {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  leftSlider: makeSelectLeftSlider(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps,);
-const withReducer = injectReducer({ key: 'leftSliderState', reducer });
-
-export default compose(
-  withReducer,
-  withConnect,
-)(withStyles(styles)(LeftSlider));
+export default withStyles(styles)(LeftSlider);

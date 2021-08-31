@@ -15,7 +15,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles.jss';
 import makeSelectSignIn from "../pages/SignIn/selectors";
-import makeSelectLeftSlider from "../LeftSlider/selectors";
 
 import AbstractComponent from "../../components/AbstractComponent";
 import AppBar from "@material-ui/core/AppBar";
@@ -31,21 +30,28 @@ class MainLayout extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
     pageTitle: PropTypes.string.isRequired,
-    leftSlider: PropTypes.instanceOf(Object).isRequired,
     children: PropTypes.node,
   }
 
   static defaultProps = { children: null, style: null }
 
+  constructor(props) {
+    super(props);
+    this.state = { leftSlider: { open: true, size: 300 } };
+  }
+
   onToggleLeftDrawer = () => {
-    this.emitMessage('toggle', null, 'LeftSlider')
-    // const { dispatch, leftSlider: { open } } = this.props;
-    // dispatch(doToggleLeftSlider(!open));
+    this.setState(prevState => {
+      prevState.leftSlider.open = !prevState.leftSlider.open
+      return prevState
+    });
   }
 
   render() {
-    const { classes, pageTitle, children, leftSlider: { size } } = this.props;
+    const { classes, pageTitle, children } = this.props;
+    const { leftSlider: { open, size } } = this.state;
 
+    console.log(666, open, size);
     // if (!this.isAuthenticate) return <Redirect to="/sign/in" />;
 
     return (
@@ -67,7 +73,7 @@ class MainLayout extends AbstractComponent {
           </Toolbar>
         </AppBar>
 
-        <LeftSlider width={size} />
+        <LeftSlider open={open} size={size} />
 
         <main className={classes.mainContent}>
           {children}
@@ -79,7 +85,6 @@ class MainLayout extends AbstractComponent {
 
 const mapStateToProps = createStructuredSelector({
   signInState: makeSelectSignIn(),
-  leftSlider: makeSelectLeftSlider(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
