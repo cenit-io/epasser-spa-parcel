@@ -1,12 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { doSetAccountInfo } from './actions';
-import { doHideNotification, doShowNotification } from '../../Notification/actions';
 import { request } from '../../../base/request';
 import { doStartWaiting, doReleaseWaiting } from '../../Waiting/actions';
-import {
-  AUTHENTICATE_WITH_AUTH_CODE,
-} from './constants';
+import { AUTHENTICATE_WITH_AUTH_CODE, } from './constants';
 import { history } from "../../../base/history";
+
+import messaging from '../../../components/Messaging';
 
 export function* doAuthenticateWithAuthCode(action) {
   try {
@@ -16,14 +15,13 @@ export function* doAuthenticateWithAuthCode(action) {
       data: { code: action.authCode },
     };
 
-    yield put(doHideNotification());
-    yield put(doShowNotification('waitFortAuthToken', 'info'));
+    yield call(messaging.emitMessage, 'notify', 'waitFortAuthToken');
     yield put(doStartWaiting());
     const response = yield call(request, options);
     yield put(doSetAccountInfo(response.data));
     yield call(history.replace, '/');
   } catch (error) {
-    yield put(doShowNotification(error, 'error'));
+    yield call(messaging.emitMessage, 'notify', error);
   } finally {
     yield put(doReleaseWaiting());
   }

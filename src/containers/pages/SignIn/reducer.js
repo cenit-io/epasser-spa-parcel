@@ -7,6 +7,8 @@
 import { fromJS } from 'immutable';
 import { SET_ACCOUNT_INFO } from './constants';
 
+import session from '../../../components/Session';
+
 export const initialState = fromJS({
   account: null,
 });
@@ -14,6 +16,7 @@ export const initialState = fromJS({
 function signInReducer(state = initialState, action) {
   switch (action.type) {
     case SET_ACCOUNT_INFO:
+      session.set('account', action.account);
       return state.set('account', action.account);
     default:
       return state;

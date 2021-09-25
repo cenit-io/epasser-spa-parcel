@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { Redirect } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectReducer, injectSaga } from 'redux-injectors';
@@ -22,7 +21,6 @@ import saga from './saga';
 import messages from './messages';
 
 import AbstractPage from '../AbstractPage';
-import PageContent from '../../../components/PageContent';
 
 import { doAuthenticateWithAuthCode } from './actions';
 
@@ -32,26 +30,13 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { doHideNotification, doShowNotification } from "../../Notification/actions";
+import Notification from "../../../components/Notification";
 
 export class SignIn extends AbstractPage {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
     state: PropTypes.instanceOf(Object).isRequired,
-  }
-
-  onAuthWithAuthCode() {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    if (urlParams.has('code')) {
-      const authCode = urlParams.get('code');
-      const { dispatch } = this.props;
-      dispatch(doAuthenticateWithAuthCode(authCode));
-    } else {
-      const redirectUri = window.location.href.replace(/\?.*$/, '');
-      window.location = `${process.env.eCAPI_BASE_URL}/sign_in?redirect_uri=${redirectUri}`;
-    }
   }
 
   onGotoCenitIOSignInPage = () => {
@@ -68,17 +53,17 @@ export class SignIn extends AbstractPage {
           <title>ePasser: SignIN</title>
         </Helmet>
 
-        <PageContent>
-          <Card>
-            <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
-            <CardMedia image="/images/logo.png" title="ePasser" />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                <FormattedMessage {...messages.content} />
-              </Typography>
-            </CardContent>
-          </Card>
-        </PageContent>
+        <Notification />
+
+        <Card className={classes.signIn}>
+          <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
+          <CardMedia className={classes.logo} component="img" image="/images/logo-passer.png" title="ePasser" />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              <FormattedMessage {...messages.content} />
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -90,13 +75,15 @@ export class SignIn extends AbstractPage {
     if (urlParams.has('error')) {
       const error = urlParams.get('error');
       const description = urlParams.get('error_description');
-      dispatch(doShowNotification(Error(description || error)));
+      this.emitMessage('notify', Error(description || error))
     } else if (urlParams.has('code')) {
       const authCode = urlParams.get('code');
       dispatch(doAuthenticateWithAuthCode(authCode));
-    } else {
-      dispatch(doShowNotification('gotoSignInPage', 'info'));
+    } else if (!this.isAuthenticate) {
+      this.emitMessage('notify', 'gotoSignInPage');
       setTimeout(this.onGotoCenitIOSignInPage, 5000);
+    } else {
+      this.goto('/')
     }
   }
 

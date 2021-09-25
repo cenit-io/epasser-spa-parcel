@@ -19,6 +19,7 @@ import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
 import AvailableIntegrationsIcon from "@material-ui/icons/SettingsBluetooth";
+import ResourcesDataGrid from "../../../../components/ResourcesDataGrid";
 
 export class AvailableIntegrations extends AbstractPage {
   static propTypes = {
@@ -28,6 +29,17 @@ export class AvailableIntegrations extends AbstractPage {
   static id = 'AvailableIntegrations';
   static title = messages.title;
   static icon = AvailableIntegrationsIcon;
+
+  get fields() {
+    return [
+      { id: 'title' },
+      { id: 'summary' },
+      { id: 'version' },
+      { id: 'status' },
+      { id: 'updated_at' },
+      { id: 'installed_at' },
+    ]
+  }
 
   render() {
     const { classes } = this.props;
@@ -40,6 +52,7 @@ export class AvailableIntegrations extends AbstractPage {
           TODO: ....
           {searchTerm}
         </Typography>
+        <ResourcesDataGrid fields={this.fields} messages={messages} />
       </div>
     );
   }

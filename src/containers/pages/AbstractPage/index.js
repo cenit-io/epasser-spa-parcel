@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AbstractComponent from "../../../components/AbstractComponent";
+import session from '../../../components/Session';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends AbstractComponent {
@@ -20,17 +21,14 @@ export default class AbstractPage extends AbstractComponent {
     super(props);
     this.state = { searchTerm: '' };
     this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm, this.constructor.id);
-
-    console.log('constructor', this.constructor.id);
   }
 
   get currentAccount() {
-    const { state: { account } } = this.props;
-    return account;
+    return session.currentAccount;
   }
 
   get isAuthenticate() {
-    return !!this.currentAccount;
+    return session.isAuthenticate;
   }
 
   onGoto = (path) => () => this.goto(path);

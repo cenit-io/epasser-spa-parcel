@@ -45,7 +45,7 @@ export class Products extends AbstractPage {
 }
 
 const mapStateToProps = createStructuredSelector({
-  signInState: makeSelectSignIn(),
+  state: makeSelectSignIn(),
 });
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

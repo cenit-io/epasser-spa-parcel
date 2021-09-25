@@ -9,12 +9,14 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { Redirect } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles.jss';
 import makeSelectSignIn from "../pages/SignIn/selectors";
+import session from '../../components/Session';
 
 import AbstractComponent from "../../components/AbstractComponent";
 import AppBar from "@material-ui/core/AppBar";
@@ -29,6 +31,7 @@ class MainLayout extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     dispatch: PropTypes.func.isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
     pageTitle: PropTypes.string.isRequired,
     children: PropTypes.node,
   }
@@ -51,8 +54,7 @@ class MainLayout extends AbstractComponent {
     const { classes, pageTitle, children } = this.props;
     const { leftSlider: { open, size } } = this.state;
 
-    console.log(666, open, size);
-    // if (!this.isAuthenticate) return <Redirect to="/sign/in" />;
+    if (!session.isAuthenticate) return <Redirect to="/sign/in" />;
 
     return (
       <div className={classes.root}>
@@ -83,10 +85,7 @@ class MainLayout extends AbstractComponent {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  signInState: makeSelectSignIn(),
-});
-
+const mapStateToProps = createStructuredSelector({ state: makeSelectSignIn() });
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

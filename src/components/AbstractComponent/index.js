@@ -12,24 +12,22 @@ export default class AbstractComponent extends React.Component {
   constructor(props) {
     super(props);
     this._subscritions = [];
+    this.state = {};
   }
 
   addMessagingListener(messageId, callBack, namespace) {
-    messageId = `${namespace || 'Global'}/${messageId}`;
-
-    const subscription = messaging.addListener(messageId, callBack);
+    const subscription = messaging.addMessagingListener(messageId, callBack, namespace);
     this._subscritions.push(subscription);
 
     return subscription;
   }
 
   emitMessage(messageId, data, namespace) {
-    messageId = `${namespace || 'Global'}/${messageId}`;
-    data = data instanceof Array ? data : [data];
-    messaging.emit(messageId, ...data);
+    messaging.emitMessage(messageId, data, namespace);
   }
 
   componentWillUnmount = () => {
-    this._subscritions.forEach(subscription => subscription.remove());
+    this._subscritions.forEach(subscription => messaging.delMessagingListener(subscription));
+    this._subscritions = null;
   }
 }
