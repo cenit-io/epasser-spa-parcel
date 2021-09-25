@@ -15,10 +15,10 @@ export default defineMessages({
   },
   gotoSignInPage: {
     id: `${scope}.gotoSignInPage`,
-    defaultMessage: 'REDIRECTING TO AUTHENTICATION PAGE...',
+    defaultMessage: 'Redirecting to authentication page...',
   },
   waitFortAuthToken: {
     id: `${scope}.waitFortAuthToken`,
-    defaultMessage: 'Waiting for Authorization',
+    defaultMessage: 'Waiting for authorization',
   },
 });

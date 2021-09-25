@@ -21,7 +21,7 @@ const styles = (theme) => ({
   mainTitle: {
     flexGrow: 1,
     '& img': {
-      width: 64,
+      width: 160,
     }
   },
 

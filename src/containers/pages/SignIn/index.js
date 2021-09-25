@@ -57,7 +57,7 @@ export class SignIn extends AbstractPage {
 
         <Card className={classes.signIn}>
           <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
-          <CardMedia className={classes.logo} component="img" image="/images/logo-passer.png" title="ePasser" />
+          <CardMedia className={classes.logo} component="img" image="/images/logo-passer-gb.png" title="ePasser" />
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
               <FormattedMessage {...messages.content} />

@@ -60,13 +60,13 @@ class MainLayout extends AbstractComponent {
       <div className={classes.root}>
         <Helmet><title>{`ePasser: ${pageTitle}`}</title></Helmet>
 
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position="fixed" className={classes.appBar} color="primary">
           <Toolbar>
             <IconButton color="inherit" className={classes.menuButton} onClick={this.onToggleLeftDrawer} edge="start">
               <MenuIcon />
             </IconButton>
             <div className={classes.mainTitle}>
-              <img src="/images/cenit-logo.png" alt="eCAPI-Logo" />
+              <img src="/images/logo-passer-bw.png" alt="eCAPI-Logo" />
             </div>
             <SearchByTerm />
             <IconButton color="inherit">
