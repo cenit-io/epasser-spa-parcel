@@ -20,7 +20,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-import AbstractPage from '../AbstractPage';
+import AbstractPage from '../../../components/AbstractPage';
 
 import { doAuthenticateWithAuthCode } from './actions';
 

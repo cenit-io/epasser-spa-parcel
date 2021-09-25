@@ -5,12 +5,15 @@
  */
 
 import { defineMessages } from 'react-intl';
+import messagesBase from '../../../../components/AbstractPageList/messages';
 
-export const scope = 'containers.Tasks';
+export const scope = 'containers.pages.Tasks';
 
-export default defineMessages({
+const messagesLocal = defineMessages({
   title: {
     id: `${scope}.title`,
     defaultMessage: 'Tasks',
   },
 });
+
+export default { ...messagesBase, ...messagesLocal };

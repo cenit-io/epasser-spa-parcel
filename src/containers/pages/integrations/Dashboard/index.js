@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
 import styles from '../../../../styles';
 import messages from './messages';
-import AbstractPage from '../../AbstractPage';
+import AbstractPage from '../../../../components/AbstractPage';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
@@ -26,8 +26,8 @@ export class Dashboard extends AbstractPage {
   }
 
   static id = 'Dashboard';
-  static title = messages.title;
   static icon = DashboardIcon;
+  static messages = messages;
 
   render() {
     const { classes } = this.props;

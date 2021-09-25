@@ -14,34 +14,21 @@ import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
 import styles from '../../../../styles';
 import messages from './messages';
-import AbstractPage from '../../AbstractPage';
+import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
 import FlowsIcon from '@material-ui/icons/Schedule';
 
-export class Flows extends AbstractPage {
+export class Flows extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    signInState: PropTypes.instanceOf(Object).isRequired,
+    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'Flows';
-  static title = messages.title;
   static icon = FlowsIcon;
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-      </div>
-    );
-  }
+  static messages = messages;
 }
 
 const mapStateToProps = createStructuredSelector({

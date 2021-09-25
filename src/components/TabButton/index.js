@@ -70,6 +70,7 @@ class TapButton extends React.Component {
   render() {
     const { classes, tab } = this.props;
     const Icon = tab.icon;
+    const title = tab.title || tab.messages.title;
 
     return (
       <div className={classes.root} onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave}>
@@ -79,7 +80,7 @@ class TapButton extends React.Component {
                 startIcon={<Icon />}
                 onClick={this.onChange}>
           <div className={classes.content}>
-            <span><FormattedMessage {...tab.title} /></span>
+            <span><FormattedMessage {...title} /></span>
             {this.renderCloseButton()}
           </div>
         </Button>

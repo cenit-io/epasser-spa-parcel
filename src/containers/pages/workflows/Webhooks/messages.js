@@ -5,12 +5,15 @@
  */
 
 import { defineMessages } from 'react-intl';
+import messagesBase from '../../../../components/AbstractPageList/messages';
 
-export const scope = 'containers.Webhooks';
+export const scope = 'containers.pages.Webhooks';
 
-export default defineMessages({
+const messagesLocal = defineMessages({
   title: {
     id: `${scope}.title`,
     defaultMessage: 'Webhooks',
   },
 });
+
+export default { ...messagesBase, ...messagesLocal };

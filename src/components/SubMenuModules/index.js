@@ -34,7 +34,8 @@ class SubMenuModules extends React.Component {
   }
 
   renderSubMenuItem(item) {
-    return <SubMenuItem key={item.id} icon={item.icon} title={item.title} onClick={this.onTapItem(item)} />
+    const title = item.title || item.messages.title
+    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />
   }
 
   render() {

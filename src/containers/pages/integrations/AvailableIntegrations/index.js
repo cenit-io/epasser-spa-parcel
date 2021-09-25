@@ -14,21 +14,19 @@ import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
 import styles from '../../../../styles';
 import messages from './messages';
-import AbstractPage from '../../AbstractPage';
+import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
-import Typography from '@material-ui/core/Typography';
 import AvailableIntegrationsIcon from "@material-ui/icons/SettingsBluetooth";
-import ResourcesDataGrid from "../../../../components/ResourcesDataGrid";
 
-export class AvailableIntegrations extends AbstractPage {
+export class AvailableIntegrations extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'AvailableIntegrations';
-  static title = messages.title;
   static icon = AvailableIntegrationsIcon;
+  static messages = messages;
 
   get fields() {
     return [
@@ -39,22 +37,6 @@ export class AvailableIntegrations extends AbstractPage {
       { id: 'updated_at' },
       { id: 'installed_at' },
     ]
-  }
-
-  render() {
-    const { classes } = this.props;
-    const { searchTerm } = this.state;
-
-    return (
-      <div>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-          {searchTerm}
-        </Typography>
-        <ResourcesDataGrid fields={this.fields} messages={messages} />
-      </div>
-    );
   }
 }
 

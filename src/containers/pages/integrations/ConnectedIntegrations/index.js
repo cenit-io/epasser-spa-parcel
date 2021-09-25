@@ -14,34 +14,20 @@ import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
 import styles from '../../../../styles';
 import messages from './messages';
-import AbstractPage from '../../AbstractPage';
+import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
 import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
 
-export class ConnectedIntegrations extends AbstractPage {
+export class ConnectedIntegrations extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'ConnectedIntegrations';
-  static title = messages.title;
   static icon = ConnectedIntegrationsIcon;
-
-  render() {
-    const { classes } = this.props;
-    const { searchTerm } = this.state;
-
-    return (
-      <div>
-        <Typography paragraph>
-          <FormattedMessage {...messages.title} />
-          TODO: ....
-        </Typography>
-      </div>
-    );
-  }
+  static messages = messages;
 }
 
 const mapStateToProps = createStructuredSelector({

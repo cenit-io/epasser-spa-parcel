@@ -6,8 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractComponent from "../../../components/AbstractComponent";
-import session from '../../../components/Session';
+import AbstractComponent from "../AbstractComponent";
+import session from '../Session';
+import messages from './messages';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends AbstractComponent {
@@ -29,6 +30,14 @@ export default class AbstractPage extends AbstractComponent {
 
   get isAuthenticate() {
     return session.isAuthenticate;
+  }
+
+  get moduleId() {
+    return this.constructor.id || this.constructor.name;
+  }
+
+  get messages() {
+    return this.constructor.messages || messages;
   }
 
   onGoto = (path) => () => this.goto(path);
