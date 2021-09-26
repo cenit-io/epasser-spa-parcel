@@ -16,7 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles.jss';
 import makeSelectSignIn from "../pages/SignIn/selectors";
-import session from '../../components/Session';
+import session from '../../base/session';
 
 import AbstractComponent from "../../components/AbstractComponent";
 import AppBar from "@material-ui/core/AppBar";

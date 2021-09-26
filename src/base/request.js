@@ -43,7 +43,6 @@ function getAxiosInstance(forceNewInstance = false, newDataCredentials = false) 
 }
 
 export function authWithAuthCode(code, redirectUri) {
-
   axiosInstance = getAxiosInstance(true, {
     grant_type: 'authorization_code',
     client_id: process.env.OAUTH_CLIENT_ID,

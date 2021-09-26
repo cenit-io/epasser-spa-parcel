@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import messaging from '../Messaging';
+import messaging from '../../base/messaging';
 
 export default class AbstractComponent extends React.Component {
 

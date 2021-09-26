@@ -5,7 +5,7 @@ import { doStartWaiting, doReleaseWaiting } from '../../Waiting/actions';
 import { AUTHENTICATE_WITH_AUTH_CODE, } from './constants';
 import { history } from "../../../base/history";
 
-import messaging from '../../../components/Messaging';
+import messaging from '../../../base/messaging';
 
 export function* doAuthenticateWithAuthCode(action) {
   try {

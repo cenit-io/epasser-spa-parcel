@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AbstractComponent from "../AbstractComponent";
-import session from '../Session';
+import session from '../../base/session';
 import messages from './messages';
 
 /* eslint class-methods-use-this: ["off"] */
