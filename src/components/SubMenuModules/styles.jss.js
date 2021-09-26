@@ -11,7 +11,8 @@ const styles = (theme) => ({
   subMenu: {
     '& .MuiAccordionSummary-root, & .MuiAvatar-root': {
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.primary.light,
+      // backgroundColor: theme.palette.primary.main,
+      backgroundColor: alpha(theme.palette.primary.main, 0.5),
       textTransform: 'uppercase',
     },
 
@@ -28,6 +29,11 @@ const styles = (theme) => ({
     '& .MuiListItem-root': {
       paddingTop: 4,
       paddingBottom: 4,
+    },
+
+    '&.Mui-expanded': {
+      marginTop: 4,
+      marginBottom: 4,
     }
   },
 

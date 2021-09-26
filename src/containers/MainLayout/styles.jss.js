@@ -1,3 +1,5 @@
+import { alpha } from "@material-ui/core/styles";
+
 /**
  *
  * Styles
@@ -12,6 +14,7 @@ const styles = (theme) => ({
 
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    boxShadow: `0 0 5px 0 ${alpha(theme.palette.primary.main, 0.8)}`,
   },
 
   menuButton: {
