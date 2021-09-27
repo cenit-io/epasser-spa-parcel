@@ -39,6 +39,15 @@ class EnhancedTableHead extends AbstractComponent {
     this.onChangeSort(event, fieldId);
   }
 
+  renderFieldLabel(field) {
+    if (field.label !== undefined) return field.label;
+
+    const { messages } = this.props;
+    const msg = messages[`field_${field.id}`];
+
+    return msg ? <FormattedMessage {...msg} /> : field.id
+  }
+
   renderFields() {
     const { fields, messages } = this.props;
     const { orderBy, order } = this.state;
@@ -47,13 +56,14 @@ class EnhancedTableHead extends AbstractComponent {
       <TableCell
         key={field.id}
         align={field.numeric ? 'right' : 'left'}
-        padding={field.disablePadding ? 'none' : 'normal'}
+        // padding={field.disablePadding ? 'none' : 'normal'}
+        padding={'none'}
         sortDirection={orderBy === field.id ? order : false}>
         <TableSortLabel
           active={orderBy === field.id}
           direction={orderBy === field.id ? order : 'asc'}
           onClick={this.createSortHandler(field.id)}>
-          <FormattedMessage {...messages[`field_${field.id}`]} />
+          {this.renderFieldLabel(field)}
         </TableSortLabel>
       </TableCell>
     ))

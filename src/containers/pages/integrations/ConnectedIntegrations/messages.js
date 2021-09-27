@@ -14,6 +14,22 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Connected Integrations',
   },
+  field_icon: {
+    id: `${scope}.field_icon`,
+    defaultMessage: '-',
+  },
+  field_name: {
+    id: `${scope}.field_name`,
+    defaultMessage: 'Name',
+  },
+  field_channel_title: {
+    id: `${scope}.field_channel_title`,
+    defaultMessage: 'Channel',
+  },
+  field_authorized: {
+    id: `${scope}.field_authorized`,
+    defaultMessage: 'Authorized',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

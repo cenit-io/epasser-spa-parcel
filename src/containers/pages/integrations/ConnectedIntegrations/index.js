@@ -28,6 +28,17 @@ export class ConnectedIntegrations extends AbstractPageList {
   static id = 'ConnectedIntegrations';
   static icon = ConnectedIntegrationsIcon;
   static messages = messages;
+  static apiPath = 'integrations';
+
+  get fields() {
+    return [
+      { id: 'icon', label: '', format: this.iconFormat },
+      { id: 'name' },
+      { id: 'channel_title' },
+      { id: 'authorized' },
+      { id: 'updated_at', format: this.dateTimeFormat },
+    ]
+  }
 }
 
 const mapStateToProps = createStructuredSelector({

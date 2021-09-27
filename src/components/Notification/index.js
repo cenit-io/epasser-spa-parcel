@@ -62,7 +62,7 @@ class Notification extends AbstractComponent {
       case 'need_email_confirmation':
         return 'warning';
       default:
-        return message instanceof Error ? 'error' : severity;
+        return message instanceof Error ? 'error' : severity || 'info';
     }
   }
 
@@ -108,7 +108,6 @@ class Notification extends AbstractComponent {
       <div ref={this.elRef} className={classes.root}>
         <Alert severity={this.severity} style={{ marginBottom: '10px' }} onClose={this.onClose}>
           {this.messageTranslation}
-          {this.extra}
         </Alert>
       </div>
     );

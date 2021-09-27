@@ -12,7 +12,7 @@ import { compose } from 'redux';
 import { injectReducer } from 'redux-injectors';
 import { withStyles } from '@material-ui/core/styles';
 import { CircularProgress, Backdrop } from '@material-ui/core';
-import styles from '../../styles';
+import styles from './styles.jss';
 import makeSelectWaiting from './selectors';
 import reducer from './reducer';
 

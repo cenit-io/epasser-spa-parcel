@@ -26,6 +26,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LeftSlider from "../LeftSlider";
 import SearchByTerm from "../../components/SearchByTerm";
+import Notification from "../../components/Notification";
 
 class MainLayout extends AbstractComponent {
   static propTypes = {

@@ -5,10 +5,11 @@
  */
 
 import { defineMessages } from 'react-intl';
+import messagesBase from "../../../../components/AbstractPageList/messages";
 
 export const scope = 'containers.AvailableIntegrations';
 
-export default defineMessages({
+const messagesLocal = defineMessages({
   title: {
     id: `${scope}.title`,
     defaultMessage: 'Available Integrations',
@@ -45,3 +46,5 @@ export default defineMessages({
   },
 
 });
+
+export default { ...messagesBase, ...messagesLocal };
