@@ -7,7 +7,7 @@
 import React from 'react';
 import moment from 'moment';
 import AbstractPage from "../AbstractPage";
-import ResourcesDataGrid from "../ResourcesDataGrid";
+import EnhancedTable from "../EnhancedTable";
 import Notification from "../Notification";
 
 import Avatar from '@material-ui/core/Avatar';
@@ -52,7 +52,7 @@ export default class AbstractPageList extends AbstractPage {
     return (
       <div className={classes.root}>
         <Notification namespace={this.moduleId} />
-        <ResourcesDataGrid fields={this.fields}
+        <EnhancedTable fields={this.fields}
                            apiPath={this.apiPath}
                            namespase={this.moduleId}
                            messages={this.messages} />

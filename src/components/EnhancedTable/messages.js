@@ -1,12 +1,12 @@
 /*
- * ResourcesDataGrid Messages
+ * EnhancedTable Messages
  *
- * This contains all the text for the ResourcesDataGrid component.
+ * This contains all the text for the EnhancedTable component.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'components.ResourcesDataGrid';
+export const scope = 'components.EnhancedTable';
 
 export default defineMessages({
   loading: {

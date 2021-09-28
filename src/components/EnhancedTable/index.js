@@ -1,6 +1,6 @@
 /**
  *
- * ResourcesDataGrid
+ * EnhancedTable
  *
  */
 
@@ -26,7 +26,7 @@ import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableRow from "./EnhancedTableRow";
 import Loading from "../Loading";
 
-class ResourcesDataGrid extends AbstractComponent {
+class EnhancedTable extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
@@ -135,4 +135,4 @@ class ResourcesDataGrid extends AbstractComponent {
   }
 }
 
-export default withStyles(styles)(ResourcesDataGrid);
+export default withStyles(styles)(EnhancedTable);
