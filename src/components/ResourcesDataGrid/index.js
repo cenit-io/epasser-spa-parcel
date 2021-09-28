@@ -22,8 +22,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from "@material-ui/core/Typography";
-import Checkbox from "@material-ui/core/Checkbox";
 import EnhancedTableHead from './EnhancedTableHead';
+import EnhancedTableRow from "./EnhancedTableRow";
 import Loading from "../Loading";
 
 class ResourcesDataGrid extends AbstractComponent {
@@ -63,23 +63,6 @@ class ResourcesDataGrid extends AbstractComponent {
     return this.renderWithoutData(messages.loading);
   }
 
-  formatValue(row, field) {
-    const { formatValue } = this.props;
-    const value = row[field.id];
-
-    return formatValue ? formatValue(value, row, field) : value;
-  }
-
-  renderCell(row) {
-    const { fields } = this.props;
-
-    return fields.map((field) => (
-      <TableCell key={field.id} component="th" scope="row" padding="none">
-        {this.formatValue(row, field)}
-      </TableCell>
-    ));
-  }
-
   renderWithoutData(msg) {
     const { fields } = this.props;
 
@@ -96,29 +79,13 @@ class ResourcesDataGrid extends AbstractComponent {
   }
 
   renderRows() {
+    const { fields } = this.props;
     const { rows, alreadyLoaded } = this.state;
 
     if (!alreadyLoaded) return this._loadItems();
     if (rows.length === 0) return this.renderWithoutData(messages.withoutData);
 
-    let isItemSelected = false;
-
-    return rows.map((row, idx) => (
-      <TableRow
-        // hover
-        // onClick={(event) => handleClick(event, row.name)}
-        role="checkbox"
-        // aria-checked={isItemSelected}
-        // tabIndex={-1}
-        key={idx}
-        selected={isItemSelected}
-      >
-        <TableCell padding="checkbox">
-          <Checkbox checked={isItemSelected} />
-        </TableCell>
-        {this.renderCell(row)}
-      </TableRow>
-    ));
+    return rows.map((row, idx) => <EnhancedTableRow row={row} fields={fields} key={idx} />);
   }
 
   render() {

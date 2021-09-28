@@ -19,6 +19,7 @@ import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
 import OrdersIcon from "@material-ui/icons/ShoppingCart";
+import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
 
 export class Orders extends AbstractPageList {
   static propTypes = {
@@ -29,6 +30,7 @@ export class Orders extends AbstractPageList {
   static id = 'Orders';
   static icon = OrdersIcon;
   static messages = messages;
+  static apiPath = 'orders';
 }
 
 const mapStateToProps = createStructuredSelector({

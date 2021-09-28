@@ -11,6 +11,7 @@ import ResourcesDataGrid from "../ResourcesDataGrid";
 import Notification from "../Notification";
 
 import Avatar from '@material-ui/core/Avatar';
+import Checkbox from '@material-ui/core/Checkbox';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPageList extends AbstractPage {
@@ -32,8 +33,8 @@ export default class AbstractPageList extends AbstractPage {
     return this.constructor.apiPath
   }
 
-  formatValue = (value, row, field) => {
-    return (value !== null && typeof field.format === 'function') ? field.format(value, row, field) : value;
+  boolFormat(value, row, field) {
+    return <Checkbox checked={value} readOnly={true} disabled={true} />
   }
 
   dateTimeFormat(value, row, field) {
@@ -41,7 +42,7 @@ export default class AbstractPageList extends AbstractPage {
   }
 
   iconFormat(value, row, field) {
-    return <Avatar alt='-' src={value} />;
+    return <Avatar src={value} />;
   }
 
   render() {
@@ -54,8 +55,7 @@ export default class AbstractPageList extends AbstractPage {
         <ResourcesDataGrid fields={this.fields}
                            apiPath={this.apiPath}
                            namespase={this.moduleId}
-                           messages={this.messages}
-                           formatValue={this.formatValue} />
+                           messages={this.messages} />
       </div>
     );
   }

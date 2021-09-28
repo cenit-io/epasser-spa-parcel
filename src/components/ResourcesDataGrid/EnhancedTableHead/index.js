@@ -23,7 +23,10 @@ class EnhancedTableHead extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
     fields: PropTypes.instanceOf(Object).isRequired,
+    padding: PropTypes.string,
   }
+
+  static defaultProps = { padding: 'normal' };
 
   onChangeSort = (event, property) => {
     const { orderBy, order } = this.state;
@@ -49,20 +52,18 @@ class EnhancedTableHead extends AbstractComponent {
   }
 
   renderFields() {
-    const { fields, messages } = this.props;
+    const { classes, fields, padding } = this.props;
     const { orderBy, order } = this.state;
 
     return fields.map((field) => (
-      <TableCell
-        key={field.id}
-        align={field.numeric ? 'right' : 'left'}
-        // padding={field.disablePadding ? 'none' : 'normal'}
-        padding={'none'}
-        sortDirection={orderBy === field.id ? order : false}>
-        <TableSortLabel
-          active={orderBy === field.id}
-          direction={orderBy === field.id ? order : 'asc'}
-          onClick={this.createSortHandler(field.id)}>
+      <TableCell className={classes.cell} key={field.id}
+                 align={field.align || 'left'}
+                 padding={field.padding || padding}
+                 width={field.width || 'auto'}
+                 sortDirection={orderBy === field.id ? order : false}>
+        <TableSortLabel active={orderBy === field.id}
+                        direction={orderBy === field.id ? order : 'asc'}
+                        onClick={this.createSortHandler(field.id)}>
           {this.renderFieldLabel(field)}
         </TableSortLabel>
       </TableCell>
@@ -75,7 +76,7 @@ class EnhancedTableHead extends AbstractComponent {
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
+          <TableCell className={classes.cell} padding="checkbox">
             <Checkbox
               // indeterminate={numSelected > 0 && numSelected < rowCount}
               // checked={rowCount > 0 && numSelected === rowCount}

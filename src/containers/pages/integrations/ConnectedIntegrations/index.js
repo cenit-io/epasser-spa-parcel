@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -17,7 +16,6 @@ import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
-import Typography from '@material-ui/core/Typography';
 import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
 
 export class ConnectedIntegrations extends AbstractPageList {
@@ -32,11 +30,11 @@ export class ConnectedIntegrations extends AbstractPageList {
 
   get fields() {
     return [
-      { id: 'icon', label: '', format: this.iconFormat },
+      { id: 'icon', width: 40, label: '', format: this.iconFormat },
       { id: 'name' },
       { id: 'channel_title' },
-      { id: 'authorized' },
-      { id: 'updated_at', format: this.dateTimeFormat },
+      { id: 'authorized', padding: 'checkbox', format: this.boolFormat, align: 'center'  },
+      { id: 'updated_at', width: 170, format: this.dateTimeFormat },
     ]
   }
 }
