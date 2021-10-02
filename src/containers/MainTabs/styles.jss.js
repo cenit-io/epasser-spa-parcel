@@ -18,9 +18,7 @@ const styles = (theme) => ({
   },
 
   separator: {
-    marginTop: 0,
-    marginLeft: 0,
-    marginRight: 0,
+    margin: 0,
   },
 
   content: {

@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-
 import { createStructuredSelector } from 'reselect';
-import styles from '../../../../styles';
+
+import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
@@ -29,7 +29,7 @@ export class AvailableIntegrations extends AbstractPageList {
   static messages = messages;
   static apiPath = 'available/integrations';
 
-  get fields() {
+  get columns() {
     return [
       { id: 'title' },
       { id: 'summary' },

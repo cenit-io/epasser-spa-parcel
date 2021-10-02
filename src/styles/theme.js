@@ -28,6 +28,12 @@ export default createTheme({
       dark: '#33691E',
       contrastText: '#fff',
     },
+    error: {
+      light: '#FFC0AF',
+      main: '#FF604F',
+      dark: '#BF200F',
+      contrastText: '#fff',
+    },
   },
   typography: {
     useNextVariants: true,

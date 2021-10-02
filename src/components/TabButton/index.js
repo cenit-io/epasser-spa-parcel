@@ -16,7 +16,7 @@ import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Clear";
 import Avatar from "@material-ui/core/Avatar";
 
-class TapButton extends React.Component {
+class TabButton extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     tab: PropTypes.instanceOf(Object).isRequired,
@@ -89,4 +89,4 @@ class TapButton extends React.Component {
   }
 }
 
-export default withStyles(styles)(TapButton);
+export default withStyles(styles)(TabButton);

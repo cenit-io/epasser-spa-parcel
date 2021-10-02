@@ -11,12 +11,15 @@ import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
 import { createStructuredSelector } from 'reselect';
-import styles from '../../../../styles';
+import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
+
+import ReloadAction from "../../../../components/actions/Reload";
+import DeleteAction from "../../../../components/actions/Delete";
 
 export class ConnectedIntegrations extends AbstractPageList {
   static propTypes = {
@@ -28,13 +31,20 @@ export class ConnectedIntegrations extends AbstractPageList {
   static messages = messages;
   static apiPath = 'integrations';
 
-  get fields() {
+  get columns() {
     return [
       { id: 'icon', width: 40, label: '', format: this.iconFormat },
       { id: 'name' },
       { id: 'channel_title' },
-      { id: 'authorized', padding: 'checkbox', format: this.boolFormat, align: 'center'  },
+      { id: 'authorized', padding: 'checkbox', format: this.boolFormat, align: 'center' },
       { id: 'updated_at', width: 170, format: this.dateTimeFormat },
+    ]
+  }
+
+  get actions() {
+    return [
+      <ReloadAction moduleId={this.moduleId} />,
+      <DeleteAction moduleId={this.moduleId} />,
     ]
   }
 }

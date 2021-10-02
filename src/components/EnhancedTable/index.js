@@ -31,7 +31,7 @@ class EnhancedTable extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
     apiPath: PropTypes.string.isRequired,
-    fields: PropTypes.instanceOf(Object).isRequired,
+    columns: PropTypes.instanceOf(Object).isRequired,
     namespase: PropTypes.string.isRequired,
     formatValue: PropTypes.func,
   }
@@ -64,11 +64,11 @@ class EnhancedTable extends AbstractComponent {
   }
 
   renderWithoutData(msg) {
-    const { fields } = this.props;
+    const { columns } = this.props;
 
     return (
       <TableRow>
-        <TableCell colSpan={fields.length + 1}>
+        <TableCell colSpan={columns.length + 1}>
           <Typography variant="caption" color="secondary">
             <FormattedMessage {...msg} />
           </Typography>
@@ -79,17 +79,17 @@ class EnhancedTable extends AbstractComponent {
   }
 
   renderRows() {
-    const { fields } = this.props;
+    const { columns } = this.props;
     const { rows, alreadyLoaded } = this.state;
 
     if (!alreadyLoaded) return this._loadItems();
     if (rows.length === 0) return this.renderWithoutData(messages.withoutData);
 
-    return rows.map((row, idx) => <EnhancedTableRow row={row} fields={fields} key={idx} />);
+    return rows.map((row, idx) => <EnhancedTableRow row={row} columns={columns} key={idx} />);
   }
 
   render() {
-    const { classes, fields, messages } = this.props;
+    const { classes, columns, messages } = this.props;
     const { total, limit, offset } = this.state;
 
     return (
@@ -100,7 +100,7 @@ class EnhancedTable extends AbstractComponent {
                  aria-labelledby="tableTitle"
                  size='small'
                  aria-label="enhanced table">
-            <EnhancedTableHead fields={fields} messages={messages}
+            <EnhancedTableHead columns={columns} messages={messages}
               // numSelected={selected.length}
               // order={order}
               // orderBy={orderBy}

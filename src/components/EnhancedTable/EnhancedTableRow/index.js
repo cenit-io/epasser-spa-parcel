@@ -18,27 +18,27 @@ import Checkbox from "@material-ui/core/Checkbox";
 class EnhancedTableRow extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    fields: PropTypes.instanceOf(Object).isRequired,
+    columns: PropTypes.instanceOf(Object).isRequired,
     row: PropTypes.instanceOf(Object).isRequired,
     padding: PropTypes.string,
   }
 
   static defaultProps = { padding: 'normal' };
 
-  formatValue = (row, field) => {
-    const value = row[field.id];
+  formatValue = (row, column) => {
+    const value = row[column.id];
 
-    return (value !== null && typeof field.format === 'function') ? field.format(value, row, field) : value;
+    return (value !== null && typeof column.format === 'function') ? column.format(value, row, column) : value;
   }
 
   renderCell(row) {
-    const { classes, fields, padding } = this.props;
+    const { classes, columns, padding } = this.props;
 
-    return fields.map((field) => (
-      <TableCell className={classes.cell} key={field.id} component="td" scope="row" size="small"
-                 align={field.align || 'left'}
-                 padding={field.padding || padding}>
-        {this.formatValue(row, field)}
+    return columns.map((column) => (
+      <TableCell className={classes.cell} key={column.id} component="td" scope="row" size="small"
+                 align={column.align || 'left'}
+                 padding={column.padding || padding}>
+        {this.formatValue(row, column)}
       </TableCell>
     ));
   }

@@ -14,7 +14,7 @@ import AbstractComponent from "../../components/AbstractComponent";
 import Tabs from "@material-ui/core/Tabs";
 import Divider from "../../components/Divider";
 import Loading from "../../components/Loading";
-import TapButton from "../../components/TabButton";
+import TabButton from "../../components/TabButton";
 
 import Dashboard from "../pages/integrations/Dashboard";
 import AvailableIntegrations from "../pages/integrations/AvailableIntegrations";
@@ -62,9 +62,9 @@ class MainTabs extends AbstractComponent {
     this.setActiveTabModule('Dashboard');
   }
 
-  renderTapButton(module, idx) {
+  renderTabButton(module, idx) {
     return (
-      <TapButton tab={module} value={module.id} key={idx}
+      <TabButton tab={module} value={module.id} key={idx}
                  onClose={module.id != 'Dashboard' ? this.onCloseTab : undefined} />
     )
   }
@@ -118,7 +118,7 @@ class MainTabs extends AbstractComponent {
               classes={{
                 flexContainer: classes.tabsContainer,
               }}>
-          {modules.map((module, idx) => this.renderTapButton(module, idx))}
+          {modules.map((module, idx) => this.renderTabButton(module, idx))}
         </Tabs>
         <Divider className={classes.separator} />
         <div className={classes.content}>

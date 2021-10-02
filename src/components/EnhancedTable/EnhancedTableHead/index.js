@@ -22,7 +22,7 @@ class EnhancedTableHead extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
-    fields: PropTypes.instanceOf(Object).isRequired,
+    columns: PropTypes.instanceOf(Object).isRequired,
     padding: PropTypes.string,
   }
 
@@ -38,40 +38,40 @@ class EnhancedTableHead extends AbstractComponent {
     });
   }
 
-  createSortHandler = (fieldId) => (event) => {
-    this.onChangeSort(event, fieldId);
+  createSortHandler = (columnId) => (event) => {
+    this.onChangeSort(event, columnId);
   }
 
-  renderFieldLabel(field) {
-    if (field.label !== undefined) return field.label;
+  renderColumnLabel(column) {
+    if (column.label !== undefined) return column.label;
 
     const { messages } = this.props;
-    const msg = messages[`field_${field.id}`];
+    const msg = messages[`field_${column.id}`];
 
-    return msg ? <FormattedMessage {...msg} /> : field.id
+    return msg ? <FormattedMessage {...msg} /> : column.id
   }
 
-  renderFields() {
-    const { classes, fields, padding } = this.props;
+  renderColumns() {
+    const { classes, columns, padding } = this.props;
     const { orderBy, order } = this.state;
 
-    return fields.map((field) => (
-      <TableCell className={classes.cell} key={field.id}
-                 align={field.align || 'left'}
-                 padding={field.padding || padding}
-                 width={field.width || 'auto'}
-                 sortDirection={orderBy === field.id ? order : false}>
-        <TableSortLabel active={orderBy === field.id}
-                        direction={orderBy === field.id ? order : 'asc'}
-                        onClick={this.createSortHandler(field.id)}>
-          {this.renderFieldLabel(field)}
+    return columns.map((column) => (
+      <TableCell className={classes.cell} key={column.id}
+                 align={column.align || 'left'}
+                 padding={column.padding || padding}
+                 width={column.width || 'auto'}
+                 sortDirection={orderBy === column.id ? order : false}>
+        <TableSortLabel active={orderBy === column.id}
+                        direction={orderBy === column.id ? order : 'asc'}
+                        onClick={this.createSortHandler(column.id)}>
+          {this.renderColumnLabel(column)}
         </TableSortLabel>
       </TableCell>
     ))
   }
 
   render() {
-    const { classes, fields } = this.props;
+    const { classes, columns } = this.props;
 
     return (
       <TableHead>
@@ -83,7 +83,7 @@ class EnhancedTableHead extends AbstractComponent {
               // onChange={onSelectAllClick}
             />
           </TableCell>
-          {this.renderFields(fields)}
+          {this.renderColumns(columns)}
         </TableRow>
       </TableHead>
     );

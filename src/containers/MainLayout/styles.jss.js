@@ -10,6 +10,10 @@ const styles = (theme) => ({
   root: {
     display: 'flex',
     height: '100%',
+
+    '& .MuiButton-root, .MuiTypography-button': {
+      textTransform: 'none',
+    }
   },
 
   appBar: {
