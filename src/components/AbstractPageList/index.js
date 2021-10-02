@@ -27,9 +27,21 @@ export default class AbstractPageList extends AbstractPage {
   get columns() {
     return [
       { id: 'id' },
-      { id: 'created_at' },
-      { id: 'updated_at' },
+      this.columnCreateddAt,
+      this.columnUpdatedAt,
     ]
+  }
+
+  get columnIcon() {
+    return { id: 'icon', width: 40, label: '', format: this.iconFormat }
+  }
+
+  get columnUpdatedAt() {
+    return { id: 'updated_at', width: 175, format: this.dateTimeFormat }
+  }
+
+  get columnCreateddAt() {
+    return { id: 'created_at', width: 175, format: this.dateTimeFormat }
   }
 
   get actions() {

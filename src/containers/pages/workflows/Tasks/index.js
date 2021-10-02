@@ -29,6 +29,7 @@ export class Tasks extends AbstractPageList {
   static id = 'Tasks';
   static icon = TasksIcon;
   static messages = messages;
+  static apiPath = 'tasks';
 }
 
 const mapStateToProps = createStructuredSelector({

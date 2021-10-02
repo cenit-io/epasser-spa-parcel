@@ -29,6 +29,7 @@ export class Webhooks extends AbstractPageList {
   static id = 'Webhooks';
   static icon = WebhooksIcon;
   static messages = messages;
+  static apiPath = 'webhooks';
 }
 
 const mapStateToProps = createStructuredSelector({

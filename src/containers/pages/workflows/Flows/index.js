@@ -29,6 +29,7 @@ export class Flows extends AbstractPageList {
   static id = 'Flows';
   static icon = FlowsIcon;
   static messages = messages;
+  static apiPath = 'flows';
 }
 
 const mapStateToProps = createStructuredSelector({

@@ -33,11 +33,11 @@ export class ConnectedIntegrations extends AbstractPageList {
 
   get columns() {
     return [
-      { id: 'icon', width: 40, label: '', format: this.iconFormat },
+      this.columnIcon,
       { id: 'name' },
       { id: 'channel_title' },
-      { id: 'authorized', padding: 'checkbox', format: this.boolFormat, align: 'center' },
-      { id: 'updated_at', width: 170, format: this.dateTimeFormat },
+      this.columnCreateddAt,
+      this.columnUpdatedAt,
     ]
   }
 

@@ -29,6 +29,7 @@ export class StockItems extends AbstractPageList {
   static id = 'StockItems';
   static icon = StockItemsIcon;
   static messages = messages;
+  static apiPath = 'stock/items';
 }
 
 const mapStateToProps = createStructuredSelector({

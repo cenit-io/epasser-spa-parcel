@@ -17,9 +17,9 @@ import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
-import Typography from '@material-ui/core/Typography';
 import OrdersIcon from "@material-ui/icons/ShoppingCart";
-import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
 
 export class Orders extends AbstractPageList {
   static propTypes = {
@@ -31,6 +31,41 @@ export class Orders extends AbstractPageList {
   static icon = OrdersIcon;
   static messages = messages;
   static apiPath = 'orders';
+
+
+  get columns() {
+    return [
+      this.columnIcon,
+      { id: 'number' },
+      { id: 'total_price', width: 155, align: 'right' },
+      { id: 'total_quantity', width: 155, align: 'right' },
+      { id: 'status', format: this.statusFormat, align: 'center' },
+      this.columnCreateddAt,
+      this.columnUpdatedAt,
+    ]
+  }
+
+  iconFormat(value, row, column) {
+    return <Avatar src={row.integration.icon} />;
+  }
+
+  statusFormat(value, row, column) {
+    let color = 'inherit';
+
+    if (/pending|confirmed/i.test(value)) {
+      color = 'secondary';
+    } else if (/cancel/i.test(value)) {
+      color = 'error';
+    } else if (/completed|paid/i.test(value)) {
+      color = 'primary';
+    }
+
+    return (
+      <Typography color={color} variant="body2">
+        {value}
+      </Typography>
+    );
+  }
 }
 
 const mapStateToProps = createStructuredSelector({

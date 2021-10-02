@@ -29,6 +29,7 @@ export class StockLocations extends AbstractPageList {
   static id = 'StockLocations';
   static icon = StockLocationsIcon;
   static messages = messages;
+  static apiPath = 'stock/locations';
 }
 
 const mapStateToProps = createStructuredSelector({

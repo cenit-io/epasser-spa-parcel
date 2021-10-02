@@ -14,6 +14,22 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Orders',
   },
+  field_number: {
+    id: `${scope}.field_number`,
+    defaultMessage: 'Number',
+  },
+  field_total_price: {
+    id: `${scope}.field_total_price`,
+    defaultMessage: 'Total price',
+  },
+  field_total_quantity: {
+    id: `${scope}.field_total_quantity`,
+    defaultMessage: 'Total quantity',
+  },
+  field_status: {
+    id: `${scope}.field_status`,
+    defaultMessage: 'Status',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };
