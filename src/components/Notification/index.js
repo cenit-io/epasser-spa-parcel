@@ -17,10 +17,10 @@ import AbstractComponent from "../AbstractComponent";
 
 class Notification extends AbstractComponent {
   static propTypes = {
-    namespace: PropTypes.string,
+    moduleId: PropTypes.string,
   }
 
-  static defaultProps = { namespace: null };
+  static defaultProps = { moduleId: null };
 
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class Notification extends AbstractComponent {
     this.state.message = null;
     this.state.severity = null;
 
-    this.addMessagingListener('notify', this.onNotify, props.namespace);
+    this.addMessagingListener('notify', this.onNotify, props.moduleId);
   }
 
   get message() {

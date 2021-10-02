@@ -34,7 +34,7 @@ export default class AbstractPageList extends AbstractPage {
 
   get actions() {
     return [
-      <ReloadAction moduleId={this.moduleId} />,
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
     ]
   }
 
@@ -78,7 +78,7 @@ export default class AbstractPageList extends AbstractPage {
     return (
       <div className={classes.root}>
         {this.renderToolbar()}
-        <Notification namespace={this.moduleId} />
+        <Notification moduleId={this.moduleId} />
         <EnhancedTable columns={this.columns}
                        apiPath={this.apiPath}
                        namespase={this.moduleId}
@@ -89,5 +89,13 @@ export default class AbstractPageList extends AbstractPage {
 
   onChangeSearchTerm = (searchTerm) => {
     this.setState({ searchTerm });
+  }
+
+  onReload = (e) => {
+    console.log('Reload....');
+  }
+
+  onDelete = (e) => {
+    console.log('Delete....');
   }
 }

@@ -43,8 +43,8 @@ export class ConnectedIntegrations extends AbstractPageList {
 
   get actions() {
     return [
-      <ReloadAction moduleId={this.moduleId} />,
-      <DeleteAction moduleId={this.moduleId} />,
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
+      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }
 }

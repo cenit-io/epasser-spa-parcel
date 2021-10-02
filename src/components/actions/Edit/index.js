@@ -1,6 +1,6 @@
 /**
  *
- * Reload
+ * Edit
  *
  */
 
@@ -12,7 +12,7 @@ import styles from '../AbstractAction/styles.jss';
 import AbstractAction from "../AbstractAction";
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-class Reload extends AbstractAction {
+class Edit extends AbstractAction {
   get icon() {
     return <RefreshIcon />;
   }
@@ -22,4 +22,4 @@ class Reload extends AbstractAction {
   }
 }
 
-export default withStyles(styles)(Reload);
+export default withStyles(styles)(Edit);

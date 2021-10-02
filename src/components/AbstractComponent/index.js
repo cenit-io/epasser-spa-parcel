@@ -15,15 +15,15 @@ export default class AbstractComponent extends React.Component {
     this.state = {};
   }
 
-  addMessagingListener(messageId, callBack, namespace) {
-    const subscription = messaging.addMessagingListener(messageId, callBack, namespace);
+  addMessagingListener(messageId, callBack, moduleId) {
+    const subscription = messaging.addMessagingListener(messageId, callBack, moduleId);
     this._subscritions.push(subscription);
 
     return subscription;
   }
 
-  emitMessage(messageId, data, namespace) {
-    messaging.emitMessage(messageId, data, namespace);
+  emitMessage(messageId, data, moduleId) {
+    messaging.emitMessage(messageId, data, moduleId);
   }
 
   componentWillUnmount = () => {

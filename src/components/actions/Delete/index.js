@@ -14,10 +14,6 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Typography from '@material-ui/core/Typography';
 
 class Delete extends AbstractAction {
-  get actionId() {
-    return 'delete';
-  }
-
   get icon() {
     return <DeleteForeverIcon color="error" />;
   }

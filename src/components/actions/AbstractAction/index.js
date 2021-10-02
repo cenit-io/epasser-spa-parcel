@@ -14,10 +14,7 @@ export default class AbstractAction extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     moduleId: PropTypes.string.isRequired,
-  }
-
-  get actionId() {
-    return this.constructor.name;
+    onClick: PropTypes.func.isRequired,
   }
 
   get icon() {
@@ -28,8 +25,8 @@ export default class AbstractAction extends AbstractComponent {
     return '...';
   }
 
-  onClick = () => {
-    this.emitMessage(this.actionId, null, this.props.moduleId)
+  onClick = (e) => {
+    this.props.onClick(e);
   }
 
   render() {
