@@ -21,6 +21,10 @@ export default defineMessages({
     id: `${scope}.field_name`,
     defaultMessage: 'Name',
   },
+  field_integration: {
+    id: `${scope}.field_integration`,
+    defaultMessage: 'Integration',
+  },
   field_created_at: {
     id: `${scope}.field_created_at`,
     defaultMessage: 'Created at',

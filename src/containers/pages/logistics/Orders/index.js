@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-
 import { createStructuredSelector } from 'reselect';
+
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
@@ -33,11 +33,11 @@ export class Orders extends AbstractPageList {
 
   get columns() {
     return [
-      this.columnAvatar(),
       { id: 'number' },
       { id: 'total_price', width: 155, align: 'right' },
       { id: 'total_quantity', width: 155, align: 'right' },
       { id: 'status', format: this.statusFormat, align: 'center' },
+      { id: 'integration', format: this.integrationFormat },
       this.columnDateTime('created_date'),
       this.columnDateTime('updated_date'),
     ]

@@ -15,6 +15,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import Toolbar from '@material-ui/core/Toolbar';
 import ReloadAction from "../actions/Reload";
+import Chip from "@material-ui/core/Chip";
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPageList extends AbstractPage {
@@ -60,6 +61,17 @@ export default class AbstractPageList extends AbstractPage {
 
   avatarFormat = (value, row, column) => {
     return <Avatar src={value} />;
+  }
+
+  integrationFormat = (value, row, column) => {
+    const { classes } = this.props;
+    const integration = value;
+
+    return (
+      <Chip variant="outlined" color="primary" key={integration.id}
+            avatar={<Avatar src={integration.icon} className={classes.smallAvatar} />}
+            label={`${integration.name} of ${integration.channel_title}`} />
+    );
   }
 
   renderAction = (action, idx) => {
