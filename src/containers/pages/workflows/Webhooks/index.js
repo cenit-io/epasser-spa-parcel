@@ -30,6 +30,17 @@ export class Webhooks extends AbstractPageList {
   static icon = WebhooksIcon;
   static messages = messages;
   static apiPath = 'webhooks';
+
+  get columns() {
+    return [
+      { id: 'topic', format: this.topicFormat },
+      { id: 'integration', format: this.integrationFormat },
+      { id: 'address' },
+      this.columnDateTime('updated_at'),
+    ]
+  }
+
+  topicFormat = (value, row, column) => row.title;
 }
 
 const mapStateToProps = createStructuredSelector({

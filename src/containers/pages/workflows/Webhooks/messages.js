@@ -14,6 +14,14 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Webhooks',
   },
+  field_topic: {
+    id: `${scope}.field_topic`,
+    defaultMessage: 'Topic',
+  },
+  field_address: {
+    id: `${scope}.field_address`,
+    defaultMessage: 'Address',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

@@ -30,6 +30,22 @@ export class Flows extends AbstractPageList {
   static icon = FlowsIcon;
   static messages = messages;
   static apiPath = 'flows';
+
+  get columns() {
+    return [
+      { id: 'type', format: this.typeFormat },
+      { id: 'integration', format: this.integrationFormat },
+      { id: 'scheduler', width: 100, align: 'center', format: this.schedulerFormat },
+      this.columnDateTime('updated_at'),
+    ]
+  }
+
+  typeFormat = (value, row, column) => row.title;
+
+  schedulerFormat = (value, row, column) => {
+    value = row.task && row.task.scheduler && row.task.scheduler.active;
+    return this.boolFormat(value, row, column);
+  }
 }
 
 const mapStateToProps = createStructuredSelector({
