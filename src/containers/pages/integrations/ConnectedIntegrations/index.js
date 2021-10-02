@@ -33,11 +33,11 @@ export class ConnectedIntegrations extends AbstractPageList {
 
   get columns() {
     return [
-      this.columnIcon,
+      this.columnAvatar(),
       { id: 'name' },
       { id: 'channel_title' },
-      this.columnCreateddAt,
-      this.columnUpdatedAt,
+      this.columnDateTime('created_at'),
+      this.columnDateTime('updated_at'),
     ]
   }
 

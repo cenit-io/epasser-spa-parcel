@@ -30,6 +30,14 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_status`,
     defaultMessage: 'Status',
   },
+  field_created_date: {
+    id: `${scope}.field_created_date`,
+    defaultMessage: 'Created at',
+  },
+  field_updated_date: {
+    id: `${scope}.field_updated_date`,
+    defaultMessage: 'Updated at',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

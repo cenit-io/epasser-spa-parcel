@@ -18,6 +18,8 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import ProductsIcon from '@material-ui/icons/WidgetsOutlined';
+import Chip from "@material-ui/core/Chip";
+import Avatar from "@material-ui/core/Avatar";
 
 export class Products extends AbstractPageList {
   static propTypes = {
@@ -28,6 +30,34 @@ export class Products extends AbstractPageList {
   static icon = ProductsIcon;
   static messages = messages;
   static apiPath = 'products';
+
+  get columns() {
+    return [
+      this.columnAvatar('images'),
+      { id: 'name' },
+      { id: 'price', width: 100, align: 'right' },
+      { id: 'variants', width: 100, align: 'right' },
+      { id: 'integrations', format: this.integrationsFormat },
+    ]
+  }
+
+  avatarFormat = (value, row, column) => {
+    const { classes } = this.props;
+
+    return <Avatar src={row.images[0]} variant="rounded" className={classes.largeAvatar} />;
+  }
+
+  integrationsFormat = (value, row, column) => {
+    const { classes } = this.props;
+
+    return value.map(
+      (integration, idx) => (
+        <Chip variant="outlined" color="primary" key={idx}
+              avatar={<Avatar src={integration.icon} className={classes.smallAvatar} />}
+              label={`${integration.name} of ${integration.channel_title}`} />
+      )
+    );
+  }
 }
 
 const mapStateToProps = createStructuredSelector({

@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -32,24 +31,25 @@ export class Orders extends AbstractPageList {
   static messages = messages;
   static apiPath = 'orders';
 
-
   get columns() {
     return [
-      this.columnIcon,
+      this.columnAvatar(),
       { id: 'number' },
       { id: 'total_price', width: 155, align: 'right' },
       { id: 'total_quantity', width: 155, align: 'right' },
       { id: 'status', format: this.statusFormat, align: 'center' },
-      this.columnCreateddAt,
-      this.columnUpdatedAt,
+      this.columnDateTime('created_date'),
+      this.columnDateTime('updated_date'),
     ]
   }
 
-  iconFormat(value, row, column) {
-    return <Avatar src={row.integration.icon} />;
+  avatarFormat = (value, row, column) => {
+    const { classes } = this.props;
+
+    return <Avatar src={row.integration.icon} variant="rounded" className={classes.smallAvatar} />;
   }
 
-  statusFormat(value, row, column) {
+  statusFormat = (value, row, column) => {
     let color = 'inherit';
 
     if (/pending|confirmed/i.test(value)) {
@@ -60,11 +60,7 @@ export class Orders extends AbstractPageList {
       color = 'primary';
     }
 
-    return (
-      <Typography color={color} variant="body2">
-        {value}
-      </Typography>
-    );
+    return <Typography color={color} variant="body2">{value}</Typography>
   }
 }
 

@@ -7,7 +7,6 @@ import { alpha } from "@material-ui/core/styles";
  */
 
 const styles = (theme) => ({
-
   root: {
     overflow: 'auto',
   },
@@ -25,12 +24,8 @@ const styles = (theme) => ({
     '&.MuiTableCell-head': {
       backgroundColor: alpha(theme.palette.primary.main, 0.5)
     },
+  },
 
-    '& .MuiAvatar-root': {
-      width: 24,
-      height: 24,
-    }
-  }
 });
 
 export default styles;

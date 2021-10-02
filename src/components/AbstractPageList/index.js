@@ -27,21 +27,17 @@ export default class AbstractPageList extends AbstractPage {
   get columns() {
     return [
       { id: 'id' },
-      this.columnCreateddAt,
-      this.columnUpdatedAt,
+      this.columnDateTime('created_at'),
+      this.columnDateTime('updated_at'),
     ]
   }
 
-  get columnIcon() {
-    return { id: 'icon', width: 40, label: '', format: this.iconFormat }
+  columnAvatar(id) {
+    return { id: id || 'icon', width: 40, label: '', format: this.avatarFormat }
   }
 
-  get columnUpdatedAt() {
-    return { id: 'updated_at', width: 175, format: this.dateTimeFormat }
-  }
-
-  get columnCreateddAt() {
-    return { id: 'created_at', width: 175, format: this.dateTimeFormat }
+  columnDateTime(id) {
+    return { id: id || 'created_at', width: 175, format: this.dateTimeFormat }
   }
 
   get actions() {
@@ -54,15 +50,15 @@ export default class AbstractPageList extends AbstractPage {
     return this.constructor.apiPath
   }
 
-  boolFormat(value, row, column) {
+  boolFormat = (value, row, column) => {
     return <Checkbox checked={value} readOnly={true} disabled={true} />
   }
 
-  dateTimeFormat(value, row, column) {
+  dateTimeFormat = (value, row, column) => {
     return moment(value).format('YYYY-MM-DD HH:MM:SS');
   }
 
-  iconFormat(value, row, column) {
+  avatarFormat = (value, row, column) => {
     return <Avatar src={value} />;
   }
 
