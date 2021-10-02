@@ -81,7 +81,7 @@ export default class AbstractPageList extends AbstractPage {
         <Notification moduleId={this.moduleId} />
         <EnhancedTable columns={this.columns}
                        apiPath={this.apiPath}
-                       namespase={this.moduleId}
+                       moduleId={this.moduleId}
                        messages={this.messages} />
       </div>
     );
@@ -92,10 +92,10 @@ export default class AbstractPageList extends AbstractPage {
   }
 
   onReload = (e) => {
-    console.log('Reload....');
+    this.emitMessage('reload', null, this.moduleId);
   }
 
   onDelete = (e) => {
-    console.log('Delete....');
+    this.emitMessage('delete', null, this.moduleId);
   }
 }

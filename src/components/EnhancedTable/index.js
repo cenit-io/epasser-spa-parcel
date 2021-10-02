@@ -32,7 +32,7 @@ class EnhancedTable extends AbstractComponent {
     messages: PropTypes.instanceOf(Object).isRequired,
     apiPath: PropTypes.string.isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
-    namespase: PropTypes.string.isRequired,
+    moduleId: PropTypes.string.isRequired,
     formatValue: PropTypes.func,
   }
 
@@ -45,6 +45,8 @@ class EnhancedTable extends AbstractComponent {
     this.state.offset = 0;
     this.state.limit = 10;
     this.state.total = 0;
+
+    this.addMessagingListener('reload', this.onReload, props.moduleId);
   }
 
   _loadItems() {
@@ -56,7 +58,7 @@ class EnhancedTable extends AbstractComponent {
     request(options).then((response) => {
       this.setState({ alreadyLoaded: true, rows: response.data, ...response.pagination })
     }).catch(error => {
-      this.emitMessage('notify', error, this.props.namespase);
+      this.emitMessage('notify', error, this.props.moduleId);
       this.setState({ alreadyLoaded: true, rows: [], offset: 0, total: 0 })
     });
 
@@ -88,9 +90,26 @@ class EnhancedTable extends AbstractComponent {
     return rows.map((row, idx) => <EnhancedTableRow row={row} columns={columns} key={idx} />);
   }
 
+  renderPagination() {
+    const { alreadyLoaded, rows, total, limit, offset } = this.state;
+
+    if (!alreadyLoaded || rows.length === 0) return;
+
+    return (
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={total}
+        rowsPerPage={limit}
+        page={offset / limit}
+        onPageChange={this.onChangePage}
+        onRowsPerPageChange={this.onChangeRowsPerPage}
+      />
+    )
+  }
+
   render() {
     const { classes, columns, messages } = this.props;
-    const { total, limit, offset } = this.state;
 
     return (
       <Paper className={classes.paper}>
@@ -113,25 +132,21 @@ class EnhancedTable extends AbstractComponent {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={total}
-          rowsPerPage={limit}
-          page={offset / limit}
-          onPageChange={this.onChangePage}
-          onRowsPerPageChange={this.onChangeRowsPerPage}
-        />
+        {this.renderPagination()}
       </Paper>
     );
   }
 
   onChangePage = (e) => {
-    this.setState({ alreadyLoaded: false, rows: [], offset: e.target.value * this.state.limit })
+    this.setState({ alreadyLoaded: false, rows: [], offset: e.target.value * this.state.limit });
   }
 
   onChangeRowsPerPage = (e, value) => {
-    this.setState({ alreadyLoaded: false, rows: [], offset: 0, limit: e.target.value, total: 0 })
+    this.setState({ alreadyLoaded: false, rows: [], offset: 0, limit: e.target.value, total: 0 });
+  }
+
+  onReload = (e) => {
+    this.setState({ alreadyLoaded: false, rows: [], total: 0 });
   }
 }
 
