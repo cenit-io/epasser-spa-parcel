@@ -7,7 +7,7 @@
 import { defineMessages } from 'react-intl';
 import messagesBase from "../../../../components/AbstractPageList/messages";
 
-export const scope = 'containers.AvailableIntegrations';
+export const scope = 'containers.pages.AvailableIntegrations';
 
 const messagesLocal = defineMessages({
   title: {

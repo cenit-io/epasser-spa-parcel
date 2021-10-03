@@ -10,13 +10,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
+import { ConnectedIntegrationsIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
-
-import ConnectedIntegrationsIcon from "@material-ui/icons/BluetoothConnected";
 
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";

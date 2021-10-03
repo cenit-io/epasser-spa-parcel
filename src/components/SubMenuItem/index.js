@@ -7,14 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-import styles from '../../styles';
-
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemText from "@material-ui/core/ListItemText";
 import { FormattedMessage } from "react-intl";
+
+import styles from './styles.jss';
+
 import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import Avatar from "@material-ui/core/Avatar";
 import history from '../../base/history';
 
 class SubMenuItem extends React.Component {
@@ -46,15 +47,28 @@ class SubMenuItem extends React.Component {
     if (path) history.push(path);
   }
 
-  render() {
+  renderInfo() {
+    const { classes, info } = this.props;
+
+    if (!info) return;
+
     return (
-      <ListItem button={true} onClick={this.onClick}>
+      <ListItemSecondaryAction>
+        <Avatar className={classes.info}>{info}</Avatar>
+      </ListItemSecondaryAction>
+    )
+  }
+
+  render() {
+    const { classes, icon: Icon } = this.props;
+
+    return (
+      <ListItem className={classes.root} button={true} onClick={this.onClick}>
         <ListItemAvatar>
-          <Avatar>
-            <this.props.icon />
-          </Avatar>
+          <Avatar className={classes.logo}><Icon /></Avatar>
         </ListItemAvatar>
         <ListItemText primary={this.title} />
+        {this.renderInfo()}
       </ListItem>
     );
   }

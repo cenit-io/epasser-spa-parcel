@@ -10,13 +10,13 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
+import { OrdersIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
-import OrdersIcon from "@material-ui/icons/ShoppingCart";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 

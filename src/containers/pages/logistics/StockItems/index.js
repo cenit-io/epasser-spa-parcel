@@ -10,15 +10,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { createStructuredSelector } from 'reselect';
+import { StockItemsIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
-
-import StockItemsIcon from "@material-ui/icons/Widgets";
-import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
 
 export class StockItems extends AbstractPageList {
   static propTypes = {
