@@ -47,19 +47,23 @@ class EnhancedTable extends AbstractComponent {
     this.state.total = 0;
 
     this.addMessagingListener('reload', this.onReload, props.moduleId);
+    this.addMessagingListener('setState', this.onSetState, props.moduleId);
   }
 
   _loadItems() {
+    const { moduleId } = this.props;
     const options = {
       url: this.props.apiPath,
       method: 'GET',
     };
 
     request(options).then((response) => {
-      this.setState({ alreadyLoaded: true, rows: response.data, ...response.pagination })
+      const newState = { alreadyLoaded: true, rows: response.data, ...response.pagination };
+      this.emitMessage('setState', newState, moduleId);
     }).catch(error => {
-      this.emitMessage('notify', error, this.props.moduleId);
-      this.setState({ alreadyLoaded: true, rows: [], offset: 0, total: 0 })
+      this.emitMessage('notify', error, moduleId);
+      const newState = { alreadyLoaded: true, rows: [], offset: 0, total: 0 };
+      this.emitMessage('setState', newState, moduleId);
     });
 
     return this.renderWithoutData(messages.loading);
@@ -145,8 +149,12 @@ class EnhancedTable extends AbstractComponent {
     this.setState({ alreadyLoaded: false, rows: [], offset: 0, limit: e.target.value, total: 0 });
   }
 
-  onReload = (e) => {
+  onReload = () => {
     this.setState({ alreadyLoaded: false, rows: [], total: 0 });
+  }
+
+  onSetState = (state) => {
+    this.setState(state);
   }
 }
 
