@@ -60,7 +60,7 @@ export default class AbstractPageList extends AbstractPage {
   }
 
   avatarFormat = (value, row, column) => {
-    return <Avatar src={value} />;
+    return <Avatar src={value} className={this.props.classes.smallAvatar} />;
   }
 
   integrationFormat = (value, row, column) => {

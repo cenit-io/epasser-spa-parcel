@@ -63,8 +63,12 @@ class MainTabs extends AbstractComponent {
   }
 
   renderTabButton(module, idx) {
+    const { activeTab } = this.state;
+
     return (
-      <TabButton tab={module} value={module.id} key={idx}
+      <TabButton tab={module} key={idx}
+                 value={module.id}
+                 active={activeTab === module.id}
                  onClose={module.id != 'Dashboard' ? this.onCloseTab : undefined} />
     )
   }

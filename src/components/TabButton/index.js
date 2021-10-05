@@ -21,6 +21,7 @@ class TabButton extends React.Component {
     classes: PropTypes.instanceOf(Object).isRequired,
     tab: PropTypes.instanceOf(Object).isRequired,
     value: PropTypes.any.isRequired,
+    active: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func,
   }
@@ -68,15 +69,14 @@ class TabButton extends React.Component {
   }
 
   render() {
-    const { classes, tab } = this.props;
+    const { classes, tab, active } = this.props;
     const Icon = tab.icon;
     const title = tab.title || tab.messages.title;
 
     return (
       <div className={classes.root} onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave}>
-        <Button aria-controls={`tabpanel-${tab.id}`}
-                variant="outlined"
-                color="primary"
+        <Button color="primary"
+                variant={active ? "contained" : "outlined"}
                 startIcon={<Icon />}
                 onClick={this.onChange}>
           <div className={classes.content}>
