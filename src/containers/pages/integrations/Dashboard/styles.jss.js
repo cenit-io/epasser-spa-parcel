@@ -8,8 +8,8 @@ import { alpha } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   root: {
-    position: 'relative',
-    left: 'calc(50% - 525px)',
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
