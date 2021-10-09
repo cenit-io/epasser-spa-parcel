@@ -25,6 +25,7 @@ import Typography from "@material-ui/core/Typography";
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableRow from "./EnhancedTableRow";
 import Loading from "../Loading";
+import EnhancedPagination from "./EnhancedPagination";
 
 class EnhancedTable extends AbstractComponent {
   static propTypes = {
@@ -52,9 +53,12 @@ class EnhancedTable extends AbstractComponent {
 
   _loadItems() {
     const { moduleId } = this.props;
+    const { limit, offset } = this.state;
+
     const options = {
       url: this.props.apiPath,
       method: 'GET',
+      params: { limit, offset }
     };
 
     request(options).then((response) => {
@@ -94,35 +98,16 @@ class EnhancedTable extends AbstractComponent {
     return rows.map((row, idx) => <EnhancedTableRow row={row} columns={columns} key={idx} />);
   }
 
-  renderPagination() {
-    const { alreadyLoaded, rows, total, limit, offset } = this.state;
-
-    if (!alreadyLoaded || rows.length === 0) return;
-
-    return (
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={total}
-        rowsPerPage={limit}
-        page={offset / limit}
-        onPageChange={this.onChangePage}
-        onRowsPerPageChange={this.onChangeRowsPerPage}
-      />
-    )
-  }
 
   render() {
-    const { classes, columns, messages } = this.props;
+    const { classes, columns, messages, className } = this.props;
+    const { total, limit, offset } = this.state;
 
     return (
-      <Paper className={classes.paper}>
+      <Paper className={className || classes.root}>
         {/*<EnhancedTableToolbar numSelected={selected.length} />*/}
-        <TableContainer>
-          <Table className={classes.table}
-                 aria-labelledby="tableTitle"
-                 size='small'
-                 aria-label="enhanced table">
+        <TableContainer className={classes.container}>
+          <Table className={classes.table} size='small'>
             <EnhancedTableHead columns={columns} messages={messages}
               // numSelected={selected.length}
               // order={order}
@@ -136,17 +121,31 @@ class EnhancedTable extends AbstractComponent {
             </TableBody>
           </Table>
         </TableContainer>
-        {this.renderPagination()}
+        <EnhancedPagination total={total} limit={limit} offset={offset}
+                            onPageChange={this.onPageChange}
+                            onRowsPerPageChange={this.onRowsPerPageChange}
+        />
       </Paper>
     );
   }
 
-  onChangePage = (e) => {
-    this.setState({ alreadyLoaded: false, rows: [], offset: e.target.value * this.state.limit });
+  onPageChange = (e, value) => {
+    this.setState({
+      alreadyLoaded: false,
+      rows: [],
+      offset: value * this.state.limit,
+      total: 0
+    });
   }
 
-  onChangeRowsPerPage = (e, value) => {
-    this.setState({ alreadyLoaded: false, rows: [], offset: 0, limit: e.target.value, total: 0 });
+  onRowsPerPageChange = (e) => {
+    this.setState({
+      alreadyLoaded: false,
+      rows: [],
+      offset: 0,
+      limit: e.target.value,
+      total: 0
+    });
   }
 
   onReload = () => {

@@ -99,10 +99,12 @@ export default class AbstractPageList extends AbstractPage {
       <div className={classes.root}>
         {this.renderToolbar()}
         <Notification moduleId={this.moduleId} />
-        <EnhancedTable columns={this.columns}
-                       apiPath={this.apiPath}
-                       moduleId={this.moduleId}
-                       messages={this.messages} />
+        <div className={classes.mainTable}>
+          <EnhancedTable columns={this.columns}
+                         apiPath={this.apiPath}
+                         moduleId={this.moduleId}
+                         messages={this.messages} />
+        </div>
       </div>
     );
   }

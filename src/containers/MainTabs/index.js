@@ -94,10 +94,13 @@ class MainTabs extends AbstractComponent {
   }
 
   renderTapContent(module, idx) {
+    const { classes } = this.props;
     const { activeTab } = this.state;
 
     return (
-      <div id={`tabpanel-${module.id}`} role="tabpanel" hidden={activeTab !== module.id} key={idx}>
+      <div className={classes.tabPanel} role="tabpanel" key={idx}
+           id={`tabpanel-${module.id}`}
+           hidden={activeTab !== module.id} key={idx}>
         {this.renderModule(module.id)}
       </div>
     )
