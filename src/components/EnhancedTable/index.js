@@ -45,28 +45,28 @@ class EnhancedTable extends AbstractComponent {
     this.state.offset = 0;
     this.state.limit = 10;
     this.state.total = 0;
+    this.state.searchTerm = props.searchTerm || '';
 
     this.addMessagingListener('reload', this.onReload, props.moduleId);
-    this.addMessagingListener('setState', this.onSetState, props.moduleId);
+    this.addMessagingListener('successfulLoadItems', this.onSuccessfulLoadItems, props.moduleId);
+    this.addMessagingListener('failedLoadItems', this.onFailedLoadItems, props.moduleId);
+    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm, props.moduleId);
   }
 
   _loadItems() {
     const { moduleId } = this.props;
-    const { limit, offset } = this.state;
+    const { limit, offset, searchTerm: term } = this.state;
 
     const options = {
       url: this.props.apiPath,
       method: 'GET',
-      params: { limit, offset }
+      params: { limit, offset, term }
     };
 
     request(options).then((response) => {
-      const newState = { alreadyLoaded: true, rows: response.data, ...response.pagination };
-      this.emitMessage('setState', newState, moduleId);
+      this.emitMessage('successfulLoadItems', response, moduleId);
     }).catch(error => {
-      this.emitMessage('notify', error, moduleId);
-      const newState = { alreadyLoaded: true, rows: [], offset: 0, total: 0 };
-      this.emitMessage('setState', newState, moduleId);
+      this.emitMessage('failedLoadItems', error, moduleId);
     });
 
     return this.renderWithoutData(messages.loading);
@@ -133,7 +133,7 @@ class EnhancedTable extends AbstractComponent {
       alreadyLoaded: false,
       rows: [],
       offset: value * this.state.limit,
-      total: 0
+      total: 0,
     });
   }
 
@@ -143,16 +143,31 @@ class EnhancedTable extends AbstractComponent {
       rows: [],
       offset: 0,
       limit: e.target.value,
-      total: 0
+      total: 0,
     });
+  }
+
+  onChangeSearchTerm = (value) => {
+    this.setState({
+      alreadyLoaded: false,
+      rows: [],
+      offset: 0,
+      total: 0,
+      searchTerm: value,
+    });
+  }
+
+  onSuccessfulLoadItems = (response) => {
+    this.setState({ alreadyLoaded: true, rows: response.data, ...response.pagination });
+  }
+
+  onFailedLoadItems = (error) => {
+    this.emitMessage('notify', error, this.props.moduleId);
+    this.setState({ alreadyLoaded: true, rows: {}, offset: 0, total: 0 });
   }
 
   onReload = () => {
     this.setState({ alreadyLoaded: false, rows: [], total: 0 });
-  }
-
-  onSetState = (state) => {
-    this.setState(state);
   }
 }
 

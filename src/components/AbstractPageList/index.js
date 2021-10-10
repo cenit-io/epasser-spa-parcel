@@ -21,8 +21,6 @@ import Chip from "@material-ui/core/Chip";
 export default class AbstractPageList extends AbstractPage {
   constructor(props) {
     super(props);
-    this.state.searchTerm = '';
-    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm, this.moduleId);
   }
 
   get columns() {
@@ -93,7 +91,6 @@ export default class AbstractPageList extends AbstractPage {
 
   render() {
     const { classes } = this.props;
-    const { searchTerm } = this.state;
 
     return (
       <div className={classes.root}>
@@ -107,10 +104,6 @@ export default class AbstractPageList extends AbstractPage {
         </div>
       </div>
     );
-  }
-
-  onChangeSearchTerm = (searchTerm) => {
-    this.setState({ searchTerm });
   }
 
   onReload = (e) => {

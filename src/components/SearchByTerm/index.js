@@ -21,27 +21,8 @@ class SearchByTerm extends AbstractComponent {
 
   constructor(props) {
     super(props);
-    this.state = { activeModuleId: null };
+    this.state = { activeModuleId: null, appliedSearchTerm: '' };
     this.addMessagingListener('changeActiveTabModule', this.onChangeActiveModule, 'MainTabs');
-  }
-
-  onChangeSearchTerm = (event) => {
-    const { activeModuleId } = this.state;
-    const searchTerm = event.target.value;
-
-    this.setState((state) => {
-      state[activeModuleId] = searchTerm;
-      return state;
-    })
-  }
-
-  onApplySearchTerm = () => {
-    const { activeModuleId } = this.state;
-    this.emitMessage('changeSearchTerm', this.state[activeModuleId], activeModuleId);
-  }
-
-  onChangeActiveModule = (activeModuleId) => {
-    this.setState({ activeModuleId });
   }
 
   render() {
@@ -59,8 +40,9 @@ class SearchByTerm extends AbstractComponent {
         </div>
         <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
                    value={searchTerm}
+                   onBlur={this.onBlur}
                    onChange={this.onChangeSearchTerm}
-                   onBlur={this.onApplySearchTerm}
+                   onKeyPress={this.onKeyPress}
                    classes={{
                      root: classes.searchInputRoot,
                      input: classes.searchInputInput,
@@ -68,6 +50,42 @@ class SearchByTerm extends AbstractComponent {
         />
       </div>
     );
+  }
+
+  onChangeSearchTerm = (event) => {
+    const { activeModuleId } = this.state;
+    const searchTerm = event.target.value;
+
+    this.setState((state) => {
+      state[activeModuleId] = searchTerm;
+      return state;
+    })
+  }
+
+  onKeyPress = (e) => {
+    // Apply the search term
+    if (e.charCode === 13) {
+      const { activeModuleId } = this.state;
+      const currentSearchTerm = this.state.appliedSearchTerm = this.state[activeModuleId];
+
+      this.emitMessage('changeSearchTerm', currentSearchTerm, activeModuleId);
+    }
+  }
+
+  onBlur = () => {
+    const { activeModuleId, appliedSearchTerm } = this.state;
+    const currentSearchTerm = this.state[activeModuleId];
+
+    if (currentSearchTerm !== appliedSearchTerm) {
+      this.setState((state) => {
+        state[activeModuleId] = appliedSearchTerm;
+        return state;
+      })
+    }
+  }
+
+  onChangeActiveModule = (activeModuleId) => {
+    this.setState({ activeModuleId, appliedSearchTerm: this.state[activeModuleId] });
   }
 }
 
