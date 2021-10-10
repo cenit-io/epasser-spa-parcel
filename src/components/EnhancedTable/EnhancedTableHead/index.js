@@ -74,7 +74,7 @@ class EnhancedTableHead extends AbstractComponent {
     const { classes, columns } = this.props;
 
     return (
-      <TableHead>
+      <TableHead className={classes.head}>
         <TableRow>
           <TableCell className={classes.cell} padding="checkbox">
             <Checkbox

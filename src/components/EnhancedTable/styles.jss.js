@@ -25,13 +25,24 @@ const styles = (theme) => ({
     tableLayout: 'auto'
   },
 
+  head: {
+    position: 'sticky',
+    backgroundColor: theme.palette.background.paper,
+    zIndex: 2,
+    top: 0,
+  },
+
   cell: {
     borderColor: theme.palette.divider,
     borderStyle: 'solid',
     borderWidth: 1,
+    zIndex: 1,
 
     '&.MuiTableCell-head': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.5)
+      position: 'sticky',
+      backgroundColor: alpha(theme.palette.primary.main, 0.5),
+      zIndex: 2,
+      top: 0,
     },
   },
 
