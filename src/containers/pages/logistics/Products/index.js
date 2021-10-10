@@ -41,8 +41,14 @@ export class Products extends AbstractPageList {
 
   avatarFormat = (value, row, column) => {
     const { classes } = this.props;
+    const image = row.images[0];
+    const defaultImage = image ? null : <ProductsIcon />;
 
-    return <Avatar src={row.images[0]} variant="rounded" className={classes.largeAvatar} />;
+    return (
+      <Avatar src={image} variant="rounded" className={classes.largeAvatar}>
+        {defaultImage}
+      </Avatar>
+    );
   }
 
   integrationsFormat = (value, row, column) => {
