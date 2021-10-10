@@ -163,7 +163,7 @@ class EnhancedTable extends AbstractComponent {
 
   onFailedLoadItems = (error) => {
     this.emitMessage('notify', error, this.props.moduleId);
-    this.setState({ alreadyLoaded: true, rows: {}, offset: 0, total: 0 });
+    this.setState({ alreadyLoaded: true, rows: [], offset: 0, total: 0 });
   }
 
   onReload = () => {
