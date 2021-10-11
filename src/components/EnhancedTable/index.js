@@ -64,9 +64,6 @@ class EnhancedTable extends AbstractComponent {
       params: { limit, offset, term }
     };
 
-    this._selectionItems = {};
-    // this.onChangeSelection();
-
     request(options).then((response) => {
       this.emitMessage('successfulLoadItems', response, moduleId);
     }).catch(error => {
@@ -74,11 +71,6 @@ class EnhancedTable extends AbstractComponent {
     });
 
     return this.renderWithoutData(messages.loading);
-  }
-
-  getItemId(item) {
-    const { getItemId } = this.props;
-    return getItemId ? getItemId(item) : item.id;
   }
 
   renderWithoutData(msg) {
@@ -139,7 +131,13 @@ class EnhancedTable extends AbstractComponent {
     );
   }
 
+  clearSelection = () => {
+    this._selectionItems = {};
+    this.onChangeSelection();
+  }
+
   onPageChange = (e, value) => {
+    this.clearSelection();
     this.setState({
       alreadyLoaded: false,
       items: [],
@@ -149,6 +147,7 @@ class EnhancedTable extends AbstractComponent {
   }
 
   onItemsPerPageChange = (e) => {
+    this.clearSelection();
     this.setState({
       alreadyLoaded: false,
       items: [],
@@ -159,6 +158,7 @@ class EnhancedTable extends AbstractComponent {
   }
 
   onChangeSearchTerm = (value) => {
+    this.clearSelection();
     this.setState({
       alreadyLoaded: false,
       items: [],
@@ -178,6 +178,7 @@ class EnhancedTable extends AbstractComponent {
   }
 
   onReload = () => {
+    this.clearSelection();
     this.setState({ alreadyLoaded: false, items: [], total: 0 });
   }
 
@@ -192,7 +193,6 @@ class EnhancedTable extends AbstractComponent {
 
   onChangeSelection = () => {
     const selectedItems = Object.values(this._selectionItems);
-
     this.emitMessage('changeSelection', [selectedItems, this.state.items], this.props.moduleId);
   }
 
