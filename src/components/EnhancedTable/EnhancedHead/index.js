@@ -1,6 +1,6 @@
 /**
  *
- * EnhancedTableHead
+ * EnhancedHead
  *
  */
 
@@ -8,35 +8,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
-import messages from '../messages';
 import styles from '../styles.jss';
 
 import AbstractComponent from "../../AbstractComponent";
+import EnhancedCellSelectAll from '../EnhancedCellSelectAll';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 
-class EnhancedTableHead extends AbstractComponent {
+class EnhancedHead extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
+    moduleId: PropTypes.string.isRequired,
     padding: PropTypes.string,
+    onChangeSelectAll: PropTypes.func.isRequired,
   }
 
   static defaultProps = { padding: 'normal' };
-
-  onChangeSort = (event, property) => {
-    const { orderBy, order } = this.state;
-    const isAsc = orderBy === property && order === 'asc';
-
-    this.setState({
-      orderBy: property,
-      order: isAsc ? 'desc' : 'asc',
-    });
-  }
 
   createSortHandler = (columnId) => (event) => {
     this.onChangeSort(event, columnId);
@@ -71,23 +62,27 @@ class EnhancedTableHead extends AbstractComponent {
   }
 
   render() {
-    const { classes, columns } = this.props;
+    const { classes, columns, moduleId, onChangeSelectAll } = this.props;
 
     return (
       <TableHead className={classes.head}>
         <TableRow>
-          <TableCell className={classes.cell} padding="checkbox">
-            <Checkbox
-              // indeterminate={numSelected > 0 && numSelected < rowCount}
-              // checked={rowCount > 0 && numSelected === rowCount}
-              // onChange={onSelectAllClick}
-            />
-          </TableCell>
+          <EnhancedCellSelectAll moduleId={moduleId} onChangeSelectAll={onChangeSelectAll} />
           {this.renderColumns(columns)}
         </TableRow>
       </TableHead>
     );
   }
+
+  onChangeSort = (event, property) => {
+    const { orderBy, order } = this.state;
+    const isAsc = orderBy === property && order === 'asc';
+
+    this.setState({
+      orderBy: property,
+      order: isAsc ? 'desc' : 'asc',
+    });
+  }
 }
 
-export default withStyles(styles)(EnhancedTableHead);
+export default withStyles(styles)(EnhancedHead);

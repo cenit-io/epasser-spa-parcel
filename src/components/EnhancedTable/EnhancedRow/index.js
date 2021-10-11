@@ -1,6 +1,6 @@
 /**
  *
- * EnhancedTableRow
+ * EnhancedRow
  *
  */
 
@@ -15,15 +15,23 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from "@material-ui/core/Checkbox";
 
-class EnhancedTableRow extends AbstractComponent {
+class EnhancedRow extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
     row: PropTypes.instanceOf(Object).isRequired,
     padding: PropTypes.string,
+    itemId: PropTypes.string.isRequired,
+    onChangeItemSelection: PropTypes.func.isRequired,
   }
 
   static defaultProps = { padding: 'normal' };
+
+  constructor(props) {
+    super(props);
+    this.state.isSelected = false;
+    this.addMessagingListener('changeSelectAll', this.onChangeSelection, props.moduleId);
+  }
 
   formatValue = (row, column) => {
     const value = row[column.id];
@@ -45,7 +53,7 @@ class EnhancedTableRow extends AbstractComponent {
 
   render() {
     const { classes, row } = this.props;
-    const isItemSelected = false;
+    const { isSelected } = this.state;
 
     return (
       <TableRow
@@ -54,15 +62,21 @@ class EnhancedTableRow extends AbstractComponent {
         role="checkbox"
         // aria-checked={isItemSelected}
         // tabIndex={-1}
-        selected={isItemSelected}
+        selected={isSelected}
       >
         <TableCell className={classes.cell} padding="checkbox">
-          <Checkbox checked={isItemSelected} />
+          <Checkbox checked={isSelected} onChange={this.onChangeSelection} />
         </TableCell>
         {this.renderCell(row)}
       </TableRow>
     );
   }
+
+  onChangeSelection = (e, value) => {
+    const { itemId, row, onChangeItemSelection } = this.props;
+    this.setState({ isSelected: value });
+    onChangeItemSelection(value, itemId, row)
+  }
 }
 
-export default withStyles(styles)(EnhancedTableRow);
+export default withStyles(styles)(EnhancedRow);

@@ -25,6 +25,10 @@ export default class AbstractAction extends AbstractComponent {
     return '...';
   }
 
+  get disabled() {
+    return false;
+  }
+
   onClick = (e) => {
     this.props.onClick(e);
   }
@@ -33,7 +37,7 @@ export default class AbstractAction extends AbstractComponent {
     const { classes } = this.props;
 
     return (
-      <Button variant="text" color="primary" startIcon={this.icon} onClick={this.onClick}>
+      <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
         <div className={classes.label}>
           {this.label}
         </div>

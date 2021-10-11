@@ -22,11 +22,11 @@ class EnhancedPagination extends AbstractComponent {
     limit: PropTypes.number.isRequired,
     offset: PropTypes.number.isRequired,
     onPageChange: PropTypes.func.isRequired,
-    onRowsPerPageChange: PropTypes.func.isRequired,
+    onItemsPerPageChange: PropTypes.func.isRequired,
   }
 
   render() {
-    const { classes, total, limit, offset, onPageChange, onRowsPerPageChange } = this.props;
+    const { classes, total, limit, offset, onPageChange, onItemsPerPageChange } = this.props;
 
     if (total === 0) return '';
 
@@ -39,7 +39,7 @@ class EnhancedPagination extends AbstractComponent {
         rowsPerPage={limit}
         page={offset / limit}
         onPageChange={onPageChange}
-        onRowsPerPageChange={onRowsPerPageChange}
+        onRowsPerPageChange={onItemsPerPageChange}
       />
     )
   }
