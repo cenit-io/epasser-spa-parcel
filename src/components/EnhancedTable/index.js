@@ -58,6 +58,8 @@ class EnhancedTable extends AbstractComponent {
     const { moduleId } = this.props;
     const { limit, offset, searchTerm: term } = this.state;
 
+    this.emitMessage('lockActions', true, moduleId, 0);
+
     const options = {
       url: this.props.apiPath,
       method: 'GET',
@@ -68,6 +70,8 @@ class EnhancedTable extends AbstractComponent {
       this.emitMessage('successfulLoadItems', response, moduleId);
     }).catch(error => {
       this.emitMessage('failedLoadItems', error, moduleId);
+    }).finally(()=>{
+      this.emitMessage('lockActions', false, moduleId);
     });
 
     return this.renderWithoutData(messages.loading);

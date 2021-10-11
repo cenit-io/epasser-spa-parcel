@@ -11,10 +11,15 @@ class Messaging {
     return subscription;
   }
 
-  emitMessage(messageId, data, moduleId) {
+  emitMessage(messageId, data, moduleId, timeout) {
     messageId = `${moduleId || 'Global'}/${messageId}`;
     data = data instanceof Array ? data : [data];
-    _messaging.emit(messageId, ...data);
+
+    if (timeout !== undefined) {
+      setTimeout(() => _messaging.emit(messageId, ...data), timeout);
+    } else {
+      _messaging.emit(messageId, ...data);
+    }
   }
 
   delMessagingListener(subscription) {

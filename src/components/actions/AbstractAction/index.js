@@ -17,6 +17,12 @@ export default class AbstractAction extends AbstractComponent {
     onClick: PropTypes.func.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state.locked = false;
+    this.addMessagingListener('lockActions', this.onLockActions, props.moduleId)
+  }
+
   get icon() {
     return <SettingsApplicationsIcon />;
   }
@@ -26,7 +32,7 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   get disabled() {
-    return false;
+    return this.state.locked;
   }
 
   onClick = (e) => {
@@ -43,5 +49,9 @@ export default class AbstractAction extends AbstractComponent {
         </div>
       </Button>
     );
+  }
+
+  onLockActions = (locked) => {
+    this.setState({ locked });
   }
 }

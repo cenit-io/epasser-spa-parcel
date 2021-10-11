@@ -12,6 +12,7 @@ export default class AbstractComponent extends React.Component {
   constructor(props) {
     super(props);
     this._subscritions = [];
+    this._isComponentDidMount = false;
     this.state = {};
   }
 
@@ -22,8 +23,8 @@ export default class AbstractComponent extends React.Component {
     return subscription;
   }
 
-  emitMessage(messageId, data, moduleId) {
-    messaging.emitMessage(messageId, data, moduleId);
+  emitMessage = (messageId, data, moduleId, timeout) => {
+    messaging.emitMessage(messageId, data, moduleId, timeout);
   }
 
   componentWillUnmount = () => {
