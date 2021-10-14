@@ -56,14 +56,7 @@ class EnhancedRow extends AbstractComponent {
     const { isSelected } = this.state;
 
     return (
-      <TableRow
-        // hover
-        // onClick={(event) => handleClick(event, row.name)}
-        role="checkbox"
-        // aria-checked={isItemSelected}
-        // tabIndex={-1}
-        selected={isSelected}
-      >
+      <TableRow className={classes.row} selected={isSelected} tabIndex={-1}>
         <TableCell className={classes.cell} padding="checkbox">
           <Checkbox checked={isSelected} onChange={this.onChangeSelection} />
         </TableCell>

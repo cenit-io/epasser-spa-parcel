@@ -50,7 +50,7 @@ export default class AbstractPageList extends AbstractPage {
   }
 
   boolFormat = (value, row, column) => {
-    return <Checkbox checked={value} readOnly={true} disabled={true} />
+    return <Checkbox checked={value} readOnly={true} />
   }
 
   dateTimeFormat = (value, row, column) => {

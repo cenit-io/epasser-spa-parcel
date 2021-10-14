@@ -32,6 +32,12 @@ const styles = (theme) => ({
     top: 0,
   },
 
+  row: {
+    '&.Mui-selected, &.Mui-selected:hover': {
+      backgroundColor: alpha(theme.palette.secondary.main, 0.2),
+    },
+  },
+
   cell: {
     borderColor: theme.palette.divider,
     borderStyle: 'solid',

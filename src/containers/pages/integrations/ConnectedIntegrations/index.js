@@ -19,6 +19,7 @@ import makeSelectSignIn from '../../SignIn/selectors';
 
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
+import Avatar from "@material-ui/core/Avatar";
 
 export class ConnectedIntegrations extends AbstractPageList {
   static propTypes = {
@@ -35,6 +36,7 @@ export class ConnectedIntegrations extends AbstractPageList {
       this.columnAvatar(),
       { id: 'name' },
       { id: 'channel_title' },
+      { id: 'authorized', width: 100, align: 'center', format: this.boolFormat},
       this.columnDateTime('created_at'),
       this.columnDateTime('updated_at'),
     ]
