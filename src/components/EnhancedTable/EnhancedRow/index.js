@@ -30,7 +30,7 @@ class EnhancedRow extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state.isSelected = false;
-    this.addMessagingListener('changeSelectAll', this.onChangeSelection, props.moduleId);
+    this.addMessagingListener('changeSelectAll', this.onChangeSelection);
   }
 
   formatValue = (row, column) => {

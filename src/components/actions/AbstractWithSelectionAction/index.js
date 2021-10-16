@@ -11,7 +11,7 @@ export default class AbstractWithSelectionAction extends AbstractAction {
   constructor(props) {
     super(props);
     this.state.selectionItems = [];
-    this.addMessagingListener('changeSelection', this.onChangeSelection, props.moduleId)
+    this.addMessagingListener('changeSelection', this.onChangeSelection)
   }
 
   get disabled() {

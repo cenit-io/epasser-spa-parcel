@@ -48,17 +48,16 @@ class EnhancedTable extends AbstractComponent {
     this.state.searchTerm = props.searchTerm || '';
     this._selectionItems = {};
 
-    this.addMessagingListener('reload', this.onReload, props.moduleId);
-    this.addMessagingListener('successfulLoadItems', this.onSuccessfulLoadItems, props.moduleId);
-    this.addMessagingListener('failedLoadItems', this.onFailedLoadItems, props.moduleId);
-    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm, props.moduleId);
+    this.addMessagingListener('reload', this.onReload);
+    this.addMessagingListener('successfulLoadItems', this.onSuccessfulLoadItems);
+    this.addMessagingListener('failedLoadItems', this.onFailedLoadItems);
+    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm);
   }
 
   _loadItems() {
-    const { moduleId } = this.props;
     const { limit, offset, searchTerm: term } = this.state;
 
-    this.emitMessage('lockActions', true, moduleId, 0);
+    this.emitMessage('lockActions', true, this.moduleId, 0);
 
     const options = {
       url: this.props.apiPath,
@@ -67,11 +66,11 @@ class EnhancedTable extends AbstractComponent {
     };
 
     request(options).then((response) => {
-      this.emitMessage('successfulLoadItems', response, moduleId);
+      this.emitMessage('successfulLoadItems', response);
     }).catch(error => {
-      this.emitMessage('failedLoadItems', error, moduleId);
+      this.emitMessage('failedLoadItems', error);
     }).finally(()=>{
-      this.emitMessage('lockActions', false, moduleId);
+      this.emitMessage('lockActions', false);
     });
 
     return this.renderWithoutData(messages.loading);
@@ -177,7 +176,7 @@ class EnhancedTable extends AbstractComponent {
   }
 
   onFailedLoadItems = (error) => {
-    this.emitMessage('notify', error, this.props.moduleId);
+    this.emitMessage('notify', error);
     this.setState({ alreadyLoaded: true, items: [], offset: 0, total: 0 });
   }
 
@@ -197,11 +196,11 @@ class EnhancedTable extends AbstractComponent {
 
   onChangeSelection = () => {
     const selectedItems = Object.values(this._selectionItems);
-    this.emitMessage('changeSelection', [selectedItems, this.state.items], this.props.moduleId);
+    this.emitMessage('changeSelection', [selectedItems, this.state.items]);
   }
 
   onChangeSelectAll = (e, value) => {
-    this.emitMessage('changeSelectAll', [e, value], this.props.moduleId);
+    this.emitMessage('changeSelectAll', [e, value]);
   }
 }
 

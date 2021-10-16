@@ -107,10 +107,10 @@ export default class AbstractPageList extends AbstractPage {
   }
 
   onReload = (e) => {
-    this.emitMessage('reload', null, this.moduleId);
+    this.emitMessage('reload');
   }
 
   onDelete = (e) => {
-    this.emitMessage('delete', null, this.moduleId);
+    this.emitMessage('delete');
   }
 }

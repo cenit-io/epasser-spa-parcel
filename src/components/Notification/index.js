@@ -29,7 +29,7 @@ class Notification extends AbstractComponent {
     this.state.message = null;
     this.state.severity = null;
 
-    this.addMessagingListener('notify', this.onNotify, props.moduleId);
+    this.addMessagingListener('notify', this.onNotify);
   }
 
   get message() {

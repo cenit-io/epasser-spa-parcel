@@ -3,16 +3,16 @@ import { EventEmitter } from 'fbemitter';
 const _messaging = new EventEmitter();
 
 class Messaging {
-  addMessagingListener(messageId, callBack, moduleId) {
-    messageId = `${moduleId || 'Global'}/${messageId}`;
+  addMessagingListener(messageId, callBack, senderId) {
+    messageId = `${senderId || 'Global'}/${messageId}`;
 
     const subscription = _messaging.addListener(messageId, callBack);
 
     return subscription;
   }
 
-  emitMessage(messageId, data, moduleId, timeout) {
-    messageId = `${moduleId || 'Global'}/${messageId}`;
+  emitMessage(messageId, data, senderId, timeout) {
+    messageId = `${senderId || 'Global'}/${messageId}`;
     data = data instanceof Array ? data : [data];
 
     if (timeout !== undefined) {

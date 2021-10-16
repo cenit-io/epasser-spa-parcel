@@ -26,7 +26,7 @@ class EnhancedCellSelectAll extends AbstractComponent {
     super(props);
     this.state.selectedCount = 0;
     this.state.itemsCount = 0;
-    this.addMessagingListener('changeSelection', this.onChangeSelection, props.moduleId)
+    this.addMessagingListener('changeSelection', this.onChangeSelection)
   }
 
   render() {

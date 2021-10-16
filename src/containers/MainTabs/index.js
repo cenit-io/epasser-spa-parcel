@@ -37,12 +37,16 @@ class MainTabs extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state = { activeTab: null, tabsModules: {} };
-    this.addMessagingListener('openModule', this.onOpenTab, 'MainTabs');
+    this.addMessagingListener('openModule', this.onOpenTab);
+  }
+
+  get moduleId() {
+    return 'MainTabs';
   }
 
   setActiveTabModule(activeTab) {
     this.setState({ activeTab });
-    this.emitMessage('changeActiveTabModule', activeTab, 'MainTabs');
+    this.emitMessage('changeActiveTabModule', activeTab);
   }
 
   onChangeTab = (event, activeTab) => {
@@ -136,7 +140,7 @@ class MainTabs extends AbstractComponent {
   }
 
   componentDidMount = () => {
-    this.emitMessage('openModule', Dashboard, 'MainTabs');
+    this.emitMessage('openModule', Dashboard);
   }
 }
 

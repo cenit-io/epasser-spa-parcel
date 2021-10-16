@@ -20,7 +20,7 @@ export default class AbstractAction extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state.locked = false;
-    this.addMessagingListener('lockActions', this.onLockActions, props.moduleId)
+    this.addMessagingListener('lockActions', this.onLockActions)
   }
 
   get icon() {
