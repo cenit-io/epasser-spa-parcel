@@ -14,7 +14,7 @@ import StockLocationsIcon from "@material-ui/icons/LocalConvenienceStore";
 import FlowsIcon from '@material-ui/icons/Schedule';
 import TasksIcon from '@material-ui/icons/PermDataSettingOutlined';
 import WebhooksIcon from '@material-ui/icons/NotificationImportant';
-
+import ConfirmationIcon from '@material-ui/icons/HelpOutline';
 
 function AvailableIntegrationsIcon(props) {
   return (
@@ -71,5 +71,5 @@ function StockItemsIcon(props) {
 
 export {
   DashboardIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
-  StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon
+  StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon
 };

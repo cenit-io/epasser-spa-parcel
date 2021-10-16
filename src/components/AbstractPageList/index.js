@@ -16,6 +16,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Toolbar from '@material-ui/core/Toolbar';
 import ReloadAction from "../actions/Reload";
 import Chip from "@material-ui/core/Chip";
+import messages from "../ConfirmDialog/messages";
+import { FormattedMessage } from "react-intl";
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPageList extends AbstractPage {
@@ -47,6 +49,10 @@ export default class AbstractPageList extends AbstractPage {
 
   get apiPath() {
     return this.constructor.apiPath
+  }
+
+  get confirmDeleteMsg() {
+    return <FormattedMessage {...this.messages.confirmDeleteMsg} />
   }
 
   boolFormat = (value, row, column) => {
@@ -106,11 +112,15 @@ export default class AbstractPageList extends AbstractPage {
     );
   }
 
-  onReload = (e) => {
+  onReload = () => {
     this.emitMessage('reload');
   }
 
-  onDelete = (e) => {
-    this.emitMessage('delete');
+  onDelete = (e, items) => {
+    const data = [this.confirmDeleteMsg, (value) => {
+      if (value) this.emitMessage('delete', [items]);
+    }];
+
+    this.emitMessage('confirm', data, 'main');
   }
 }

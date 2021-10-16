@@ -34,6 +34,9 @@ export default createTheme({
       dark: '#BF200F',
       contrastText: '#fff',
     },
+    action: {
+      hoverOpacity: 0.3,
+    }
   },
   typography: {
     useNextVariants: true,

@@ -9,6 +9,10 @@ import { defineMessages } from 'react-intl';
 export const scope = 'components.AbstractPageList';
 
 export default defineMessages({
+  confirmDeleteMsg: {
+    id: `${scope}.confirmDeleteMsg`,
+    defaultMessage: 'Confirm if you really want to delete the selected items?',
+  },
   field_id: {
     id: `${scope}.field_id`,
     defaultMessage: 'Id',
