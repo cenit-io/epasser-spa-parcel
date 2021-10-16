@@ -7,11 +7,10 @@
 const styles = (theme) => ({
 
   root: {
-    // position: 'fixed',
-    left: 10,
-    top:5,
-    // width: 'calc(100% - 20px)',
-    width: '100%',
+    position: 'fixed',
+    right: 10,
+    top: 70,
+    zIndex: 2000,
   },
 
 });
