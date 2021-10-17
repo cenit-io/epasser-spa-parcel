@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import AbstractComponent from "../AbstractComponent";
 import session from '../../base/session';
 import messages from './messages';
+import Toolbar from "@material-ui/core/Toolbar";
+import ReloadAction from "../actions/Reload";
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends AbstractComponent {
@@ -38,6 +40,37 @@ export default class AbstractPage extends AbstractComponent {
 
   get messages() {
     return this.constructor.messages || messages;
+  }
+
+  get actions() {
+    return [
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
+    ]
+  }
+
+  renderAction = (action, idx) => {
+    return <div key={idx}>{action}</div>
+  }
+
+  renderToolbar() {
+    const { classes } = this.props;
+    const actions = this.actions;
+
+    if (actions.length === 0) return;
+
+    return (
+      <Toolbar disableGutters={true} className={classes.toolbar}>
+        {actions.map(this.renderAction)}
+      </Toolbar>
+    )
+  }
+
+  lockActions = () => {
+    this.emitMessage('lockActions', true);
+  }
+
+  unlockActions = () => {
+    this.emitMessage('lockActions', false);
   }
 
   onGoto = (path) => () => this.goto(path);

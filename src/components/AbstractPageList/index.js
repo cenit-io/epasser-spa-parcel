@@ -13,8 +13,6 @@ import Notification from "../Notification";
 import Avatar from '@material-ui/core/Avatar';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import Toolbar from '@material-ui/core/Toolbar';
-import ReloadAction from "../actions/Reload";
 import Chip from "@material-ui/core/Chip";
 import { FormattedMessage } from "react-intl";
 import { request } from "../../base/request";
@@ -40,12 +38,6 @@ export default class AbstractPageList extends AbstractPage {
 
   columnDateTime(id) {
     return { id: id || 'created_at', width: 175, format: this.dateTimeFormat }
-  }
-
-  get actions() {
-    return [
-      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-    ]
   }
 
   get apiPath() {
@@ -83,23 +75,6 @@ export default class AbstractPageList extends AbstractPage {
     );
   }
 
-  renderAction = (action, idx) => {
-    return <div key={idx}>{action}</div>
-  }
-
-  renderToolbar() {
-    const { classes } = this.props;
-    const actions = this.actions;
-
-    if (actions.length === 0) return;
-
-    return (
-      <Toolbar disableGutters={true} className={classes.toolbar}>
-        {actions.map(this.renderAction)}
-      </Toolbar>
-    )
-  }
-
   render() {
     const { classes } = this.props;
 
@@ -125,7 +100,7 @@ export default class AbstractPageList extends AbstractPage {
   }
 
   onLoadItems = (limit, offset, term) => {
-    this.emitMessage('lockActions', true);
+    this.lockActions();
 
     const options = {
       url: this.apiPath,
@@ -138,7 +113,7 @@ export default class AbstractPageList extends AbstractPage {
     }).catch(error => {
       this.emitMessage('failedLoadItems', error);
     }).finally(() => {
-      this.emitMessage('lockActions', false);
+      this.unlockActions();
     });
   }
 
