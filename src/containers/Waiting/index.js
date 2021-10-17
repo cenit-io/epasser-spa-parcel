@@ -6,39 +6,41 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import { injectReducer } from 'redux-injectors';
 import { withStyles } from '@material-ui/core/styles';
 import { CircularProgress, Backdrop } from '@material-ui/core';
 import styles from './styles.jss';
-import makeSelectWaiting from './selectors';
-import reducer from './reducer';
+import AbstractComponent from "../../components/AbstractComponent";
 
-class Waiting extends React.Component {
+class Waiting extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
+  }
+
+  constructor(props) {
+    super(props);
+    this.state.enabled = 0;
+    this.addMessagingListener('start', this.onStartWaiting, 'waiting');
+    this.addMessagingListener('release', this.onReleaseWaiting, 'waiting');
   }
 
   render() {
-    const { classes, state: { enabled } } = this.props;
+    const { classes } = this.props;
+    const { enabled } = this.state;
 
     return (
-      <Backdrop className={classes.backdrop} open={enabled !== 0}>
+      <Backdrop className={classes.root} open={enabled !== 0}>
         <CircularProgress size={90} thickness={1} color="inherit" />
       </Backdrop>
     );
   }
+
+  onStartWaiting = () => {
+    this.setState({ enabled: Math.max(this.state.enabled + 1, 0) });
+  }
+
+  onReleaseWaiting = () => {
+    this.setState({ enabled: Math.max(this.state.enabled - 1, 0) });
+  }
 }
 
-const mapStateToProps = createStructuredSelector({ state: makeSelectWaiting() });
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer({ key: 'waitingState', reducer });
-
-export default compose(
-  withReducer,
-  withConnect,
-)(withStyles(styles)(Waiting));
+export default withStyles(styles)(Waiting);

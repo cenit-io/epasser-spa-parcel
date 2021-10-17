@@ -18,9 +18,10 @@ import AbstractComponent from "../AbstractComponent";
 class Notification extends AbstractComponent {
   static propTypes = {
     moduleId: PropTypes.string,
+    className: PropTypes.string,
   }
 
-  static defaultProps = { moduleId: null };
+  static defaultProps = { moduleId: null, className: null };
 
   constructor(props) {
     super(props);
@@ -99,13 +100,13 @@ class Notification extends AbstractComponent {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, className } = this.props;
     const { message } = this.state;
 
     if (!message || message === '') return null;
 
     return (
-      <div ref={this.elRef} className={classes.root}>
+      <div ref={this.elRef} className={`${classes.root} ${className}`}>
         <Alert severity={this.severity} style={{ marginBottom: '10px' }} onClose={this.onClose}>
           {this.messageTranslation}
         </Alert>

@@ -150,7 +150,7 @@ export default class AbstractPageList extends AbstractPage {
   onConfirmedDelete = (value, items) => {
     if (!value) return;
 
-    this.emitMessage('lockActions', true);
+    this.startWaiting();
 
     const options = {
       url: this.apiPath,
@@ -161,9 +161,9 @@ export default class AbstractPageList extends AbstractPage {
     request(options).then((response) => {
       this.emitMessage('reload', response);
     }).catch(error => {
-      this.emitMessage('notify', error);
+      this.notify(error);
     }).finally(() => {
-      this.emitMessage('lockActions', false);
+      this.releaseWaiting();
     });
   }
 }

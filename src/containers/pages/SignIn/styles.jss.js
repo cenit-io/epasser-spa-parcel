@@ -22,6 +22,14 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.grey[100],
   },
 
+  notify: {
+    width: '100%',
+    position: 'relative',
+    right: 0,
+    top: 0,
+    margin: 5
+  },
+
   logo: {
     width: 160,
     marginLeft: 'calc(50% - 80px)',

@@ -53,7 +53,7 @@ export class SignIn extends AbstractPage {
           <title>ePasser: SignIN</title>
         </Helmet>
 
-        <Notification />
+        <Notification className={classes.notify} moduleId={this.moduleId}/>
 
         <Card className={classes.signIn}>
           <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
@@ -75,15 +75,15 @@ export class SignIn extends AbstractPage {
     if (urlParams.has('error')) {
       const error = urlParams.get('error');
       const description = urlParams.get('error_description');
-      this.emitMessage('notify', Error(description || error))
+      this.notify(Error(description || error));
     } else if (urlParams.has('code')) {
       const authCode = urlParams.get('code');
       dispatch(doAuthenticateWithAuthCode(authCode));
     } else if (!this.isAuthenticate) {
-      this.emitMessage('notify', 'gotoSignInPage');
+      this.notify('gotoSignInPage');
       setTimeout(this.onGotoCenitIOSignInPage, 5000);
     } else {
-      this.goto('/')
+      this.goto('/');
     }
   }
 
