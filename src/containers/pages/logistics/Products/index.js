@@ -18,6 +18,8 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import Avatar from "@material-ui/core/Avatar";
+import ReloadAction from "../../../../components/actions/Reload";
+import DeleteAction from "../../../../components/actions/Delete";
 
 export class Products extends AbstractPageList {
   static propTypes = {
@@ -28,6 +30,7 @@ export class Products extends AbstractPageList {
   static icon = ProductsIcon;
   static messages = messages;
   static apiPath = 'products';
+  static attrIds = 'product_ids';
 
   get columns() {
     return [
@@ -36,6 +39,13 @@ export class Products extends AbstractPageList {
       { id: 'price', width: 100, align: 'right' },
       { id: 'variants', width: 100, align: 'right' },
       { id: 'integrations', format: this.integrationsFormat },
+    ]
+  }
+
+  get actions() {
+    return [
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
+      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }
 

@@ -16,13 +16,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Toolbar from '@material-ui/core/Toolbar';
 import ReloadAction from "../actions/Reload";
 import Chip from "@material-ui/core/Chip";
-import messages from "../ConfirmDialog/messages";
 import { FormattedMessage } from "react-intl";
+import { request } from "../../base/request";
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPageList extends AbstractPage {
   constructor(props) {
     super(props);
+    this.addMessagingListener('loadItems', this.onLoadItems);
   }
 
   get columns() {
@@ -49,6 +50,10 @@ export default class AbstractPageList extends AbstractPage {
 
   get apiPath() {
     return this.constructor.apiPath
+  }
+
+  get attrIds() {
+    return this.constructor.attrIds || 'ids';
   }
 
   get confirmDeleteMsg() {
@@ -103,24 +108,62 @@ export default class AbstractPageList extends AbstractPage {
         {this.renderToolbar()}
         <Notification moduleId={this.moduleId} />
         <div className={classes.mainTable}>
-          <EnhancedTable columns={this.columns}
-                         apiPath={this.apiPath}
-                         moduleId={this.moduleId}
-                         messages={this.messages} />
+          <EnhancedTable columns={this.columns} moduleId={this.moduleId} messages={this.messages} />
         </div>
       </div>
     );
+  }
+
+  parseRequestDataForDelete(items) {
+    const data = {};
+    data[this.attrIds] = items.map(item => item.id);
+    return data;
   }
 
   onReload = () => {
     this.emitMessage('reload');
   }
 
-  onDelete = (e, items) => {
-    const data = [this.confirmDeleteMsg, (value) => {
-      if (value) this.emitMessage('delete', [items]);
-    }];
+  onLoadItems = (limit, offset, term) => {
+    this.emitMessage('lockActions', true);
 
+    const options = {
+      url: this.apiPath,
+      method: 'GET',
+      params: { limit, offset, term }
+    };
+
+    request(options).then((response) => {
+      this.emitMessage('successfulLoadItems', response);
+    }).catch(error => {
+      this.emitMessage('failedLoadItems', error);
+    }).finally(() => {
+      this.emitMessage('lockActions', false);
+    });
+  }
+
+  onDelete = (e, items) => {
+    const data = [this.confirmDeleteMsg, (value) => this.onConfirmedDelete(value, items)];
     this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedDelete = (value, items) => {
+    if (!value) return;
+
+    this.emitMessage('lockActions', true);
+
+    const options = {
+      url: this.apiPath,
+      method: 'DELETE',
+      data: { data: this.parseRequestDataForDelete(items) }
+    };
+
+    request(options).then((response) => {
+      this.emitMessage('reload', response);
+    }).catch(error => {
+      this.emitMessage('notify', error);
+    }).finally(() => {
+      this.emitMessage('lockActions', false);
+    });
   }
 }

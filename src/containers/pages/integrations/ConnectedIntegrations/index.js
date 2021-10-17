@@ -30,6 +30,7 @@ export class ConnectedIntegrations extends AbstractPageList {
   static icon = ConnectedIntegrationsIcon;
   static messages = messages;
   static apiPath = 'integrations';
+  static attrIds = 'integration_ids';
 
   get columns() {
     return [

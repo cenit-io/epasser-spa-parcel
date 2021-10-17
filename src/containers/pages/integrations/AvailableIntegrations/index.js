@@ -26,6 +26,7 @@ export class AvailableIntegrations extends AbstractPageList {
   static icon = AvailableIntegrationsIcon;
   static messages = messages;
   static apiPath = 'available/integrations';
+  static attrIds = 'collection_ids';
 
   get columns() {
     return [

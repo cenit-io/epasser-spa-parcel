@@ -16,6 +16,8 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
+import ReloadAction from "../../../../components/actions/Reload";
+import DeleteAction from "../../../../components/actions/Delete";
 
 export class Webhooks extends AbstractPageList {
   static propTypes = {
@@ -27,6 +29,7 @@ export class Webhooks extends AbstractPageList {
   static icon = WebhooksIcon;
   static messages = messages;
   static apiPath = 'webhooks';
+  static attrIds = 'webhooks_ids';
 
   get columns() {
     return [
@@ -34,6 +37,13 @@ export class Webhooks extends AbstractPageList {
       { id: 'integration', format: this.integrationFormat },
       { id: 'address' },
       this.columnDateTime('updated_at'),
+    ]
+  }
+
+  get actions() {
+    return [
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
+      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }
 

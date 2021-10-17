@@ -27,6 +27,7 @@ export class StockLocations extends AbstractPageList {
   static icon = StockLocationsIcon;
   static messages = messages;
   static apiPath = 'stock/locations';
+  static attrIds = 'stock_location_ids';
 
   get columns() {
     return [

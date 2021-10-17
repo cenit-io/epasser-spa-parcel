@@ -30,6 +30,7 @@ export class Orders extends AbstractPageList {
   static icon = OrdersIcon;
   static messages = messages;
   static apiPath = 'orders';
+  static attrIds = 'order_ids';
 
   get columns() {
     return [

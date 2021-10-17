@@ -27,6 +27,7 @@ export class StockItems extends AbstractPageList {
   static icon = StockItemsIcon;
   static messages = messages;
   static apiPath = 'stock/items';
+  static attrIds = 'stock_item_ids';
 
   get columns() {
     return [

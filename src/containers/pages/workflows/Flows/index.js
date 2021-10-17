@@ -16,6 +16,8 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
+import ReloadAction from "../../../../components/actions/Reload";
+import DeleteAction from "../../../../components/actions/Delete";
 
 export class Flows extends AbstractPageList {
   static propTypes = {
@@ -27,6 +29,7 @@ export class Flows extends AbstractPageList {
   static icon = FlowsIcon;
   static messages = messages;
   static apiPath = 'flows';
+  static attrIds = 'flow_ids';
 
   get columns() {
     return [
@@ -34,6 +37,13 @@ export class Flows extends AbstractPageList {
       { id: 'integration', format: this.integrationFormat },
       { id: 'scheduler', width: 100, align: 'center', format: this.schedulerFormat },
       this.columnDateTime('updated_at'),
+    ]
+  }
+
+  get actions() {
+    return [
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
+      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }
 

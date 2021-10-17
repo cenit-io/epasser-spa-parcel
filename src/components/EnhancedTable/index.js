@@ -30,7 +30,6 @@ class EnhancedTable extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
-    apiPath: PropTypes.string.isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
     moduleId: PropTypes.string.isRequired,
     formatValue: PropTypes.func,
@@ -54,25 +53,9 @@ class EnhancedTable extends AbstractComponent {
     this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm);
   }
 
-  _loadItems() {
+  loadItems() {
     const { limit, offset, searchTerm: term } = this.state;
-
-    this.emitMessage('lockActions', true, this.moduleId, 0);
-
-    const options = {
-      url: this.props.apiPath,
-      method: 'GET',
-      params: { limit, offset, term }
-    };
-
-    request(options).then((response) => {
-      this.emitMessage('successfulLoadItems', response);
-    }).catch(error => {
-      this.emitMessage('failedLoadItems', error);
-    }).finally(()=>{
-      this.emitMessage('lockActions', false);
-    });
-
+    this.emitMessage('loadItems', [limit, offset, term], this.moduleId, 0);
     return this.renderWithoutData(messages.loading);
   }
 
@@ -95,7 +78,7 @@ class EnhancedTable extends AbstractComponent {
     const { columns, moduleId } = this.props;
     const { items, alreadyLoaded } = this.state;
 
-    if (!alreadyLoaded) return this._loadItems();
+    if (!alreadyLoaded) return this.loadItems();
     if (items.length === 0) return this.renderWithoutData(messages.withoutData);
 
     return items.map((item, idx) => {

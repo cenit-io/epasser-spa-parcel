@@ -18,6 +18,8 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
+import ReloadAction from "../../../../components/actions/Reload";
+import DeleteAction from "../../../../components/actions/Delete";
 
 export class Tasks extends AbstractPageList {
   static propTypes = {
@@ -29,6 +31,7 @@ export class Tasks extends AbstractPageList {
   static icon = TasksIcon;
   static messages = messages;
   static apiPath = 'tasks';
+  static attrIds = 'tasks_ids';
 
   get columns() {
     return [
@@ -37,6 +40,13 @@ export class Tasks extends AbstractPageList {
       { id: 'description' },
       this.columnDateTime('created_at'),
       this.columnDateTime('updated_at'),
+    ]
+  }
+
+  get actions() {
+    return [
+      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
+      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }
 
