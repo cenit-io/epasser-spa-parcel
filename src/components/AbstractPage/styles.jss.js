@@ -3,7 +3,7 @@
  * Styles
  *
  */
-import baseStyles from '../AbstractModule/styles.jss';
+import baseStyles from '../../styles';
 
 const styles = (theme) => ({
   ...baseStyles(theme),

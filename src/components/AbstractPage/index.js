@@ -34,10 +34,6 @@ export default class AbstractPage extends AbstractComponent {
     return session.isAuthenticate;
   }
 
-  get moduleId() {
-    return this.constructor.id || this.constructor.name;
-  }
-
   get messages() {
     return this.constructor.messages || messages;
   }

@@ -1,24 +1,22 @@
 /**
  *
- * AbstractPage
+ * AbstractPageList
  *
  */
 
 import React from 'react';
 import moment from 'moment';
-import AbstractPage from "../AbstractPage";
+import AbstractModule from "../AbstractModule";
 import EnhancedTable from "../EnhancedTable";
-import Notification from "../Notification";
 
 import Avatar from '@material-ui/core/Avatar';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import Chip from "@material-ui/core/Chip";
-import { FormattedMessage } from "react-intl";
 import { request } from "../../base/request";
 
 /* eslint class-methods-use-this: ["off"] */
-export default class AbstractPageList extends AbstractPage {
+export default class AbstractPageList extends AbstractModule {
   constructor(props) {
     super(props);
     this.addMessagingListener('loadItems', this.onLoadItems);
@@ -38,18 +36,6 @@ export default class AbstractPageList extends AbstractPage {
 
   columnDateTime(id) {
     return { id: id || 'created_at', width: 175, format: this.dateTimeFormat }
-  }
-
-  get apiPath() {
-    return this.constructor.apiPath
-  }
-
-  get attrIds() {
-    return this.constructor.attrIds || 'ids';
-  }
-
-  get confirmDeleteMsg() {
-    return <FormattedMessage {...this.messages.confirmDeleteMsg} />
   }
 
   boolFormat = (value, row, column) => {
@@ -75,28 +61,8 @@ export default class AbstractPageList extends AbstractPage {
     );
   }
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        {this.renderToolbar()}
-        <Notification moduleId={this.moduleId} />
-        <div className={classes.mainTable}>
-          <EnhancedTable columns={this.columns} moduleId={this.moduleId} messages={this.messages} />
-        </div>
-      </div>
-    );
-  }
-
-  parseRequestDataForDelete(items) {
-    const data = {};
-    data[this.attrIds] = items.map(item => item.id);
-    return data;
-  }
-
-  onReload = () => {
-    this.emitMessage('reload');
+  renderContent() {
+    return <EnhancedTable columns={this.columns} moduleId={this.moduleId} messages={this.messages} />
   }
 
   onLoadItems = (limit, offset, term) => {
@@ -114,31 +80,6 @@ export default class AbstractPageList extends AbstractPage {
       this.emitMessage('failedLoadItems', error);
     }).finally(() => {
       this.unlockActions();
-    });
-  }
-
-  onDelete = (e, items) => {
-    const data = [this.confirmDeleteMsg, (value) => this.onConfirmedDelete(value, items)];
-    this.emitMessage('confirm', data, 'main');
-  }
-
-  onConfirmedDelete = (value, items) => {
-    if (!value) return;
-
-    this.startWaiting();
-
-    const options = {
-      url: this.apiPath,
-      method: 'DELETE',
-      data: { data: this.parseRequestDataForDelete(items) }
-    };
-
-    request(options).then((response) => {
-      this.emitMessage('reload', response);
-    }).catch(error => {
-      this.notify(error);
-    }).finally(() => {
-      this.releaseWaiting();
     });
   }
 }

@@ -19,7 +19,6 @@ import makeSelectSignIn from '../../SignIn/selectors';
 
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
-import Avatar from "@material-ui/core/Avatar";
 
 export class ConnectedIntegrations extends AbstractPageList {
   static propTypes = {
