@@ -15,6 +15,7 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 
 import ReloadAction from "../../../../components/actions/Reload";
 import AddAction from "../../../../components/actions/Add";
+import EditAction from "../../../../components/actions/Edit";
 import DeleteAction from "../../../../components/actions/Delete";
 
 export class List extends AbstractPageList {
@@ -43,6 +44,7 @@ export class List extends AbstractPageList {
     return [
       <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
       <AddAction moduleId={this.moduleId} onClick={this.onAdd} />,
+      <EditAction moduleId={this.moduleId} onClick={this.onEdit} />,
       <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }

@@ -58,8 +58,13 @@ export default class AbstractModule extends AbstractPage {
   }
 
   onAdd = () => {
-    const moduleId = `${this.moduleId.split('/')[0]}/Details`;
+    const moduleId = `${this.moduleId.split('/')[0]}/Add`;
     this.emitMessage('openModule', moduleId, 'MainTabs');
+  }
+
+  onEdit = (e, item) => {
+    const moduleId = `${this.moduleId.split('/')[0]}/Edit`;
+    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
   }
 
   onBackToList = () => {

@@ -22,7 +22,7 @@ export default class AbstractPageDetails extends AbstractModule {
 
     return (
       <Card className={classes.content}>
-        <p>TODO:...</p>
+        {this.form}
       </Card>
     );
   }

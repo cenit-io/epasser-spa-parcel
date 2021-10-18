@@ -1,8 +1,11 @@
 import React from "react";
 import DashboardMain from "../containers/pages/integrations/Dashboard";
 import AvailableIntegrationsList from "../containers/pages/integrations/AvailableIntegrations";
+
 import ConnectedIntegrationsList from "../containers/pages/integrations/ConnectedIntegrations";
-import ConnectedIntegrationsDetails from "../containers/pages/integrations/ConnectedIntegrations/details";
+import ConnectedIntegrationsAdd from "../containers/pages/integrations/ConnectedIntegrations/add";
+import ConnectedIntegrationsEdit from "../containers/pages/integrations/ConnectedIntegrations/edit";
+
 import OrdersList from "../containers/pages/logistics/Orders";
 import ProductsList from "../containers/pages/logistics/Products";
 import StockItemsList from "../containers/pages/logistics/StockItems";
@@ -16,7 +19,8 @@ export function requireModuleComponent(moduleId) {
   if (moduleId === 'Dashboard') return DashboardMain;
   if (moduleId === 'AvailableIntegrations') return AvailableIntegrationsList;
   if (moduleId === 'ConnectedIntegrations') return ConnectedIntegrationsList;
-  if (moduleId === 'ConnectedIntegrations/Details') return ConnectedIntegrationsDetails;
+  if (moduleId === 'ConnectedIntegrations/Add') return ConnectedIntegrationsAdd;
+  if (moduleId === 'ConnectedIntegrations/Edit') return ConnectedIntegrationsEdit;
 
   // Workflows modules
   if (moduleId === 'Orders') return OrdersList;
@@ -32,12 +36,14 @@ export function requireModuleComponent(moduleId) {
   throw Error(`Invalid module id: ${moduleId}`);
 }
 
-export function requireModuleInstance(moduleId) {
+export function requireModuleInstance(moduleId, props) {
   // Integrations modules
   if (moduleId === 'Dashboard') return <DashboardMain />
   if (moduleId === 'AvailableIntegrations') return <AvailableIntegrationsList />
+
   if (moduleId === 'ConnectedIntegrations') return <ConnectedIntegrationsList />
-  if (moduleId === 'ConnectedIntegrations/Details') return <ConnectedIntegrationsDetails />
+  if (moduleId === 'ConnectedIntegrations/Add') return <ConnectedIntegrationsAdd />
+  if (moduleId === 'ConnectedIntegrations/Edit') return <ConnectedIntegrationsEdit {...props} />
 
   // Workflows modules
   if (moduleId === 'Orders') return <OrdersList />

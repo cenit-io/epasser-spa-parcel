@@ -1,15 +1,16 @@
 /**
  *
- * ConnectedIntegrations/Details
+ * ConnectedIntegrations/Edit
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ConnectedIntegrationsIcon } from "../../../../components/Icons";
+import { withStyles } from '@material-ui/core/styles';
 
+import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
-import AbstractPageDetails from '../../../../components/AbstractPageDetails';
+import Details from './details';
 
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
@@ -17,16 +18,9 @@ import ListAction from "../../../../components/actions/List";
 
 import TextField from '@material-ui/core/TextField';
 
-export default class Details extends AbstractPageDetails {
-  static propTypes = {
-    classes: PropTypes.instanceOf(Object).isRequired,
-  }
+export class Edit extends Details {
 
-  static id = 'ConnectedIntegrations/Details';
-  static icon = ConnectedIntegrationsIcon;
-  static messages = messages;
-  static apiPath = 'integrations';
-  static attrIds = 'integration_ids';
+  static id = 'ConnectedIntegrations/Edit';
 
   get form() {
     return (
@@ -47,3 +41,5 @@ export default class Details extends AbstractPageDetails {
     ]
   }
 }
+
+export default withStyles(styles)(Edit);

@@ -18,18 +18,6 @@ import Loading from "../../components/Loading";
 import TabButton from "../../components/TabButton";
 
 import DashboardMain from "../pages/integrations/Dashboard";
-import AvailableIntegrationsList from "../pages/integrations/AvailableIntegrations";
-import ConnectedIntegrationsList from "../pages/integrations/ConnectedIntegrations";
-import ConnectedIntegrationsDetails from "../pages/integrations/ConnectedIntegrations/details";
-
-import OrdersList from "../pages/logistics/Orders";
-import ProductsList from "../pages/logistics/Products";
-import StockItemsList from "../pages/logistics/StockItems";
-import StockLocationsList from "../pages/logistics/StockLocations";
-
-import FlowsList from "../pages/workflows/Flows";
-import TasksList from "../pages/workflows/Tasks";
-import WebhooksList from "../pages/workflows/Webhooks";
 
 class MainTabs extends AbstractComponent {
   static propTypes = {
@@ -55,11 +43,13 @@ class MainTabs extends AbstractComponent {
     this.setActiveTabModule(activeTab);
   }
 
-  onOpenTab = (moduleId) => {
+  onOpenTab = (moduleId, props) => {
     const { tabsModules } = this.state;
     const tabId = moduleId.split('/')[0];
 
     tabsModules[tabId] = requireModuleComponent(moduleId);
+    tabsModules[tabId].props = props;
+
     this.setActiveTabModule(tabId);
   }
 
@@ -90,7 +80,7 @@ class MainTabs extends AbstractComponent {
       <div className={classes.tabPanel} role="tabpanel" key={idx}
            id={`tabpanel-${tabId}`}
            hidden={activeTab !== tabId} key={idx}>
-        {requireModuleInstance(module.id)}
+        {requireModuleInstance(module.id, module.props)}
       </div>
     )
   }
