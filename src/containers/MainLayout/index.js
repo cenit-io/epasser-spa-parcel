@@ -7,15 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles.jss';
-import makeSelectSignIn from "../pages/SignIn/selectors";
 import session from '../../base/session';
 
 import AbstractComponent from "../../components/AbstractComponent";
@@ -31,8 +27,6 @@ import ConfirmDialog from "../../components/ConfirmDialog";
 class MainLayout extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    dispatch: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
     pageTitle: PropTypes.string.isRequired,
     children: PropTypes.node,
   }
@@ -86,10 +80,4 @@ class MainLayout extends AbstractComponent {
   }
 }
 
-const mapStateToProps = createStructuredSelector({ state: makeSelectSignIn() });
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(MainLayout));
+export default withStyles(styles)(MainLayout);

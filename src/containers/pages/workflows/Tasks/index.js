@@ -1,30 +1,25 @@
 /**
  *
- * Tasks
+ * Tasks/List
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import { TasksIcon } from "../../../../components/Icons";
 
-import { createStructuredSelector } from 'reselect';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
-import makeSelectSignIn from '../../SignIn/selectors';
 
 import Typography from '@material-ui/core/Typography';
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
 
-export class Tasks extends AbstractPageList {
+export class List extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'Tasks';
@@ -67,13 +62,4 @@ export class Tasks extends AbstractPageList {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  state: makeSelectSignIn(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(Tasks));
+export default withStyles(styles)(List);

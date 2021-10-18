@@ -16,8 +16,6 @@ import ReloadAction from "../actions/Reload";
 export default class AbstractPage extends AbstractComponent {
   static propTypes = {
     history: PropTypes.instanceOf(Object).isRequired,
-    dispatch: PropTypes.func.isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   constructor(props) {

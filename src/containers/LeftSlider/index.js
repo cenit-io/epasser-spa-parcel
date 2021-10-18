@@ -35,7 +35,7 @@ class LeftSlider extends AbstractComponent {
   }
 
   onTapItem = (item) => {
-    this.emitMessage('openModule', item, 'MainTabs')
+    this.emitMessage('openModule', item.id, 'MainTabs')
   }
 
   render() {

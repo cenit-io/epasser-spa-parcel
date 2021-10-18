@@ -1,26 +1,21 @@
 /**
  *
- * StockLocations
+ * StockLocations/List
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import { createStructuredSelector } from 'reselect';
 import { StockLocationsIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
-import makeSelectSignIn from '../../SignIn/selectors';
 
-export class StockLocations extends AbstractPageList {
+export class List extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'StockLocations';
@@ -45,13 +40,4 @@ export class StockLocations extends AbstractPageList {
   stockLocationFormat = (value, row, column) => row.stock_location.name;
 }
 
-const mapStateToProps = createStructuredSelector({
-  state: makeSelectSignIn(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(StockLocations));
+export default withStyles(styles)(List);

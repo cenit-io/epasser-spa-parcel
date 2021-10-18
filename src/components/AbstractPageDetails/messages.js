@@ -1,13 +1,13 @@
 /*
- * AbstractPageList Messages
+ * AbstractPageDetails Messages
  *
- * This contains all the text for the AbstractPageList container.
+ * This contains all the text for the AbstractPageDetails container.
  */
 
 import { defineMessages } from 'react-intl';
 import messagesBase from '../AbstractModule/messages';
 
-export const scope = 'components.AbstractPageList';
+export const scope = 'components.AbstractPageDetails';
 
 const messagesLocal = defineMessages({
   // Custom intl messages

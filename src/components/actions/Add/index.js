@@ -10,11 +10,11 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 import AbstractAction from "../AbstractAction";
-import RefreshIcon from '@material-ui/icons/Refresh';
+import Icon from '@material-ui/icons/Add';
 
 class Add extends AbstractAction {
   get icon() {
-    return <RefreshIcon />;
+    return <Icon />;
   }
 
   get label() {

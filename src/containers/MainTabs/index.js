@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { requireModuleInstance, requireModuleComponent } from '../../base/modules';
 
 import styles from './styles.jss';
 
@@ -16,18 +17,19 @@ import Divider from "../../components/Divider";
 import Loading from "../../components/Loading";
 import TabButton from "../../components/TabButton";
 
-import Dashboard from "../pages/integrations/Dashboard";
-import AvailableIntegrations from "../pages/integrations/AvailableIntegrations";
-import ConnectedIntegrations from "../pages/integrations/ConnectedIntegrations";
+import DashboardMain from "../pages/integrations/Dashboard";
+import AvailableIntegrationsList from "../pages/integrations/AvailableIntegrations";
+import ConnectedIntegrationsList from "../pages/integrations/ConnectedIntegrations";
+import ConnectedIntegrationsDetails from "../pages/integrations/ConnectedIntegrations/details";
 
-import Orders from "../pages/logistics/Orders";
-import Products from "../pages/logistics/Products";
-import StockItems from "../pages/logistics/StockItems";
-import StockLocations from "../pages/logistics/StockLocations";
+import OrdersList from "../pages/logistics/Orders";
+import ProductsList from "../pages/logistics/Products";
+import StockItemsList from "../pages/logistics/StockItems";
+import StockLocationsList from "../pages/logistics/StockLocations";
 
-import Flows from "../pages/workflows/Flows";
-import Tasks from "../pages/workflows/Tasks";
-import Webhooks from "../pages/workflows/Webhooks";
+import FlowsList from "../pages/workflows/Flows";
+import TasksList from "../pages/workflows/Tasks";
+import WebhooksList from "../pages/workflows/Webhooks";
 
 class MainTabs extends AbstractComponent {
   static propTypes = {
@@ -53,59 +55,42 @@ class MainTabs extends AbstractComponent {
     this.setActiveTabModule(activeTab);
   }
 
-  onOpenTab = (module) => {
+  onOpenTab = (moduleId) => {
     const { tabsModules } = this.state;
+    const tabId = moduleId.split('/')[0];
 
-    tabsModules[module.id] = module;
-    this.setActiveTabModule(module.id);
+    tabsModules[tabId] = requireModuleComponent(moduleId);
+    this.setActiveTabModule(tabId);
   }
 
-  onCloseTab = (event, moduleId) => {
+  onCloseTab = (event, tabId) => {
     const { tabsModules } = this.state;
-    delete tabsModules[moduleId];
+    delete tabsModules[tabId];
     this.setActiveTabModule('Dashboard');
   }
 
   renderTabButton(module, idx) {
     const { activeTab } = this.state;
+    const tabId = module.id.split('/')[0];
 
     return (
       <TabButton tab={module} key={idx}
-                 value={module.id}
-                 active={activeTab === module.id}
-                 onClose={module.id != 'Dashboard' ? this.onCloseTab : undefined} />
+                 value={tabId}
+                 active={activeTab === tabId}
+                 onClose={tabId != 'Dashboard' ? this.onCloseTab : undefined} />
     )
-  }
-
-  renderModule(moduleId) {
-    // Integrations modules
-    if (moduleId === 'Dashboard') return <Dashboard />
-    if (moduleId === 'AvailableIntegrations') return <AvailableIntegrations />
-    if (moduleId === 'ConnectedIntegrations') return <ConnectedIntegrations />
-
-    // Workflows modules
-    if (moduleId === 'Orders') return <Orders />
-    if (moduleId === 'Products') return <Products />
-    if (moduleId === 'StockItems') return <StockItems />
-    if (moduleId === 'StockLocations') return <StockLocations />
-
-    // Logistics modules
-    if (moduleId === 'Flows') return <Flows />
-    if (moduleId === 'Tasks') return <Tasks />
-    if (moduleId === 'Webhooks') return <Webhooks />
-
-    throw Error(`Invalid module id: ${moduleId}`);
   }
 
   renderTapContent(module, idx) {
     const { classes } = this.props;
     const { activeTab } = this.state;
+    const tabId = module.id.split('/')[0];
 
     return (
       <div className={classes.tabPanel} role="tabpanel" key={idx}
-           id={`tabpanel-${module.id}`}
-           hidden={activeTab !== module.id} key={idx}>
-        {this.renderModule(module.id)}
+           id={`tabpanel-${tabId}`}
+           hidden={activeTab !== tabId} key={idx}>
+        {requireModuleInstance(module.id)}
       </div>
     )
   }
@@ -140,7 +125,7 @@ class MainTabs extends AbstractComponent {
   }
 
   componentDidMount = () => {
-    this.emitMessage('openModule', Dashboard);
+    this.emitMessage('openModule', DashboardMain.id);
   }
 }
 

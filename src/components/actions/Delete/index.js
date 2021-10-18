@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 import AbstractWithSelectionAction from "../AbstractWithSelectionAction";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Icon from '@material-ui/icons/DeleteForever';
 import Typography from '@material-ui/core/Typography';
 
 class Delete extends AbstractWithSelectionAction {
@@ -19,7 +19,7 @@ class Delete extends AbstractWithSelectionAction {
   }
 
   get icon() {
-    return <DeleteForeverIcon color={this.color} />;
+    return <Icon color={this.color} />;
   }
 
   get label() {

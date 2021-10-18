@@ -6,16 +6,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import { createStructuredSelector } from 'reselect';
 import { DashboardIcon } from "../../../../components/Icons";
 
 import styles from './styles.jss';
 import messages from './messages';
 import AbstractPage from '../../../../components/AbstractPage';
-import makeSelectSignIn from '../../SignIn/selectors';
 
 import BoardIntegrations from "../../../../components/BoardIntegrations";
 import BoardLogistics from "../../../../components/BoardLogistics";
@@ -32,7 +28,6 @@ export class Dashboard extends AbstractPage {
 
   render() {
     const { classes } = this.props;
-    const { searchTerm } = this.state;
 
     return (
       <div className={classes.root}>
@@ -44,13 +39,4 @@ export class Dashboard extends AbstractPage {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  state: makeSelectSignIn(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(Dashboard));
+export default withStyles(styles)(Dashboard);

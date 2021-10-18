@@ -57,6 +57,16 @@ export default class AbstractModule extends AbstractPage {
     this.emitMessage('reload');
   }
 
+  onAdd = () => {
+    const moduleId = `${this.moduleId.split('/')[0]}/Details`;
+    this.emitMessage('openModule', moduleId, 'MainTabs');
+  }
+
+  onBackToList = () => {
+    const moduleId = this.moduleId.split('/')[0];
+    this.emitMessage('openModule', moduleId, 'MainTabs');
+  }
+
   onDelete = (e, items) => {
     const data = [this.confirmDeleteMsg, (value) => this.onConfirmedDelete(value, items)];
     this.emitMessage('confirm', data, 'main');

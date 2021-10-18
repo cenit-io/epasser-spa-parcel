@@ -1,29 +1,24 @@
 /**
  *
- * Orders
+ * Orders/List
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import { createStructuredSelector } from 'reselect';
 import { OrdersIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
-import makeSelectSignIn from '../../SignIn/selectors';
 
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 
-export class Orders extends AbstractPageList {
+export class List extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'Orders';
@@ -65,13 +60,4 @@ export class Orders extends AbstractPageList {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  state: makeSelectSignIn(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(Orders));
+export default withStyles(styles)(List);

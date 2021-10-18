@@ -1,6 +1,6 @@
 /**
  *
- * Reload
+ * List
  *
  */
 
@@ -10,9 +10,9 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 import AbstractAction from "../AbstractAction";
-import Icon from '@material-ui/icons/Refresh';
+import Icon from '@material-ui/icons/List';
 
-class Reload extends AbstractAction {
+class List extends AbstractAction {
   get icon() {
     return <Icon />;
   }
@@ -22,4 +22,4 @@ class Reload extends AbstractAction {
   }
 }
 
-export default withStyles(styles)(Reload);
+export default withStyles(styles)(List);

@@ -1,6 +1,6 @@
 /**
  *
- * ConnectedIntegrations/List
+ * ConnectedIntegrations/Details
  *
  */
 
@@ -11,41 +11,43 @@ import { ConnectedIntegrationsIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
-import AbstractPageList from '../../../../components/AbstractPageList';
+import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 
 import ReloadAction from "../../../../components/actions/Reload";
-import AddAction from "../../../../components/actions/Add";
 import DeleteAction from "../../../../components/actions/Delete";
+import ListAction from "../../../../components/actions/List";
 
-export class List extends AbstractPageList {
+import TextField from '@material-ui/core/TextField';
+
+export class Details extends AbstractPageDetails {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
-  static id = 'ConnectedIntegrations';
+  static id = 'ConnectedIntegrations/Details';
   static icon = ConnectedIntegrationsIcon;
   static messages = messages;
   static apiPath = 'integrations';
   static attrIds = 'integration_ids';
 
-  get columns() {
-    return [
-      this.columnAvatar(),
-      { id: 'name' },
-      { id: 'channel_title' },
-      { id: 'authorized', width: 100, align: 'center', format: this.boolFormat},
-      this.columnDateTime('created_at'),
-      this.columnDateTime('updated_at'),
-    ]
+  get from() {
+    return (
+      <div>
+        <TextField label="Filled" variant="outlined" />
+        <TextField label="Filled" variant="outlined" />
+        <TextField label="Filled" variant="outlined" />
+        <TextField label="Filled" variant="outlined" />
+      </div>
+    )
   }
 
   get actions() {
     return [
+      <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />,
       <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-      <AddAction moduleId={this.moduleId} onClick={this.onAdd} />,
       <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
     ]
   }
 }
 
-export default withStyles(styles)(List);
+export default withStyles(styles)(Details);

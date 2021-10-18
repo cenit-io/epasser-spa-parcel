@@ -1,26 +1,21 @@
 /**
  *
- * StockItems
+ * StockItems/List
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
-import { createStructuredSelector } from 'reselect';
 import { StockItemsIcon } from "../../../../components/Icons";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
-import makeSelectSignIn from '../../SignIn/selectors';
 
-export class StockItems extends AbstractPageList {
+export class List extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    state: PropTypes.instanceOf(Object).isRequired,
   }
 
   static id = 'StockItems';
@@ -46,13 +41,4 @@ export class StockItems extends AbstractPageList {
   _integrationFormat = (value, row, column) => this.integrationFormat(row.stock_location.integration, row, column);
 }
 
-const mapStateToProps = createStructuredSelector({
-  state: makeSelectSignIn(),
-});
-
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(
-  withConnect,
-)(withStyles(styles)(StockItems));
+export default withStyles(styles)(List);

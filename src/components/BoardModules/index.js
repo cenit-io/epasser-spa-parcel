@@ -55,6 +55,6 @@ export default class BoardModules extends AbstractComponent {
   }
 
   onTapItem = (item) => {
-    return () => this.emitMessage('openModule', item, 'MainTabs')
+    return () => this.emitMessage('openModule', item.id, 'MainTabs')
   }
 }
