@@ -48,14 +48,14 @@ class EnhancedTable extends AbstractComponent {
     this._selectionItems = {};
 
     this.addMessagingListener('reload', this.onReload);
-    this.addMessagingListener('successfulLoadItems', this.onSuccessfulLoadItems);
-    this.addMessagingListener('failedLoadItems', this.onFailedLoadItems);
+    this.addMessagingListener('loadItemsSuccessful', this.onLoadItemsSuccessful);
+    this.addMessagingListener('loadItemsFailed', this.onLoadItemsFailed);
     this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm);
   }
 
   loadItems() {
     const { limit, offset, searchTerm: term } = this.state;
-    this.emitMessage('loadItems', [limit, offset, term], this.moduleId, 0);
+    this.emitMessage('startLoadItems', [limit, offset, term], this.moduleId, 0);
     return this.renderWithoutData(messages.loading);
   }
 
@@ -154,11 +154,11 @@ class EnhancedTable extends AbstractComponent {
     });
   }
 
-  onSuccessfulLoadItems = (response) => {
+  onLoadItemsSuccessful = (response) => {
     this.setState({ alreadyLoaded: true, items: response.data, ...response.pagination });
   }
 
-  onFailedLoadItems = (error) => {
+  onLoadItemsFailed = (error) => {
     this.notify(error);
     this.setState({ alreadyLoaded: true, items: [], offset: 0, total: 0 });
   }

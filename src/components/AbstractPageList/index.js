@@ -19,7 +19,7 @@ import { request } from "../../base/request";
 export default class AbstractPageList extends AbstractModule {
   constructor(props) {
     super(props);
-    this.addMessagingListener('loadItems', this.onLoadItems);
+    this.addMessagingListener('startLoadItems', this.onStartLoadItems);
   }
 
   get columns() {
@@ -65,7 +65,7 @@ export default class AbstractPageList extends AbstractModule {
     return <EnhancedTable columns={this.columns} moduleId={this.moduleId} messages={this.messages} />
   }
 
-  onLoadItems = (limit, offset, term) => {
+  onStartLoadItems = (limit, offset, term) => {
     this.lockActions();
 
     const options = {
@@ -75,9 +75,9 @@ export default class AbstractPageList extends AbstractModule {
     };
 
     request(options).then((response) => {
-      this.emitMessage('successfulLoadItems', response);
+      this.emitMessage('loadItemsSuccessful', response);
     }).catch(error => {
-      this.emitMessage('failedLoadItems', error);
+      this.emitMessage('loadItemsFailed', error);
     }).finally(() => {
       this.unlockActions();
     });

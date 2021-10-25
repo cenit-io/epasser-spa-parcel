@@ -21,10 +21,6 @@ export default class AbstractModule extends AbstractPage {
     return this.constructor.id || this.constructor.name;
   }
 
-  get apiPath() {
-    return this.constructor.apiPath
-  }
-
   get attrIds() {
     return this.constructor.attrIds || 'ids';
   }
