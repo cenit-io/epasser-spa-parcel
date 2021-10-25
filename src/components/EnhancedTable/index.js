@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
-import { request } from '../../base/request';
 
 import messages from './messages';
 import styles from './styles.jss';
