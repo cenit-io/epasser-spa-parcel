@@ -33,7 +33,7 @@ export class List extends AbstractPageList {
       this.columnAvatar(),
       { id: 'name' },
       { id: 'channel_title' },
-      { id: 'authorized', width: 100, align: 'center', format: this.boolFormat},
+      { id: 'authorized', width: 100, align: 'center', format: this.boolFormat },
       this.columnDateTime('created_at'),
       this.columnDateTime('updated_at'),
     ]
@@ -44,8 +44,12 @@ export class List extends AbstractPageList {
       <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
       <AddAction moduleId={this.moduleId} onClick={this.onAdd} />,
       <EditAction moduleId={this.moduleId} onClick={this.onEdit} />,
-      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
+      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canDelete} />,
     ]
+  }
+
+  canDelete = (items) => {
+    return items.find(item => item.authorized) !== undefined
   }
 }
 

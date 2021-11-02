@@ -14,8 +14,13 @@ export default class AbstractAction extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     moduleId: PropTypes.string.isRequired,
+    disabled: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     onClick: PropTypes.func.isRequired,
   }
+
+  static defaultProps = {
+    disabled: null,
+  };
 
   constructor(props) {
     super(props);
@@ -32,7 +37,11 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   get disabled() {
-    return this.state.locked;
+    let { disabled } = this.props;
+
+    if (typeof disabled === 'function') disabled = disabled();
+
+    return this.state.locked || disabled;
   }
 
   onClick = (e) => {
