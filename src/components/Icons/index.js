@@ -7,7 +7,7 @@
 import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon'
 
-import DashboardIcon from "@material-ui/icons/Dashboard";
+import HomeIcon from "@material-ui/icons/Home";
 import OrdersIcon from "@material-ui/icons/ShoppingCart";
 import StockLocationsIcon from "@material-ui/icons/LocalConvenienceStore";
 import FlowsIcon from '@material-ui/icons/Schedule';
@@ -71,7 +71,7 @@ function StockItemsIcon(props) {
 }
 
 export {
-  DashboardIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
+  HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
   SaveIcon, ResetIcon
 };

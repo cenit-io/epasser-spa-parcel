@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardMain from "../containers/pages/integrations/Dashboard";
+import HomeMain from "../containers/pages/integrations/Home";
 import AvailableIntegrationsList from "../containers/pages/integrations/AvailableIntegrations";
 
 import ConnectedIntegrationsList from "../containers/pages/integrations/ConnectedIntegrations";
@@ -16,7 +16,7 @@ import WebhooksList from "../containers/pages/workflows/Webhooks";
 
 export function requireModuleComponent(moduleId) {
   // Integrations modules
-  if (moduleId === 'Dashboard') return DashboardMain;
+  if (moduleId === 'Home') return HomeMain;
   if (moduleId === 'AvailableIntegrations') return AvailableIntegrationsList;
   if (moduleId === 'ConnectedIntegrations') return ConnectedIntegrationsList;
   if (moduleId === 'ConnectedIntegrations/Add') return ConnectedIntegrationsAdd;
@@ -38,7 +38,7 @@ export function requireModuleComponent(moduleId) {
 
 export function requireModuleInstance(moduleId, props) {
   // Integrations modules
-  if (moduleId === 'Dashboard') return <DashboardMain />
+  if (moduleId === 'Home') return <HomeMain />
   if (moduleId === 'AvailableIntegrations') return <AvailableIntegrationsList />
 
   if (moduleId === 'ConnectedIntegrations') return <ConnectedIntegrationsList />

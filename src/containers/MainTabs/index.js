@@ -17,7 +17,7 @@ import Divider from "../../components/Divider";
 import Loading from "../../components/Loading";
 import TabButton from "../../components/TabButton";
 
-import DashboardMain from "../pages/integrations/Dashboard";
+import HomeMain from "../pages/integrations/Home";
 
 class MainTabs extends AbstractComponent {
   static propTypes = {
@@ -56,7 +56,7 @@ class MainTabs extends AbstractComponent {
   onCloseTab = (event, tabId) => {
     const { tabsModules } = this.state;
     delete tabsModules[tabId];
-    this.setActiveTabModule('Dashboard');
+    this.setActiveTabModule('Home');
   }
 
   renderTabButton(module, idx) {
@@ -67,7 +67,7 @@ class MainTabs extends AbstractComponent {
       <TabButton tab={module} key={idx}
                  value={tabId}
                  active={activeTab === tabId}
-                 onClose={tabId != 'Dashboard' ? this.onCloseTab : undefined} />
+                 onClose={tabId != 'Home' ? this.onCloseTab : undefined} />
     )
   }
 
@@ -115,7 +115,7 @@ class MainTabs extends AbstractComponent {
   }
 
   componentDidMount = () => {
-    this.emitMessage('openModule', DashboardMain.id);
+    this.emitMessage('openModule', HomeMain.id);
   }
 }
 

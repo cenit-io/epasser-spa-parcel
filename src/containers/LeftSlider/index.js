@@ -16,7 +16,7 @@ import AbstractComponent from "../../components/AbstractComponent";
 import Toolbar from "@material-ui/core/Toolbar";
 import Drawer from "@material-ui/core/Drawer";
 import SubMenuModules from "../../components/SubMenuModules";
-import Dashboard from "../pages/integrations/Dashboard";
+import Home from "../pages/integrations/Home";
 import AvailableIntegrations from "../pages/integrations/AvailableIntegrations";
 import ConnectedIntegrations from "../pages/integrations/ConnectedIntegrations";
 import Orders from "../pages/logistics/Orders";
@@ -48,7 +48,7 @@ class LeftSlider extends AbstractComponent {
         <div className={classes.drawerContainer}>
           <SubMenuModules title={messages.integrations}
                           onTapItem={this.onTapItem}
-                          modules={[Dashboard, AvailableIntegrations, ConnectedIntegrations]} />
+                          modules={[Home, AvailableIntegrations, ConnectedIntegrations]} />
 
           <SubMenuModules title={messages.logistics}
                           onTapItem={this.onTapItem}
