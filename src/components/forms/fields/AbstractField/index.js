@@ -17,12 +17,13 @@ export default class AbstractField extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
+    readOnly: PropTypes.bool,
     moduleId: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     onError: PropTypes.func,
   }
 
-  static defaultProps = { onChange: null, onError: null, className: '', value: '' };
+  static defaultProps = { onChange: null, onError: null, className: '', value: '', readOnly: false };
 
   constructor(props) {
     super(props);

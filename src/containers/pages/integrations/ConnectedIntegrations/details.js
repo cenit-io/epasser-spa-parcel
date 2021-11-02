@@ -44,6 +44,7 @@ export default class Details extends AbstractPageDetails {
           value={item.channel}
           name='channel'
           moduleId={this.moduleId}
+          readOnly={this.isEdit}
           onChange={this.onChange} />
         <TextBox
           name='keys_to_import_brands'

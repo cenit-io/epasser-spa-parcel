@@ -34,6 +34,10 @@ export default class AbstractPageDetails extends AbstractModule {
     return this.state.item;
   }
 
+  get isEdit() {
+    return this.componentId.match(/Edit$/) ? true : false;
+  }
+
   get isAdd() {
     return this.componentId.match(/Add$/) ? true : false;
   }

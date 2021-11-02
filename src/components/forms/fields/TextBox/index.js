@@ -15,9 +15,14 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 class TextBox extends AbstractField {
   renderField() {
+    const { readOnly } = this.props;
+    const { value } = this.state;
+
     return <OutlinedInput id={this.componentId}
                           label={this.label}
-                          value={this.state.value}
+                          readOnly={readOnly}
+                          disabled={readOnly}
+                          value={value || ''}
                           onChange={this.onChange} />
   }
 }

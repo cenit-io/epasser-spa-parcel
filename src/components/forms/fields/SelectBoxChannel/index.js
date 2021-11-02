@@ -71,6 +71,7 @@ class SelectBoxChannel extends AbstractField {
   }
 
   renderField() {
+    const { readOnly } = this.props;
     const { alreadyLoaded, value, items } = this.state;
 
     if (!alreadyLoaded) this.loadItems();
@@ -82,7 +83,8 @@ class SelectBoxChannel extends AbstractField {
     return (
       <Select id={componentId} labelId={labelId} label={this.label} value={value}
               classes={{ select: classes.selectBox }}
-              disabled={!alreadyLoaded}
+              readOnly={readOnly}
+              disabled={readOnly || !alreadyLoaded}
               onChange={this.onChange}>
         {items.map(this.renderItem)}
       </Select>
