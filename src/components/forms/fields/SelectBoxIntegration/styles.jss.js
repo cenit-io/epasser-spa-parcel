@@ -4,15 +4,10 @@
  *
  */
 
-import baseStyles from '../AbstractField/styles.jss';
+import baseStyles from '../AbstractSelectBox/styles.jss';
 
 const styles = (theme) => ({
   ...baseStyles(theme),
-
-  selectBox: {
-    display: 'flex',
-  },
-
 });
 
 export default styles;
