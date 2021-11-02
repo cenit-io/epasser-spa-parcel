@@ -5,40 +5,26 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import styles from '../../../../components/AbstractPageList/styles.jss';
-import messages from './messages';
+import styles from '../../../../components/AbstractPageDetails/styles.jss';
 import Details from './details';
-
-import ReloadAction from "../../../../components/actions/Reload";
-import DeleteAction from "../../../../components/actions/Delete";
-import ListAction from "../../../../components/actions/List";
-
-import TextField from '@material-ui/core/TextField';
 
 export class Edit extends Details {
 
-  static id = 'ConnectedIntegrations/Edit';
+  static id = `${Details.id}/Edit`;
 
-  get form() {
-    return (
-      <div>
-        <TextField label="Filled" variant="outlined" />
-        <TextField label="Filled" variant="outlined" />
-        <TextField label="Filled" variant="outlined" />
-        <TextField label="Filled" variant="outlined" />
-      </div>
-    )
+  get apiPath() {
+    return `${Details.apiPath}/${this.state.item.id}`;
   }
 
-  get actions() {
-    return [
-      <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />,
-      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
-    ]
+  get successfulMessage() {
+    return 'successfulUpdate'
+  }
+
+  get requestData() {
+    const { name, keys_to_import_brands } = this.state.item;
+    return { name, keys_to_import_brands };
   }
 }
 

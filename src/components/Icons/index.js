@@ -9,12 +9,13 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import OrdersIcon from "@material-ui/icons/ShoppingCart";
-// import StockItemsIcon from "@material-ui/icons/Widgets";
 import StockLocationsIcon from "@material-ui/icons/LocalConvenienceStore";
 import FlowsIcon from '@material-ui/icons/Schedule';
 import TasksIcon from '@material-ui/icons/PermDataSettingOutlined';
 import WebhooksIcon from '@material-ui/icons/NotificationImportant';
 import ConfirmationIcon from '@material-ui/icons/HelpOutline';
+import SaveIcon from '@material-ui/icons/Save';
+import ResetIcon from '@material-ui/icons/RotateLeft';
 
 function AvailableIntegrationsIcon(props) {
   return (
@@ -71,5 +72,6 @@ function StockItemsIcon(props) {
 
 export {
   DashboardIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
-  StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon
+  StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
+  SaveIcon, ResetIcon
 };

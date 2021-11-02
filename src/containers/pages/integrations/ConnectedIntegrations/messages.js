@@ -22,6 +22,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_authorized`,
     defaultMessage: 'Authorized',
   },
+  field_keys_to_import_brands: {
+    id: `${scope}.field_keys_to_import_brands`,
+    defaultMessage: 'Brands import filter',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

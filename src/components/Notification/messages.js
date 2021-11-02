@@ -21,4 +21,16 @@ export default defineMessages({
     id: `${scope}.waitFortAuthToken`,
     defaultMessage: 'Waiting for authorization',
   },
+  successfulOperation: {
+    id: `${scope}.successfulOperation`,
+    defaultMessage: 'Successful operation',
+  },
+  successfulCreation: {
+    id: `${scope}.successfulCreation`,
+    defaultMessage: 'Successful creation',
+  },
+  successfulUpdate: {
+    id: `${scope}.successfulUpdate`,
+    defaultMessage: 'Successful update',
+  },
 });

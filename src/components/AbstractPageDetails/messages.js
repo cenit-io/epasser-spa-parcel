@@ -10,7 +10,14 @@ import messagesBase from '../AbstractModule/messages';
 export const scope = 'components.AbstractPageDetails';
 
 const messagesLocal = defineMessages({
-  // Custom intl messages
+  save: {
+    id: `${scope}.save`,
+    defaultMessage: 'Save',
+  },
+  reset: {
+    id: `${scope}.reset`,
+    defaultMessage: 'Reset',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };
