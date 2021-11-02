@@ -1,6 +1,6 @@
 /**
  *
- * SelectBoxChannel
+ * SelectBoxIntegration
  *
  */
 
@@ -21,8 +21,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import { CircularProgress } from "@material-ui/core";
 
-class SelectBoxChannel extends AbstractField {
-  static apiPath = 'available/integrations/channels';
+class SelectBoxIntegration extends AbstractField {
+  static apiPath = 'integrations';
 
   constructor(props) {
     super(props);
@@ -61,11 +61,11 @@ class SelectBoxChannel extends AbstractField {
     const { classes } = this.props;
 
     return (
-      <MenuItem value={item.name} key={idx}>
+      <MenuItem value={item.id} key={idx}>
         <ListItemIcon>
           <Avatar src={item.icon} className={classes.smallAvatar} />
         </ListItemIcon>
-        <ListItemText primary={item.title} />
+        <ListItemText primary={`${item.name} (${item.channel_title})`} />
       </MenuItem>
     )
   }
@@ -102,4 +102,4 @@ class SelectBoxChannel extends AbstractField {
   }
 }
 
-export default withStyles(styles)(SelectBoxChannel);
+export default withStyles(styles)(SelectBoxIntegration);

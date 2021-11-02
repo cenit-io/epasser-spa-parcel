@@ -22,6 +22,8 @@ export default class AbstractComponent extends React.Component {
 
     if (this.constructor._instancesCount === undefined) this.constructor._instancesCount = 1;
     this._componentId = `${this.constructor.name}-${this.constructor._instancesCount++}`;
+
+    return this._componentId;
   }
 
   get moduleId() {

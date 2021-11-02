@@ -11,7 +11,7 @@ const styles = (theme) => ({
 
   root: {
     margin: theme.spacing(1),
-    width: `calc(33% - ${theme.spacing(2)}px)`,
+    width: `calc(${100/6 * 2}% - ${theme.spacing(2)}px)`,
 
     '& .MuiOutlinedInput-root': {
       height: 56,
