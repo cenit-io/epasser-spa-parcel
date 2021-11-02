@@ -12,7 +12,10 @@ import StockItemsList from "../containers/pages/logistics/StockItems";
 import StockLocationsList from "../containers/pages/logistics/StockLocations";
 import FlowsList from "../containers/pages/workflows/Flows";
 import TasksList from "../containers/pages/workflows/Tasks";
+
 import WebhooksList from "../containers/pages/workflows/Webhooks";
+import WebhooksAdd from "../containers/pages/workflows/Webhooks/add";
+import WebhooksEdit from "../containers/pages/workflows/Webhooks/edit";
 
 export function requireModuleComponent(moduleId) {
   // Integrations modules
@@ -32,6 +35,8 @@ export function requireModuleComponent(moduleId) {
   if (moduleId === 'Flows') return FlowsList;
   if (moduleId === 'Tasks') return TasksList;
   if (moduleId === 'Webhooks') return WebhooksList;
+  if (moduleId === 'Webhooks/Add') return WebhooksAdd;
+  if (moduleId === 'Webhooks/Edit') return WebhooksEdit;
 
   throw Error(`Invalid module id: ${moduleId}`);
 }
@@ -55,6 +60,8 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Flows') return <FlowsList />
   if (moduleId === 'Tasks') return <TasksList />
   if (moduleId === 'Webhooks') return <WebhooksList />
+  if (moduleId === 'Webhooks/Add') return <WebhooksAdd />
+  if (moduleId === 'Webhooks/Edit') return <WebhooksEdit {...props} />
 
   throw Error(`Invalid module id: ${moduleId}`);
 }
