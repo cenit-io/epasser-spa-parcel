@@ -7,12 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { TasksIcon } from "../../../../components/Icons";
 
+import settings from "./settings";
 import styles from '../../../../components/AbstractPageList/styles.jss';
-import messages from './messages';
-import AbstractPageList from '../../../../components/AbstractPageList';
 
+import AbstractPageList from '../../../../components/AbstractPageList';
 import Typography from '@material-ui/core/Typography';
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
@@ -22,11 +21,11 @@ export class List extends AbstractPageList {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
-  static id = 'Tasks';
-  static icon = TasksIcon;
-  static messages = messages;
-  static apiPath = 'tasks';
-  static attrIds = 'tasks_ids';
+  static id = settings.id;
+  static icon = settings.icon;
+  static messages = settings.messages;
+  static apiPath = settings.apiPath;
+  static attrIds = settings.attrIds;
 
   get columns() {
     return [

@@ -1,6 +1,6 @@
 /**
  *
- * SelectBoxTopic
+ * SelectBoxFlowType
  *
  */
 
@@ -16,8 +16,8 @@ import AbstractSelectBox from "../AbstractSelectBox";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-class SelectBoxTopic extends AbstractSelectBox {
-  static apiPath = 'webhooks/topics';
+class SelectBoxFlowType extends AbstractSelectBox {
+  static apiPath = 'flows/types';
 
   get label() {
     return <FormattedMessage {...messages.label} />;
@@ -25,11 +25,11 @@ class SelectBoxTopic extends AbstractSelectBox {
 
   renderItem = (item, idx) => {
     return (
-      <MenuItem value={item.topic} key={idx}>
+      <MenuItem value={item.type} key={idx}>
         <ListItemText primary={item.title} />
       </MenuItem>
     )
   }
 }
 
-export default withStyles(styles)(SelectBoxTopic);
+export default withStyles(styles)(SelectBoxFlowType);

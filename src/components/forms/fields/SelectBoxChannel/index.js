@@ -17,7 +17,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
-import { CircularProgress } from "@material-ui/core";
 
 class SelectBoxChannel extends AbstractSelectBox {
   static apiPath = 'available/integrations/channels';
