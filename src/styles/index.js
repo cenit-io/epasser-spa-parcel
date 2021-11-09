@@ -38,6 +38,10 @@ const styles = (theme) => ({
   col6: {
     width: `calc(${100/6 * 6}% - ${theme.spacing(2)}px)`,
   },
+
+  fullWidth: {
+    width: '100%',
+  },
 });
 
 export default styles;

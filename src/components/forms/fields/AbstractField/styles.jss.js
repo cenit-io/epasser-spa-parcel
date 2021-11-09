@@ -24,6 +24,14 @@ const styles = (theme) => ({
 
     '& .MuiSelect-select:focus': {
       backgroundColor: 'transparent',
+    },
+
+    '& .Mui-disabled':{
+      cursor: 'no-drop',
+    },
+
+    '& legend': {
+      maxWidth: 1000
     }
   },
 

@@ -48,19 +48,32 @@ export default class AbstractField extends AbstractComponent {
 
     return (
       <FormControl variant="outlined" className={`${classes.root} ${className}`}>
-        <InputLabel id={labelId} variant="outlined">{label}</InputLabel>
+        <InputLabel id={labelId} variant="outlined" shrink={true}>{label}</InputLabel>
         {this.renderField()}
       </FormControl>
     );
   }
 
-  onChange = (e) => {
-    const { name, onChange } = this.props;
-    this.setState({ value: e.target.value });
-    onChange && onChange(name, e.target.value);
-  }
+  isValid = () => true;
 
-  onReset = () => {
-    this.setState({ value: this.props.value });
+  transValue = (value) => value;
+
+  onChange = (e) => this.setState({ value: e.target.value });
+
+  onReset = () => this.setState({ value: this.props.value });
+
+  componentDidMount = () => this.triggerChange();
+
+  componentDidUpdate = () => this.triggerChange();
+
+  triggerChange() {
+    const { name, onChange } = this.props;
+
+    if (onChange) {
+      const { value } = this.state;
+      const valid = this.isValid(value);
+      const transValue = this.transValue(value);
+      onChange(name, transValue, valid);
+    }
   }
 }

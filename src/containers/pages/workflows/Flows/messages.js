@@ -22,6 +22,22 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_scheduler`,
     defaultMessage: 'Scheduler',
   },
+  field_time_frequency: {
+    id: `${scope}.field_time_frequency`,
+    defaultMessage: 'Time frequency',
+  },
+  field_time: {
+    id: `${scope}.field_time`,
+    defaultMessage: 'Time',
+  },
+  field_start_date: {
+    id: `${scope}.field_start_date`,
+    defaultMessage: 'Start date',
+  },
+  field_end_date: {
+    id: `${scope}.field_end_date`,
+    defaultMessage: 'End date',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

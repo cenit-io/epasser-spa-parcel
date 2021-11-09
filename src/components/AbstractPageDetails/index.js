@@ -71,8 +71,17 @@ export default class AbstractPageDetails extends AbstractModule {
     );
   }
 
-  onChange = (field, value) => {
-    this.state.item[field] = value;
+  onChange = (field, value, valid, scope) => {
+    scope = scope || this.state.item;
+
+    if (field.match(/\w+\.\w+/)) {
+      const attrs = field.split('.');
+      field = attrs.shift();
+      scope[field] = scope[field] || {};
+      return this.onChange(attrs.join('.'), value, valid, scope[field])
+    }
+
+    scope[field] = value;
   }
 
   onReset = () => {

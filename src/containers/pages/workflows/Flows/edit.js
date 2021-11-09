@@ -21,11 +21,6 @@ export class Edit extends Details {
   get successfulMessage() {
     return 'successfulUpdate'
   }
-
-  get requestData() {
-    const { type, integration, integration_id, address } = this.state.item;
-    return { type, address, integration_id: integration_id || integration.id };
-  }
 }
 
 export default withStyles(styles)(Edit);
