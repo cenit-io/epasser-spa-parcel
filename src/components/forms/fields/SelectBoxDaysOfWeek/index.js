@@ -49,7 +49,7 @@ class SelectBoxDaysOfWeek extends AbstractSelectBox {
   }
 
   renderMultiValue = (selected) => {
-    return selected.map((item, idx) => <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />);
+    return selected.map((item) => <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />);
   }
 }
 
