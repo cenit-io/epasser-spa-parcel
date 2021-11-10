@@ -22,6 +22,9 @@ import SelectBoxSchedulerTimeFrequency from "../../../../components/forms/fields
 import TimeAppointedBox from "../../../../components/forms/fields/TimeAppointedBox";
 import TimeCyclicBox from "../../../../components/forms/fields/TimeCyclicBox";
 import DateBox from "../../../../components/forms/fields/DateBox";
+import SelectBoxDaysOfWeek from "../../../../components/forms/fields/SelectBoxDaysOfWeek";
+import SelectBoxWeeksOfMonth from "../../../../components/forms/fields/SelectBoxWeeksOfMonth";
+import SelectBoxMonthsOfYear from "../../../../components/forms/fields/SelectBoxMonthsOfYear";
 
 export default class Details extends AbstractPageDetails {
   static propTypes = {
@@ -58,49 +61,83 @@ export default class Details extends AbstractPageDetails {
     const integration_id = item.integration ? item.integration.id : '';
 
     return (
-      <FormGroup row>
+      <FormGroup>
         <fieldset className={`${classes.formSection} ${classes.fullWidth}`}>
           <legend><FormattedMessage {...messages.title} /></legend>
-          <SelectBoxFlowType
-            value={item.type}
-            name='type'
-            moduleId={this.moduleId}
-            className={classes.col3}
-            readOnly={this.isEdit}
-            onChange={this.onChange} />
-          <SelectBoxIntegration
-            value={integration_id}
-            name='integration_id'
-            moduleId={this.moduleId}
-            className={classes.col3}
-            readOnly={this.isEdit}
-            onChange={this.onChange} />
+          <FormGroup row>
+            <SelectBoxFlowType
+              value={item.type}
+              name='type'
+              moduleId={this.moduleId}
+              className={classes.col3}
+              readOnly={this.isEdit}
+              onChange={this.onChange} />
+            <SelectBoxIntegration
+              value={integration_id}
+              name='integration_id'
+              moduleId={this.moduleId}
+              className={classes.col3}
+              readOnly={this.isEdit}
+              onChange={this.onChange} />
+          </FormGroup>
         </fieldset>
+
         <fieldset className={`${classes.formSection} ${classes.fullWidth}`}>
           <legend><FormattedMessage {...messages.field_scheduler} /></legend>
-          <SelectBoxSchedulerTimeFrequency
-            name='time_frequency'
-            value={timeFrequency}
-            moduleId={this.moduleId}
-            className={classes.col3}
-            label={<FormattedMessage {...messages.field_time_frequency} />}
-            onChange={this.onChangeTimeFrequency}
-          />
-          {this.renderTimeField(scheduler)}
-          <DateBox
-            name='scheduler.start_date'
-            value={scheduler.start_date}
-            moduleId={this.moduleId}
-            className={classes.col3}
-            label={<FormattedMessage {...messages.field_start_date} />}
-            onChange={this.onChange} />
-          <DateBox
-            name='scheduler.end_date'
-            value={scheduler.end_date}
-            moduleId={this.moduleId}
-            className={classes.col3}
-            label={<FormattedMessage {...messages.field_end_date} />}
-            onChange={this.onChange} />
+
+          <FormGroup row>
+            <DateBox
+              name='scheduler.start_date'
+              value={scheduler.start_date}
+              moduleId={this.moduleId}
+              className={classes.col3}
+              label={<FormattedMessage {...messages.field_start_date} />}
+              onChange={this.onChange} />
+            <DateBox
+              name='scheduler.end_date'
+              value={scheduler.end_date}
+              moduleId={this.moduleId}
+              className={classes.col3}
+              label={<FormattedMessage {...messages.field_end_date} />}
+              onChange={this.onChange} />
+          </FormGroup>
+
+          <FormGroup row>
+            <SelectBoxSchedulerTimeFrequency
+              name='time_frequency'
+              value={timeFrequency}
+              moduleId={this.moduleId}
+              className={classes.col3}
+              label={<FormattedMessage {...messages.field_time_frequency} />}
+              onChange={this.onChangeTimeFrequency}
+            />
+            {this.renderTimeField(scheduler)}
+          </FormGroup>
+
+          <FormGroup row>
+            <SelectBoxDaysOfWeek
+              name='scheduler.days_of_week'
+              value={scheduler.days_of_week || []}
+              moduleId={this.moduleId}
+              className={classes.col2}
+              label={<FormattedMessage {...messages.field_days_of_week} />}
+              onChange={this.onChange} />
+            <SelectBoxWeeksOfMonth
+              name='scheduler.weeks_of_month'
+              value={scheduler.weeks_of_month || []}
+              moduleId={this.moduleId}
+              className={classes.col2}
+              label={<FormattedMessage {...messages.field_weeks_of_month} />}
+              onChange={this.onChange} />
+            <SelectBoxMonthsOfYear
+              name='scheduler.months_of_year'
+              value={scheduler.months_of_year || []}
+              moduleId={this.moduleId}
+              className={classes.col2}
+              label={<FormattedMessage {...messages.field_months_of_year} />}
+              onChange={this.onChange} />
+          </FormGroup>
+
         </fieldset>
       </FormGroup>
     )

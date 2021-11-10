@@ -30,6 +30,18 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_time`,
     defaultMessage: 'Time',
   },
+  field_days_of_week: {
+    id: `${scope}.field_days_of_week`,
+    defaultMessage: 'Days of the week',
+  },
+  field_weeks_of_month: {
+    id: `${scope}.field_weeks_of_month`,
+    defaultMessage: 'Weeks of the month',
+  },
+  field_months_of_year: {
+    id: `${scope}.field_months_of_year`,
+    defaultMessage: 'Months of the year',
+  },
   field_start_date: {
     id: `${scope}.field_start_date`,
     defaultMessage: 'Start date',

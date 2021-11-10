@@ -11,6 +11,10 @@ const styles = (theme) => ({
 
   selectBox: {
     display: 'flex',
+
+    '& .MuiChip-root': {
+      marginRight: theme.spacing(0.5),
+    }
   },
 
 });

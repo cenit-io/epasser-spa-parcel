@@ -17,11 +17,22 @@ export default class AbstractSelectBox extends AbstractField {
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = false;
+    this.state.multiple = false;
     this.state.items = [];
     this.state.value = props.value;
 
     this.addMessagingListener('loadItemsSuccessful', this.onLoadItemsSuccessful, this.componentId);
     this.addMessagingListener('loadItemsFailed', this.onLoadItemsFailed, this.componentId);
+  }
+
+  get parsedValue() {
+    let { multiple, value } = this.state;
+
+    if (!multiple || Array.isArray(value)) return value;
+    if (value === '') return [];
+    if (typeof value === 'string') return value.split(/\s*,\s*/);
+
+    return [value];
   }
 
   loadItems = () => {
@@ -48,7 +59,7 @@ export default class AbstractSelectBox extends AbstractField {
 
   renderField() {
     const { readOnly } = this.props;
-    const { alreadyLoaded, value, items } = this.state;
+    const { alreadyLoaded, multiple, items } = this.state;
 
     if (!alreadyLoaded) this.loadItems();
 
@@ -57,10 +68,15 @@ export default class AbstractSelectBox extends AbstractField {
     const labelId = `${componentId}-label`;
 
     return (
-      <Select id={componentId} labelId={labelId} label={this.renderLabel()} value={value}
+      <Select id={componentId}
+              labelId={labelId}
+              label={this.renderLabel()}
+              value={this.parsedValue}
               classes={{ select: classes.selectBox }}
+              multiple={multiple}
               readOnly={readOnly}
               disabled={readOnly || !alreadyLoaded}
+              renderValue={multiple ? this.renderMultiValue : null}
               onChange={this.onChange}>
         {items.map(this.renderItem)}
       </Select>
