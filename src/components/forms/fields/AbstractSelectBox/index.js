@@ -72,7 +72,7 @@ export default class AbstractSelectBox extends AbstractField {
               labelId={labelId}
               label={this.renderLabel()}
               value={this.parsedValue}
-              classes={{ select: classes.selectBox }}
+              classes={{ select: multiple ? classes.multiSelectBox : classes.selectBox }}
               multiple={multiple}
               readOnly={readOnly}
               disabled={readOnly || !alreadyLoaded}

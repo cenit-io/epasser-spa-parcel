@@ -10,6 +10,10 @@ const styles = (theme) => ({
   ...baseStyles(theme),
 
   selectBox: {
+    display: 'flex',
+  },
+
+  multiSelectBox: {
     display: 'inline',
     marginRight: theme.spacing(4),
     textOverflow: 'ellipsis',
@@ -17,7 +21,7 @@ const styles = (theme) => ({
     '& .MuiChip-root': {
       marginRight: theme.spacing(0.5),
     }
-  },
+  }
 
 });
 

@@ -22,8 +22,12 @@ class Edit extends AbstractWithSelectionAction {
   }
 
   get disabled() {
-    const { locked, selectionItems: { length } } = this.state;
-    return locked || length !== 1;
+    let { disabled } = this.props;
+    const { locked, selectionItems } = this.state;
+
+    if (typeof disabled === 'function') disabled = disabled(selectionItems);
+
+    return locked || selectionItems.length !== 1 || disabled;
   }
 
   onClick = (e) => {
