@@ -19,6 +19,7 @@ import makeSelectSignIn from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import session  from '../../../base/session';
 
 import AbstractPage from '../../../components/AbstractPage';
 
@@ -41,7 +42,7 @@ export class SignIn extends AbstractPage {
 
   onGotoCenitIOSignInPage = () => {
     const redirectUri = window.location.href.replace(/\?.*$/, '');
-    window.location = `${process.env.eCAPI_BASE_URL}/sign_in?redirect_uri=${redirectUri}`;
+    window.location.href = `${session.baseUrl}/sign_in?redirect_uri=${redirectUri}`;
   }
 
   render() {

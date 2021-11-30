@@ -9,6 +9,12 @@ class Session {
     return !!this.currentAccount;
   }
 
+  get baseUrl(){
+    let baseUrl = process.env.eCAPI_BASE_URL || 'https://cenit.io/app/ecapi-v1';
+
+    return baseUrl;
+  }
+
   get(key, defaultValue) {
     const item = window.sessionStorage.getItem(key);
 

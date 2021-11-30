@@ -26,6 +26,14 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_keys_to_import_brands`,
     defaultMessage: 'Brands import filter',
   },
+  confirmAuthorizeMsg: {
+    id: `${scope}.confirmAuthorizeMsg`,
+    defaultMessage: 'Confirm if you really want to authorize the selected integration?',
+  },
+  confirmUnAuthorizeMsg: {
+    id: `${scope}.confirmUnAuthorizeMsg`,
+    defaultMessage: 'Confirm if you really want to cancel the authorizations for the selected integrations?',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

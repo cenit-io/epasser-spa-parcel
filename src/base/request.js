@@ -2,7 +2,9 @@ import axios from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
 import session from './session';
 
-axios.defaults.baseURL = `${process.env.eCAPI_BASE_URL}`;
+export const baseUrl = session.baseUrl;
+
+axios.defaults.baseURL = baseUrl;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
 
