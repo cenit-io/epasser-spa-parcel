@@ -1,8 +1,8 @@
 {
-  "name": "OMNA",
+  "name": "ePasser",
   "version": "1.0.0",
   "description": "...",
-  "repository": "https://github.com/cenit-io/omna-v2-spa-parcel",
+  "repository": "https://github.com/cenit-io/epasser-spa-parcel",
   "author": "yoandrypa@gmail.com",
   "license": "MIT",
   "private": true,
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "build": "parcel build src/index.html",
     "parcel:server": "parcel ./src/index.html --open",
     "parcel:build": "parcel build src/index.html",
     "heroku-postbuild": "parcel build src/index.html",
