@@ -22,7 +22,7 @@ const styles = (theme) => ({
   },
 
   tabPanel: {
-    height: '100%',
+    height: 'calc(100% - 1px)',
   },
 
   separator: {
@@ -31,7 +31,7 @@ const styles = (theme) => ({
 
   content: {
     height: 'calc(100% - 25px)',
-    overflow: 'auto',
+    overflow: 'hidden',
   },
 });
 
