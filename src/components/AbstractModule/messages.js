@@ -11,7 +11,7 @@ export const scope = 'components.AbstractModule';
 export default defineMessages({
   confirmDeleteMsg: {
     id: `${scope}.confirmDeleteMsg`,
-    defaultMessage: 'Confirm if you really want to delete the selected items?',
+    defaultMessage: 'Please confirm whether you really want to delete the selected items?',
   },
   field_id: {
     id: `${scope}.field_id`,
