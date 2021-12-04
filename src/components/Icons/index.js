@@ -16,6 +16,8 @@ import WebhooksIcon from '@material-ui/icons/NotificationImportant';
 import ConfirmationIcon from '@material-ui/icons/HelpOutline';
 import SaveIcon from '@material-ui/icons/Save';
 import ResetIcon from '@material-ui/icons/RotateLeft';
+import InstallIcon from '@material-ui/icons/GetAppOutlined';
+import UnInstallIcon from '@material-ui/icons/CancelOutlined';
 
 function AvailableIntegrationsIcon(props) {
   return (
@@ -108,5 +110,5 @@ function UnAuthorizeIcon(props) {
 export {
   HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
-  SaveIcon, ResetIcon, AuthorizeIcon, UnAuthorizeIcon
+  SaveIcon, ResetIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon
 };

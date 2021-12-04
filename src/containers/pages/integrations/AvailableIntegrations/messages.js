@@ -45,6 +45,15 @@ const messagesLocal = defineMessages({
     defaultMessage: 'Installed at',
   },
 
+  confirmInstallMsg: {
+    id: `${scope}.confirmInstallMsg`,
+    defaultMessage: 'Please confirm whether you really want to install the selected integration?',
+  },
+
+  confirmUnInstallMsg: {
+    id: `${scope}.confirmUnInstallMsg`,
+    defaultMessage: 'Please confirm whether you really want to uninstall the selected integration?',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

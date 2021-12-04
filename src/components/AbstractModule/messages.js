@@ -4,6 +4,7 @@
  * This contains all the text for the Products container.
  */
 
+import React from 'react';
 import { defineMessages } from 'react-intl';
 
 export const scope = 'components.AbstractModule';
@@ -12,6 +13,11 @@ export default defineMessages({
   confirmDeleteMsg: {
     id: `${scope}.confirmDeleteMsg`,
     defaultMessage: 'Please confirm whether you really want to delete the selected items?',
+  },
+  confirmOpenTasksModuleMsg: {
+    id: `${scope}.confirmOpenTasksModuleMsg`,
+    defaultMessage: 'The processed action has generated a background task.{br}Please confirm whether you want to go to the task management module?',
+    values: { br: <br /> }
   },
   field_id: {
     id: `${scope}.field_id`,

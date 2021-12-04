@@ -29,6 +29,10 @@ export default class AbstractModule extends AbstractPage {
     return <FormattedMessage {...this.messages.confirmDeleteMsg} />
   }
 
+  get confirmOpenTasksModuleMsg() {
+    return <FormattedMessage {...this.messages.confirmOpenTasksModuleMsg} />
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -47,6 +51,22 @@ export default class AbstractModule extends AbstractPage {
     const data = {};
     data[this.attrIds] = items.map(item => item.id);
     return data;
+  }
+
+  request = (options, done) => {
+    this.startWaiting();
+
+    const skipNotify = options.skipNotify === true
+    delete options.skipNotify;
+
+    return request(options).then((response) => {
+      if (response.type === 'task') this.onOpenTasksModule()
+    }).catch((error) => {
+      if (!skipNotify) this.notify(error);
+      throw error;
+    }).finally(() => {
+      this.releaseWaiting();
+    });
   }
 
   onReload = () => {
@@ -76,20 +96,21 @@ export default class AbstractModule extends AbstractPage {
   onConfirmedDelete = (value, items) => {
     if (!value) return;
 
-    this.startWaiting();
-
-    const options = {
+    this.request({
       url: this.apiPath,
       method: 'DELETE',
       data: { data: this.parseRequestDataForDelete(items) }
-    };
-
-    request(options).then((response) => {
+    }).then((response) => {
       this.emitMessage('reload', response);
-    }).catch(error => {
-      this.notify(error);
-    }).finally(() => {
-      this.releaseWaiting();
     });
+  }
+
+  onOpenTasksModule = () => {
+    const data = [this.confirmOpenTasksModuleMsg, (value) => this.onConfirmedOpenTasksModule(value)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedOpenTasksModule = (value) => {
+    if (value) this.emitMessage('openModule', 'Tasks', 'MainTabs');
   }
 }
