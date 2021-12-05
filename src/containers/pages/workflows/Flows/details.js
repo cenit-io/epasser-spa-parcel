@@ -22,6 +22,7 @@ import SelectBoxSchedulerTimeFrequency from "../../../../components/forms/fields
 import TimeAppointedBox from "../../../../components/forms/fields/TimeAppointedBox";
 import TimeCyclicBox from "../../../../components/forms/fields/TimeCyclicBox";
 import DateBox from "../../../../components/forms/fields/DateBox";
+import SwitchBox from "../../../../components/forms/fields/SwitchBox";
 import SelectBoxDaysOfWeek from "../../../../components/forms/fields/SelectBoxDaysOfWeek";
 import SelectBoxWeeksOfMonth from "../../../../components/forms/fields/SelectBoxWeeksOfMonth";
 import SelectBoxMonthsOfYear from "../../../../components/forms/fields/SelectBoxMonthsOfYear";
@@ -107,11 +108,20 @@ export default class Details extends AbstractPageDetails {
               name='time_frequency'
               value={timeFrequency}
               moduleId={this.moduleId}
-              className={classes.col3}
+              className={classes.col2}
               label={<FormattedMessage {...messages.field_time_frequency} />}
               onChange={this.onChangeTimeFrequency}
             />
             {this.renderTimeField(scheduler)}
+            <SwitchBox
+              name='scheduler.active'
+              value={scheduler.active}
+              moduleId={this.moduleId}
+              className={classes.col2}
+              label={<FormattedMessage {...messages.field_active} />}
+              onChange={this.onChange}
+            />
+
           </FormGroup>
 
           <FormGroup row>
@@ -163,7 +173,7 @@ export default class Details extends AbstractPageDetails {
           name='scheduler.time'
           value={value}
           moduleId={this.moduleId}
-          className={classes.col3}
+          className={classes.col2}
           label={<FormattedMessage {...messages.field_time} />}
           onChange={this.onChange} />
       )
@@ -177,7 +187,7 @@ export default class Details extends AbstractPageDetails {
         value={value}
         frequency={timeFrequency}
         moduleId={this.moduleId}
-        className={classes.col3}
+        className={classes.col2}
         label={<FormattedMessage {...messages.field_time} />}
         onChange={this.onChange} />
     )

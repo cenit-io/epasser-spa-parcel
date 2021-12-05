@@ -22,6 +22,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_scheduler`,
     defaultMessage: 'Scheduler',
   },
+  field_active: {
+    id: `${scope}.field_active`,
+    defaultMessage: 'Active',
+  },
   field_time_frequency: {
     id: `${scope}.field_time_frequency`,
     defaultMessage: 'Time frequency',
