@@ -91,7 +91,7 @@ export class List extends AbstractPageList {
       method: 'DELETE',
       data: { data: this.parseRequestDataForDelete(items) }
     }).then((response) => {
-      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.notify({ message: 'successfulUnAuthorize', severity: 'success' });
       this.onReload();
     });
   }

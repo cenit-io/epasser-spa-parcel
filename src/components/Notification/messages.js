@@ -41,4 +41,8 @@ export default defineMessages({
     id: `${scope}.successfulUnInstallTask`,
     defaultMessage: 'A background task has been created to uninstall of the selected integration.',
   },
+  successfulUnAuthorize: {
+    id: `${scope}.successfulUnAuthorize`,
+    defaultMessage: 'The selected integrations are successfully deauthorized.',
+  },
 });
