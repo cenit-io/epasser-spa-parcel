@@ -50,6 +50,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_end_date`,
     defaultMessage: 'End date',
   },
+  confirmStartMsg: {
+    id: `${scope}.confirmStartMsg`,
+    defaultMessage: 'Please confirm whether you really want to start processing the selected flows?',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

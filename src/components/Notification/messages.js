@@ -45,4 +45,8 @@ export default defineMessages({
     id: `${scope}.successfulUnAuthorize`,
     defaultMessage: 'The selected integrations are successfully deauthorized.',
   },
+  successfulStart: {
+    id: `${scope}.successfulStart`,
+    defaultMessage: 'Some background task has been created to start the selected flows.',
+  },
 });

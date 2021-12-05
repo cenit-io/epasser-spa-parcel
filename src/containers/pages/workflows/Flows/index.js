@@ -16,6 +16,8 @@ import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
 import AddAction from "../../../../components/actions/Add";
 import EditAction from "../../../../components/actions/Edit";
+import StartAction from "../../../../components/actions/Start";
+import { FormattedMessage } from "react-intl";
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -43,6 +45,7 @@ export class List extends AbstractPageList {
       <AddAction moduleId={this.moduleId} onClick={this.onAdd} />,
       <EditAction moduleId={this.moduleId} onClick={this.onEdit} />,
       <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
+      <StartAction moduleId={this.moduleId} onClick={this.onStart} />,
     ]
   }
 
@@ -51,6 +54,24 @@ export class List extends AbstractPageList {
   schedulerFormat = (value, row, column) => {
     value = row.task && row.task.scheduler && row.task.scheduler.active;
     return this.boolFormat(value, row, column);
+  }
+
+  onStart = (e, items) => {
+    const confirmMsg = <FormattedMessage {...this.messages.confirmStartMsg} />;
+    const data = [confirmMsg, (value) => this.onConfirmedStart(value, items)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedStart = (value, items) => {
+    if (!value) return;
+
+    this.request({
+      url: `${this.apiPath}/start`,
+      method: 'POST',
+      data: { data: this.parseRequestIdentifiers(items) }
+    }).then((response) => {
+      this.notify({ message: 'successfulStart', severity: 'success' });
+    });
   }
 }
 

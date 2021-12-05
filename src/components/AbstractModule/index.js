@@ -47,7 +47,7 @@ export default class AbstractModule extends AbstractPage {
     );
   }
 
-  parseRequestDataForDelete(items) {
+  parseRequestIdentifiers(items) {
     const data = {};
     data[this.attrIds] = items.map(item => item.id);
     return data;
@@ -99,7 +99,7 @@ export default class AbstractModule extends AbstractPage {
     this.request({
       url: this.apiPath,
       method: 'DELETE',
-      data: { data: this.parseRequestDataForDelete(items) }
+      data: { data: this.parseRequestIdentifiers(items) }
     }).then((response) => {
       this.emitMessage('reload', response);
     });
