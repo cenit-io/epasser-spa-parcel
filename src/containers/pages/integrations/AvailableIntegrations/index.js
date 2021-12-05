@@ -16,7 +16,6 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from "../../../../components/actions/Reload";
 import InstallAction from "../../../../components/actions/Install";
 import UnInstallAction from "../../../../components/actions/UnInstall";
-import { request } from "../../../../base/request";
 
 export class List extends AbstractPageList {
   static propTypes = {

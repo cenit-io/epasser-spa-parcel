@@ -9,10 +9,11 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from "react-intl";
-import { request } from "../../../../base/request";
+import { signRequest, toQueryParams } from "../../../../base/request";
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import settings from "./settings";
+import session from "../../../../base/session";
 
 import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from "../../../../components/actions/Reload";
@@ -73,12 +74,26 @@ export class List extends AbstractPageList {
 
   onConfirmedAuthorize = (value, item) => {
     if (!value) return;
-    alert('TODO: ...')
+
+    const appUri = window.location.href.replace(/\?.*$/, '');
+    const path = `${this.apiPath}/${item.id}/authorize`;
+    const data = signRequest('GET', path, { redirect_uri: appUri });
+    const qs = toQueryParams(data);
+
+    window.location.href = `${session.baseUrl}/${path}?${qs}`;
   }
 
   onConfirmedUnAuthorize = (value, items) => {
     if (!value) return;
-    alert('TODO: ...')
+
+    this.request({
+      url: `${this.apiPath}/authorize`,
+      method: 'DELETE',
+      data: { data: this.parseRequestDataForDelete(items) }
+    }).then((response) => {
+      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.onReload();
+    });
   }
 }
 
