@@ -23,15 +23,15 @@ export default defineMessages({
   },
   successfulOperation: {
     id: `${scope}.successfulOperation`,
-    defaultMessage: 'Successful operation',
+    defaultMessage: 'The operation was completed successfully',
   },
   successfulCreation: {
     id: `${scope}.successfulCreation`,
-    defaultMessage: 'Successful creation',
+    defaultMessage: 'The creation was completed successfully',
   },
   successfulUpdate: {
     id: `${scope}.successfulUpdate`,
-    defaultMessage: 'Successful update',
+    defaultMessage: 'The update was completed successfully',
   },
   successfulInstallTask: {
     id: `${scope}.successfulInstallTask`,

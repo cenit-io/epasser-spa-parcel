@@ -6,7 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
+import { FormattedMessage } from "react-intl";
 
 import settings from "./settings";
 import styles from '../../../../components/AbstractPageList/styles.jss';
@@ -17,7 +19,7 @@ import DeleteAction from "../../../../components/actions/Delete";
 import AddAction from "../../../../components/actions/Add";
 import EditAction from "../../../../components/actions/Edit";
 import StartAction from "../../../../components/actions/Start";
-import { FormattedMessage } from "react-intl";
+import ToggleAction from "../../../../components/actions/Toggle";
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -46,7 +48,12 @@ export class List extends AbstractPageList {
       <EditAction moduleId={this.moduleId} onClick={this.onEdit} />,
       <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
       <StartAction moduleId={this.moduleId} onClick={this.onStart} />,
+      <ToggleAction moduleId={this.moduleId} onClick={this.onToggleScheduler} label={this.toggleSchedulerLabel} />,
     ]
+  }
+
+  get toggleSchedulerLabel() {
+    return <FormattedMessage {...this.messages.toggleScheduler} />;
   }
 
   typeFormat = (value, row, column) => row.title;
@@ -71,6 +78,24 @@ export class List extends AbstractPageList {
       data: { data: this.parseRequestIdentifiers(items) }
     }).then((response) => {
       this.notify({ message: 'successfulStart', severity: 'success' });
+    });
+  }
+
+  onToggleScheduler = (e, item) => {
+    const confirmMsg = <FormattedMessage {...this.messages.confirmToggleSchedulerMsg} />;
+    const data = [confirmMsg, (value) => this.onConfirmedToggleScheduler(value, item)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedToggleScheduler = (value, item) => {
+    if (!value) return;
+
+    this.request({
+      url: `${this.apiPath}/${item.id}/toggle/scheduler/status`,
+      method: 'POST',
+    }).then((response) => {
+      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.onReload();
     });
   }
 }

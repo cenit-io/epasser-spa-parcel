@@ -15,11 +15,13 @@ export default class AbstractAction extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     moduleId: PropTypes.string.isRequired,
     disabled: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     onClick: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     disabled: null,
+    label: null
   };
 
   constructor(props) {
@@ -49,12 +51,12 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, label } = this.props;
 
     return (
       <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
         <div className={classes.label}>
-          {this.label}
+          {label || this.label}
         </div>
       </Button>
     );
