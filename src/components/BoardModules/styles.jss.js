@@ -13,7 +13,7 @@ const styles = (theme) => ({
   },
 
   card: {
-    height: 280,
+    height: 340,
   }
 
 });

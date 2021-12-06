@@ -14,6 +14,7 @@ import BoardModules from "../BoardModules";
 import Orders from "../../containers/pages/logistics/Orders";
 import Products from "../../containers/pages/logistics/Products";
 import StockItems from "../../containers/pages/logistics/StockItems";
+import StockLocations from "../../containers/pages/logistics/StockLocations";
 
 class BoardLogistics extends BoardModules {
   get title() {
@@ -21,7 +22,7 @@ class BoardLogistics extends BoardModules {
   }
 
   get modules() {
-    return [Orders, Products, StockItems]
+    return [Orders, Products, StockLocations, StockItems]
   }
 }
 
