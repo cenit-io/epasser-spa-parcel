@@ -57,10 +57,12 @@ export default class AbstractModule extends AbstractPage {
     this.startWaiting();
 
     const skipNotify = options.skipNotify === true
+    const skipOpenTasksModule = options.skipOpenTasksModule === true
     delete options.skipNotify;
+    delete options.skipOpenTasksModule;
 
     return request(options).then((response) => {
-      if (response.type === 'task') this.onOpenTasksModule()
+      if (response.type === 'task' && !skipOpenTasksModule) this.onOpenTasksModule()
     }).catch((error) => {
       if (!skipNotify) this.notify(error);
       throw error;

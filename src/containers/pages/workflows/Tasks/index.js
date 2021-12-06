@@ -15,6 +15,8 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import Typography from '@material-ui/core/Typography';
 import ReloadAction from "../../../../components/actions/Reload";
 import DeleteAction from "../../../../components/actions/Delete";
+import RetryAction from "../../../../components/actions/Retry";
+import { FormattedMessage } from "react-intl";
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -41,6 +43,7 @@ export class List extends AbstractPageList {
     return [
       <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
       <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
+      <RetryAction moduleId={this.moduleId} onClick={this.onRetry} />,
     ]
   }
 
@@ -58,6 +61,26 @@ export class List extends AbstractPageList {
     }
 
     return <Typography color={color} variant="body2">{value}</Typography>
+  }
+
+  onRetry = (e, items) => {
+    const confirmMsg = <FormattedMessage {...this.messages.confirmRetryMsg} />;
+    const data = [confirmMsg, (value) => this.onConfirmedRetry(value, items)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedRetry = (value, items) => {
+    if (!value) return;
+
+    this.request({
+      url: `${this.apiPath}/retry`,
+      method: 'PUT',
+      data: { data: this.parseRequestIdentifiers(items) },
+      skipOpenTasksModule: true
+    }).then((response) => {
+      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.onReload();
+    });
   }
 }
 

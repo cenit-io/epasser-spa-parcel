@@ -20,6 +20,7 @@ import InstallIcon from '@material-ui/icons/GetAppOutlined';
 import UnInstallIcon from '@material-ui/icons/CancelOutlined';
 import StartIcon from '@material-ui/icons/PlayCircleOutlineOutlined';
 import ToggleIcon from '@material-ui/icons/ToggleOffOutlined';
+import RetryIcon from '@material-ui/icons/SlowMotionVideoOutlined';
 
 function AvailableIntegrationsIcon(props) {
   return (
@@ -113,5 +114,5 @@ export {
   HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
   SaveIcon, ResetIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon, StartIcon,
-  ToggleIcon
+  ToggleIcon, RetryIcon
 };

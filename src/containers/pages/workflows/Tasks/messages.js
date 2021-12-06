@@ -26,6 +26,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_progress`,
     defaultMessage: 'Progress',
   },
+  confirmRetryMsg: {
+    id: `${scope}.confirmRetryMsg`,
+    defaultMessage: 'Please confirm whether you really want to retry the selected tasks?',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };
