@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { CircularProgress, Backdrop } from '@material-ui/core';
 import styles from './styles.jss';
-import AbstractComponent from "../../components/AbstractComponent";
+import AbstractComponent from "../AbstractComponent";
 
 class Waiting extends AbstractComponent {
   static propTypes = {

@@ -12,9 +12,9 @@ import { IntlProvider } from 'react-intl';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import routes from '../routes';
+import routes from '../../../base/routes';
 import theme from '../../../styles/theme';
-import Waiting from '../../Waiting';
+import Waiting from '../../../components/Waiting';
 
 const enTranslationMessages = require('../../../translations/en.json');
 
