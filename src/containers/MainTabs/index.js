@@ -7,17 +7,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
 import { requireModuleInstance, requireModuleComponent } from '../../base/modules';
 
 import styles from './styles.jss';
 
-import AbstractComponent from "../../components/AbstractComponent";
-import Tabs from "@material-ui/core/Tabs";
-import Divider from "../../components/Divider";
-import Loading from "../../components/Loading";
-import TabButton from "../../components/TabButton";
+import AbstractComponent from '../../components/AbstractComponent';
+import Divider from '../../components/Divider';
+import Loading from '../../components/Loading';
+import TabButton from '../../components/TabButton';
 
-import HomeMain from "../pages/integrations/Home";
+import HomeMain from '../pages/integrations/Home';
 
 class MainTabs extends AbstractComponent {
   static propTypes = {
@@ -64,11 +64,13 @@ class MainTabs extends AbstractComponent {
     const tabId = module.id.split('/')[0];
 
     return (
-      <TabButton tab={module} key={idx}
-                 value={tabId}
-                 active={activeTab === tabId}
-                 onClose={tabId != 'Home' ? this.onCloseTab : undefined} />
-    )
+      <TabButton
+        tab={module} key={idx}
+        value={tabId}
+        active={activeTab === tabId}
+        onClose={tabId !== 'Home' ? this.onCloseTab : undefined}
+      />
+    );
   }
 
   renderTapContent(module, idx) {
@@ -77,33 +79,37 @@ class MainTabs extends AbstractComponent {
     const tabId = module.id.split('/')[0];
 
     return (
-      <div className={classes.tabPanel} role="tabpanel" key={idx}
-           id={`tabpanel-${tabId}`}
-           hidden={activeTab !== tabId} key={idx}>
+      <div
+        className={classes.tabPanel} role="tabpanel" key={idx}
+        id={`tabpanel-${tabId}`}
+        hidden={activeTab !== tabId}
+      >
         {requireModuleInstance(module.id, module.props)}
       </div>
-    )
+    );
   }
 
   render() {
     const { classes } = this.props;
     const { activeTab, tabsModules } = this.state;
 
-    if (activeTab === null) return <Loading />
+    if (activeTab === null) return <Loading />;
 
     const modules = Object.values(tabsModules);
 
     return (
       <div className={classes.root}>
-        <Tabs className={classes.tabsBar} value={activeTab}
-              variant="scrollable"
-              indicatorColor="primary"
-              textColor="primary"
-              scrollButtons="auto"
-              onChange={this.onChangeTab}
-              classes={{
-                flexContainer: classes.tabsContainer,
-              }}>
+        <Tabs
+          className={classes.tabsBar} value={activeTab}
+          variant="scrollable"
+          indicatorColor="primary"
+          textColor="primary"
+          scrollButtons="auto"
+          onChange={this.onChangeTab}
+          classes={{
+            flexContainer: classes.tabsContainer,
+          }}
+        >
           {modules.map((module, idx) => this.renderTabButton(module, idx))}
         </Tabs>
         <Divider className={classes.separator} />

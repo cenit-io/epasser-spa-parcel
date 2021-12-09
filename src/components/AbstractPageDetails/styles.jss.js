@@ -3,8 +3,8 @@
  * Styles
  *
  */
+import { alpha } from '@material-ui/core/styles';
 import baseStyles from '../AbstractModule/styles.jss';
-import { alpha } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   ...baseStyles(theme),
@@ -31,8 +31,8 @@ const styles = (theme) => ({
       textAlign: 'center',
       pagingLeft: theme.spacing(2),
       pagingRight: theme.spacing(2),
-    }
-  }
+    },
+  },
 
 });
 

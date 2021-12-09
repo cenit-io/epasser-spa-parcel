@@ -6,14 +6,13 @@
 
 import React from 'react';
 
-import { request } from "../../../../base/request";
+import Select from '@material-ui/core/Select';
+import { CircularProgress } from '@material-ui/core';
+import { request } from '../../../../base/request';
 
-import AbstractField from "../AbstractField";
-import Select from "@material-ui/core/Select";
-import { CircularProgress } from "@material-ui/core";
+import AbstractField from '../AbstractField';
 
 export default class AbstractSelectBox extends AbstractField {
-
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = false;
@@ -26,7 +25,7 @@ export default class AbstractSelectBox extends AbstractField {
   }
 
   get parsedValue() {
-    let { multiple, value } = this.state;
+    const { multiple, value } = this.state;
 
     if (!multiple || Array.isArray(value)) return value;
     if (value === '') return [];
@@ -45,7 +44,7 @@ export default class AbstractSelectBox extends AbstractField {
 
     request(options).then((response) => {
       this.emitMessage('loadItemsSuccessful', response, this.componentId);
-    }).catch(error => {
+    }).catch((error) => {
       this.emitMessage('loadItemsFailed', error, this.componentId);
     }).finally(() => {
       this.releaseWaiting();
@@ -64,20 +63,22 @@ export default class AbstractSelectBox extends AbstractField {
     if (!alreadyLoaded) this.loadItems();
 
     const { classes } = this.props;
-    const componentId = this.componentId;
+    const { componentId } = this;
     const labelId = `${componentId}-label`;
 
     return (
-      <Select id={componentId}
-              labelId={labelId}
-              label={this.renderLabel()}
-              value={this.parsedValue}
-              classes={{ select: multiple ? classes.multiSelectBox : classes.selectBox }}
-              multiple={multiple}
-              readOnly={readOnly}
-              disabled={readOnly || !alreadyLoaded}
-              renderValue={multiple ? this.renderMultiValue : null}
-              onChange={this.onChange}>
+      <Select
+        id={componentId}
+        labelId={labelId}
+        label={this.renderLabel()}
+        value={this.parsedValue}
+        classes={{ select: multiple ? classes.multiSelectBox : classes.selectBox }}
+        multiple={multiple}
+        readOnly={readOnly}
+        disabled={readOnly || !alreadyLoaded}
+        renderValue={multiple ? this.renderMultiValue : null}
+        onChange={this.onChange}
+      >
         {items.map(this.renderItem)}
       </Select>
     );

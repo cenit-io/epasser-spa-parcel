@@ -7,10 +7,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
+import Icon from '@material-ui/icons/Edit';
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
-import Icon from '@material-ui/icons/Edit';
 
 class Edit extends AbstractWithSelectionAction {
   get icon() {

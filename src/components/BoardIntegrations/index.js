@@ -4,15 +4,14 @@
  *
  */
 
-import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import messages from './messages';
 import styles from '../BoardModules/styles.jss';
 
-import BoardModules from "../BoardModules";
-import AvailableIntegrations from "../../containers/pages/integrations/AvailableIntegrations";
-import ConnectedIntegrations from "../../containers/pages/integrations/ConnectedIntegrations";
+import BoardModules from '../BoardModules';
+import AvailableIntegrations from '../../containers/pages/integrations/AvailableIntegrations';
+import ConnectedIntegrations from '../../containers/pages/integrations/ConnectedIntegrations';
 
 class BoardIntegrations extends BoardModules {
   get title() {
@@ -20,7 +19,7 @@ class BoardIntegrations extends BoardModules {
   }
 
   get modules() {
-    return [AvailableIntegrations, ConnectedIntegrations]
+    return [AvailableIntegrations, ConnectedIntegrations];
   }
 }
 

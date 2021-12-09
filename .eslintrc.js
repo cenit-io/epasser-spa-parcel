@@ -45,6 +45,8 @@ module.exports = {
       'ignoreStrings': true
     }],
     'no-unused-expressions': ['error', { 'allowShortCircuit': true }],
+    'no-underscore-dangle': ['error', { 'allowAfterThis': true, allowAfterThisConstructor: true }],
+    'no-unused-vars': ["error", { "args": "none" }],
     'class-methods-use-this': ['off'],
   },
 };

@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractComponent from "../AbstractComponent";
+import Toolbar from '@material-ui/core/Toolbar';
+import AbstractComponent from '../AbstractComponent';
 import session from '../../base/session';
 import messages from './messages';
-import Toolbar from "@material-ui/core/Toolbar";
-import ReloadAction from "../actions/Reload";
+import ReloadAction from '../actions/Reload';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends AbstractComponent {
@@ -37,26 +37,24 @@ export default class AbstractPage extends AbstractComponent {
   }
 
   get actions() {
-    return [
-      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-    ]
-  }
-
-  renderAction = (action, idx) => {
-    return <div key={idx}>{action}</div>
+    return (
+      <>
+        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+      </>
+    );
   }
 
   renderToolbar() {
     const { classes } = this.props;
-    const actions = this.actions;
+    const { actions } = this;
 
-    if (actions.length === 0) return;
+    if (!actions) return null;
 
     return (
-      <Toolbar disableGutters={true} className={classes.toolbar}>
-        {actions.map(this.renderAction)}
+      <Toolbar disableGutters className={classes.toolbar}>
+        {actions}
       </Toolbar>
-    )
+    );
   }
 
   lockActions = () => {

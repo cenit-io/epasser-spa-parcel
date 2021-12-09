@@ -1,9 +1,9 @@
 import axios from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
-import session from './session';
 import { sha256 } from 'js-sha256';
+import session from './session';
 
-export const baseUrl = session.baseUrl;
+export const { baseUrl } = session;
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -15,74 +15,71 @@ const getAxiosInstance = (forceNewInstance = false) => {
   if (forceNewInstance || !axiosInstance) axiosInstance = axios.create();
 
   if (session.isAuthenticate) {
-    const { token, secret } = session.currentAccount
+    const { token, secret } = session.currentAccount;
 
-    addOAuthInterceptor(axiosInstance, { key: token, secret: secret, algorithm: "HMAC-SHA256" });
+    addOAuthInterceptor(axiosInstance, {
+      key: token, secret, algorithm: 'HMAC-SHA256',
+    });
   }
 
   return axiosInstance;
-}
+};
 
 const isObject = (obj) => Object.prototype.toString.call(obj).indexOf('Object') !== -1;
 
 const fixNullQueryParams = (requestData) => {
-  for (const key in requestData) {
+  Object.keys(requestData).forEach((key) => {
     if (isObject(requestData[key])) {
-      requestData[key] = fixNullQueryParams(requestData[key])
+      requestData[key] = fixNullQueryParams(requestData[key]);
     } else if (requestData[key] === undefined || requestData[key] === null) {
-      requestData[key] = ''
+      requestData[key] = '';
     }
-  }
-
+  });
   return requestData;
-}
+};
 
 export function toQueryParams(requestData) {
-  let qs = [],
-    add = function (k, v) {
-      v = typeof v === 'function' ? v() : v;
-      v = v === null ? '' : v === undefined ? '' : v;
-      qs[qs.length] = encodeURIComponent(k) + '=' + encodeURIComponent(v);
-    },
+  const qs = [];
+  const add = (key, value) => {
+    let v = typeof value === 'function' ? value() : value;
+    v = v === null || v === undefined ? '' : v;
+    qs[qs.length] = `${encodeURIComponent(key)}=${encodeURIComponent(v)}`;
+  };
 
-    buildParams = function (prefix, obj) {
-      let i, len, key;
-
-      if (prefix) {
-        if (Array.isArray(obj)) {
-          for (i = 0, len = obj.length; i < len; i++) {
-            buildParams(
-              prefix + '[' + (isObject(obj[i]) && obj[i] ? i : '') + ']',
-              obj[i]
-            );
-          }
-        } else if (isObject(obj)) {
-          for (key in obj) buildParams(prefix + '[' + key + ']', obj[key]);
-        } else {
-          add(prefix, obj);
-        }
-      } else if (Array.isArray(obj)) {
-        for (i = 0, len = obj.length; i < len; i++) add(obj[i].name, obj[i].value);
+  const buildParams = (prefix, data) => {
+    if (prefix) {
+      if (Array.isArray(data)) {
+        data.forEach((item, idx) => {
+          buildParams(`${prefix}[${isObject(item[idx]) && item[idx] ? idx : ''}]`, item[idx]);
+        });
+      } else if (isObject(data)) {
+        Object.keys(data).forEach((key) => buildParams(`${prefix}[${key}]`, data[key]));
       } else {
-        for (key in obj) buildParams(key, obj[key]);
+        add(prefix, data);
       }
-      return qs;
-    };
+    } else if (Array.isArray(data)) {
+      data.forEach((item) => add(item.name, item.value));
+    } else {
+      Object.keys(data).forEach((key) => buildParams(key, data[key]));
+    }
+    return qs;
+  };
 
   return buildParams('', requestData).join('&');
 }
 
-export function signRequest(method, path, requestData) {
+export function signRequest(method, path, data) {
   const { token, secret } = session.currentAccount;
-  let queryString, body;
+  const requestData = { ...data, token };
 
-  requestData = { ...requestData, token };
+  let queryString;
+  let body;
 
   // Add timestamp to requestData.
   requestData.timestamp = Date.now();
 
   if (method.match(/^(GET|HEAD)$/)) {
-    fixNullQueryParams(requestData)
+    fixNullQueryParams(requestData);
     queryString = decodeURIComponent(toQueryParams(requestData));
     body = '';
   } else {
@@ -90,7 +87,7 @@ export function signRequest(method, path, requestData) {
     body = JSON.stringify(requestData);
   }
 
-  let msg = path + queryString + body
+  const msg = path + queryString + body;
 
   // Generate the corresponding hmac parameter using the js-sha256 or similar library.
   requestData.hmac = sha256.hmac.update(secret, msg).hex();
@@ -106,7 +103,7 @@ export function request(options = {}, forceNewInstance = false) {
 
   return axiosInstance(options)
     .then((response) => response.data)
-    .catch((err, response) => {
+    .catch((err) => {
       throw Error(err.response ? err.response.data.message : err.message);
     });
 }

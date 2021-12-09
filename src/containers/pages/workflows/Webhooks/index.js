@@ -8,14 +8,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import settings from "./settings";
+import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from "../../../../components/actions/Reload";
-import DeleteAction from "../../../../components/actions/Delete";
-import AddAction from "../../../../components/actions/Add";
-import EditAction from "../../../../components/actions/Edit";
+import ReloadAction from '../../../../components/actions/Reload';
+import DeleteAction from '../../../../components/actions/Delete';
+import AddAction from '../../../../components/actions/Add';
+import EditAction from '../../../../components/actions/Edit';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -23,9 +23,13 @@ export class List extends AbstractPageList {
   }
 
   static id = settings.id;
+
   static icon = settings.icon;
+
   static messages = settings.messages;
+
   static apiPath = settings.apiPath;
+
   static attrIds = settings.attrIds;
 
   get columns() {
@@ -34,19 +38,21 @@ export class List extends AbstractPageList {
       { id: 'integration', format: this.integrationFormat },
       { id: 'address' },
       this.columnDateTime('updated_at'),
-    ]
+    ];
   }
 
   get actions() {
-    return [
-      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-      <AddAction moduleId={this.moduleId} onClick={this.onAdd} />,
-      <EditAction moduleId={this.moduleId} onClick={this.onEdit} />,
-      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
-    ]
+    return (
+      <>
+        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
+        <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
+        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
+      </>
+    );
   }
 
-  topicFormat = (value, row, column) => row.title;
+  topicFormat = (value, row) => row.title;
 }
 
 export default withStyles(styles)(List);

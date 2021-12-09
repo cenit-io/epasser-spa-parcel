@@ -5,22 +5,22 @@
  */
 
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Chip from '@material-ui/core/Chip';
 import messages from './messages';
 import styles from './styles.jss';
 
-import AbstractSelectBox from "../AbstractSelectBox";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Chip from '@material-ui/core/Chip';
+import AbstractSelectBox from '../AbstractSelectBox';
 
 class SelectBoxMonthsOfYear extends AbstractSelectBox {
   static propTypes = {
-    value: PropTypes.array,
+    value: PropTypes.arrayOf(PropTypes.string),
   }
 
   static defaultProps = { value: [] };
@@ -36,21 +36,15 @@ class SelectBoxMonthsOfYear extends AbstractSelectBox {
     return <FormattedMessage {...messages.label} />;
   }
 
-  renderItem = (item, idx) => {
-    return (
-      <MenuItem value={item} key={idx}>
-        <ListItemText primary={this.renderItemLabel(item)} />
-      </MenuItem>
-    )
-  }
+  renderItem = (item, idx) => (
+    <MenuItem value={item} key={idx}>
+      <ListItemText primary={this.renderItemLabel(item)} />
+    </MenuItem>
+  )
 
-  renderItemLabel = (item) => {
-    return <FormattedMessage key={item} {...messages[item]} />
-  }
+  renderItemLabel = (item) => <FormattedMessage key={item} {...messages[item]} />
 
-  renderMultiValue = (selected) => {
-    return selected.map((item) => <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />);
-  }
+  renderMultiValue = (selected) => selected.map((item) => <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />)
 }
 
 export default withStyles(styles)(SelectBoxMonthsOfYear);

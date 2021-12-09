@@ -22,4 +22,3 @@ export default defineMessages({
     defaultMessage: 'Waiting for Authorization',
   },
 });
-

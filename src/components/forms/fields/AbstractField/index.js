@@ -7,10 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AbstractComponent from "../../../AbstractComponent";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import TextField from "@material-ui/core/TextField";
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
+import AbstractComponent from '../../../AbstractComponent';
 
 export default class AbstractField extends AbstractComponent {
   static propTypes = {
@@ -23,13 +23,15 @@ export default class AbstractField extends AbstractComponent {
     onError: PropTypes.func,
   }
 
-  static defaultProps = { onChange: null, onError: null, className: '', value: '', readOnly: false };
+  static defaultProps = {
+    onChange: null, onError: null, className: '', value: '', readOnly: false,
+  };
 
   constructor(props) {
     super(props);
     this.state.value = props.value;
 
-    this.addMessagingListener('reset', this.onReset)
+    this.addMessagingListener('reset', this.onReset);
   }
 
   get label() {
@@ -42,13 +44,13 @@ export default class AbstractField extends AbstractComponent {
 
   render() {
     const { classes, className } = this.props;
-    const componentId = this.componentId;
+    const { componentId } = this;
     const labelId = `${componentId}-label`;
-    const label = this.label;
+    const { label } = this;
 
     return (
       <FormControl variant="outlined" className={`${classes.root} ${className}`}>
-        <InputLabel id={labelId} variant="outlined" shrink={true}>{label}</InputLabel>
+        <InputLabel id={labelId} variant="outlined" shrink>{label}</InputLabel>
         {this.renderField()}
       </FormControl>
     );

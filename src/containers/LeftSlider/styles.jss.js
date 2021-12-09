@@ -6,14 +6,14 @@
 
 const styles = (theme) => ({
 
-  drawer: props => ({
+  drawer: (props) => ({
     width: props.size,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     display: props.open ? 'block' : 'none',
   }),
 
-  drawerPaper: props => ({
+  drawerPaper: (props) => ({
     width: props.size,
   }),
 

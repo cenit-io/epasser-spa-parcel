@@ -8,19 +8,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage } from 'react-intl';
 
+import Button from '@material-ui/core/Button';
+import CloseIcon from '@material-ui/icons/Clear';
+import Avatar from '@material-ui/core/Avatar';
 import styles from './styles.jss';
-
-import Button from "@material-ui/core/Button";
-import CloseIcon from "@material-ui/icons/Clear";
-import Avatar from "@material-ui/core/Avatar";
 
 class TabButton extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     tab: PropTypes.instanceOf(Object).isRequired,
-    value: PropTypes.any.isRequired,
+    value: PropTypes.string.isRequired,
     active: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func,
@@ -36,9 +35,9 @@ class TabButton extends React.Component {
   get buttonCloseClass() {
     const { hover } = this.state;
     const { classes } = this.props;
-    const hoverClass = hover ? classes.buttonCloseVisible : classes.buttonCloseHidden
+    const hoverClass = hover ? classes.buttonCloseVisible : classes.buttonCloseHidden;
 
-    return `${classes.buttonClose} ${hoverClass}`
+    return `${classes.buttonClose} ${hoverClass}`;
   }
 
   onMouseMove = () => this.setState({ hover: true });
@@ -59,13 +58,13 @@ class TabButton extends React.Component {
   renderCloseButton() {
     const { onClose } = this.props;
 
-    if (!onClose) return;
+    if (!onClose) return null;
 
     return (
       <Avatar className={this.buttonCloseClass} onClick={this.onCloseButtonClick}>
         <CloseIcon fontSize="small" color="error" />
       </Avatar>
-    )
+    );
   }
 
   render() {
@@ -75,10 +74,12 @@ class TabButton extends React.Component {
 
     return (
       <div className={classes.root} onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave}>
-        <Button color="primary"
-                variant={active ? "contained" : "outlined"}
-                startIcon={<Icon />}
-                onClick={this.onChange}>
+        <Button
+          color="primary"
+          variant={active ? 'contained' : 'outlined'}
+          startIcon={<Icon />}
+          onClick={this.onChange}
+        >
           <div className={classes.content}>
             <span><FormattedMessage {...title} /></span>
             {this.renderCloseButton()}

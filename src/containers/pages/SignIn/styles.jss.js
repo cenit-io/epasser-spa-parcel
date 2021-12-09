@@ -1,5 +1,3 @@
-import { alpha } from "@material-ui/core/styles";
-
 /**
  *
  * Styles
@@ -27,13 +25,13 @@ const styles = (theme) => ({
     position: 'relative',
     right: 0,
     top: 0,
-    margin: 5
+    margin: 5,
   },
 
   logo: {
     width: 160,
     marginLeft: 'calc(50% - 80px)',
-  }
+  },
 });
 
 export default styles;

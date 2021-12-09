@@ -1,4 +1,4 @@
-import LZString from 'lz-string'
+import LZString from 'lz-string';
 
 class Session {
   get currentAccount() {
@@ -9,8 +9,8 @@ class Session {
     return !!this.currentAccount;
   }
 
-  get baseUrl(){
-    let baseUrl = process.env.eCAPI_BASE_URL || 'https://cenit.io/app/ecapi-v1';
+  get baseUrl() {
+    const baseUrl = process.env.eCAPI_BASE_URL || 'https://cenit.io/app/ecapi-v1';
 
     return baseUrl;
   }
@@ -24,7 +24,7 @@ class Session {
   set(key, value) {
     try {
       window.sessionStorage.setItem(key, LZString.compress(JSON.stringify(value)));
-    } catch ( e ) {
+    } catch (e) {
       window.sessionStorage.clear();
     }
   }

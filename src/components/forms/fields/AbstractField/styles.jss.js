@@ -11,13 +11,13 @@ const styles = (theme) => ({
 
   root: {
     margin: theme.spacing(1),
-    width: `calc(${100/6 * 2}% - ${theme.spacing(2)}px)`,
+    width: `calc(${(100 / 6) * 2}% - ${theme.spacing(2)}px)`,
 
     '& .MuiOutlinedInput-root': {
       height: 56,
     },
 
-    '& .MuiListItemIcon-root':{
+    '& .MuiListItemIcon-root': {
       minWidth: 36,
       paddingTop: 4,
     },
@@ -26,13 +26,13 @@ const styles = (theme) => ({
       backgroundColor: 'transparent',
     },
 
-    '& .Mui-disabled':{
+    '& .Mui-disabled': {
       cursor: 'no-drop',
     },
 
     '& legend': {
-      maxWidth: 1000
-    }
+      maxWidth: 1000,
+    },
   },
 
 });

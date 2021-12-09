@@ -4,14 +4,14 @@
  *
  */
 
-import { WebhooksIcon } from "../../../../components/Icons";
+import { WebhooksIcon } from '../../../../components/Icons';
 
 import messages from './messages';
 
 export default {
   id: 'Webhooks',
   icon: WebhooksIcon,
-  messages: messages,
+  messages,
   apiPath: 'webhooks',
   attrIds: 'webhook_ids',
-}
+};

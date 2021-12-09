@@ -36,7 +36,7 @@ export default createTheme({
     },
     action: {
       hoverOpacity: 0.3,
-    }
+    },
   },
   typography: {
     useNextVariants: true,

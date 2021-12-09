@@ -5,18 +5,14 @@
  */
 
 import React from 'react';
-import AbstractPage from "../AbstractPage";
-import Notification from "../Notification";
+import { FormattedMessage } from 'react-intl';
+import AbstractPage from '../AbstractPage';
+import Notification from '../Notification';
 
-import { FormattedMessage } from "react-intl";
-import { request } from "../../base/request";
+import { request } from '../../base/request';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractModule extends AbstractPage {
-  constructor(props) {
-    super(props);
-  }
-
   get moduleId() {
     return this.constructor.id || this.constructor.name;
   }
@@ -26,11 +22,11 @@ export default class AbstractModule extends AbstractPage {
   }
 
   get confirmDeleteMsg() {
-    return <FormattedMessage {...this.messages.confirmDeleteMsg} />
+    return <FormattedMessage {...this.messages.confirmDeleteMsg} />;
   }
 
   get confirmOpenTasksModuleMsg() {
-    return <FormattedMessage {...this.messages.confirmOpenTasksModuleMsg} />
+    return <FormattedMessage {...this.messages.confirmOpenTasksModuleMsg} />;
   }
 
   render() {
@@ -49,20 +45,21 @@ export default class AbstractModule extends AbstractPage {
 
   parseRequestIdentifiers(items) {
     const data = {};
-    data[this.attrIds] = items.map(item => item.id);
+    data[this.attrIds] = items.map((item) => item.id);
     return data;
   }
 
-  request = (options, done) => {
+  /* eslint no-param-reassign: ["error", { "props": false }] */
+  request = (options) => {
     this.startWaiting();
 
-    const skipNotify = options.skipNotify === true
-    const skipOpenTasksModule = options.skipOpenTasksModule === true
+    const skipNotify = options.skipNotify === true;
+    const skipOpenTasksModule = options.skipOpenTasksModule === true;
     delete options.skipNotify;
     delete options.skipOpenTasksModule;
 
     return request(options).then((response) => {
-      if (response.type === 'task' && !skipOpenTasksModule) this.onOpenTasksModule()
+      if (response.type === 'task' && !skipOpenTasksModule) this.onOpenTasksModule();
     }).catch((error) => {
       if (!skipNotify) this.notify(error);
       throw error;
@@ -101,7 +98,7 @@ export default class AbstractModule extends AbstractPage {
     this.request({
       url: this.apiPath,
       method: 'DELETE',
-      data: { data: this.parseRequestIdentifiers(items) }
+      data: { data: this.parseRequestIdentifiers(items) },
     }).then((response) => {
       this.emitMessage('reload', response);
     });

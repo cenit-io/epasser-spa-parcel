@@ -7,11 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import styles from '../styles.jss';
-
-import AbstractComponent from "../../AbstractComponent";
 import TableCell from '@material-ui/core/TableCell';
 import Checkbox from '@material-ui/core/Checkbox';
+import styles from '../styles.jss';
+
+import AbstractComponent from '../../AbstractComponent';
 
 class EnhancedCellSelectAll extends AbstractComponent {
   static propTypes = {
@@ -26,7 +26,7 @@ class EnhancedCellSelectAll extends AbstractComponent {
     super(props);
     this.state.selectedCount = 0;
     this.state.itemsCount = 0;
-    this.addMessagingListener('changeSelection', this.onChangeSelection)
+    this.addMessagingListener('changeSelection', this.onChangeSelection);
   }
 
   render() {
@@ -45,7 +45,7 @@ class EnhancedCellSelectAll extends AbstractComponent {
   }
 
   onChangeSelection = (selectedItems, items) => {
-    this.setState({ selectedCount: selectedItems.length, itemsCount: items.length })
+    this.setState({ selectedCount: selectedItems.length, itemsCount: items.length });
   }
 }
 

@@ -6,9 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
-import AbstractComponent from "../../AbstractComponent";
+import AbstractComponent from '../../AbstractComponent';
 
 export default class AbstractAction extends AbstractComponent {
   static propTypes = {
@@ -21,13 +21,13 @@ export default class AbstractAction extends AbstractComponent {
 
   static defaultProps = {
     disabled: null,
-    label: null
+    label: null,
   };
 
   constructor(props) {
     super(props);
     this.state.locked = false;
-    this.addMessagingListener('lockActions', this.onLockActions)
+    this.addMessagingListener('lockActions', this.onLockActions);
   }
 
   get icon() {

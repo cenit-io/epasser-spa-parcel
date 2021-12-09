@@ -23,7 +23,7 @@ const styles = (theme) => ({
     '&.Mui-expanded': {
       marginTop: 4,
       marginBottom: 4,
-    }
+    },
   },
 
 });

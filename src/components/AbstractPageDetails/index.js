@@ -5,18 +5,17 @@
  */
 
 import React from 'react';
-import AbstractModule from '../AbstractModule';
 
 import { FormattedMessage } from 'react-intl';
-import { request } from '../../base/request';
-
-import messages from './messages';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import { SaveIcon, ResetIcon } from '../Icons';
 import PropTypes from 'prop-types';
+import { SaveIcon, ResetIcon } from '../Icons';
+import messages from './messages';
+import { request } from '../../base/request';
+import AbstractModule from '../AbstractModule';
 
 /* eslint class-methods-use-this: ['off'] */
 export default class AbstractPageDetails extends AbstractModule {
@@ -27,7 +26,7 @@ export default class AbstractPageDetails extends AbstractModule {
   static defaultProps = { item: null };
 
   get successfulMessage() {
-    return 'successfulOperation'
+    return 'successfulOperation';
   }
 
   get requestData() {
@@ -35,11 +34,11 @@ export default class AbstractPageDetails extends AbstractModule {
   }
 
   get isEdit() {
-    return this.componentId.match(/Edit$/) ? true : false;
+    return !!this.componentId.match(/Edit$/);
   }
 
   get isAdd() {
-    return this.componentId.match(/Add$/) ? true : false;
+    return !!this.componentId.match(/Add$/);
   }
 
   constructor(props) {
@@ -60,10 +59,10 @@ export default class AbstractPageDetails extends AbstractModule {
       <Card className={classes.root}>
         {this.form}
         <CardActions className={classes.actions}>
-          <Button size='small' color='primary' startIcon={<SaveIcon />} onClick={this.onSave}>
+          <Button size="small" color="primary" startIcon={<SaveIcon />} onClick={this.onSave}>
             <FormattedMessage {...messages.save} />
           </Button>
-          <Button size='small' color='primary' startIcon={<ResetIcon />} onClick={this.onReset}>
+          <Button size="small" color="primary" startIcon={<ResetIcon />} onClick={this.onReset}>
             <FormattedMessage {...messages.reset} />
           </Button>
         </CardActions>
@@ -71,6 +70,7 @@ export default class AbstractPageDetails extends AbstractModule {
     );
   }
 
+  /* eslint no-param-reassign: ["off"] */
   onChange = (field, value, valid, scope) => {
     scope = scope || this.state.item;
 
@@ -78,10 +78,10 @@ export default class AbstractPageDetails extends AbstractModule {
       const attrs = field.split('.');
       field = attrs.shift();
       scope[field] = scope[field] || {};
-      return this.onChange(attrs.join('.'), value, valid, scope[field])
+      this.onChange(attrs.join('.'), value, valid, scope[field]);
+    } else {
+      scope[field] = value;
     }
-
-    scope[field] = value;
   }
 
   onReset = () => {
@@ -98,7 +98,7 @@ export default class AbstractPageDetails extends AbstractModule {
 
     request(options).then((response) => {
       this.setState({ alreadyLoaded: true, item: response.data });
-    }).catch(error => {
+    }).catch((error) => {
       this.notify(error);
     }).finally(() => {
       this.releaseWaiting();
@@ -111,13 +111,13 @@ export default class AbstractPageDetails extends AbstractModule {
     const options = {
       url: this.apiPath,
       method: 'POST',
-      data: { data: this.requestData }
+      data: { data: this.requestData },
     };
 
-    request(options).then((response) => {
+    request(options).then(() => {
       this.notify({ message: this.successfulMessage, severity: 'success' });
       if (this.isAdd) this.onReset();
-    }).catch(error => {
+    }).catch((error) => {
       this.notify(error);
     }).finally(() => {
       this.releaseWaiting();

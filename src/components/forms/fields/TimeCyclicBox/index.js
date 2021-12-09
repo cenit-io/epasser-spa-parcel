@@ -8,11 +8,11 @@ import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import styles from './styles.jss';
 
-import AbstractField from "../AbstractField";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import AbstractField from '../AbstractField';
 
 class TimeCyclicBox extends AbstractField {
   static getFrequency(value) {
@@ -29,20 +29,24 @@ class TimeCyclicBox extends AbstractField {
     const { readOnly, frequency } = this.props;
     const { value } = this.state;
 
-    return <OutlinedInput id={this.componentId} type="number"
-                          label={this.label}
-                          readOnly={readOnly}
-                          disabled={readOnly}
-                          value={parseInt(value || '1')}
-                          endAdornment={
-                            <InputAdornment position="end">{frequency}</InputAdornment>
+    return (
+      <OutlinedInput
+        id={this.componentId} type="number"
+        label={this.label}
+        readOnly={readOnly}
+        disabled={readOnly}
+        value={parseInt(value || '1', 10)}
+        endAdornment={
+          <InputAdornment position="end">{frequency}</InputAdornment>
                           }
-                          onChange={this.onChange} />
+        onChange={this.onChange}
+      />
+    );
   }
 
   transValue = (value) => {
     const { frequency = TimeCyclicBox.getFrequency(this.props.value) } = this.props;
-    return `${parseInt(value || 0)}${frequency === 'months' ? 'M' : frequency[0]}`
+    return `${parseInt(value || 0, 10)}${frequency === 'months' ? 'M' : frequency[0]}`;
   }
 }
 

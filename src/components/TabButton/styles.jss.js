@@ -26,7 +26,7 @@ const styles = (theme) => ({
 
     '&:hover': {
       backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-    }
+    },
   },
 
   buttonCloseHidden: {
@@ -35,7 +35,7 @@ const styles = (theme) => ({
 
   content: {
     display: 'inline',
-  }
+  },
 
 });
 

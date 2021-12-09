@@ -4,10 +4,9 @@
  *
  */
 
-import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { StockLocationsIcon } from "../../../../components/Icons";
+import { StockLocationsIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
@@ -19,9 +18,13 @@ export class List extends AbstractPageList {
   }
 
   static id = 'StockLocations';
+
   static icon = StockLocationsIcon;
+
   static messages = messages;
+
   static apiPath = 'stock/locations';
+
   static attrIds = 'stock_location_ids';
 
   get columns() {
@@ -34,10 +37,10 @@ export class List extends AbstractPageList {
       { id: 'zip_code' },
       { id: 'phone' },
       this.columnDateTime('updated_at'),
-    ]
+    ];
   }
 
-  stockLocationFormat = (value, row, column) => row.stock_location.name;
+  stockLocationFormat = (value, row) => row.stock_location.name;
 }
 
 export default withStyles(styles)(List);

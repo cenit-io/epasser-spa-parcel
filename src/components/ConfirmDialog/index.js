@@ -10,19 +10,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 
-import messages from './messages';
-import styles from './styles.jss';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import AbstractComponent from "../AbstractComponent";
-import Chip from "@material-ui/core/Chip";
-import Avatar from "@material-ui/core/Avatar";
-import { ConfirmationIcon } from "../Icons";
-
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
+import AbstractComponent from '../AbstractComponent';
+import styles from './styles.jss';
+import messages from './messages';
+import { ConfirmationIcon } from '../Icons';
 
 class ConfirmDialog extends AbstractComponent {
   static propTypes = {
@@ -43,18 +41,20 @@ class ConfirmDialog extends AbstractComponent {
     const { content, open } = this.state;
 
     return (
-      <Dialog className={classes.root} maxWidth="sm" fullWidth={true} open={open}>
+      <Dialog className={classes.root} maxWidth="sm" fullWidth open={open}>
         <DialogTitle className={classes.title}>
-          <Chip variant="default" color="primary"
-                avatar={<Avatar><ConfirmationIcon /></Avatar>}
-                label={<FormattedMessage {...messages.title} />} />
+          <Chip
+            variant="default" color="primary"
+            avatar={<Avatar><ConfirmationIcon /></Avatar>}
+            label={<FormattedMessage {...messages.title} />}
+          />
         </DialogTitle>
         <DialogContent dividers>{content}</DialogContent>
         <DialogActions>
           <Button value={false} color="primary" onClick={this.onCancel} autoFocus>
             <FormattedMessage {...messages.cancel} />
           </Button>
-          <Button value={true} color="primary" onClick={this.onAccept}>
+          <Button value color="primary" onClick={this.onAccept}>
             <FormattedMessage {...messages.accept} />
           </Button>
         </DialogActions>
@@ -63,11 +63,15 @@ class ConfirmDialog extends AbstractComponent {
   }
 
   close() {
-    this.setState({ open: false, content: null, onClose: null })
+    this.setState({
+      open: false, content: null, onClose: null,
+    });
   }
 
   onOpen = (content, onClose) => {
-    this.setState({ open: true, content, onClose })
+    this.setState({
+      open: true, content, onClose,
+    });
   }
 
   onCancel = () => {

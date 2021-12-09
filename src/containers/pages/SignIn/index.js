@@ -14,24 +14,24 @@ import { compose } from 'redux';
 import { injectReducer, injectSaga } from 'redux-injectors';
 import { withStyles } from '@material-ui/core/styles';
 
+import moment from 'moment';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import styles from './styles.jss';
 import makeSelectSignIn from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import session  from '../../../base/session';
+import session from '../../../base/session';
 
 import AbstractPage from '../../../components/AbstractPage';
 
 import { doAuthenticateWithAuthCode } from './actions';
 
-import moment from "moment";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Notification from "../../../components/Notification";
+import Notification from '../../../components/Notification';
 
 export class SignIn extends AbstractPage {
   static propTypes = {
@@ -54,7 +54,7 @@ export class SignIn extends AbstractPage {
           <title>ePasser: SignIN</title>
         </Helmet>
 
-        <Notification className={classes.notify} moduleId={this.moduleId}/>
+        <Notification className={classes.notify} moduleId={this.moduleId} />
 
         <Card className={classes.signIn}>
           <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
@@ -89,7 +89,7 @@ export class SignIn extends AbstractPage {
   }
 
   componentDidUpdate = () => {
-    if (this.isAuthenticate) this.goto('/')
+    if (this.isAuthenticate) this.goto('/');
   }
 }
 

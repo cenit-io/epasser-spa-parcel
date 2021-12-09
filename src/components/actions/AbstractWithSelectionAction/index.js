@@ -4,14 +4,13 @@
  *
  */
 
-import React from 'react';
-import AbstractAction from "../AbstractAction";
+import AbstractAction from '../AbstractAction';
 
 export default class AbstractWithSelectionAction extends AbstractAction {
   constructor(props) {
     super(props);
     this.state.selectionItems = [];
-    this.addMessagingListener('changeSelection', this.onChangeSelection)
+    this.addMessagingListener('changeSelection', this.onChangeSelection);
   }
 
   get disabled() {
@@ -28,6 +27,6 @@ export default class AbstractWithSelectionAction extends AbstractAction {
   }
 
   onChangeSelection = (selectionItems) => {
-    this.setState({ selectionItems })
+    this.setState({ selectionItems });
   }
 }

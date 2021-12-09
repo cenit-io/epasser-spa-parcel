@@ -1,5 +1,3 @@
-import { alpha } from "@material-ui/core/styles";
-
 /**
  *
  * Styles

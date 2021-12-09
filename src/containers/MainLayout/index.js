@@ -11,18 +11,17 @@ import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router';
 import { withStyles } from '@material-ui/core/styles';
 
-import styles from './styles.jss';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import AbstractComponent from '../../components/AbstractComponent';
 import session from '../../base/session';
-
-import AbstractComponent from "../../components/AbstractComponent";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import LeftSlider from "../LeftSlider";
-import SearchByTerm from "../../components/SearchByTerm";
-import ConfirmDialog from "../../components/ConfirmDialog";
+import styles from './styles.jss';
+import LeftSlider from '../LeftSlider';
+import SearchByTerm from '../../components/SearchByTerm';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
 class MainLayout extends AbstractComponent {
   static propTypes = {
@@ -39,10 +38,8 @@ class MainLayout extends AbstractComponent {
   }
 
   onToggleLeftDrawer = () => {
-    this.setState(prevState => {
-      prevState.leftSlider.open = !prevState.leftSlider.open
-      return prevState
-    });
+    const { leftSlider } = this.state;
+    this.setState({ leftSlider: { ...leftSlider, open: !leftSlider.open } });
   }
 
   render() {
@@ -71,7 +68,7 @@ class MainLayout extends AbstractComponent {
         </AppBar>
 
         <LeftSlider open={open} size={size} />
-        <ConfirmDialog moduleId="main"/>
+        <ConfirmDialog moduleId="main" />
         <main className={classes.mainContent} style={{ width: `calc(100% - ${size}px)` }}>
           {children}
         </main>

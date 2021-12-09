@@ -20,8 +20,8 @@ const styles = (theme) => ({
 
     '& .MuiChip-root': {
       marginRight: theme.spacing(0.5),
-    }
-  }
+    },
+  },
 
 });
 

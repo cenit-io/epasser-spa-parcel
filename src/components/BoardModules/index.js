@@ -8,15 +8,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import AbstractComponent from "../AbstractComponent";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import Divider from "@material-ui/core/Divider";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import AbstractComponent from '../AbstractComponent';
 
-import SubMenuItem from "../SubMenuItem";
+import SubMenuItem from '../SubMenuItem';
 
 export default class BoardModules extends AbstractComponent {
   static propTypes = {
@@ -28,12 +28,12 @@ export default class BoardModules extends AbstractComponent {
       <Typography variant="h5" color="primary">
         <FormattedMessage {...this.title} />
       </Typography>
-    )
+    );
   }
 
   renderSubMenuItem(item) {
-    const title = item.title || item.messages.title
-    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />
+    const title = item.title || item.messages.title;
+    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />;
   }
 
   render() {
@@ -54,7 +54,5 @@ export default class BoardModules extends AbstractComponent {
     );
   }
 
-  onTapItem = (item) => {
-    return () => this.emitMessage('openModule', item.id, 'MainTabs')
-  }
+  onTapItem = (item) => () => this.emitMessage('openModule', item.id, 'MainTabs')
 }

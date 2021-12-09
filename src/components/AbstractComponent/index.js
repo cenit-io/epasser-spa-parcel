@@ -5,9 +5,16 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import messaging from '../../base/messaging';
 
 export default class AbstractComponent extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    moduleId: PropTypes.string,
+  }
+
+  static defaultProps = { id: null, moduleId: null }
 
   constructor(props) {
     super(props);
@@ -16,25 +23,29 @@ export default class AbstractComponent extends React.Component {
   }
 
   get componentId() {
+    const { id: propId } = this.props;
+
     if (this._componentId) return this._componentId;
-    if (this.props.id) return this.props.id;
+    if (propId) return propId;
     if (this.constructor.id) return this.constructor.id;
 
     if (this.constructor._instancesCount === undefined) this.constructor._instancesCount = 1;
-    this._componentId = `${this.constructor.name}-${this.constructor._instancesCount++}`;
+    this._componentId = `${this.constructor.name}-${this.constructor._instancesCount}`;
+    this.constructor._instancesCount += 1;
 
     return this._componentId;
   }
 
   get moduleId() {
-    return this.props.moduleId;
+    const { moduleId } = this.props;
+    return moduleId;
   }
 
   get apiPath() {
-    return this.constructor.apiPath
+    return this.constructor.apiPath;
   }
 
-  addMessagingListener(messageId, callBack, senderId) {
+  addMessagingListener = (messageId, callBack, senderId) => {
     const subscription = messaging.addMessagingListener(messageId, callBack, senderId || this.moduleId);
     this._subscriptions.push(subscription);
 
@@ -43,6 +54,11 @@ export default class AbstractComponent extends React.Component {
 
   emitMessage = (messageId, data, senderId, timeout) => {
     messaging.emitMessage(messageId, data, senderId || this.moduleId, timeout);
+  }
+
+  componentWillUnmount = () => {
+    this._subscriptions.forEach((subscription) => messaging.delMessagingListener(subscription));
+    this._subscriptions = null;
   }
 
   startWaiting(timeout) {
@@ -56,11 +72,6 @@ export default class AbstractComponent extends React.Component {
   }
 
   notify(message) {
-    this.emitMessage('notify', message)
-  }
-
-  componentWillUnmount = () => {
-    this._subscriptions.forEach(subscription => messaging.delMessagingListener(subscription));
-    this._subscriptions = null;
+    this.emitMessage('notify', message);
   }
 }

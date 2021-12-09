@@ -93,7 +93,9 @@ FlairedEdges.defaultProps = {
 export const FlairedEdgesDivider = withStyles(styles)(FlairedEdges);
 
 export const Content = (props) => {
-  const { classes, thin, content, className, ...rest } = props;
+  const {
+    classes, thin, content, className, ...rest
+  } = props;
   return (
     <hr
       className={`${classes.content} ${className}`}
@@ -108,11 +110,13 @@ Content.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   thin: PropTypes.number,
   content: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Content.defaultProps = {
   thin: 1,
-  content: null
+  content: null,
+  className: null,
 };
 
 export default withStyles(styles)(Content);

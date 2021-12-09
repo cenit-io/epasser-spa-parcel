@@ -6,13 +6,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractComponent from "../AbstractComponent";
 import { withStyles } from '@material-ui/core/styles';
 
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 import styles from './styles.jss';
-
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
+import AbstractComponent from '../AbstractComponent';
 
 class SearchByTerm extends AbstractComponent {
   static propTypes = {
@@ -38,20 +37,22 @@ class SearchByTerm extends AbstractComponent {
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
-        <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
-                   value={searchTerm}
-                   onBlur={this.onBlur}
-                   onChange={this.onChangeSearchTerm}
-                   onKeyPress={this.onKeyPress}
-                   classes={{
-                     root: classes.searchInputRoot,
-                     input: classes.searchInputInput,
-                   }}
+        <InputBase
+          placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
+          value={searchTerm}
+          onBlur={this.onBlur}
+          onChange={this.onChangeSearchTerm}
+          onKeyPress={this.onKeyPress}
+          classes={{
+            root: classes.searchInputRoot,
+            input: classes.searchInputInput,
+          }}
         />
       </div>
     );
   }
 
+  /* eslint no-param-reassign: ["off"] */
   onChangeSearchTerm = (event) => {
     const { activeModuleId } = this.state;
     const searchTerm = event.target.value;
@@ -59,19 +60,21 @@ class SearchByTerm extends AbstractComponent {
     this.setState((state) => {
       state[activeModuleId] = searchTerm;
       return state;
-    })
+    });
   }
 
   onKeyPress = (e) => {
     // Apply the search term
     if (e.charCode === 13) {
       const { activeModuleId } = this.state;
-      const currentSearchTerm = this.state.appliedSearchTerm = this.state[activeModuleId];
+      const currentSearchTerm = this.state[activeModuleId];
+      this.state.appliedSearchTerm = currentSearchTerm;
 
       this.emitMessage('changeSearchTerm', currentSearchTerm, activeModuleId);
     }
   }
 
+  /* eslint no-param-reassign: ["off"] */
   onBlur = () => {
     const { activeModuleId, appliedSearchTerm } = this.state;
     const currentSearchTerm = this.state[activeModuleId];
@@ -80,7 +83,7 @@ class SearchByTerm extends AbstractComponent {
       this.setState((state) => {
         state[activeModuleId] = appliedSearchTerm;
         return state;
-      })
+      });
     }
   }
 

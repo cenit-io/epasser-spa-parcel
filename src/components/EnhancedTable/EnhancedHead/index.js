@@ -8,14 +8,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
-import styles from '../styles.jss';
 
-import AbstractComponent from "../../AbstractComponent";
-import EnhancedCellSelectAll from '../EnhancedCellSelectAll';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+import EnhancedCellSelectAll from '../EnhancedCellSelectAll';
+import AbstractComponent from '../../AbstractComponent';
+import styles from '../styles.jss';
 
 class EnhancedHead extends AbstractComponent {
   static propTypes = {
@@ -39,7 +39,7 @@ class EnhancedHead extends AbstractComponent {
     const { messages } = this.props;
     const msg = messages[`field_${column.id}`];
 
-    return msg ? <FormattedMessage {...msg} /> : column.id
+    return msg ? <FormattedMessage {...msg} /> : column.id;
   }
 
   renderColumns() {
@@ -47,18 +47,22 @@ class EnhancedHead extends AbstractComponent {
     const { orderBy, order } = this.state;
 
     return columns.map((column) => (
-      <TableCell className={classes.cell} key={column.id}
-                 align={column.align || 'left'}
-                 padding={column.padding || padding}
-                 width={column.width || 'auto'}
-                 sortDirection={orderBy === column.id ? order : false}>
-        <TableSortLabel active={orderBy === column.id}
-                        direction={orderBy === column.id ? order : 'asc'}
-                        onClick={this.createSortHandler(column.id)}>
+      <TableCell
+        className={classes.cell} key={column.id}
+        align={column.align || 'left'}
+        padding={column.padding || padding}
+        width={column.width || 'auto'}
+        sortDirection={orderBy === column.id ? order : false}
+      >
+        <TableSortLabel
+          active={orderBy === column.id}
+          direction={orderBy === column.id ? order : 'asc'}
+          onClick={this.createSortHandler(column.id)}
+        >
           {this.renderColumnLabel(column)}
         </TableSortLabel>
       </TableCell>
-    ))
+    ));
   }
 
   render() {

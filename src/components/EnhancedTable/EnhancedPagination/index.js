@@ -8,13 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import TablePagination from '@material-ui/core/TablePagination';
+import AbstractComponent from '../../AbstractComponent';
 import styles from '../styles.jss';
-
-import AbstractComponent from "../../AbstractComponent";
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import Checkbox from "@material-ui/core/Checkbox";
-import TablePagination from "@material-ui/core/TablePagination";
 
 class EnhancedPagination extends AbstractComponent {
   static propTypes = {
@@ -26,7 +22,9 @@ class EnhancedPagination extends AbstractComponent {
   }
 
   render() {
-    const { classes, total, limit, offset, onPageChange, onItemsPerPageChange } = this.props;
+    const {
+      classes, total, limit, offset, onPageChange, onItemsPerPageChange,
+    } = this.props;
 
     if (total === 0) return '';
 
@@ -41,7 +39,7 @@ class EnhancedPagination extends AbstractComponent {
         onPageChange={onPageChange}
         onRowsPerPageChange={onItemsPerPageChange}
       />
-    )
+    );
   }
 }
 

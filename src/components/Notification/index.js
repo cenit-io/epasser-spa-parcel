@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles.jss';
 import Alert from '../Alert';
 import messages from './messages';
-import AbstractComponent from "../AbstractComponent";
+import AbstractComponent from '../AbstractComponent';
 
 class Notification extends AbstractComponent {
   static propTypes = {
@@ -74,9 +74,10 @@ class Notification extends AbstractComponent {
   }
 
   onNotify = (notification) => {
-    let message, severity;
+    let message; let
+      severity;
 
-    if (typeof notification == 'string') {
+    if (typeof notification === 'string') {
       message = notification;
       severity = 'info';
     } else if (notification instanceof Error) {
@@ -87,7 +88,7 @@ class Notification extends AbstractComponent {
       severity = notification.severity;
     }
 
-    this.setState({ message, severity })
+    this.setState({ message, severity });
   }
 
   onClose = () => {

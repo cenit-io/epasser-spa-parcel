@@ -10,32 +10,32 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FormattedMessage } from 'react-intl';
 
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import styles from './styles.jss';
-
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import SubMenuItem from "../SubMenuItem";
+import SubMenuItem from '../SubMenuItem';
 
 class SubMenuModules extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     onTapItem: PropTypes.func.isRequired,
-    modules: PropTypes.array.isRequired,
+    modules: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
     title: PropTypes.instanceOf(Object).isRequired,
   }
 
   onTapItem(item) {
-    return () => this.props.onTapItem(item)
+    const { onTapItem } = this.props;
+    return () => onTapItem(item);
   }
 
   renderSubMenuItem(item) {
-    const title = item.title || item.messages.title
-    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />
+    const title = item.title || item.messages.title;
+    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />;
   }
 
   render() {
@@ -44,7 +44,7 @@ class SubMenuModules extends React.Component {
     return (
       <Accordion className={classes.subMenu}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant={"button"}><FormattedMessage {...title} /></Typography>
+          <Typography variant="button"><FormattedMessage {...title} /></Typography>
         </AccordionSummary>
         <AccordionDetails>
           <List>

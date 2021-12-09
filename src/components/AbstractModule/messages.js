@@ -17,7 +17,7 @@ export default defineMessages({
   confirmOpenTasksModuleMsg: {
     id: `${scope}.confirmOpenTasksModuleMsg`,
     defaultMessage: 'The processed action has generated a background task.{br}Please confirm whether you want to go to the task management module?',
-    values: { br: <br /> }
+    values: { br: <br /> },
   },
   field_id: {
     id: `${scope}.field_id`,

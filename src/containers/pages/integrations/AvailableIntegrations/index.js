@@ -7,15 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { FormattedMessage } from "react-intl";
-import { AvailableIntegrationsIcon } from "../../../../components/Icons";
+import { FormattedMessage } from 'react-intl';
+import { AvailableIntegrationsIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from "../../../../components/actions/Reload";
-import InstallAction from "../../../../components/actions/Install";
-import UnInstallAction from "../../../../components/actions/UnInstall";
+import ReloadAction from '../../../../components/actions/Reload';
+import InstallAction from '../../../../components/actions/Install';
+import UnInstallAction from '../../../../components/actions/UnInstall';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -23,9 +23,13 @@ export class List extends AbstractPageList {
   }
 
   static id = 'AvailableIntegrations';
+
   static icon = AvailableIntegrationsIcon;
+
   static messages = messages;
+
   static apiPath = 'available/integrations';
+
   static attrIds = 'collection_ids';
 
   get columns() {
@@ -36,15 +40,17 @@ export class List extends AbstractPageList {
       { id: 'status' },
       { id: 'updated_at' },
       { id: 'installed_at' },
-    ]
+    ];
   }
 
   get actions() {
-    return [
-      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-      <InstallAction moduleId={this.moduleId} onClick={this.onInstall} />,
-      <UnInstallAction moduleId={this.moduleId} onClick={this.onUnInstall} />,
-    ]
+    return (
+      <>
+        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+        <InstallAction moduleId={this.moduleId} onClick={this.onInstall} />
+        <UnInstallAction moduleId={this.moduleId} onClick={this.onUnInstall} />
+      </>
+    );
   }
 
   onInstall = (e, item) => {
@@ -65,7 +71,7 @@ export class List extends AbstractPageList {
     this.request({
       url: `${this.apiPath}/${item.id}`,
       method: 'PATCH',
-    }).then((response) => {
+    }).then(() => {
       this.notify({ message: 'successfulInstallTask', severity: 'success' });
     });
   }
@@ -76,7 +82,7 @@ export class List extends AbstractPageList {
     this.request({
       url: `${this.apiPath}/${item.id}`,
       method: 'DELETE',
-    }).then((response) => {
+    }).then(() => {
       this.notify({ message: 'successfulUnInstallTask', severity: 'success' });
     });
   }

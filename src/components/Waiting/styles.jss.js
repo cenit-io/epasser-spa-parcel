@@ -1,5 +1,3 @@
-import { alpha } from "@material-ui/core/styles";
-
 /**
  *
  * Styles
@@ -8,7 +6,7 @@ import { alpha } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   root: {
-    zIndex: 3000
+    zIndex: 3000,
   },
 });
 

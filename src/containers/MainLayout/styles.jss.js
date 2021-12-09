@@ -1,4 +1,4 @@
-import { alpha } from "@material-ui/core/styles";
+import { alpha } from '@material-ui/core/styles';
 
 /**
  *
@@ -13,7 +13,7 @@ const styles = (theme) => ({
 
     '& .MuiButton-root, .MuiTypography-button': {
       textTransform: 'none',
-    }
+    },
   },
 
   appBar: {
@@ -29,7 +29,7 @@ const styles = (theme) => ({
     flexGrow: 1,
     '& img': {
       width: 160,
-    }
+    },
   },
 
   mainContent: {

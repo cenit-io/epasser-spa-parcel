@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { doSetAccountInfo } from './actions';
 import { request } from '../../../base/request';
-import { AUTHENTICATE_WITH_AUTH_CODE, } from './constants';
-import { history } from "../../../base/history";
+import { AUTHENTICATE_WITH_AUTH_CODE } from './constants';
+import { history } from '../../../base/history';
 
 import messaging from '../../../base/messaging';
 

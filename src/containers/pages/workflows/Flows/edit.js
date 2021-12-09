@@ -4,14 +4,12 @@
  *
  */
 
-import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import styles from '../../../../components/AbstractPageDetails/styles.jss';
 import Details from './details';
 
 export class Edit extends Details {
-
   static id = `${Details.id}/Edit`;
 
   get apiPath() {
@@ -19,7 +17,7 @@ export class Edit extends Details {
   }
 
   get successfulMessage() {
-    return 'successfulUpdate'
+    return 'successfulUpdate';
   }
 }
 

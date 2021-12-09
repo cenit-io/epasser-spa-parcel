@@ -19,7 +19,7 @@ const styles = (theme) => ({
 
     '& .MuiIconButton-root': {
       padding: 6,
-    }
+    },
   },
 
   content: {

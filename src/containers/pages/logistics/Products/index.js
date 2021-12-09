@@ -7,15 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ProductsIcon } from "../../../../components/Icons";
+import Avatar from '@material-ui/core/Avatar';
+import { ProductsIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 
-import Avatar from "@material-ui/core/Avatar";
-import ReloadAction from "../../../../components/actions/Reload";
-import DeleteAction from "../../../../components/actions/Delete";
+import ReloadAction from '../../../../components/actions/Reload';
+import DeleteAction from '../../../../components/actions/Delete';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -23,29 +23,39 @@ export class List extends AbstractPageList {
   }
 
   static id = 'Products';
+
   static icon = ProductsIcon;
+
   static messages = messages;
+
   static apiPath = 'products';
+
   static attrIds = 'product_ids';
 
   get columns() {
     return [
       this.columnAvatar('images'),
       { id: 'name' },
-      { id: 'price', width: 100, align: 'right' },
-      { id: 'variants', width: 100, align: 'right' },
+      {
+        id: 'price', width: 100, align: 'right',
+      },
+      {
+        id: 'variants', width: 100, align: 'right',
+      },
       { id: 'integrations', format: this.integrationsFormat },
-    ]
+    ];
   }
 
   get actions() {
-    return [
-      <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />,
-      <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />,
-    ]
+    return (
+      <>
+        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
+      </>
+    );
   }
 
-  avatarFormat = (value, row, column) => {
+  avatarFormat = (value, row) => {
     const { classes } = this.props;
     const image = row.images[0];
     const defaultImage = image ? null : <ProductsIcon />;
@@ -57,9 +67,9 @@ export class List extends AbstractPageList {
     );
   }
 
-  integrationsFormat = (value, row, column) => {
-    return value.map((integration, idx) => this.integrationFormat(integration, row, column))
-  }
+  integrationsFormat = (value, row, column) => value.map(
+    (integration) => this.integrationFormat(integration, row, column),
+  )
 }
 
 export default withStyles(styles)(List);

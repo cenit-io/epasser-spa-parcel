@@ -1,12 +1,13 @@
 import { EventEmitter } from 'fbemitter';
 
-const _messaging = new EventEmitter();
+const emitter = new EventEmitter();
 
+/* eslint no-param-reassign: ["off"] */
 class Messaging {
   addMessagingListener(messageId, callBack, senderId) {
     messageId = `${senderId || 'Global'}/${messageId}`;
 
-    const subscription = _messaging.addListener(messageId, callBack);
+    const subscription = emitter.addListener(messageId, callBack);
 
     return subscription;
   }
@@ -16,9 +17,9 @@ class Messaging {
     data = data instanceof Array ? data : [data];
 
     if (timeout !== undefined) {
-      setTimeout(() => _messaging.emit(messageId, ...data), timeout);
+      setTimeout(() => emitter.emit(messageId, ...data), timeout);
     } else {
-      _messaging.emit(messageId, ...data);
+      emitter.emit(messageId, ...data);
     }
   }
 

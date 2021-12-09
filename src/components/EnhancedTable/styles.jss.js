@@ -1,4 +1,4 @@
-import { alpha } from "@material-ui/core/styles";
+import { alpha } from '@material-ui/core/styles';
 
 /**
  *
@@ -16,13 +16,13 @@ const styles = (theme) => ({
   },
 
   container: {
-    height: `calc(100% - ${paginationHeight+1}px)`,
-    tableLayout: 'auto'
+    height: `calc(100% - ${paginationHeight + 1}px)`,
+    tableLayout: 'auto',
   },
 
   table: {
     width: '100%',
-    tableLayout: 'auto'
+    tableLayout: 'auto',
   },
 
   head: {
@@ -63,8 +63,8 @@ const styles = (theme) => ({
 
     '& .MuiIconButton-root': {
       padding: 6,
-    }
-  }
+    },
+  },
 
 });
 

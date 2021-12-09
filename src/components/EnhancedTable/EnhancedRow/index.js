@@ -8,12 +8,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import styles from '../styles.jss';
-
-import AbstractComponent from "../../AbstractComponent";
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from '@material-ui/core/Checkbox';
+import AbstractComponent from '../../AbstractComponent';
+import styles from '../styles.jss';
 
 class EnhancedRow extends AbstractComponent {
   static propTypes = {
@@ -43,9 +42,12 @@ class EnhancedRow extends AbstractComponent {
     const { classes, columns, padding } = this.props;
 
     return columns.map((column) => (
-      <TableCell className={classes.cell} key={column.id} component="td" scope="row" size="small"
-                 align={column.align || 'left'}
-                 padding={column.padding || padding}>
+      <TableCell
+        className={classes.cell} key={column.id} component="td"
+        scope="row" size="small"
+        align={column.align || 'left'}
+        padding={column.padding || padding}
+      >
         {this.formatValue(row, column)}
       </TableCell>
     ));
@@ -68,7 +70,7 @@ class EnhancedRow extends AbstractComponent {
   onChangeSelection = (e, value) => {
     const { itemId, row, onChangeItemSelection } = this.props;
     this.setState({ isSelected: value });
-    onChangeItemSelection(value, itemId, row)
+    onChangeItemSelection(value, itemId, row);
   }
 }
 
