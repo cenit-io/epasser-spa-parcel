@@ -15,12 +15,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import AbstractComponent from '../../components/AbstractComponent';
 import session from '../../base/session';
 import styles from './styles.jss';
 import LeftSlider from '../LeftSlider';
 import SearchByTerm from '../../components/SearchByTerm';
+import Account from '../../components/Account';
 import ConfirmDialog from '../../components/ConfirmDialog';
 
 class MainLayout extends AbstractComponent {
@@ -61,9 +61,7 @@ class MainLayout extends AbstractComponent {
               <img src="/images/logo-passer-bw.png" alt="eCAPI-Logo" />
             </div>
             <SearchByTerm />
-            <IconButton color="inherit">
-              <AccountCircle />
-            </IconButton>
+            <Account />
           </Toolbar>
         </AppBar>
 
