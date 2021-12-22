@@ -1,38 +1,28 @@
-# SELFIE
+# ePasser
 
 ## Introduction
 
-SELFIE is a SPA application made with Javascript [Material-UI] and packaged with [Parcel](https://parceljs.org).
+ePasser is a SPA application made with Javascript [Material-UI] and packaged with [Parcel](https://parceljs.org).
 
-You can try the app at the link below: https://selfie-spa-parcel.herokuapp.com/
+You can try the app at the link below: https://epasser.onrender.com/
 
 ## Install
 
 ```
- git clone https://github.com/self-ie/selfie-spa-parcel
+ git clone https://github.com/cenit-io/epasser-spa-parcel
 
- cd selfie-spa-parcel
+ cd epasser-spa-parcel
 
  yarn install
 ```
 
 ## Environment Variables
 
-**Base URL of the API server application and the administration backend:**
+**Base URL of the Cenit-IO-eCommerce-API server application:**
 
 ```
- OMNA_API_BASE_URL="https://radiant-plains-75765.herokuapp.com"
+ eCAPI_BASE_URL="https://cenit.io/app/ecapi_v1"
 ```
-
-**Backend OAuth Application client id and secret:**
-
-```
- OAUTH_CLIENT_ID="****************************************"
- OAUTH_CLIENT_SECRET="*******************************************"
-```
-
-> You can get the values for these variables in the details of the OAuth-Application with name SELFIE-SPA defined 
-> in the backend of the project.
 
 ## Start the local server:
 
