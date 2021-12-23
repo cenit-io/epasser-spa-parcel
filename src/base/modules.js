@@ -11,6 +11,8 @@ import ConnectedIntegrationsEdit from '../containers/pages/integrations/Connecte
 import OrdersList from '../containers/pages/logistics/Orders';
 
 import ProductsList from '../containers/pages/logistics/Products';
+import ProductsAdd from '../containers/pages/logistics/Products/add';
+import ProductsEdit from '../containers/pages/logistics/Products/edit';
 
 import StockItemsList from '../containers/pages/logistics/StockItems';
 
@@ -36,13 +38,17 @@ export function requireModuleComponent(moduleId) {
   if (moduleId === 'ConnectedIntegrations/Add') return ConnectedIntegrationsAdd;
   if (moduleId === 'ConnectedIntegrations/Edit') return ConnectedIntegrationsEdit;
 
-  // Workflows modules
+  // Logistics modules
   if (moduleId === 'Orders') return OrdersList;
+
   if (moduleId === 'Products') return ProductsList;
+  if (moduleId === 'Products/Add') return ProductsAdd;
+  if (moduleId === 'Products/Edit') return ProductsEdit;
+
   if (moduleId === 'StockItems') return StockItemsList;
   if (moduleId === 'StockLocations') return StockLocationsList;
 
-  // Logistics modules
+  // Workflows modules
   if (moduleId === 'Flows') return FlowsList;
   if (moduleId === 'Flows/Add') return FlowsAdd;
   if (moduleId === 'Flows/Edit') return FlowsEdit;
@@ -65,13 +71,17 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'ConnectedIntegrations/Add') return <ConnectedIntegrationsAdd />;
   if (moduleId === 'ConnectedIntegrations/Edit') return <ConnectedIntegrationsEdit {...props} />;
 
-  // Workflows modules
+  // Logistics modules
   if (moduleId === 'Orders') return <OrdersList />;
+
   if (moduleId === 'Products') return <ProductsList />;
+  if (moduleId === 'Products/Add') return <ProductsAdd />;
+  if (moduleId === 'Products/Edit') return <ProductsEdit {...props} />;
+
   if (moduleId === 'StockItems') return <StockItemsList />;
   if (moduleId === 'StockLocations') return <StockLocationsList />;
 
-  // Logistics modules
+  // Workflows modules
   if (moduleId === 'Flows') return <FlowsList />;
   if (moduleId === 'Flows/Add') return <FlowsAdd />;
   if (moduleId === 'Flows/Edit') return <FlowsEdit {...props} />;

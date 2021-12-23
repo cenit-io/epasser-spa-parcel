@@ -14,6 +14,14 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Products',
   },
+  basic: {
+    id: `${scope}.basic`,
+    defaultMessage: 'Basic',
+  },
+  package: {
+    id: `${scope}.package`,
+    defaultMessage: 'Package',
+  },
   field_price: {
     id: `${scope}.field_price`,
     defaultMessage: 'Price',
@@ -25,6 +33,30 @@ const messagesLocal = defineMessages({
   field_integrations: {
     id: `${scope}.field_integrations`,
     defaultMessage: 'Integrations',
+  },
+  field_description: {
+    id: `${scope}.field_description`,
+    defaultMessage: 'Description',
+  },
+  field_weight: {
+    id: `${scope}.field_weight`,
+    defaultMessage: 'Weight',
+  },
+  field_height: {
+    id: `${scope}.field_height`,
+    defaultMessage: 'Height',
+  },
+  field_length: {
+    id: `${scope}.field_length`,
+    defaultMessage: 'Length',
+  },
+  field_width: {
+    id: `${scope}.field_width`,
+    defaultMessage: 'Width',
+  },
+  field_content: {
+    id: `${scope}.field_content`,
+    defaultMessage: 'Content',
   },
 });
 

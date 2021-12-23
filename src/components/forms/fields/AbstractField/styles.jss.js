@@ -9,12 +9,23 @@ import baseStyles from '../../../../styles';
 const styles = (theme) => ({
   ...baseStyles(theme),
 
-  root: {
+  root: (props) => ({
+
     margin: theme.spacing(1),
     width: `calc(${(100 / 6) * 2}% - ${theme.spacing(2)}px)`,
 
     '& .MuiOutlinedInput-root': {
       height: 56,
+    },
+
+    '& .MuiInputBase-multiline': {
+      height: '100%',
+      display: 'block',
+
+      '& textarea': {
+        height: '100%',
+        overflowY: 'auto',
+      }
     },
 
     '& .MuiListItemIcon-root': {
@@ -33,8 +44,7 @@ const styles = (theme) => ({
     '& legend': {
       maxWidth: 1000,
     },
-  },
-
+  }),
 });
 
 export default styles;

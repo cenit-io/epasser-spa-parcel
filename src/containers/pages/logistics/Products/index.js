@@ -12,9 +12,12 @@ import { ProductsIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
-import AbstractPageList from '../../../../components/AbstractPageList';
+import settings from "./settings";
 
+import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from '../../../../components/actions/Reload';
+import AddAction from "../../../../components/actions/Add";
+import EditAction from "../../../../components/actions/Edit";
 import DeleteAction from '../../../../components/actions/Delete';
 
 export class List extends AbstractPageList {
@@ -22,15 +25,15 @@ export class List extends AbstractPageList {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
-  static id = 'Products';
+  static id = settings.id;
 
-  static icon = ProductsIcon;
+  static icon = settings.icon;
 
-  static messages = messages;
+  static messages = settings.messages;
 
-  static apiPath = 'products';
+  static apiPath = settings.apiPath;
 
-  static attrIds = 'product_ids';
+  static attrIds = settings.attrIds;
 
   get columns() {
     return [
@@ -50,6 +53,8 @@ export class List extends AbstractPageList {
     return (
       <>
         <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
+        <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
         <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
       </>
     );

@@ -1,6 +1,6 @@
 /**
  *
- * TextBox
+ * IntegerBox
  *
  */
 
@@ -14,7 +14,7 @@ import styles from './styles.jss';
 import AbstractField from '../AbstractField';
 import PropTypes from "prop-types";
 
-class TextBox extends AbstractField {
+class IntegerBox extends AbstractField {
   static propTypes = {
     multiline: PropTypes.bool.isRequired,
   }
@@ -35,10 +35,12 @@ class TextBox extends AbstractField {
         readOnly={readOnly}
         disabled={readOnly}
         value={value || ''}
+        type='number'
+        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
         onChange={this.onChange}
       />
     );
   }
 }
 
-export default withStyles(styles)(TextBox);
+export default withStyles(styles)(IntegerBox);

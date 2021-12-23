@@ -5,17 +5,19 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { request } from '../../base/request';
 
+import messages from './messages';
+
+import AbstractModule from '../AbstractModule';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+
 import { SaveIcon, ResetIcon } from '../Icons';
-import messages from './messages';
-import { request } from '../../base/request';
-import AbstractModule from '../AbstractModule';
 
 /* eslint class-methods-use-this: ['off'] */
 export default class AbstractPageDetails extends AbstractModule {
@@ -56,7 +58,7 @@ export default class AbstractPageDetails extends AbstractModule {
     if (!alreadyLoaded) return this.emitMessage('startLoadItem');
 
     return (
-      <Card className={classes.root}>
+      <Card className={classes.form}>
         {this.form}
         <CardActions className={classes.actions}>
           <Button size="small" color="primary" startIcon={<SaveIcon />} onClick={this.onSave}>

@@ -67,7 +67,7 @@ export default class Details extends AbstractPageDetails {
 
     return (
       <FormGroup>
-        <fieldset className={`${classes.formSection} ${classes.fullWidth}`}>
+        <fieldset className={classes.formSection}>
           <legend><FormattedMessage {...messages.title} /></legend>
           <FormGroup row>
             <SelectBoxFlowType
@@ -89,7 +89,7 @@ export default class Details extends AbstractPageDetails {
           </FormGroup>
         </fieldset>
 
-        <fieldset className={`${classes.formSection} ${classes.fullWidth}`}>
+        <fieldset className={classes.formSection}>
           <legend><FormattedMessage {...messages.field_scheduler} /></legend>
 
           <FormGroup row>

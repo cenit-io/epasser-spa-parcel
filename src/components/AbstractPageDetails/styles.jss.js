@@ -14,9 +14,19 @@ const styles = (theme) => ({
     height: '100%',
   },
 
+  content: {
+    width: '100%',
+    height: 'calc(100% - 36px)',
+    overflowY: 'auto',
+  },
+
   actions: {
     justifyContent: 'flex-end',
     paddingRight: theme.spacing(2.5),
+  },
+
+  form: {
+    boxShadow: 'none',
   },
 
   formSection: {
@@ -26,6 +36,7 @@ const styles = (theme) => ({
     borderStyle: 'ridge',
     borderWidth: 1,
     marginBottom: theme.spacing(2),
+    width: `calc(100% - 2px)`,
 
     '& > legend': {
       textAlign: 'center',
