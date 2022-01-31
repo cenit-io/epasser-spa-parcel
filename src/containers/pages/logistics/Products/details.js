@@ -16,7 +16,7 @@ import settings from './settings';
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 import ListAction from '../../../../components/actions/List';
 import TextBox from '../../../../components/forms/fields/TextBox';
-import IntegerBox from '../../../../components/forms/fields/IntegerBox';
+import IntegerBox from '../../../../components/forms/fields/NumberBox';
 
 export default class Details extends AbstractPageDetails {
   static propTypes = {
