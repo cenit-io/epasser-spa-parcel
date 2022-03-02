@@ -13,9 +13,16 @@ import styles from './styles.jss';
 import messages from './messages';
 import AbstractPage from '../../../components/AbstractPage';
 
-import BoardIntegrations from '../../../components/BoardIntegrations';
-import BoardLogistics from '../../../components/BoardLogistics';
-import BoardWorkflows from '../../../components/BoardWorkflows';
+import BoardModules from '../../../components/BoardModules';
+import AvailableIntegrations from "../integrations/AvailableIntegrations";
+import ConnectedIntegrations from "../integrations/ConnectedIntegrations";
+import Orders from "../logistics/Orders";
+import Products from "../logistics/Products";
+import StockLocations from "../logistics/StockLocations";
+import StockItems from "../logistics/StockItems";
+import Flows from "../workflows/Flows";
+import Webhooks from "../workflows/Webhooks";
+import Tasks from "../workflows/Tasks";
 
 export class Home extends AbstractPage {
   static propTypes = {
@@ -33,9 +40,18 @@ export class Home extends AbstractPage {
 
     return (
       <div className={classes.root}>
-        <BoardIntegrations />
-        <BoardLogistics />
-        <BoardWorkflows />
+        <BoardModules
+          title={messages.applications}
+          modules={[AvailableIntegrations, ConnectedIntegrations]}
+        />
+        <BoardModules
+          title={messages.logistics}
+          modules={[Orders, Products, StockLocations, StockItems]}
+        />
+        <BoardModules
+          title={messages.workflows}
+          modules={[Flows, Webhooks, Tasks]}
+        />
       </div>
     );
   }
