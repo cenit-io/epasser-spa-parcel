@@ -38,30 +38,33 @@ export default class Details extends AbstractPageDetails {
     const integrationId = item.integration ? item.integration.id : '';
 
     return (
-      <FormGroup row>
-        <SelectBoxTopic
-          value={item.topic}
-          name="topic"
-          moduleId={this.moduleId}
-          className={classes.col3}
-          onChange={this.onChange}
-        />
-        <SelectBoxIntegration
-          value={integrationId}
-          name="integration_id"
-          moduleId={this.moduleId}
-          className={classes.col3}
-          onChange={this.onChange}
-        />
-        <TextBox
-          name="address"
-          value={item.address}
-          moduleId={this.moduleId}
-          label={<FormattedMessage {...messages.field_address} />}
-          className={classes.col6}
-          onChange={this.onChange}
-        />
-      </FormGroup>
+      <fieldset className={classes.formSection}>
+        <legend><FormattedMessage {...messages.title} /></legend>
+        <FormGroup row>
+          <SelectBoxTopic
+            value={item.topic}
+            name="topic"
+            moduleId={this.moduleId}
+            className={classes.col3}
+            onChange={this.onChange}
+          />
+          <SelectBoxIntegration
+            value={integrationId}
+            name="integration_id"
+            moduleId={this.moduleId}
+            className={classes.col3}
+            onChange={this.onChange}
+          />
+          <TextBox
+            name="address"
+            value={item.address}
+            moduleId={this.moduleId}
+            label={<FormattedMessage {...messages.field_address} />}
+            className={classes.col6}
+            onChange={this.onChange}
+          />
+        </FormGroup>
+      </fieldset>
     );
   }
 

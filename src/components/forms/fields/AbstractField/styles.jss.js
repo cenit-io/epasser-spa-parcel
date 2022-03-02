@@ -12,7 +12,7 @@ const styles = (theme) => ({
   root: (props) => ({
 
     margin: theme.spacing(1),
-    width: `calc(${(100 / 6) * 2}% - ${theme.spacing(2)}px)`,
+    width: `calc(${(100 / 6) * 2}% - ${theme.spacing(2)})`,
 
     '& .MuiOutlinedInput-root': {
       height: 56,
@@ -25,7 +25,7 @@ const styles = (theme) => ({
       '& textarea': {
         height: '100%',
         overflowY: 'auto',
-      }
+      },
     },
 
     '& .MuiListItemIcon-root': {

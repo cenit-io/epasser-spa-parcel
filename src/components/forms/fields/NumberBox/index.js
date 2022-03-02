@@ -12,17 +12,8 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import styles from './styles.jss';
 
 import AbstractField from '../AbstractField';
-import PropTypes from "prop-types";
 
 class IntegerBox extends AbstractField {
-  static propTypes = {
-    multiline: PropTypes.bool.isRequired,
-  }
-
-  static defaultProps = {
-    multiline: false,
-  };
-
   renderField() {
     const { readOnly, multiline } = this.props;
     const { value } = this.state;
@@ -31,11 +22,10 @@ class IntegerBox extends AbstractField {
       <OutlinedInput
         id={this.componentId}
         label={this.label}
-        multiline={multiline}
         readOnly={readOnly}
         disabled={readOnly}
         value={value || ''}
-        type='number'
+        type="number"
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
         onChange={this.onChange}
       />

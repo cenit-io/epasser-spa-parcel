@@ -7,7 +7,7 @@
 import React from 'react';
 
 import Select from '@mui/material/Select';
-import { CircularProgress } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import { request } from '../../../../base/request';
 
 import AbstractField from '../AbstractField';

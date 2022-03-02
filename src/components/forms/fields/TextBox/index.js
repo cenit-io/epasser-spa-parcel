@@ -9,23 +9,31 @@ import React from 'react';
 import { withStyles } from '@mui/styles';
 
 import OutlinedInput from '@mui/material/OutlinedInput';
+import PropTypes from 'prop-types';
 import styles from './styles.jss';
 
 import AbstractField from '../AbstractField';
-import PropTypes from "prop-types";
 
 class TextBox extends AbstractField {
   static propTypes = {
     multiline: PropTypes.bool.isRequired,
+    style: PropTypes.instanceOf(Object),
+    rows: PropTypes.number,
+    maxRows: PropTypes.number,
   }
 
   static defaultProps = {
     multiline: false,
+    style: null,
+    rows: null,
+    maxRows: null,
   };
 
   renderField() {
-    const { readOnly, multiline } = this.props;
     const { value } = this.state;
+    const {
+      readOnly, multiline, style, rows, maxRows,
+    } = this.props;
 
     return (
       <OutlinedInput
@@ -35,6 +43,9 @@ class TextBox extends AbstractField {
         readOnly={readOnly}
         disabled={readOnly}
         value={value || ''}
+        style={style}
+        rows={rows}
+        maxRows={maxRows}
         onChange={this.onChange}
       />
     );
