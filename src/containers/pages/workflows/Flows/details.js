@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import FormGroup from '@material-ui/core/FormGroup';
+import FormGroup from '@mui/material/FormGroup';
 import messages from './messages';
 import settings from './settings';
 

@@ -7,10 +7,10 @@
 import React from 'react';
 import moment from 'moment';
 
-import Avatar from '@material-ui/core/Avatar';
-import Checkbox from '@material-ui/core/Checkbox';
+import Avatar from '@mui/material/Avatar';
+import Checkbox from '@mui/material/Checkbox';
 
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import EnhancedTable from '../EnhancedTable';
 import AbstractModule from '../AbstractModule';
 import { request } from '../../base/request';

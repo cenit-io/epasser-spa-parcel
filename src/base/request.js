@@ -2,10 +2,11 @@ import axios from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
 import { sha256 } from 'js-sha256';
 import session from './session';
+import messaging from './messaging';
 
-export const { baseUrl } = session;
+export const { apiBaseUrl } = session;
 
-axios.defaults.baseURL = baseUrl;
+axios.defaults.baseURL = apiBaseUrl;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
 
@@ -93,6 +94,25 @@ export function signRequest(method, path, data) {
   requestData.hmac = sha256.hmac.update(secret, msg).hex();
 
   return requestData;
+}
+
+export function authWithAuthCode(authCode) {
+  const options = {
+    url: 'get_access_token',
+    method: 'POST',
+    data: { code: authCode },
+  };
+
+  messaging.emitMessage('notify', 'waitFortAuthToken');
+  messaging.emitMessage('start', null, 'waiting');
+
+  request(options).then((account) => {
+    messaging.emitMessage('setSessionAccount', account);
+  }).catch((error) => {
+    messaging.emitMessage('notify', error);
+  }).finally(() => {
+    messaging.emitMessage('release', null, 'waiting');
+  });
 }
 
 /* eslint no-param-reassign: ["error", { "props": false }] */

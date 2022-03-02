@@ -4,22 +4,24 @@ const emitter = new EventEmitter();
 
 /* eslint no-param-reassign: ["off"] */
 class Messaging {
+  getEventType(messageId, senderId) {
+    return `${senderId || 'Global'}/${messageId}`;
+  }
+
   addMessagingListener(messageId, callBack, senderId) {
-    messageId = `${senderId || 'Global'}/${messageId}`;
+    const eventType = this.getEventType(messageId, senderId);
 
-    const subscription = emitter.addListener(messageId, callBack);
-
-    return subscription;
+    return emitter.addListener(eventType, callBack);
   }
 
   emitMessage(messageId, data, senderId, timeout) {
     messageId = `${senderId || 'Global'}/${messageId}`;
     data = data instanceof Array ? data : [data];
 
-    if (timeout !== undefined) {
-      setTimeout(() => emitter.emit(messageId, ...data), timeout);
-    } else {
+    if (timeout === false) {
       emitter.emit(messageId, ...data);
+    } else {
+      setTimeout(() => emitter.emit(messageId, ...data), timeout || 0);
     }
   }
 

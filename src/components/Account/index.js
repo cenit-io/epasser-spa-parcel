@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
@@ -15,13 +15,13 @@ import styles from './styles.jss';
 import session from '../../base/session';
 
 import AbstractComponent from '../AbstractComponent';
-import Popover from '@material-ui/core/Popover';
+import Popover from '@mui/material/Popover';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
 
 import { TenantIcon, UserIcon, EmailIcon } from '../Icons';
 

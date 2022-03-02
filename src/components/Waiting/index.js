@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { CircularProgress, Backdrop } from '@material-ui/core';
+import { withStyles } from '@mui/styles';
+import { CircularProgress, Backdrop } from '@mui/material';
 import styles from './styles.jss';
 import AbstractComponent from '../AbstractComponent';
 

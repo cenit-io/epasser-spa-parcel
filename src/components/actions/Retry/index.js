@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 import { RetryIcon } from '../../Icons';
 import messages from './messages';

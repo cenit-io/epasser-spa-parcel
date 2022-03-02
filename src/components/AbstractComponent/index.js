@@ -52,6 +52,16 @@ export default class AbstractComponent extends React.Component {
     return subscription;
   }
 
+  setMessagingListener = (messageId, callBack, senderId) => {
+    const eventType = messaging.getEventType(messageId, senderId || this.moduleId);
+
+    this._subscriptions.forEach((subscription) => {
+      if (subscription.eventType === eventType) messaging.delMessagingListener(subscription);
+    });
+
+    return this.addMessagingListener(messageId, callBack, senderId);
+  }
+
   emitMessage = (messageId, data, senderId, timeout) => {
     messaging.emitMessage(messageId, data, senderId || this.moduleId, timeout);
   }

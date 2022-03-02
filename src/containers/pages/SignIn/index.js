@@ -12,14 +12,14 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectReducer, injectSaga } from 'redux-injectors';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
 import moment from 'moment';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import styles from './styles.jss';
 import makeSelectSignIn from './selectors';
 import reducer from './reducer';
@@ -42,7 +42,7 @@ export class SignIn extends AbstractPage {
 
   onGotoCenitIOSignInPage = () => {
     const redirectUri = window.location.href.replace(/\?.*$/, '');
-    window.location.href = `${session.baseUrl}/sign_in?redirect_uri=${redirectUri}`;
+    window.location.href = `${session.apiBaseUrl}/sign_in?redirect_uri=${redirectUri}`;
   }
 
   render() {

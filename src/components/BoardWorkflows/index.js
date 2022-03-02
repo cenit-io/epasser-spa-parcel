@@ -4,7 +4,7 @@
  *
  */
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
 import messages from './messages';
 import styles from '../BoardModules/styles.jss';

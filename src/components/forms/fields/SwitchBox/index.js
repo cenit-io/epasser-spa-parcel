@@ -7,10 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
-import Switch from '@material-ui/core/Switch';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Switch from '@mui/material/Switch';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import styles from './styles.jss';
 
 import AbstractField from '../AbstractField';

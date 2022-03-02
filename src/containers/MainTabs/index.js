@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
+import { withStyles } from '@mui/styles';
+import Tabs from '@mui/material/Tabs';
 import { requireModuleInstance, requireModuleComponent } from '../../base/modules';
 
 import styles from './styles.jss';

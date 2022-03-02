@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 import Icon from '@material-ui/icons/Refresh';
 import messages from './messages';

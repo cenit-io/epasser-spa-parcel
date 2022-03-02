@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon from '@mui/material/SvgIcon';
 
 import HomeIcon from '@material-ui/icons/Home';
 import OrdersIcon from '@material-ui/icons/ShoppingCart';

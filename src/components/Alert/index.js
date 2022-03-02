@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MuiAlert from '@material-ui/lab/Alert';
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 export default class Alert extends React.Component {

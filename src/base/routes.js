@@ -1,13 +1,13 @@
 /* eslint import/no-named-as-default: ["off"] */
+import React from 'react';
+
 import NotFound from '../containers/pages/NotFound';
-import SignIn from '../containers/pages/SignIn/loadable';
 import Main from '../containers/pages/Main/loadable';
 
 const routes = [
-  { path: '/', component: Main },
-  { path: '/sign/in', component: SignIn },
+  { path: '/', element: <Main /> },
 
-  { path: '*', component: NotFound },
+  { path: '*', element: <NotFound /> },
 ];
 
 export default routes;

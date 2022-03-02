@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Toolbar from '@material-ui/core/Toolbar';
+import Toolbar from '@mui/material/Toolbar';
 import AbstractComponent from '../AbstractComponent';
 import session from '../../base/session';
 import messages from './messages';

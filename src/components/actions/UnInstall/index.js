@@ -6,9 +6,9 @@
 
 import React from 'react';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import { UnInstallIcon } from '../../Icons';
 
 import messages from './messages';

@@ -3,7 +3,7 @@
  * Styles
  *
  */
-import { alpha } from '@material-ui/core/styles';
+import { alpha } from '@mui/styles';
 import baseStyles from '../AbstractModule/styles.jss';
 
 const styles = (theme) => ({

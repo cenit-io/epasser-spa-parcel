@@ -13,9 +13,9 @@ import { request } from '../../base/request';
 import messages from './messages';
 
 import AbstractModule from '../AbstractModule';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 
 import { SaveIcon, ResetIcon } from '../Icons';
 

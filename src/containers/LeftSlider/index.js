@@ -7,10 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
-import Toolbar from '@material-ui/core/Toolbar';
-import Drawer from '@material-ui/core/Drawer';
+import Toolbar from '@mui/material/Toolbar';
+import Drawer from '@mui/material/Drawer';
 import styles from './styles.jss';
 import messages from './messages';
 

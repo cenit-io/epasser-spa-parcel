@@ -9,10 +9,12 @@ class Session {
     return !!this.currentAccount;
   }
 
-  get baseUrl() {
-    const baseUrl = process.env.eCAPI_BASE_URL || 'https://cenit.io/app/ecapi-v1';
+  get apiBaseUrl() {
+    return process.env.eCAPI_BASE_URL || 'https://server.cenit.io/app/ecapi-v1';
+  }
 
-    return baseUrl;
+  get serverBaseUrl() {
+    return process.env.SERVER_BASE_URL || 'https://server.cenit.io';
   }
 
   get(key, defaultValue) {
@@ -27,6 +29,14 @@ class Session {
     } catch (e) {
       window.sessionStorage.clear();
     }
+  }
+
+  del(key) {
+    window.sessionStorage.removeItem(key);
+  }
+
+  clear() {
+    window.sessionStorage.clear();
   }
 }
 

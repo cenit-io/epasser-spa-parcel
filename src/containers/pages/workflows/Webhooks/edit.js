@@ -4,7 +4,7 @@
  *
  */
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 
 import styles from '../../../../components/AbstractPageDetails/styles.jss';
 import Details from './details';

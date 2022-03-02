@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 import { signRequest, toQueryParams } from '../../../../base/request';
 
@@ -86,7 +86,7 @@ export class List extends AbstractPageList {
     const data = signRequest('GET', path, { redirect_uri: appUri });
     const qs = toQueryParams(data);
 
-    window.location.href = `${session.baseUrl}/${path}?${qs}`;
+    window.location.href = `${session.apiBaseUrl}/${path}?${qs}`;
   }
 
   onConfirmedUnAuthorize = (value, items) => {
