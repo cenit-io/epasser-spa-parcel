@@ -11,7 +11,7 @@ const styles = (theme) => ({
   },
 
   tabsBar: {
-    minHeight: 40,
+    minHeight: 45,
     width: '100%',
   },
 

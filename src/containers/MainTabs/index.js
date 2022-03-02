@@ -17,7 +17,7 @@ import Divider from '../../components/Divider';
 import Loading from '../../components/Loading';
 import TabButton from '../../components/TabButton';
 
-import HomeMain from '../pages/integrations/Home';
+import HomeMain from '../pages/Home';
 
 class MainTabs extends AbstractComponent {
   static propTypes = {

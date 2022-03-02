@@ -25,6 +25,10 @@ export default class AbstractModule extends AbstractPage {
     return <FormattedMessage {...this.messages.confirmDeleteMsg} />;
   }
 
+  get confirmToggleStateMsg() {
+    return <FormattedMessage {...this.messages.confirmToggleStateMsg} />;
+  }
+
   get confirmOpenTasksModuleMsg() {
     return <FormattedMessage {...this.messages.confirmOpenTasksModuleMsg} />;
   }
@@ -44,9 +48,7 @@ export default class AbstractModule extends AbstractPage {
   }
 
   parseRequestIdentifiers(items) {
-    const data = {};
-    data[this.attrIds] = items.map((item) => item.id);
-    return data;
+    return { item_ids: items.map((item) => item.id) };
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -98,7 +100,24 @@ export default class AbstractModule extends AbstractPage {
     this.request({
       url: this.apiPath,
       method: 'DELETE',
-      data: { data: this.parseRequestIdentifiers(items) },
+      data: this.parseRequestIdentifiers(items),
+    }).then((response) => {
+      this.emitMessage('reload', response);
+    });
+  }
+
+  onToggleState = (e, items) => {
+    const data = [this.confirmToggleStateMsg, (value) => this.onConfirmedToggleState(value, items)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedToggleState = (value, items) => {
+    if (!value) return;
+
+    this.request({
+      url: `${this.apiPath}/toggle`,
+      method: 'POST',
+      data: this.parseRequestIdentifiers(items),
     }).then((response) => {
       this.emitMessage('reload', response);
     });

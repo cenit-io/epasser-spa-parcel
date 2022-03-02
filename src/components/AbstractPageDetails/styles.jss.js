@@ -36,7 +36,7 @@ const styles = (theme) => ({
     borderStyle: 'ridge',
     borderWidth: 1,
     marginBottom: theme.spacing(2),
-    width: `calc(100% - 2px)`,
+    width: 'calc(100% - 2px)',
 
     '& > legend': {
       textAlign: 'center',

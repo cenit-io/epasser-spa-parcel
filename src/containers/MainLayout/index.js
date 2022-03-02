@@ -21,7 +21,7 @@ import LeftSlider from '../LeftSlider';
 import SearchByTerm from '../../components/SearchByTerm';
 import Account from '../../components/Account';
 import ConfirmDialog from '../../components/ConfirmDialog';
-import Home from '../pages/integrations/Home';
+import Home from '../pages/Home';
 
 class MainLayout extends AbstractComponent {
   static propTypes = {

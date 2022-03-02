@@ -6,18 +6,19 @@
 
 const styles = (theme) => ({
 
-  drawer: (props) => ({
+  root: (props) => ({
     width: props.size,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     display: props.open ? 'block' : 'none',
+    zIndex: theme.zIndex.appBar - 1,
   }),
 
-  drawerPaper: (props) => ({
+  drawer: (props) => ({
     width: props.size,
   }),
 
-  drawerContainer: {
+  container: {
     overflow: 'auto',
   },
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HomeMain from '../containers/pages/integrations/Home';
+import HomeMain from '../containers/pages/Home';
 
 import AvailableIntegrationsList from '../containers/pages/integrations/AvailableIntegrations';
 

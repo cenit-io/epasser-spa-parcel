@@ -10,16 +10,17 @@ import moment from 'moment';
 import Avatar from '@mui/material/Avatar';
 import Checkbox from '@mui/material/Checkbox';
 
-import Chip from '@mui/material/Chip';
+import { deepmerge } from '@mui/utils';
+import { request } from '../../base/request';
+
 import EnhancedTable from '../EnhancedTable';
 import AbstractModule from '../AbstractModule';
-import { request } from '../../base/request';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPageList extends AbstractModule {
   constructor(props) {
     super(props);
-    this.addMessagingListener('startLoadItems', this.onStartLoadItems);
+    this.setMessagingListener('startLoadItems', this.onStartLoadItems);
   }
 
   get columns() {
@@ -28,6 +29,14 @@ export default class AbstractPageList extends AbstractModule {
       this.columnDateTime('created_at'),
       this.columnDateTime('updated_at'),
     ];
+  }
+
+  get multiSelect() {
+    return this.constructor.multiSelect !== false;
+  }
+
+  get baseParams() {
+    return {};
   }
 
   columnAvatar(id) {
@@ -42,38 +51,38 @@ export default class AbstractPageList extends AbstractModule {
     };
   }
 
-  boolFormat = (value, row, column) => <Checkbox checked={value} size="small" readOnly disableRipple />
+  columnNamespace() {
+    return { id: 'namespace', width: 175, format: this.namespaceFormat };
+  }
 
-  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD HH:MM:SS')
+  boolFormat = (value, row, column) => <Checkbox checked={value} size="small" disabled />
+
+  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD hh:mm:ss')
 
   avatarFormat = (value, row, column) => <Avatar src={value} className={this.props.classes.smallAvatar} />
 
-  integrationFormat = (value, row, column) => {
-    const { classes } = this.props;
-    const integration = value;
-
-    return (
-      <Chip
-        variant="outlined" color="primary" key={integration.id}
-        avatar={<Avatar src={integration.icon} className={classes.smallAvatar} />}
-        label={`${integration.name} of ${integration.channel_title}`}
-      />
-    );
-  }
+  servicesFormat = (value, row) => (`${value.filter((s) => s.active).length}/${value.length}`);
 
   renderContent() {
-    return <EnhancedTable columns={this.columns} moduleId={this.moduleId} messages={this.messages} />;
+    return (
+      <EnhancedTable
+        columns={this.columns}
+        moduleId={this.moduleId}
+        messages={this.messages}
+        multiSelect={this.multiSelect}
+        limit={this.limit}
+      />
+    );
   }
 
   onStartLoadItems = (limit, offset, term) => {
     this.lockActions();
 
+    const params = deepmerge(this.baseParams, { limit, offset, term });
     const options = {
       url: this.apiPath,
       method: 'GET',
-      params: {
-        limit, offset, term,
-      },
+      params,
     };
 
     request(options).then((response) => {

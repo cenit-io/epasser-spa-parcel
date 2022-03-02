@@ -16,7 +16,7 @@ import messages from './messages';
 
 import AbstractComponent from '../../components/AbstractComponent';
 import SubMenuModules from '../../components/SubMenuModules';
-import Home from '../pages/integrations/Home';
+import Home from '../pages/Home';
 import AvailableIntegrations from '../pages/integrations/AvailableIntegrations';
 import ConnectedIntegrations from '../pages/integrations/ConnectedIntegrations';
 import Orders from '../pages/logistics/Orders';

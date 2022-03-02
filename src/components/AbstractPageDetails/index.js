@@ -8,14 +8,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 import { request } from '../../base/request';
 
 import messages from './messages';
 
 import AbstractModule from '../AbstractModule';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 
 import { SaveIcon, ResetIcon } from '../Icons';
 

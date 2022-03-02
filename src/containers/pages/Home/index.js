@@ -7,15 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-import { HomeIcon } from '../../../../components/Icons';
+import { HomeIcon } from '../../../components/Icons';
 
 import styles from './styles.jss';
 import messages from './messages';
-import AbstractPage from '../../../../components/AbstractPage';
+import AbstractPage from '../../../components/AbstractPage';
 
-import BoardIntegrations from '../../../../components/BoardIntegrations';
-import BoardLogistics from '../../../../components/BoardLogistics';
-import BoardWorkflows from '../../../../components/BoardWorkflows';
+import BoardIntegrations from '../../../components/BoardIntegrations';
+import BoardLogistics from '../../../components/BoardLogistics';
+import BoardWorkflows from '../../../components/BoardWorkflows';
 
 export class Home extends AbstractPage {
   static propTypes = {

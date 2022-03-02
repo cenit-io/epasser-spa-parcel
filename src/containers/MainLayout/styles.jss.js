@@ -17,7 +17,7 @@ const styles = (theme) => ({
   },
 
   appBar: {
-    // zIndex: theme.zIndex.drawer + 1,
+    // zIndex: theme.zIndex.appBar + 1,
     boxShadow: `0 0 5px 0 ${alpha(theme.palette.primary.main, 0.8)}`,
   },
 
@@ -36,6 +36,11 @@ const styles = (theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     marginTop: 50,
+  },
+
+  logo: {
+    width: 160,
+    height: 44,
   },
 });
 
