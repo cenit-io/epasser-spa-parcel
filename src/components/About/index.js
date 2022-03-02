@@ -30,7 +30,7 @@ class About extends React.Component {
     return (
       <Card className={classes.root}>
         <CardHeader title={<FormattedMessage {...messages.title} />} subheader={moment().toDate().toDateString()} />
-        <CardMedia className={classes.logo} component="img" image="/images/logo-passer-gb.png" title="ePasser" />
+        <CardMedia className={classes.logo} component="img" image="/images/logo-gb.png" title="ePasser" />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             <FormattedMessage {...messages.content} />

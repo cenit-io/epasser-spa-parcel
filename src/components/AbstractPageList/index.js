@@ -13,6 +13,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { deepmerge } from '@mui/utils';
 import { request } from '../../base/request';
 
+import Chip from '@mui/material/Chip';
 import EnhancedTable from '../EnhancedTable';
 import AbstractModule from '../AbstractModule';
 
@@ -51,17 +52,24 @@ export default class AbstractPageList extends AbstractModule {
     };
   }
 
-  columnNamespace() {
-    return { id: 'namespace', width: 175, format: this.namespaceFormat };
-  }
+  boolFormat = (value, row, column) => <Checkbox checked={value} size="small" readOnly disableRipple />
 
-  boolFormat = (value, row, column) => <Checkbox checked={value} size="small" disabled />
-
-  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD hh:mm:ss')
+  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD HH:MM:SS')
 
   avatarFormat = (value, row, column) => <Avatar src={value} className={this.props.classes.smallAvatar} />
 
-  servicesFormat = (value, row) => (`${value.filter((s) => s.active).length}/${value.length}`);
+  integrationFormat = (value, row, column) => {
+    const { classes } = this.props;
+    const integration = value;
+
+    return (
+      <Chip
+        variant="outlined" color="primary" key={integration.id}
+        avatar={<Avatar src={integration.icon} className={classes.smallAvatar} />}
+        label={`${integration.name} of ${integration.channel_title}`}
+      />
+    );
+  }
 
   renderContent() {
     return (

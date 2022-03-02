@@ -59,9 +59,10 @@ class MainLayout extends AbstractComponent {
             <IconButton color="inherit" className={classes.menuButton} onClick={this.onToggleLeftDrawer} edge="start">
               <MenuIcon />
             </IconButton>
+
             <div className={classes.mainTitle}>
               <ButtonBase onClick={this.onTapHome}>
-                <img src="/images/logo-passer-bw.png" alt="eCAPI-Logo" />
+                <img src="/images/logo-bw.png" alt="eCAPI-Logo" />
               </ButtonBase>
             </div>
             <SearchByTerm />
