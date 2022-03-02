@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     'airbnb',
     'eslint:recommended',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -18,35 +18,39 @@ module.exports = {
   },
   plugins: [
     'react',
-    'import'
+    'import',
   ],
-  'settings': {
+  settings: {
     'import/parser': 'babel-eslint',
     'import/resolve': {
-      'moduleDirectory': ['node_modules', 'src']
-    }
+      moduleDirectory: ['node_modules', 'src'],
+    },
   },
   rules: {
     'import/no-named-as-default': ['off'],
     'react/static-property-placement': ['off', 'property assignment'],
     'react/prefer-stateless-function': ['off'],
-    'react/jsx-filename-extension': ['warn', { 'extensions': ['.js', '.jsx'] }],
-    'react/jsx-max-props-per-line': ['warn', { 'maximum': 3, 'when': 'multiline' }],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-max-props-per-line': ['warn', { maximum: 3, when: 'multiline' }],
     'react/jsx-props-no-spreading': ['off'],
     'object-curly-newline': ['error', {
-      'ObjectExpression': { 'multiline': true, minProperties: 3, consistent: true },
-      'ObjectPattern': { 'multiline': true, minProperties: 5, consistent: true },
+      ObjectExpression: {
+        multiline: true, minProperties: 4, consistent: true,
+      },
+      ObjectPattern: {
+        multiline: true, minProperties: 5, consistent: true,
+      },
     }],
     'max-len': ['error', {
-      'code': 120,
-      'ignoreTrailingComments': true,
-      'ignoreRegExpLiterals': true,
-      'ignoreUrls': true,
-      'ignoreStrings': true
+      code: 120,
+      ignoreTrailingComments: true,
+      ignoreRegExpLiterals: true,
+      ignoreUrls: true,
+      ignoreStrings: true,
     }],
-    'no-unused-expressions': ['error', { 'allowShortCircuit': true }],
-    'no-underscore-dangle': ['error', { 'allowAfterThis': true, allowAfterThisConstructor: true }],
-    'no-unused-vars': ["error", { "args": "none" }],
+    'no-unused-expressions': ['error', { allowShortCircuit: true }],
+    'no-underscore-dangle': ['error', { allowAfterThis: true, allowAfterThisConstructor: true }],
+    'no-unused-vars': ['error', { args: 'none' }],
     'class-methods-use-this': ['off'],
   },
 };

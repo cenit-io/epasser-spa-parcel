@@ -8,20 +8,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Helmet } from 'react-helmet';
-import { Redirect } from 'react-router';
 import { withStyles } from '@mui/styles';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+import ButtonBase from '@mui/material/ButtonBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import AbstractComponent from '../../components/AbstractComponent';
-import session from '../../base/session';
 import styles from './styles.jss';
 import LeftSlider from '../LeftSlider';
 import SearchByTerm from '../../components/SearchByTerm';
 import Account from '../../components/Account';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import Home from '../pages/integrations/Home';
 
 class MainLayout extends AbstractComponent {
   static propTypes = {
@@ -42,15 +42,17 @@ class MainLayout extends AbstractComponent {
     this.setState({ leftSlider: { ...leftSlider, open: !leftSlider.open } });
   }
 
+  onTapHome = () => {
+    this.emitMessage('openModule', Home.id, 'MainTabs');
+  }
+
   render() {
     const { classes, pageTitle, children } = this.props;
     const { leftSlider: { open, size } } = this.state;
 
-    if (!session.isAuthenticate) return <Redirect to="/sign/in" />;
-
     return (
       <div className={classes.root}>
-        <Helmet><title>{`ePasser: ${pageTitle}`}</title></Helmet>
+        <Helmet><title>{`API-Builder: ${pageTitle}`}</title></Helmet>
 
         <AppBar position="fixed" className={classes.appBar} color="primary">
           <Toolbar>
@@ -58,7 +60,9 @@ class MainLayout extends AbstractComponent {
               <MenuIcon />
             </IconButton>
             <div className={classes.mainTitle}>
-              <img src="/images/logo-passer-bw.png" alt="eCAPI-Logo" />
+              <ButtonBase onClick={this.onTapHome}>
+                <img src="/images/logo-passer-bw.png" alt="eCAPI-Logo" />
+              </ButtonBase>
             </div>
             <SearchByTerm />
             <Account />
@@ -67,7 +71,7 @@ class MainLayout extends AbstractComponent {
 
         <LeftSlider open={open} size={size} />
         <ConfirmDialog moduleId="main" />
-        <main className={classes.mainContent} style={{ width: `calc(100% - ${size}px)` }}>
+        <main className={classes.mainContent} style={{ width: `calc(100% - ${size})` }}>
           {children}
         </main>
       </div>

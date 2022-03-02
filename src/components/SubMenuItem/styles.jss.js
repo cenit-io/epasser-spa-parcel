@@ -4,7 +4,7 @@
  *
  */
 
-import { alpha } from '@mui/styles';
+import { alpha } from '@mui/material/styles';
 
 const styles = (theme) => ({
   root: {

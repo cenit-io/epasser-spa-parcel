@@ -106,8 +106,8 @@ export function authWithAuthCode(authCode) {
   messaging.emitMessage('notify', 'waitFortAuthToken');
   messaging.emitMessage('start', null, 'waiting');
 
-  request(options).then((account) => {
-    messaging.emitMessage('setSessionAccount', account);
+  request(options).then((response) => {
+    messaging.emitMessage('setSessionAccount', response.data);
   }).catch((error) => {
     messaging.emitMessage('notify', error);
   }).finally(() => {
