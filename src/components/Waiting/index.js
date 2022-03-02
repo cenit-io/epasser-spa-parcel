@@ -7,7 +7,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-import { CircularProgress, Backdrop } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from '@mui/material/Backdrop';
+
 import styles from './styles.jss';
 import AbstractComponent from '../AbstractComponent';
 

@@ -31,16 +31,22 @@ class EnhancedTable extends AbstractComponent {
     columns: PropTypes.instanceOf(Object).isRequired,
     moduleId: PropTypes.string.isRequired,
     formatValue: PropTypes.func,
+    multiSelect: PropTypes.bool,
+    limit: PropTypes.number,
   }
 
-  static defaultProps = { formatValue: null };
+  static defaultProps = {
+    formatValue: null,
+    multiSelect: true,
+    limit: 10,
+  };
 
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = false;
     this.state.items = [];
     this.state.offset = 0;
-    this.state.limit = 10;
+    this.state.limit = props.limit || 10;
     this.state.total = 0;
     this.state.searchTerm = props.searchTerm || '';
     this.selectionItems = {};
@@ -73,7 +79,7 @@ class EnhancedTable extends AbstractComponent {
   }
 
   renderRows() {
-    const { columns, moduleId } = this.props;
+    const { columns, moduleId, multiSelect } = this.props;
     const { items, alreadyLoaded } = this.state;
 
     if (!alreadyLoaded) return this.loadItems();
@@ -82,9 +88,10 @@ class EnhancedTable extends AbstractComponent {
     return items.map((item, idx) => (
       <EnhancedRow
         moduleId={moduleId}
+        multiSelect={multiSelect}
         row={item} columns={columns}
-        itemId={item.id || idx}
-        key={item.id || idx}
+        itemId={item.id || String(idx)}
+        key={item.id || String(idx)}
         onChangeItemSelection={this.onChangeItemSelection}
       />
     ));
@@ -93,8 +100,7 @@ class EnhancedTable extends AbstractComponent {
   render() {
     const { total, limit, offset } = this.state;
     const {
-      classes, columns, moduleId, className,
-      messages: pMessages,
+      classes, columns, moduleId, className, multiSelect, messages: pMessages,
     } = this.props;
 
     return (
@@ -102,7 +108,10 @@ class EnhancedTable extends AbstractComponent {
         <TableContainer className={classes.container}>
           <Table className={classes.table} size="small">
             <EnhancedHead
-              columns={columns} messages={pMessages} moduleId={moduleId}
+              columns={columns}
+              messages={pMessages}
+              moduleId={moduleId}
+              multiSelect={multiSelect}
               // order={order}
               // orderBy={orderBy}
               onChangeSelectAll={this.onChangeSelectAll}
@@ -181,6 +190,10 @@ class EnhancedTable extends AbstractComponent {
 
   onChangeItemSelection = (isSelected, itemId, row) => {
     if (isSelected) {
+      if (!this.props.multiSelect) {
+        this.emitMessage('SelectById', [itemId]);
+        this.selectionItems = {};
+      }
       this.selectionItems[itemId] = row;
     } else {
       delete this.selectionItems[itemId];

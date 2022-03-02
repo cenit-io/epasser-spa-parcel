@@ -11,6 +11,7 @@ import { withStyles } from '@mui/styles';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
 import AbstractComponent from '../../AbstractComponent';
 import styles from '../styles.jss';
 
@@ -18,18 +19,20 @@ class EnhancedRow extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
+    multiSelect: PropTypes.bool.isRequired,
     row: PropTypes.instanceOf(Object).isRequired,
-    padding: PropTypes.string,
     itemId: PropTypes.string.isRequired,
+    padding: PropTypes.string,
     onChangeItemSelection: PropTypes.func.isRequired,
   }
 
-  static defaultProps = { padding: 'normal' };
+  static defaultProps = { padding: 'normal', multiSelect: true };
 
   constructor(props) {
     super(props);
     this.state.isSelected = false;
     this.addMessagingListener('changeSelectAll', this.onChangeSelection);
+    this.addMessagingListener('SelectById', this.onSelectById);
   }
 
   formatValue = (row, column) => {
@@ -53,6 +56,15 @@ class EnhancedRow extends AbstractComponent {
     ));
   }
 
+  renderSelectionComponent() {
+    const { multiSelect } = this.props;
+    const { isSelected } = this.state;
+
+    if (multiSelect) return <Checkbox checked={isSelected} onChange={this.onChangeSelection} />;
+
+    return <Radio name="itemId" checked={isSelected} onChange={this.onChangeSelection} />;
+  }
+
   render() {
     const { classes, row } = this.props;
     const { isSelected } = this.state;
@@ -60,7 +72,7 @@ class EnhancedRow extends AbstractComponent {
     return (
       <TableRow className={classes.row} selected={isSelected} tabIndex={-1}>
         <TableCell className={classes.cell} padding="checkbox">
-          <Checkbox checked={isSelected} onChange={this.onChangeSelection} />
+          {this.renderSelectionComponent()}
         </TableCell>
         {this.renderCell(row)}
       </TableRow>
@@ -69,8 +81,18 @@ class EnhancedRow extends AbstractComponent {
 
   onChangeSelection = (e, value) => {
     const { itemId, row, onChangeItemSelection } = this.props;
+
     this.setState({ isSelected: value });
+
     onChangeItemSelection(value, itemId, row);
+  }
+
+  onSelectById = (pItemId) => {
+    const { itemId } = this.props;
+    const { isSelected } = this.state;
+    const value = (itemId === pItemId);
+
+    if (isSelected !== value) this.onChangeSelection(null, value);
   }
 }
 

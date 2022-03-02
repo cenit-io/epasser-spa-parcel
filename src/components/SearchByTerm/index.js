@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 
 import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import styles from './styles.jss';
 import AbstractComponent from '../AbstractComponent';
 
@@ -33,22 +34,23 @@ class SearchByTerm extends AbstractComponent {
     const searchTerm = this.state[activeModuleId] || '';
 
     return (
-      <div className={classes.search}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
-        </div>
-        <InputBase
-          placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
-          value={searchTerm}
-          onBlur={this.onBlur}
-          onChange={this.onChangeSearchTerm}
-          onKeyPress={this.onKeyPress}
-          classes={{
-            root: classes.searchInputRoot,
-            input: classes.searchInputInput,
-          }}
-        />
-      </div>
+      <TextField
+        className={classes.search}
+        placeholder="Search…"
+        value={searchTerm}
+        onBlur={this.onBlur}
+        onChange={this.onChangeSearchTerm}
+        onKeyPress={this.onKeyPress}
+        InputProps={{
+          className: classes.searchInput,
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon color="action" />
+            </InputAdornment>
+          ),
+        }}
+        variant="outlined"
+      />
     );
   }
 

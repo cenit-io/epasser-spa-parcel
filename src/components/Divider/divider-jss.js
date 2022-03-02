@@ -63,7 +63,7 @@ const styles = (theme) => ({
         ? `1px solid ${theme.palette.grey[700]}`
         : `1px solid ${theme.palette.grey[300]}`,
     color: theme.palette.text.secondary,
-    margin: `${theme.spacing(3)}px ${theme.spacing(0.5)}px`,
+    margin: `${theme.spacing(3)} ${theme.spacing(0.5)}`,
     textAlign: 'center',
     '&:after': {
       content: 'attr(data-content)',

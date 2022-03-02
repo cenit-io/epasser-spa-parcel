@@ -41,7 +41,7 @@ export class Home extends AbstractPage {
     return (
       <div className={classes.root}>
         <BoardModules
-          title={messages.applications}
+          title={messages.integrations}
           modules={[AvailableIntegrations, ConnectedIntegrations]}
         />
         <BoardModules

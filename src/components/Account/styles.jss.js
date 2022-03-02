@@ -23,13 +23,13 @@ const styles = (theme) => ({
           fontStyle: 'italic',
           fontSize: '85%',
         },
-      }
+      },
     },
   },
 
   avatar: {
-    backgroundColor: theme.palette.primary.main
-  }
+    backgroundColor: theme.palette.primary.main,
+  },
 });
 
 export default styles;

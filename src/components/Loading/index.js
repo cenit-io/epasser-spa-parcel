@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgress } from '@mui/material';
 import { withStyles } from '@mui/styles';
+import CircularProgress from '@mui/material/CircularProgress';
 import styles from './styles.jss';
 
 class Loading extends React.Component {

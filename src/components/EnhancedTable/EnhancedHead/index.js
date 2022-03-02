@@ -22,6 +22,7 @@ class EnhancedHead extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     messages: PropTypes.instanceOf(Object).isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
+    multiSelect: PropTypes.bool.isRequired,
     moduleId: PropTypes.string.isRequired,
     padding: PropTypes.string,
     onChangeSelectAll: PropTypes.func.isRequired,
@@ -40,6 +41,14 @@ class EnhancedHead extends AbstractComponent {
     const msg = messages[`field_${column.id}`];
 
     return msg ? <FormattedMessage {...msg} /> : column.id;
+  }
+
+  renderSelectAllCell() {
+    const { classes, moduleId, multiSelect, onChangeSelectAll } = this.props;
+
+    if (multiSelect) return <EnhancedCellSelectAll moduleId={moduleId} onChangeSelectAll={onChangeSelectAll} />;
+
+    return <TableCell className={classes.cell} padding="checkbox">&nbsp;</TableCell>;
   }
 
   renderColumns() {
@@ -66,12 +75,12 @@ class EnhancedHead extends AbstractComponent {
   }
 
   render() {
-    const { classes, columns, moduleId, onChangeSelectAll } = this.props;
+    const { classes, columns } = this.props;
 
     return (
       <TableHead className={classes.head}>
         <TableRow>
-          <EnhancedCellSelectAll moduleId={moduleId} onChangeSelectAll={onChangeSelectAll} />
+          {this.renderSelectAllCell(columns)}
           {this.renderColumns(columns)}
         </TableRow>
       </TableHead>

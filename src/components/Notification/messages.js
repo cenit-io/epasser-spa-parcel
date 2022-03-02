@@ -1,7 +1,7 @@
 /*
- * SignIn Messages
+ * Main Messages
  *
- * This contains all the text for the SignIn container.
+ * This contains all the text for the Main container.
  */
 
 import { defineMessages } from 'react-intl';

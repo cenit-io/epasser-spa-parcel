@@ -9,12 +9,12 @@ import { alpha } from '@mui/material/styles';
 const styles = (theme) => ({
 
   root: {
-    display: 'inline',
     marginRight: theme.spacing(1),
   },
 
   buttonClose: {
     right: -10,
+    top: -3,
     display: 'inline-flex',
     width: '0.7em',
     height: '0.7em',

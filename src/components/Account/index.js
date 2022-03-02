@@ -10,11 +10,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 
-import messages from './messages';
-import styles from './styles.jss';
-import session from '../../base/session';
-
-import AbstractComponent from '../AbstractComponent';
 import Popover from '@mui/material/Popover';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
@@ -22,6 +17,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import AbstractComponent from '../AbstractComponent';
+import session from '../../base/session';
+import styles from './styles.jss';
+import messages from './messages';
 
 import { TenantIcon, UserIcon, EmailIcon } from '../Icons';
 
@@ -36,21 +35,24 @@ class Account extends AbstractComponent {
   }
 
   renderField(title, subtitle, icon) {
-    return <Chip
-      variant="outlined"
-      color="primary"
-      avatar={<Avatar>{icon}</Avatar>}
-      label={
-        <>
-          <Typography variant="subtitle2" color="primary">
-            <FormattedMessage {...subtitle} />:
-          </Typography>
-          <Typography variant="subtitle1" color="secondary">
-            {title}
-          </Typography>
-        </>
-      }
-    />
+    return (
+      <Chip
+        variant="outlined"
+        color="primary"
+        avatar={<Avatar>{icon}</Avatar>}
+        label={(
+          <>
+            <Typography variant="subtitle2" color="primary">
+              <FormattedMessage {...subtitle} />
+              :
+            </Typography>
+            <Typography variant="subtitle1" color="secondary">
+              {title}
+            </Typography>
+          </>
+        )}
+      />
+    );
   }
 
   render() {
@@ -71,9 +73,9 @@ class Account extends AbstractComponent {
           onClose={this.onClose}
         >
           <Box p={2} className={classes.account}>
-            {this.renderField(name, messages.tenant, <TenantIcon />)}
-            {this.renderField(username, messages.username, <UserIcon />)}
+            {this.renderField(username || email, messages.username, <UserIcon />)}
             {this.renderField(email, messages.email, <EmailIcon />)}
+            {this.renderField(name, messages.tenant, <TenantIcon />)}
           </Box>
         </Popover>
       </div>

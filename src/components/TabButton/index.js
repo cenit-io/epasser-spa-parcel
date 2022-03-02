@@ -73,19 +73,17 @@ class TabButton extends React.Component {
     const title = tab.title || tab.messages.title;
 
     return (
-      <div className={classes.root} onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave}>
-        <Button
-          color="primary"
-          variant={active ? 'contained' : 'outlined'}
-          startIcon={<Icon />}
-          onClick={this.onChange}
-        >
-          <div className={classes.content}>
-            <span><FormattedMessage {...title} /></span>
-            {this.renderCloseButton()}
-          </div>
-        </Button>
-      </div>
+      <Button
+        className={classes.root}
+        onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave}
+        color="primary"
+        variant={active ? 'contained' : 'outlined'}
+        startIcon={<Icon />}
+        onClick={this.onChange}
+      >
+        <span><FormattedMessage {...title} /></span>
+        {this.renderCloseButton()}
+      </Button>
     );
   }
 }

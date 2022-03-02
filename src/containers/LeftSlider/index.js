@@ -43,11 +43,11 @@ class LeftSlider extends AbstractComponent {
 
     return (
       <Drawer
-        className={classes.drawer} variant="persistent" open={open}
-        classes={{ paper: classes.drawerPaper }}
+        className={classes.root} variant="persistent" open={open}
+        classes={{ paper: classes.drawer }}
       >
         <Toolbar />
-        <div className={classes.drawerContainer}>
+        <div className={classes.container}>
           <SubMenuModules
             title={messages.integrations}
             onTapItem={this.onTapItem}
