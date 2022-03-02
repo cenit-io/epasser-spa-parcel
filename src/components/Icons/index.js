@@ -7,23 +7,23 @@
 import React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 
-import HomeIcon from '@material-ui/icons/Home';
-import OrdersIcon from '@material-ui/icons/ShoppingCart';
-import StockLocationsIcon from '@material-ui/icons/LocalConvenienceStore';
-import FlowsIcon from '@material-ui/icons/Schedule';
-import TasksIcon from '@material-ui/icons/PermDataSettingOutlined';
-import WebhooksIcon from '@material-ui/icons/NotificationImportant';
-import ConfirmationIcon from '@material-ui/icons/HelpOutline';
-import SaveIcon from '@material-ui/icons/Save';
-import ResetIcon from '@material-ui/icons/RotateLeft';
-import InstallIcon from '@material-ui/icons/GetAppOutlined';
-import UnInstallIcon from '@material-ui/icons/CancelOutlined';
-import StartIcon from '@material-ui/icons/PlayCircleOutlineOutlined';
-import ToggleIcon from '@material-ui/icons/ToggleOffOutlined';
-import RetryIcon from '@material-ui/icons/SlowMotionVideoOutlined';
-import EmailIcon from '@material-ui/icons/EmailOutlined';
-import UserIcon from '@material-ui/icons/AccountCircleOutlined';
-import TenantIcon from '@material-ui/icons/PersonOutlineOutlined';
+import HomeIcon from '@mui/icons-material/Home';
+import OrdersIcon from '@mui/icons-material/ShoppingCart';
+import StockLocationsIcon from '@mui/icons-material/LocalConvenienceStore';
+import FlowsIcon from '@mui/icons-material/Schedule';
+import TasksIcon from '@mui/icons-material/PermDataSettingOutlined';
+import WebhooksIcon from '@mui/icons-material/NotificationImportant';
+import ConfirmationIcon from '@mui/icons-material/HelpOutline';
+import SaveIcon from '@mui/icons-material/Save';
+import ResetIcon from '@mui/icons-material/RotateLeft';
+import InstallIcon from '@mui/icons-material/GetAppOutlined';
+import UnInstallIcon from '@mui/icons-material/CancelOutlined';
+import StartIcon from '@mui/icons-material/PlayCircleOutlineOutlined';
+import ToggleIcon from '@mui/icons-material/ToggleOffOutlined';
+import RetryIcon from '@mui/icons-material/SlowMotionVideoOutlined';
+import EmailIcon from '@mui/icons-material/EmailOutlined';
+import UserIcon from '@mui/icons-material/AccountCircleOutlined';
+import TenantIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 function AvailableIntegrationsIcon(props) {
   return (

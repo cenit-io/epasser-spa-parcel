@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import styles from './styles.jss';
 import AbstractComponent from '../AbstractComponent';

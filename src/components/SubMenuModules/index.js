@@ -16,7 +16,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from './styles.jss';
 import SubMenuItem from '../SubMenuItem';
 

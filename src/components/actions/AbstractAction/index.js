@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import AbstractComponent from '../../AbstractComponent';
 
 export default class AbstractAction extends AbstractComponent {

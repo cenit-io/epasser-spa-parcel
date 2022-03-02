@@ -16,7 +16,7 @@ import session from '../../base/session';
 
 import AbstractComponent from '../AbstractComponent';
 import Popover from '@mui/material/Popover';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

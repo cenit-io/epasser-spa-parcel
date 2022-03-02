@@ -14,7 +14,7 @@ import { withStyles } from '@mui/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import AbstractComponent from '../../components/AbstractComponent';
 import session from '../../base/session';
 import styles from './styles.jss';
