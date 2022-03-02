@@ -13,8 +13,8 @@ class Session {
     return process.env.eCAPI_BASE_URL || 'https://server.cenit.io/app/ecapi-v1';
   }
 
-  get serverBaseUrl() {
-    return process.env.SERVER_BASE_URL || 'https://server.cenit.io';
+  get appBaseUrl() {
+    return window.location.href.replace(/\?.*$/, '').replace(/\/$/, '');
   }
 
   get(key, defaultValue) {
