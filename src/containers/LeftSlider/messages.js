@@ -21,4 +21,8 @@ export default defineMessages({
     id: `${scope}.workflows`,
     defaultMessage: 'Workflows',
   },
+  settings: {
+    id: `${scope}.settings`,
+    defaultMessage: 'Settings',
+  },
 });

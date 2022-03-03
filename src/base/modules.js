@@ -28,6 +28,8 @@ import WebhooksList from '../containers/pages/workflows/Webhooks';
 import WebhooksAdd from '../containers/pages/workflows/Webhooks/add';
 import WebhooksEdit from '../containers/pages/workflows/Webhooks/edit';
 
+import ThemesList from '../containers/pages/settings/Themes';
+
 export function requireModuleComponent(moduleId) {
   // Integrations modules
   if (moduleId === 'Home') return HomeMain;
@@ -58,6 +60,9 @@ export function requireModuleComponent(moduleId) {
   if (moduleId === 'Webhooks') return WebhooksList;
   if (moduleId === 'Webhooks/Add') return WebhooksAdd;
   if (moduleId === 'Webhooks/Edit') return WebhooksEdit;
+
+  // Miscellany modules
+  if (moduleId === 'Themes') return ThemesList;
 
   throw Error(`Invalid module id: ${moduleId}`);
 }
@@ -91,6 +96,9 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Webhooks') return <WebhooksList />;
   if (moduleId === 'Webhooks/Add') return <WebhooksAdd />;
   if (moduleId === 'Webhooks/Edit') return <WebhooksEdit {...props} />;
+
+  // Miscellany modules
+  if (moduleId === 'Themes') return <ThemesList />;
 
   throw Error(`Invalid module id: ${moduleId}`);
 }
