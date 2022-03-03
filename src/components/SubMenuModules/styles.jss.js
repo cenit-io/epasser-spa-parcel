@@ -10,13 +10,14 @@ const styles = (theme) => ({
 
   subMenu: {
     '& .MuiAccordionSummary-root': {
-      color: theme.palette.text.primary,
       backgroundColor: alpha(theme.palette.primary.main, 0.5),
-      textTransform: 'uppercase',
+
+      '& .MuiTypography-button': {
+        textTransform: 'uppercase !important',
+      }
     },
 
     '& .MuiAccordionDetails-root': {
-      display: 'block',
       padding: 8,
     },
 
