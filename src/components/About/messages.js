@@ -15,6 +15,6 @@ export default defineMessages({
   },
   content: {
     id: `${scope}.content`,
-    defaultMessage: 'Manage multiple sales channels efficiently with ePasser. Integrated with leading e-commerce marketplaces, everything is just one click away.',
+    defaultMessage: 'Manage multiple management systems efficiently with ePasser. Integrated with leading eCommerce marketplaces and management systems, everything is just a click away.',
   },
 });

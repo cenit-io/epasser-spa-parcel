@@ -4,9 +4,6 @@
  *
  */
 
-import React from 'react';
-import SvgIcon from '@mui/material/SvgIcon';
-
 import HomeIcon from '@mui/icons-material/Home';
 import OrdersIcon from '@mui/icons-material/ShoppingCart';
 import StockLocationsIcon from '@mui/icons-material/LocalConvenienceStore';

@@ -11,9 +11,9 @@ import Avatar from '@mui/material/Avatar';
 import Checkbox from '@mui/material/Checkbox';
 
 import { deepmerge } from '@mui/utils';
+import Chip from '@mui/material/Chip';
 import { request } from '../../base/request';
 
-import Chip from '@mui/material/Chip';
 import EnhancedTable from '../EnhancedTable';
 import AbstractModule from '../AbstractModule';
 

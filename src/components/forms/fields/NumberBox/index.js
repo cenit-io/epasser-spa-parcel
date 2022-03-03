@@ -15,7 +15,7 @@ import AbstractField from '../AbstractField';
 
 class IntegerBox extends AbstractField {
   renderField() {
-    const { readOnly, multiline } = this.props;
+    const { readOnly } = this.props;
     const { value } = this.state;
 
     return (

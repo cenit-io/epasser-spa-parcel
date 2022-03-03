@@ -96,6 +96,19 @@ export function signRequest(method, path, data) {
   return requestData;
 }
 
+/* eslint no-param-reassign: ["error", { "props": false }] */
+export function request(options = {}, forceNewInstance = false) {
+  axiosInstance = getAxiosInstance(forceNewInstance);
+
+  options.headers = { 'Content-Type': 'application/json', ...options.headers };
+
+  return axiosInstance(options)
+    .then((response) => response.data)
+    .catch((err) => {
+      throw Error(err.response ? err.response.data.message : err.message);
+    });
+}
+
 export function authWithAuthCode(authCode) {
   const options = {
     url: 'get_access_token',
@@ -113,17 +126,4 @@ export function authWithAuthCode(authCode) {
   }).finally(() => {
     messaging.emitMessage('release', null, 'waiting');
   });
-}
-
-/* eslint no-param-reassign: ["error", { "props": false }] */
-export function request(options = {}, forceNewInstance = false) {
-  axiosInstance = getAxiosInstance(forceNewInstance);
-
-  options.headers = { 'Content-Type': 'application/json', ...options.headers };
-
-  return axiosInstance(options)
-    .then((response) => response.data)
-    .catch((err) => {
-      throw Error(err.response ? err.response.data.message : err.message);
-    });
 }

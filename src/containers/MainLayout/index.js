@@ -56,7 +56,13 @@ class MainLayout extends AbstractComponent {
 
         <AppBar position="fixed" className={classes.appBar} color="primary">
           <Toolbar>
-            <IconButton color="inherit" className={classes.menuButton} onClick={this.onToggleLeftDrawer} edge="start">
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              className={classes.menuButton}
+              onClick={this.onToggleLeftDrawer}
+            >
               <MenuIcon />
             </IconButton>
 

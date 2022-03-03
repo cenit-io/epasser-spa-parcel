@@ -14,7 +14,7 @@ const styles = (theme) => ({
 
       '& .MuiTypography-button': {
         textTransform: 'uppercase !important',
-      }
+      },
     },
 
     '& .MuiAccordionDetails-root': {

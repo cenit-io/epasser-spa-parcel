@@ -58,7 +58,7 @@ class Account extends AbstractComponent {
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
-    const { name, is_ready: isReady, deactivation, user: { name: username, email } } = session.currentAccount;
+    const { name, user: { name: username, email } } = session.currentAccount;
 
     return (
       <div className={classes.root}>

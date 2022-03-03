@@ -14,15 +14,15 @@ import messages from './messages';
 import AbstractPage from '../../../components/AbstractPage';
 
 import BoardModules from '../../../components/BoardModules';
-import AvailableIntegrations from "../integrations/AvailableIntegrations";
-import ConnectedIntegrations from "../integrations/ConnectedIntegrations";
-import Orders from "../logistics/Orders";
-import Products from "../logistics/Products";
-import StockLocations from "../logistics/StockLocations";
-import StockItems from "../logistics/StockItems";
-import Flows from "../workflows/Flows";
-import Webhooks from "../workflows/Webhooks";
-import Tasks from "../workflows/Tasks";
+import AvailableIntegrations from '../integrations/AvailableIntegrations';
+import ConnectedIntegrations from '../integrations/ConnectedIntegrations';
+import Orders from '../logistics/Orders';
+import Products from '../logistics/Products';
+import StockLocations from '../logistics/StockLocations';
+import StockItems from '../logistics/StockItems';
+import Flows from '../workflows/Flows';
+import Webhooks from '../workflows/Webhooks';
+import Tasks from '../workflows/Tasks';
 
 export class Home extends AbstractPage {
   static propTypes = {

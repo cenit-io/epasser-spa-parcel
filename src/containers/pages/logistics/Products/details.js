@@ -33,7 +33,7 @@ export default class Details extends AbstractPageDetails {
 
   get form() {
     const { classes } = this.props;
-    const { item: { name, price, description, package: pk = {} }, } = this.state;
+    const { item: { name, price, description, package: pk = {} } } = this.state;
 
     return (
       <FormGroup>
@@ -60,7 +60,7 @@ export default class Details extends AbstractPageDetails {
               name="description"
               value={description}
               moduleId={this.moduleId}
-              multiline={true}
+              multiline
               className={classes.col6}
               label={<FormattedMessage {...messages.field_description} />}
               onChange={this.onChange}
@@ -108,7 +108,7 @@ export default class Details extends AbstractPageDetails {
             <TextBox
               name="content"
               value={pk.content}
-              multiline={true}
+              multiline
               moduleId={this.moduleId}
               className={classes.col4}
               label={<FormattedMessage {...messages.field_content} />}
