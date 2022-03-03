@@ -8,9 +8,9 @@ const styles = (theme) => ({
 
   root: {
     position: 'absolute',
-    left: 'calc(50% - 270px)',
+    left: 'calc(50% - 300px)',
     top: 'calc(50% - 120px)',
-    width: 540,
+    width: 600,
     height: 200,
     textAlign: 'center',
     backgroundColor: theme.palette.grey[100],

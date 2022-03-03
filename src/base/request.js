@@ -127,3 +127,9 @@ export function authWithAuthCode(authCode) {
     messaging.emitMessage('release', null, 'waiting');
   });
 }
+
+export function parseRequestItemsIDs(items, attrIds) {
+  const data = {};
+  data[attrIds] = items.map((item) => item.id);
+  return { data: data };
+}
