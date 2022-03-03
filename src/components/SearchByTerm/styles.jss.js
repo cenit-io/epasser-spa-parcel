@@ -19,8 +19,12 @@ const styles = (theme) => ({
 
     '& .MuiInputBase-input': {
       padding: theme.spacing(2 / 3, 2 / 3, 2 / 3, 0),
-      color: theme.palette.text.primary,
+      color: theme.palette.primary.contrastText,
     },
+
+    '& .MuiSvgIcon-root': {
+      fill: theme.palette.primary.contrastText,
+    }
   },
 
   searchIcon: {

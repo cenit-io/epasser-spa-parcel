@@ -45,7 +45,7 @@ class SearchByTerm extends AbstractComponent {
           className: classes.searchInput,
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon color="action" />
+              <SearchIcon />
             </InputAdornment>
           ),
         }}

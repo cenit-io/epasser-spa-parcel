@@ -53,7 +53,7 @@ class BoardModules extends AbstractComponent {
           <CardHeader title={this.renderTitle()} />
           <Divider />
           <CardContent>
-            <List>
+            <List component="div">
               {modules.map((el) => this.renderSubMenuItem(el))}
             </List>
           </CardContent>

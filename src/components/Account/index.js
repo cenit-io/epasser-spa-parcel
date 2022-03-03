@@ -62,7 +62,7 @@ class Account extends AbstractComponent {
 
     return (
       <div className={classes.root}>
-        <IconButton color="inherit" onClick={this.onOpen}>
+        <IconButton color="inherit" onClick={this.onOpen} aria-label="account">
           <AccountCircle />
         </IconButton>
         <Popover

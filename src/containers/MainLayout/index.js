@@ -68,7 +68,7 @@ class MainLayout extends AbstractComponent {
 
             <div className={classes.mainTitle}>
               <ButtonBase onClick={this.onTapHome}>
-                <img src="/images/logo-bw.png" alt="eCAPI-Logo" />
+                <img src="/images/logo-bw.png" alt="eCAPI-Logo" width={160} height={44} />
               </ButtonBase>
             </div>
             <SearchByTerm />

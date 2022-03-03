@@ -100,7 +100,8 @@ class MainTabs extends AbstractComponent {
     return (
       <div className={classes.root}>
         <Tabs
-          className={classes.tabsBar} value={activeTab}
+          className={classes.tabsBar}
+          value={activeTab}
           variant="scrollable"
           indicatorColor="primary"
           textColor="primary"

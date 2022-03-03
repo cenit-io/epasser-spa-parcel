@@ -74,12 +74,14 @@ class TabButton extends React.Component {
 
     return (
       <Button
+        role='tab'
         className={classes.root}
-        onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave}
         color="primary"
         variant={active ? 'contained' : 'outlined'}
         startIcon={<Icon />}
         onClick={this.onChange}
+        onMouseMove={this.onMouseMove}
+        onMouseLeave={this.onMouseLeave}
       >
         <span><FormattedMessage {...title} /></span>
         {this.renderCloseButton()}

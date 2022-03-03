@@ -47,7 +47,7 @@ class SubMenuModules extends React.Component {
           <Typography variant="button"><FormattedMessage {...title} /></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <List>
+          <List component="div">
             {modules.map((el) => this.renderSubMenuItem(el))}
           </List>
         </AccordionDetails>
