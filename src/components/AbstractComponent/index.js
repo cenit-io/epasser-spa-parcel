@@ -6,6 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { v4 as uuid } from 'uuid';
+
 import messaging from '../../base/messaging';
 
 export default class AbstractComponent extends React.Component {
@@ -27,11 +30,8 @@ export default class AbstractComponent extends React.Component {
 
     if (this._componentId) return this._componentId;
     if (propId) return propId;
-    if (this.constructor.id) return this.constructor.id;
 
-    if (this.constructor._instancesCount === undefined) this.constructor._instancesCount = 1;
-    this._componentId = `${this.constructor.name}-${this.constructor._instancesCount}`;
-    this.constructor._instancesCount += 1;
+    this._componentId = this.constructor.id || uuid();
 
     return this._componentId;
   }

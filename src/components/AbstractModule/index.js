@@ -5,7 +5,10 @@
  */
 
 import React from 'react';
+
 import { FormattedMessage } from 'react-intl';
+import { v4 as uuid } from 'uuid';
+
 import AbstractPage from '../AbstractPage';
 import Notification from '../Notification';
 
@@ -14,7 +17,9 @@ import { request } from '../../base/request';
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractModule extends AbstractPage {
   get moduleId() {
-    return this.constructor.id || this.constructor.name;
+    if (this._moduleId) return this._moduleId;
+    this._moduleId = this.constructor.id || uuid();
+    return this._moduleId;
   }
 
   get attrIds() {

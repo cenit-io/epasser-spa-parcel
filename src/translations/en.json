@@ -1,13 +1,23 @@
 {
   "components": {
+    "About": {
+      "content": "Manage multiple management systems efficiently with ePasser. Integrated with leading eCommerce marketplaces and management systems, everything is just a click away.",
+      "title": "Automate multichannel selling"
+    },
     "AbstractModule": {
       "confirmDeleteMsg": "Please confirm whether you really want to delete the selected items?",
       "confirmOpenTasksModuleMsg": "The processed action has generated a background task.{br}Please confirm whether you want to go to the task management module?",
+      "confirmToggleStateMsg": "Please confirm whether you really want to toggle the state of the selected items?",
       "field_created_at": "Created at",
+      "field_description": "Description",
       "field_icon": "-",
       "field_id": "Id",
       "field_integration": "Integration",
+      "field_method": "Method",
       "field_name": "Name",
+      "field_namespace": "App. Namespace",
+      "field_path": "Path",
+      "field_title": "Title",
       "field_updated_at": "Updated at"
     },
     "AbstractPageDetails": {
@@ -20,17 +30,8 @@
       "tenant": "Tenant",
       "username": "Username"
     },
-    "BoardIntegrations": {
-      "title": "Integrations"
-    },
-    "BoardLogistics": {
-      "title": "Logistics"
-    },
     "BoardModules": {
       "title": "Integrations"
-    },
-    "BoardWorkflows": {
-      "title": "Workflows"
     },
     "ConfirmDialog": {
       "accept": "Accept",
@@ -148,20 +149,19 @@
   },
   "containers": {
     "Home": {
-      "title": "Home"
+      "integrations": "Integrations",
+      "logistics": "Logistics",
+      "title": "Home",
+      "workflows": "Workflows"
     },
     "LeftSlider": {
       "integrations": "Integrations",
       "logistics": "Logistics",
+      "settings": "Settings",
       "workflows": "Workflows"
     },
     "NotFound": {
       "msg": "Sorry, the page you requested was not found!"
-    },
-    "SignIn": {
-      "content": "Manage multiple sales channels efficiently with ePasser. Integrated with leading e-commerce marketplaces, everything is just one click away.",
-      "title": "Automate multichannel selling",
-      "waitFortAuthToken": "Waiting for Authorization"
     },
     "pages": {
       "AvailableIntegrations": {
@@ -209,9 +209,17 @@
         "title": "Orders"
       },
       "Products": {
+        "basic": "Basic",
+        "field_content": "Content",
+        "field_description": "Description",
+        "field_height": "Height",
         "field_integrations": "Integrations",
+        "field_length": "Length",
         "field_price": "Price",
         "field_variants": "Variants",
+        "field_weight": "Weight",
+        "field_width": "Width",
+        "package": "Package",
         "title": "Products"
       },
       "StockItems": {
@@ -235,6 +243,10 @@
         "field_progress": "Progress",
         "field_status": "Status",
         "title": "Tasks"
+      },
+      "Themes": {
+        "field_palette": "Palette",
+        "title": "Themes"
       },
       "Webhooks": {
         "field_address": "Address",
