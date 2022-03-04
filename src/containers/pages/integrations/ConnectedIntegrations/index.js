@@ -95,7 +95,7 @@ export class List extends AbstractPageList {
     this.request({
       url: `${this.apiPath}/authorize`,
       method: 'DELETE',
-      data: { data: this.parseRequestIdentifiers(items) },
+      data: this.parseRequestIdentifiers(items),
     }).then(() => {
       this.notify({ message: 'successfulUnAuthorize', severity: 'success' });
       this.onReload();

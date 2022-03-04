@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import AbstractPage from '../AbstractPage';
 import Notification from '../Notification';
 
-import { request, parseRequestItemsIDs } from '../../base/request';
+import { request } from '../../base/request';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractModule extends AbstractPage {
@@ -48,7 +48,7 @@ export default class AbstractModule extends AbstractPage {
   }
 
   parseRequestIdentifiers(items) {
-    return parseRequestItemsIDs(items, this.attrIds)
+    return { item_ids: items.map((item) => item.id) };
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */

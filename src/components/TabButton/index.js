@@ -74,7 +74,7 @@ class TabButton extends React.Component {
 
     return (
       <Button
-        role='tab'
+        role="tab"
         className={classes.root}
         color="primary"
         variant={active ? 'contained' : 'outlined'}

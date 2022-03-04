@@ -52,7 +52,7 @@ class MainLayout extends AbstractComponent {
 
     return (
       <div className={classes.root}>
-        <Helmet><title>{`API-Builder: ${pageTitle}`}</title></Helmet>
+        <Helmet><title>{`Passer: ${pageTitle}`}</title></Helmet>
 
         <AppBar position="fixed" className={classes.appBar} color="primary">
           <Toolbar>
@@ -65,10 +65,9 @@ class MainLayout extends AbstractComponent {
             >
               <MenuIcon />
             </IconButton>
-
             <div className={classes.mainTitle}>
               <ButtonBase onClick={this.onTapHome}>
-                <img src="/images/logo-bw.png" alt="eCAPI-Logo" width={160} height={44} />
+                <img className={classes.logo} src="/images/logo-bw.png" alt="logo" />
               </ButtonBase>
             </div>
             <SearchByTerm />
