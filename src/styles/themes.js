@@ -60,7 +60,7 @@ const themes = {
     },
   },
 
-  omna: {
+  ecapi: {
     palette: {
       primary: {
         light: '#E1F5FE',
