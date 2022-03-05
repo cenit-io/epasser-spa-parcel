@@ -43,6 +43,7 @@ const styles = (theme) => ({
     borderStyle: 'solid',
     borderWidth: 1,
     zIndex: 1,
+    padding: '6px 16px',
 
     '&.MuiTableCell-head': {
       position: 'sticky',
@@ -50,6 +51,10 @@ const styles = (theme) => ({
       zIndex: 2,
       top: 0,
     },
+
+    '& .MuiCheckbox-root': {
+      padding: theme.spacing(0.5)
+    }
   },
 
   pagination: {
