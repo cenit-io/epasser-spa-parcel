@@ -53,8 +53,8 @@ const styles = (theme) => ({
     },
 
     '& .MuiCheckbox-root': {
-      padding: theme.spacing(0.5)
-    }
+      padding: theme.spacing(0.5),
+    },
   },
 
   pagination: {
