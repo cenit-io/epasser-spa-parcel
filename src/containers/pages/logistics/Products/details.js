@@ -61,6 +61,7 @@ export default class Details extends AbstractPageDetails {
               value={description}
               moduleId={this.moduleId}
               multiline
+              rows={5}
               className={classes.col6}
               label={<FormattedMessage {...messages.field_description} />}
               onChange={this.onChange}
