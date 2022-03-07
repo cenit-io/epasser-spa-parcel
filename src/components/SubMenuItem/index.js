@@ -8,13 +8,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
-import { ManagementIcon } from '../../components/Icons';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import Avatar from '@mui/material/Avatar';
+
+import { ManagementIcon } from '../Icons';
+
 import styles from './styles.jss';
 import history from '../../base/history';
 
