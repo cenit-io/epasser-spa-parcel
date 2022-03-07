@@ -16,10 +16,10 @@ import AbstractPage from '../../../components/AbstractPage';
 import BoardModules from '../../../components/BoardModules';
 import AvailableIntegrations from '../integrations/AvailableIntegrations';
 import ConnectedIntegrations from '../integrations/ConnectedIntegrations';
-import Orders from '../logistics/Orders';
-import Products from '../logistics/Products';
-import StockLocations from '../logistics/StockLocations';
-import StockItems from '../logistics/StockItems';
+import Orders from '../ecommerces/Orders';
+import Products from '../ecommerces/Products';
+import StockLocations from '../ecommerces/StockLocations';
+import StockItems from '../ecommerces/StockItems';
 import Flows from '../workflows/Flows';
 import Webhooks from '../workflows/Webhooks';
 import Tasks from '../workflows/Tasks';
@@ -41,14 +41,22 @@ export class Home extends AbstractPage {
     return (
       <div className={classes.root}>
         <BoardModules
+          width="24%" height={350}
           title={messages.integrations}
           modules={[AvailableIntegrations, ConnectedIntegrations]}
         />
         <BoardModules
-          title={messages.logistics}
+          width="24%" height={350}
+          title={messages.eCommerces}
           modules={[Orders, Products, StockLocations, StockItems]}
         />
         <BoardModules
+          width="24%" height={350}
+          title={messages.documents}
+          modules={['Contacts']}
+        />
+        <BoardModules
+          width="24%" height={350}
           title={messages.workflows}
           modules={[Flows, Webhooks, Tasks]}
         />

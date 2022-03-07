@@ -106,7 +106,7 @@
       "label": "Topic"
     },
     "SubMenuModules": {
-      "title": "Logistics"
+      "title": "eCommerces"
     },
     "actions": {
       "Add": {
@@ -150,13 +150,13 @@
   "containers": {
     "Home": {
       "integrations": "Integrations",
-      "logistics": "Logistics",
+      "eCommerces": "eCommerces",
       "title": "Home",
       "workflows": "Workflows"
     },
     "LeftSlider": {
       "integrations": "Integrations",
-      "logistics": "Logistics",
+      "eCommerces": "eCommerces",
       "settings": "Settings",
       "workflows": "Workflows"
     },

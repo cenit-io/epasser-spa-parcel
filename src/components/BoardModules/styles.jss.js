@@ -6,15 +6,15 @@
 
 const styles = (theme) => ({
 
-  root: {
-    minWidth: 350,
+  root: (props) => ({
+    width: props.width,
     padding: '10px 10px 0 0',
     display: 'table-cell',
-  },
+  }),
 
-  card: {
-    height: 350,
-  },
+  card: (props) => ({
+    height: props.height,
+  }),
 
 });
 

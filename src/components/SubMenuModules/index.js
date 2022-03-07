@@ -24,7 +24,7 @@ class SubMenuModules extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     onTapItem: PropTypes.func.isRequired,
-    modules: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
+    modules: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Object)])).isRequired,
     title: PropTypes.instanceOf(Object).isRequired,
   }
 
@@ -34,8 +34,16 @@ class SubMenuModules extends React.Component {
   }
 
   renderSubMenuItem(item) {
-    const title = item.title || item.messages.title;
-    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />;
+    if (typeof item === 'string') return <SubMenuItem key={item} title={item} />;
+
+    return (
+      <SubMenuItem
+        key={item.id}
+        icon={item.icon}
+        title={item.title || item.messages.title}
+        onClick={this.onTapItem(item)}
+      />
+    );
   }
 
   render() {

@@ -8,15 +8,15 @@ import ConnectedIntegrationsList from '../containers/pages/integrations/Connecte
 import ConnectedIntegrationsAdd from '../containers/pages/integrations/ConnectedIntegrations/add';
 import ConnectedIntegrationsEdit from '../containers/pages/integrations/ConnectedIntegrations/edit';
 
-import OrdersList from '../containers/pages/logistics/Orders';
+import OrdersList from '../containers/pages/ecommerces/Orders';
 
-import ProductsList from '../containers/pages/logistics/Products';
-import ProductsAdd from '../containers/pages/logistics/Products/add';
-import ProductsEdit from '../containers/pages/logistics/Products/edit';
+import ProductsList from '../containers/pages/ecommerces/Products';
+import ProductsAdd from '../containers/pages/ecommerces/Products/add';
+import ProductsEdit from '../containers/pages/ecommerces/Products/edit';
 
-import StockItemsList from '../containers/pages/logistics/StockItems';
+import StockItemsList from '../containers/pages/ecommerces/StockItems';
 
-import StockLocationsList from '../containers/pages/logistics/StockLocations';
+import StockLocationsList from '../containers/pages/ecommerces/StockLocations';
 
 import FlowsList from '../containers/pages/workflows/Flows';
 import FlowsAdd from '../containers/pages/workflows/Flows/add';
@@ -41,7 +41,7 @@ export function requireModuleComponent(moduleId) {
   if (moduleId === 'ConnectedIntegrations/Add') return ConnectedIntegrationsAdd;
   if (moduleId === 'ConnectedIntegrations/Edit') return ConnectedIntegrationsEdit;
 
-  // Logistics modules
+  // eCommerces modules
   if (moduleId === 'Orders') return OrdersList;
 
   if (moduleId === 'Products') return ProductsList;
@@ -78,7 +78,7 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'ConnectedIntegrations/Add') return <ConnectedIntegrationsAdd />;
   if (moduleId === 'ConnectedIntegrations/Edit') return <ConnectedIntegrationsEdit {...props} />;
 
-  // Logistics modules
+  // eCommerces modules
   if (moduleId === 'Orders') return <OrdersList />;
 
   if (moduleId === 'Products') return <ProductsList />;

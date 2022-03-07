@@ -25,9 +25,16 @@ import SubMenuItem from '../SubMenuItem';
 class BoardModules extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    modules: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
+    modules: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Object)])).isRequired,
     title: PropTypes.instanceOf(Object).isRequired,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }
+
+  static defaultProps = {
+    width: 'auto',
+    height: 'auto',
+  };
 
   renderTitle() {
     const { title } = this.props;
@@ -40,8 +47,16 @@ class BoardModules extends AbstractComponent {
   }
 
   renderSubMenuItem(item) {
-    const title = item.title || item.messages.title;
-    return <SubMenuItem key={item.id} icon={item.icon} title={title} onClick={this.onTapItem(item)} />;
+    if (typeof item === 'string') return <SubMenuItem key={item} title={item} />;
+
+    return (
+      <SubMenuItem
+        key={item.id}
+        icon={item.icon}
+        title={item.title || item.messages.title}
+        onClick={this.onTapItem(item)}
+      />
+    );
   }
 
   render() {

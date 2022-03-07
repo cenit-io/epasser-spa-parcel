@@ -13,9 +13,13 @@ export default defineMessages({
     id: `${scope}.integrations`,
     defaultMessage: 'Integrations',
   },
-  logistics: {
-    id: `${scope}.logistics`,
-    defaultMessage: 'Logistics',
+  eCommerces: {
+    id: `${scope}.eCommerces`,
+    defaultMessage: 'eCommerces',
+  },
+  documents: {
+    id: `${scope}.documents`,
+    defaultMessage: 'Documents',
   },
   workflows: {
     id: `${scope}.workflows`,

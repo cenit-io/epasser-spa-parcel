@@ -11,6 +11,6 @@ export const scope = 'components.SubMenuModules';
 export default defineMessages({
   title: {
     id: `${scope}.title`,
-    defaultMessage: 'Logistics',
+    defaultMessage: 'eCommerces',
   },
 });

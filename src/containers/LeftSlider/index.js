@@ -16,13 +16,12 @@ import messages from './messages';
 
 import AbstractComponent from '../../components/AbstractComponent';
 import SubMenuModules from '../../components/SubMenuModules';
-import Home from '../pages/Home';
 import AvailableIntegrations from '../pages/integrations/AvailableIntegrations';
 import ConnectedIntegrations from '../pages/integrations/ConnectedIntegrations';
-import Orders from '../pages/logistics/Orders';
-import Products from '../pages/logistics/Products';
-import StockLocations from '../pages/logistics/StockLocations';
-import StockItems from '../pages/logistics/StockItems';
+import Orders from '../pages/ecommerces/Orders';
+import Products from '../pages/ecommerces/Products';
+import StockLocations from '../pages/ecommerces/StockLocations';
+import StockItems from '../pages/ecommerces/StockItems';
 import Flows from '../pages/workflows/Flows';
 import Tasks from '../pages/workflows/Tasks';
 import Webhooks from '../pages/workflows/Webhooks';
@@ -52,13 +51,19 @@ class LeftSlider extends AbstractComponent {
           <SubMenuModules
             title={messages.integrations}
             onTapItem={this.onTapItem}
-            modules={[Home, AvailableIntegrations, ConnectedIntegrations]}
+            modules={[AvailableIntegrations, ConnectedIntegrations]}
           />
 
           <SubMenuModules
-            title={messages.logistics}
+            title={messages.eCommerces}
             onTapItem={this.onTapItem}
             modules={[Orders, Products, StockLocations, StockItems]}
+          />
+
+          <SubMenuModules
+            title={messages.documents}
+            onTapItem={this.onTapItem}
+            modules={['Contacts']}
           />
 
           <SubMenuModules

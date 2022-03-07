@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
+import { ManagementIcon } from '../../components/Icons';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -21,7 +22,7 @@ class SubMenuItem extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     title: PropTypes.oneOfType([PropTypes.instanceOf(Object), PropTypes.string]).isRequired,
-    icon: PropTypes.elementType.isRequired,
+    icon: PropTypes.elementType,
     path: PropTypes.string,
     info: PropTypes.string,
     onClick: PropTypes.func,
@@ -31,12 +32,13 @@ class SubMenuItem extends React.Component {
     path: null,
     info: null,
     onClick: null,
+    icon: ManagementIcon,
   }
 
   get title() {
     const { title } = this.props;
 
-    if (title instanceof String) return title;
+    if (typeof title === 'string') return title;
 
     return <FormattedMessage {...title} />;
   }
@@ -64,10 +66,10 @@ class SubMenuItem extends React.Component {
   }
 
   render() {
-    const { classes, icon: Icon } = this.props;
+    const { classes, icon: Icon, onClick } = this.props;
 
     return (
-      <ListItem className={classes.root} button onClick={this.onClick}>
+      <ListItem className={classes.root} button onClick={this.onClick} disabled={!onClick}>
         <ListItemAvatar>
           <Avatar className={classes.logo}><Icon color="primary" /></Avatar>
         </ListItemAvatar>
