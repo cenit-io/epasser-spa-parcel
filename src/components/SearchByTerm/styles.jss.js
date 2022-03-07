@@ -24,7 +24,7 @@ const styles = (theme) => ({
 
     '& .MuiSvgIcon-root': {
       fill: theme.palette.primary.contrastText,
-    }
+    },
   },
 
   searchIcon: {
