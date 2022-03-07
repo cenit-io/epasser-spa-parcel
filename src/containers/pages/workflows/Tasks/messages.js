@@ -14,6 +14,18 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Tasks',
   },
+  taskDetails: {
+    id: `${scope}.taskDetails`,
+    defaultMessage: 'Task details',
+  },
+  executions: {
+    id: `${scope}.executions`,
+    defaultMessage: 'Executions',
+  },
+  notifications: {
+    id: `${scope}.notifications`,
+    defaultMessage: 'Notifications',
+  },
   field_status: {
     id: `${scope}.field_status`,
     defaultMessage: 'Status',

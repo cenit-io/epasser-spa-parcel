@@ -23,6 +23,7 @@ import FlowsAdd from '../containers/pages/workflows/Flows/add';
 import FlowsEdit from '../containers/pages/workflows/Flows/edit';
 
 import TasksList from '../containers/pages/workflows/Tasks';
+import TasksShow from '../containers/pages/workflows/Tasks/show';
 
 import WebhooksList from '../containers/pages/workflows/Webhooks';
 import WebhooksAdd from '../containers/pages/workflows/Webhooks/add';
@@ -56,6 +57,7 @@ export function requireModuleComponent(moduleId) {
   if (moduleId === 'Flows/Edit') return FlowsEdit;
 
   if (moduleId === 'Tasks') return TasksList;
+  if (moduleId === 'Tasks/Show') return TasksShow;
 
   if (moduleId === 'Webhooks') return WebhooksList;
   if (moduleId === 'Webhooks/Add') return WebhooksAdd;
@@ -92,6 +94,7 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Flows/Edit') return <FlowsEdit {...props} />;
 
   if (moduleId === 'Tasks') return <TasksList />;
+  if (moduleId === 'Tasks/Show') return <TasksShow {...props} />;
 
   if (moduleId === 'Webhooks') return <WebhooksList />;
   if (moduleId === 'Webhooks/Add') return <WebhooksAdd />;

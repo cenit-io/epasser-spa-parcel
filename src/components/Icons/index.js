@@ -22,6 +22,7 @@ import EmailIcon from '@mui/icons-material/EmailOutlined';
 import UserIcon from '@mui/icons-material/AccountCircleOutlined';
 import TenantIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ThemesIcon from '@mui/icons-material/ColorLensOutlined';
+import ShowIcon from '@mui/icons-material/PreviewOutlined';
 
 import AvailableIntegrationsIcon from './AvailableIntegrationsIcon';
 import ConnectedIntegrationsIcon from './ConnectedIntegrationsIcon';
@@ -34,5 +35,5 @@ export {
   HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
   SaveIcon, ResetIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon, StartIcon,
-  ToggleIcon, RetryIcon, EmailIcon, UserIcon, TenantIcon, ThemesIcon,
+  ToggleIcon, RetryIcon, EmailIcon, UserIcon, TenantIcon, ThemesIcon, ShowIcon,
 };

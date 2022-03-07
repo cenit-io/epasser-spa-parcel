@@ -17,6 +17,7 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from '../../../../components/actions/Reload';
 import DeleteAction from '../../../../components/actions/Delete';
 import RetryAction from '../../../../components/actions/Retry';
+import ShowAction from '../../../../components/actions/Show';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -51,27 +52,14 @@ export class List extends AbstractPageList {
     return (
       <>
         <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+        <ShowAction moduleId={this.moduleId} onClick={this.onShow} />
         <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
         <RetryAction moduleId={this.moduleId} onClick={this.onRetry} />
       </>
     );
   }
 
-  statusFormat = (value) => {
-    let color = 'inherit';
-
-    if (/pending/i.test(value)) {
-      color = 'inherit';
-    } else if (/running|paused/i.test(value)) {
-      color = 'secondary';
-    } else if (/failed|broked/i.test(value)) {
-      color = 'error';
-    } else if (/completed/i.test(value)) {
-      color = 'primary';
-    }
-
-    return <Typography color={color} variant="body2">{value}</Typography>;
-  }
+  statusFormat = (value) => <Typography sx={{ color: settings.color(value) }} variant="body2">{value}</Typography>
 
   onRetry = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmRetryMsg} />;
@@ -91,6 +79,11 @@ export class List extends AbstractPageList {
       this.notify({ message: 'successfulOperation', severity: 'success' });
       this.onReload();
     });
+  }
+
+  onShow = (e, item) => {
+    const moduleId = `${this.moduleId.split('/')[0]}/Show`;
+    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
   }
 }
 
