@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from '@mui/styles';
 
@@ -14,6 +15,10 @@ import styles from './styles.jss';
 import AbstractField from '../AbstractField';
 
 class IntegerBox extends AbstractField {
+  static propTypes = {
+    value: PropTypes.number,
+  }
+
   renderField() {
     const { readOnly } = this.props;
     const { value } = this.state;
