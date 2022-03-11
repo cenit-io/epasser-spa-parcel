@@ -4,8 +4,6 @@
  *
  */
 
-import { alpha } from '@mui/material/styles';
-
 const styles = (theme) => ({
   root: {
     '& .MuiListItem-gutters': {
@@ -21,14 +19,12 @@ const styles = (theme) => ({
 
   logo: {
     color: theme.palette.text.primary,
-    backgroundColor: alpha(theme.palette.primary.main, 0.5),
+    backgroundColor: theme.palette.primary.light,
   },
 
   info: {
     color: theme.palette.text.secondary,
-    backgroundColor: alpha(theme.palette.secondary.main, 0.5),
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+    backgroundColor: theme.palette.primary.light,
     fontSize: '90%',
   },
 });

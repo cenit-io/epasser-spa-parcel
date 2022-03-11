@@ -1,5 +1,3 @@
-import { alpha } from '@mui/material/styles';
-
 /**
  *
  * Styles
@@ -33,8 +31,12 @@ const styles = (theme) => ({
   },
 
   row: {
-    '&.Mui-selected, &.Mui-selected:hover': {
-      backgroundColor: alpha(theme.palette.secondary.main, 0.2),
+    '&.Mui-selected': {
+      backgroundColor: theme.palette.secondary.light,
+    },
+
+    '&.Mui-selected:hover': {
+      backgroundColor: theme.palette.primary.light,
     },
   },
 
@@ -47,7 +49,7 @@ const styles = (theme) => ({
 
     '&.MuiTableCell-head': {
       position: 'sticky',
-      backgroundColor: alpha(theme.palette.primary.main, 0.5),
+      backgroundColor: theme.palette.primary.light,
       zIndex: 2,
       top: 0,
     },

@@ -3,7 +3,6 @@
  * Styles
  *
  */
-import { alpha } from '@mui/material/styles';
 import baseStyles from '../AbstractModule/styles.jss';
 
 const styles = (theme) => ({
@@ -31,7 +30,7 @@ const styles = (theme) => ({
 
   formSection: {
     color: theme.palette.primary.main,
-    borderColor: alpha(theme.palette.primary.main, 0.5),
+    borderColor: theme.palette.primary.dark,
     borderRadius: theme.shape.borderRadius,
     borderStyle: 'ridge',
     borderWidth: 1,

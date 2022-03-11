@@ -8,7 +8,7 @@ import themes from './themes';
 
 export default function buildTheme(id) {
   const defaultTheme = themes.default;
-  const selectedTheme = themes[id || 'ecapi'] || {};
+  const selectedTheme = themes[id || process.env.THEME || 'default'] || {};
 
   return createTheme(deepmerge(defaultTheme, selectedTheme));
 }

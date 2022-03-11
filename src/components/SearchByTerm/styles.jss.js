@@ -10,25 +10,25 @@ const styles = (theme) => ({
 
   search: {
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.secondary.light, 0.15),
     marginRight: theme.spacing(1),
 
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.secondary.light, 0.25),
     },
 
     '& .MuiInputBase-input': {
       padding: theme.spacing(2 / 3, 2 / 3, 2 / 3, 0),
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.secondary.contrastText,
     },
 
     '& .MuiSvgIcon-root': {
-      fill: theme.palette.primary.contrastText,
+      fill: theme.palette.secondary.contrastText,
     },
   },
 
   searchIcon: {
-    color: theme.palette.common.white,
+    color: theme.palette.secondary.contrastText,
   },
 
 });

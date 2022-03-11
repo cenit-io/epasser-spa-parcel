@@ -4,13 +4,11 @@
  *
  */
 
-import { alpha } from '@mui/material/styles';
-
 const styles = (theme) => ({
 
   subMenu: {
     '& .MuiAccordionSummary-root': {
-      backgroundColor: alpha(theme.palette.primary.main, 0.5),
+      backgroundColor: theme.palette.primary.light,
 
       '& .MuiTypography-button': {
         textTransform: 'uppercase !important',
