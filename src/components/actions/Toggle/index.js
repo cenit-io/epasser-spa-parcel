@@ -22,8 +22,12 @@ class Toggle extends AbstractWithSelectionAction {
   }
 
   get disabled() {
-    const { locked, selectionItems: items } = this.state;
-    return locked || items.length !== 1;
+    let { disabled } = this.props;
+    const { locked, selectionItems } = this.state;
+
+    if (typeof disabled === 'function') disabled = disabled(selectionItems);
+
+    return locked || selectionItems.length === 0 || disabled;
   }
 
   onClick = (e) => {

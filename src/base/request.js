@@ -131,5 +131,5 @@ export function authWithAuthCode(authCode) {
 export function parseRequestItemsIDs(items, attrIds) {
   const data = {};
   data[attrIds] = items.map((item) => item.id);
-  return { data: data };
+  return { data };
 }

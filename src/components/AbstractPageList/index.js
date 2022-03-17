@@ -11,7 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Checkbox from '@mui/material/Checkbox';
 
 import { deepmerge } from '@mui/utils';
-import Chip from '@mui/material/Chip';
 import { request } from '../../base/request';
 
 import EnhancedTable from '../EnhancedTable';
@@ -54,22 +53,9 @@ export default class AbstractPageList extends AbstractModule {
 
   boolFormat = (value, row, column) => <Checkbox checked={value} size="small" readOnly disableRipple />
 
-  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD HH:MM:SS')
+  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD hh:mm:ss')
 
   avatarFormat = (value, row, column) => <Avatar src={value} className={this.props.classes.smallAvatar} />
-
-  integrationFormat = (value, row, column) => {
-    const { classes } = this.props;
-    const integration = value;
-
-    return (
-      <Chip
-        variant="outlined" color="primary" key={integration.id}
-        avatar={<Avatar src={integration.icon} className={classes.smallAvatar} />}
-        label={`${integration.name} of ${integration.channel_title}`}
-      />
-    );
-  }
 
   renderContent() {
     return (

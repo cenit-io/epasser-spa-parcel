@@ -37,8 +37,14 @@ class EnhancedRow extends AbstractComponent {
 
   formatValue = (row, column) => {
     const value = row[column.id];
+    const { format: Format } = column;
 
-    return (value !== null && typeof column.format === 'function') ? column.format(value, row, column) : value;
+    if (value !== null) {
+      if (typeof Format === 'function') return Format(value, row, column);
+      if (typeof Format === 'object') return <Format value={value} row={row} column={column} />;
+    }
+
+    return value;
   }
 
   renderCell(row) {

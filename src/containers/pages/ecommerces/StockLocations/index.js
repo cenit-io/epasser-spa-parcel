@@ -11,6 +11,7 @@ import { StockLocationsIcon } from '../../../../components/Icons';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
+import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -30,7 +31,7 @@ export class List extends AbstractPageList {
   get columns() {
     return [
       { id: 'name' },
-      { id: 'integration', format: this.integrationFormat },
+      { id: 'integration', format: IntegrationFormat },
       { id: 'country' },
       { id: 'state' },
       { id: 'city' },

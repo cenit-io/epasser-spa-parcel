@@ -18,6 +18,7 @@ import ReloadAction from '../../../../components/actions/Reload';
 import AddAction from '../../../../components/actions/Add';
 import EditAction from '../../../../components/actions/Edit';
 import DeleteAction from '../../../../components/actions/Delete';
+import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -72,7 +73,7 @@ export class List extends AbstractPageList {
   }
 
   integrationsFormat = (value, row, column) => value.map(
-    (integration) => this.integrationFormat(integration, row, column),
+    (integration) => <IntegrationFormat key={integration.id} value={integration} row={row} column={column} />,
   )
 }
 

@@ -20,6 +20,7 @@ import AddAction from '../../../../components/actions/Add';
 import EditAction from '../../../../components/actions/Edit';
 import StartAction from '../../../../components/actions/Start';
 import ToggleAction from '../../../../components/actions/Toggle';
+import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -39,7 +40,7 @@ export class List extends AbstractPageList {
   get columns() {
     return [
       { id: 'type', format: this.typeFormat },
-      { id: 'integration', format: this.integrationFormat },
+      { id: 'integration', format: IntegrationFormat },
       {
         id: 'scheduler', width: 100, align: 'center', format: this.schedulerFormat,
       },

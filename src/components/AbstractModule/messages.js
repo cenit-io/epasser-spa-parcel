@@ -23,6 +23,14 @@ export default defineMessages({
     id: `${scope}.confirmToggleStateMsg`,
     defaultMessage: 'Please confirm whether you really want to toggle the state of the selected items?',
   },
+  active: {
+    id: `${scope}.active`,
+    defaultMessage: 'Active',
+  },
+  disabled: {
+    id: `${scope}.disabled`,
+    defaultMessage: 'Disabled',
+  },
   field_id: {
     id: `${scope}.field_id`,
     defaultMessage: 'Id',
@@ -66,5 +74,13 @@ export default defineMessages({
   field_updated_at: {
     id: `${scope}.field_updated_at`,
     defaultMessage: 'Updated at',
+  },
+  field_value: {
+    id: `${scope}.field_value`,
+    defaultMessage: 'Value',
+  },
+  field_type: {
+    id: `${scope}.field_type`,
+    defaultMessage: 'Type',
   },
 });

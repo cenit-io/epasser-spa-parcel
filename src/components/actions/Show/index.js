@@ -1,20 +1,20 @@
 /**
  *
- * Retry
+ * Show
  *
  */
 
 import React from 'react';
 import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
-import { ShowIcon } from '../../Icons';
+import { ShowIcon as Icon } from '../../Icons';
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 
-class Retry extends AbstractWithSelectionAction {
+class Action extends AbstractWithSelectionAction {
   get icon() {
-    return <ShowIcon />;
+    return <Icon />;
   }
 
   get label() {
@@ -35,4 +35,4 @@ class Retry extends AbstractWithSelectionAction {
   }
 }
 
-export default withStyles(styles)(Retry);
+export default withStyles(styles)(Action);

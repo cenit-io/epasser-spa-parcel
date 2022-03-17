@@ -78,7 +78,7 @@ class TabButton extends React.Component {
         className={classes.root}
         color="primary"
         variant={active ? 'contained' : 'outlined'}
-        startIcon={<Icon />}
+        startIcon={Icon ? <Icon /> : undefined}
         onClick={this.onChange}
         onMouseMove={this.onMouseMove}
         onMouseLeave={this.onMouseLeave}

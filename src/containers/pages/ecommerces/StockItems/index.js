@@ -4,6 +4,7 @@
  *
  */
 
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import { StockItemsIcon } from '../../../../components/Icons';
@@ -11,6 +12,7 @@ import { StockItemsIcon } from '../../../../components/Icons';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
+import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -31,7 +33,7 @@ export class List extends AbstractPageList {
     return [
       { id: 'product', format: this.productFormat },
       { id: 'sku', format: this.skuFormat },
-      { id: 'integration', format: this.integrationFormat2 },
+      { id: 'integration', format: this.integrationFormat },
       { id: 'stock_location', format: this.stockLocationFormat },
       {
         id: 'count_on_hand', width: 170, align: 'right',
@@ -46,7 +48,9 @@ export class List extends AbstractPageList {
 
   stockLocationFormat = (value, row) => row.stock_location.name;
 
-  integrationFormat2 = (value, row, column) => this.integrationFormat(row.stock_location.integration, row, column);
+  integrationFormat = (value, row, column) => (
+    <IntegrationFormat value={row.stock_location.integration} row={row} column={column} />
+  )
 }
 
 export default withStyles(styles)(List);

@@ -7,13 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { OrdersIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
+import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -42,16 +42,10 @@ export class List extends AbstractPageList {
       {
         id: 'status', format: this.statusFormat, align: 'center',
       },
-      { id: 'integration', format: this.integrationFormat },
+      { id: 'integration', format: IntegrationFormat },
       this.columnDateTime('created_date'),
       this.columnDateTime('updated_date'),
     ];
-  }
-
-  avatarFormat = (value, row) => {
-    const { classes } = this.props;
-
-    return <Avatar src={row.integration.icon} variant="rounded" className={classes.smallAvatar} />;
   }
 
   statusFormat = (value) => {

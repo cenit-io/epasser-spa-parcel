@@ -7,7 +7,7 @@
 import React from 'react';
 import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
-import Icon from '@mui/icons-material/List';
+import Icon from '@mui/icons-material/ArrowBackIosOutlined';
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 import AbstractAction from '../AbstractAction';
