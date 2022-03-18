@@ -5,16 +5,13 @@
  */
 
 import React from 'react';
-import moment from 'moment';
-
-import Avatar from '@mui/material/Avatar';
-import Checkbox from '@mui/material/Checkbox';
 
 import { deepmerge } from '@mui/utils';
 import { request } from '../../base/request';
 
 import EnhancedTable from '../EnhancedTable';
 import AbstractModule from '../AbstractModule';
+import columnDateTime from '../columns/dateTime';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPageList extends AbstractModule {
@@ -26,8 +23,8 @@ export default class AbstractPageList extends AbstractModule {
   get columns() {
     return [
       { id: 'id' },
-      this.columnDateTime('created_at'),
-      this.columnDateTime('updated_at'),
+      columnDateTime('created_at'),
+      columnDateTime('updated_at'),
     ];
   }
 
@@ -38,24 +35,6 @@ export default class AbstractPageList extends AbstractModule {
   get baseParams() {
     return {};
   }
-
-  columnAvatar(id) {
-    return {
-      id: id || 'icon', width: 40, label: '', format: this.avatarFormat,
-    };
-  }
-
-  columnDateTime(id) {
-    return {
-      id: id || 'created_at', width: 175, format: this.dateTimeFormat,
-    };
-  }
-
-  boolFormat = (value, row, column) => <Checkbox checked={value} size="small" readOnly disableRipple />
-
-  dateTimeFormat = (value, row, column) => moment(value).format('YYYY-MM-DD hh:mm:ss')
-
-  avatarFormat = (value, row, column) => <Avatar src={value} className={this.props.classes.smallAvatar} />
 
   renderContent() {
     return (

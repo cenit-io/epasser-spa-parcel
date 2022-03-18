@@ -18,6 +18,7 @@ import ReloadAction from '../../../../components/actions/Reload';
 import DeleteAction from '../../../../components/actions/Delete';
 import RetryAction from '../../../../components/actions/Retry';
 import ShowAction from '../../../../components/actions/Show';
+import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -43,8 +44,8 @@ export class List extends AbstractPageList {
         id: 'progress', align: 'center', width: 100,
       },
       { id: 'description' },
-      this.columnDateTime('created_at'),
-      this.columnDateTime('updated_at'),
+      columnDateTime('created_at'),
+      columnDateTime('updated_at'),
     ];
   }
 

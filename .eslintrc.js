@@ -35,10 +35,10 @@ module.exports = {
     'react/jsx-props-no-spreading': ['off'],
     'object-curly-newline': ['error', {
       ObjectExpression: {
-        multiline: true, minProperties: 4, consistent: true,
+        multiline: true, minProperties: 5, consistent: true,
       },
       ObjectPattern: {
-        multiline: true, minProperties: 5, consistent: true,
+        multiline: true, minProperties: 6, consistent: true,
       },
     }],
     'max-len': ['error', {

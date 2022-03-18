@@ -22,6 +22,9 @@ import EditAction from '../../../../components/actions/Edit';
 import DeleteAction from '../../../../components/actions/Delete';
 import AuthorizeAction from '../../../../components/actions/Authorize';
 import UnAuthorizeAction from '../../../../components/actions/UnAuthorize';
+import AvatarFormat from '../../../../components/formats/AvatarFormat';
+import BoolFormat from '../../../../components/formats/BoolFormat';
+import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -40,14 +43,12 @@ export class List extends AbstractPageList {
 
   get columns() {
     return [
-      this.columnAvatar(),
+      { id: 'icon', width: 40, label: '', format: AvatarFormat },
       { id: 'name' },
       { id: 'channel_title' },
-      {
-        id: 'authorized', width: 100, align: 'center', format: this.boolFormat,
-      },
-      this.columnDateTime('created_at'),
-      this.columnDateTime('updated_at'),
+      { id: 'authorized', width: 100, align: 'center', format: BoolFormat },
+      columnDateTime('created_at'),
+      columnDateTime('updated_at'),
     ];
   }
 

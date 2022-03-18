@@ -7,8 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-import Avatar from '@mui/material/Avatar';
-import { ProductsIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import settings from './settings';
@@ -19,6 +17,7 @@ import AddAction from '../../../../components/actions/Add';
 import EditAction from '../../../../components/actions/Edit';
 import DeleteAction from '../../../../components/actions/Delete';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
+import AvatarProductFormat from '../../../../components/formats/AvatarProductFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -37,14 +36,10 @@ export class List extends AbstractPageList {
 
   get columns() {
     return [
-      this.columnAvatar('images'),
+      { id: 'images', width: 40, label: '', format: AvatarProductFormat },
       { id: 'name' },
-      {
-        id: 'price', width: 100, align: 'right',
-      },
-      {
-        id: 'variants', width: 100, align: 'right',
-      },
+      { id: 'price', width: 100, align: 'right' },
+      { id: 'variants', width: 100, align: 'right' },
       { id: 'integrations', format: this.integrationsFormat },
     ];
   }
@@ -57,18 +52,6 @@ export class List extends AbstractPageList {
         <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
         <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
       </>
-    );
-  }
-
-  avatarFormat = (value, row) => {
-    const { classes } = this.props;
-    const image = row.images[0];
-    const defaultImage = image ? null : <ProductsIcon />;
-
-    return (
-      <Avatar src={image} variant="rounded" className={classes.largeAvatar}>
-        {defaultImage}
-      </Avatar>
     );
   }
 

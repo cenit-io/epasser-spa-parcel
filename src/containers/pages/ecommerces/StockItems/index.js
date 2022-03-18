@@ -13,6 +13,7 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
+import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -35,10 +36,8 @@ export class List extends AbstractPageList {
       { id: 'sku', format: this.skuFormat },
       { id: 'integration', format: this.integrationFormat },
       { id: 'stock_location', format: this.stockLocationFormat },
-      {
-        id: 'count_on_hand', width: 170, align: 'right',
-      },
-      this.columnDateTime('updated_at'),
+      { id: 'count_on_hand', width: 170, align: 'right' },
+      columnDateTime('updated_at'),
     ];
   }
 

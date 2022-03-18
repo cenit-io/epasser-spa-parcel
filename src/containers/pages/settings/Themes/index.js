@@ -14,6 +14,7 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import settings from './settings';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
+import PaletteFormat from '../../../../components/formats/PaletteFormat';
 import themes from '../../../../styles/themes';
 
 export class List extends AbstractPageList {
@@ -43,26 +44,12 @@ export class List extends AbstractPageList {
   get columns() {
     return [
       { id: 'title', width: 200 },
-      { id: 'palette', format: this.formatPalette },
+      { id: 'palette', format: PaletteFormat },
     ];
   }
 
   get actions() {
     return false;
-  }
-
-  formatPalette = (value, row) => {
-    const { classes } = this.props;
-
-    return (
-      <Avatar
-        variant="square"
-        sizes="large"
-        alt={row.title}
-        className={classes.screenshot}
-        src={`/images/themes-screenshot/${row.id}.png`}
-      />
-    );
   }
 
   onStartLoadItems = (limit, offset, term) => {

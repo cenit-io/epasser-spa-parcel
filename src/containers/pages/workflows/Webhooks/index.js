@@ -17,6 +17,7 @@ import DeleteAction from '../../../../components/actions/Delete';
 import AddAction from '../../../../components/actions/Add';
 import EditAction from '../../../../components/actions/Edit';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
+import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -38,7 +39,7 @@ export class List extends AbstractPageList {
       { id: 'topic', format: this.topicFormat },
       { id: 'integration', format: IntegrationFormat },
       { id: 'address' },
-      this.columnDateTime('updated_at'),
+      columnDateTime('updated_at'),
     ];
   }
 

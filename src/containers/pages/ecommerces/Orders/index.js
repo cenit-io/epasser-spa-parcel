@@ -13,7 +13,9 @@ import { OrdersIcon } from '../../../../components/Icons';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
+import columnDateTime from '../../../../components/columns/dateTime';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
+import OrderStatusFormat from '../../../../components/formats/OrderStatusFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -33,33 +35,13 @@ export class List extends AbstractPageList {
   get columns() {
     return [
       { id: 'number' },
-      {
-        id: 'total_price', width: 155, align: 'right',
-      },
-      {
-        id: 'total_quantity', width: 155, align: 'right',
-      },
-      {
-        id: 'status', format: this.statusFormat, align: 'center',
-      },
+      { id: 'total_price', width: 155, align: 'right' },
+      { id: 'total_quantity', width: 155, align: 'right' },
+      { id: 'status', format: OrderStatusFormat, align: 'center' },
       { id: 'integration', format: IntegrationFormat },
-      this.columnDateTime('created_date'),
-      this.columnDateTime('updated_date'),
+      columnDateTime('created_at'),
+      columnDateTime('updated_at'),
     ];
-  }
-
-  statusFormat = (value) => {
-    let color = 'inherit';
-
-    if (/pending|confirmed/i.test(value)) {
-      color = 'secondary';
-    } else if (/cancel/i.test(value)) {
-      color = 'error';
-    } else if (/completed|paid/i.test(value)) {
-      color = 'primary';
-    }
-
-    return <Typography color={color} variant="body2">{value}</Typography>;
   }
 }
 

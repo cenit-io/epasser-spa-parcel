@@ -12,6 +12,7 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import messages from './messages';
 import AbstractPageList from '../../../../components/AbstractPageList';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
+import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -37,7 +38,7 @@ export class List extends AbstractPageList {
       { id: 'city' },
       { id: 'zip_code' },
       { id: 'phone' },
-      this.columnDateTime('updated_at'),
+      columnDateTime('updated_at'),
     ];
   }
 
