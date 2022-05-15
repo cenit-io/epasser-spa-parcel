@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { v4 as uuid } from 'uuid';
+import { request } from '../../base/request';
 
 import messaging from '../../base/messaging';
 
@@ -69,6 +70,21 @@ export default class AbstractComponent extends React.Component {
   componentWillUnmount = () => {
     this._subscriptions.forEach((subscription) => messaging.delMessagingListener(subscription));
     this._subscriptions = null;
+  }
+
+  /* eslint no-param-reassign: ["error", { "props": false }] */
+  sendRequest = (options) => {
+    this.startWaiting(0);
+
+    const skipNotify = options.skipNotify === true;
+    delete options.skipNotify;
+
+    return request(options).catch((error) => {
+      if (!skipNotify) this.notify(error);
+      throw error;
+    }).finally(() => {
+      this.releaseWaiting();
+    });
   }
 
   startWaiting(timeout) {

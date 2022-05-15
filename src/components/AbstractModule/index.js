@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
 import AbstractPage from '../AbstractPage';
 import Notification from '../Notification';
 
-import { request } from '../../base/request';
+import { request, parseRequestItemsIDs } from '../../base/request';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractModule extends AbstractPage {
@@ -53,7 +53,7 @@ export default class AbstractModule extends AbstractPage {
   }
 
   parseRequestIdentifiers(items) {
-    return { item_ids: items.map((item) => item.id) };
+    return parseRequestItemsIDs(items, this.attrIds);
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
