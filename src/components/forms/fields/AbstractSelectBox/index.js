@@ -34,8 +34,6 @@ export default class AbstractSelectBox extends AbstractField {
   }
 
   loadItems = () => {
-    this.startWaiting(0);
-
     const options = {
       url: this.apiPath,
       method: 'GET',
