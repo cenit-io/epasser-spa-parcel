@@ -16,7 +16,7 @@ import settings from './settings';
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 import ListAction from '../../../../components/actions/List';
 import TextBox from '../../../../components/forms/fields/TextBox';
-import IntegerBox from '../../../../components/forms/fields/NumberBox';
+import NumberBox from '../../../../components/forms/fields/NumberBox';
 
 export default class Details extends AbstractPageDetails {
   static propTypes = {
@@ -73,7 +73,7 @@ export default class Details extends AbstractPageDetails {
           <legend><FormattedMessage {...messages.package} /></legend>
           <FormGroup row>
             <FormGroup className={classes.col2}>
-              <IntegerBox
+              <NumberBox
                 name="weight"
                 value={pk.weight}
                 moduleId={this.moduleId}
@@ -81,7 +81,7 @@ export default class Details extends AbstractPageDetails {
                 label={<FormattedMessage {...messages.field_weight} />}
                 onChange={this.onChange}
               />
-              <IntegerBox
+              <NumberBox
                 name="height"
                 value={pk.height}
                 moduleId={this.moduleId}
@@ -89,7 +89,7 @@ export default class Details extends AbstractPageDetails {
                 label={<FormattedMessage {...messages.field_height} />}
                 onChange={this.onChange}
               />
-              <IntegerBox
+              <NumberBox
                 name="length"
                 value={pk.length}
                 moduleId={this.moduleId}
@@ -97,7 +97,7 @@ export default class Details extends AbstractPageDetails {
                 label={<FormattedMessage {...messages.field_length} />}
                 onChange={this.onChange}
               />
-              <IntegerBox
+              <NumberBox
                 name="width"
                 value={pk.width}
                 moduleId={this.moduleId}
