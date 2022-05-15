@@ -32,11 +32,11 @@ const styles = (theme) => ({
 
   row: {
     '&.Mui-selected': {
-      backgroundColor: theme.palette.secondary.light,
+      // backgroundColor: theme.palette.secondary.light,
     },
 
     '&.Mui-selected:hover': {
-      backgroundColor: theme.palette.primary.light,
+      // backgroundColor: theme.palette.primary.light,
     },
   },
 

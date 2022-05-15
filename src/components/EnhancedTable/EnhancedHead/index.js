@@ -38,7 +38,7 @@ class EnhancedHead extends AbstractComponent {
     if (column.label !== undefined) return column.label;
 
     const { messages } = this.props;
-    const msg = messages[`field_${column.id}`];
+    const msg = messages[`field_${column.id}`] || messages[column.id];
 
     return msg ? <FormattedMessage {...msg} /> : column.id;
   }

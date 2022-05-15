@@ -40,7 +40,9 @@ class EnhancedRow extends AbstractComponent {
     const { format: Format } = column;
 
     if (Format) {
-      if (Format.prototype.isReactComponent) return <Format value={value} row={row} column={column} />;
+      if ((typeof Format === 'object' && !!Format.render) || (Format.prototype && !!Format.prototype.isReactComponent)) {
+        return <Format value={value} row={row} column={column} />;
+      }
       if (typeof Format === 'function') return Format(value, row, column);
     }
 
