@@ -15,7 +15,7 @@ import AbstractField from '../AbstractField';
 
 class DateBox extends AbstractField {
   renderField() {
-    const { readOnly } = this.props;
+    const { readOnly, required } = this.props;
     const { value } = this.state;
 
     return (
@@ -24,7 +24,9 @@ class DateBox extends AbstractField {
         label={this.label}
         readOnly={readOnly}
         disabled={readOnly}
+        required={required}
         value={value || ''}
+        error={!this.isValid()}
         onChange={this.onChange}
       />
     );

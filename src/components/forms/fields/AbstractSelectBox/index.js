@@ -8,7 +8,6 @@ import React from 'react';
 
 import Select from '@mui/material/Select';
 import CircularProgress from '@mui/material/CircularProgress';
-import { request } from '../../../../base/request';
 
 import AbstractField from '../AbstractField';
 
@@ -42,12 +41,10 @@ export default class AbstractSelectBox extends AbstractField {
       method: 'GET',
     };
 
-    request(options).then((response) => {
+    this.sendRequest(options).then((response) => {
       this.emitMessage('loadItemsSuccessful', response, this.componentId);
     }).catch((error) => {
       this.emitMessage('loadItemsFailed', error, this.componentId);
-    }).finally(() => {
-      this.releaseWaiting();
     });
   }
 
@@ -62,7 +59,7 @@ export default class AbstractSelectBox extends AbstractField {
 
     if (!alreadyLoaded) this.loadItems();
 
-    const { classes } = this.props;
+    const { classes, required } = this.props;
     const { componentId } = this;
     const labelId = `${componentId}-label`;
 
@@ -71,11 +68,12 @@ export default class AbstractSelectBox extends AbstractField {
         id={componentId}
         labelId={labelId}
         label={this.renderLabel()}
-        value={this.parsedValue}
+        value={alreadyLoaded ? this.parsedValue : ''}
         classes={{ select: multiple ? classes.multiSelectBox : classes.selectBox }}
         multiple={multiple}
         readOnly={readOnly}
         disabled={readOnly || !alreadyLoaded}
+        required={required}
         renderValue={multiple ? this.renderMultiValue : null}
         onChange={this.onChange}
       >

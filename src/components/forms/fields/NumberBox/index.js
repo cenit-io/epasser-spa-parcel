@@ -14,13 +14,13 @@ import styles from './styles.jss';
 
 import AbstractField from '../AbstractField';
 
-class IntegerBox extends AbstractField {
+class NumberBox extends AbstractField {
   static propTypes = {
     value: PropTypes.number,
   }
 
   renderField() {
-    const { readOnly } = this.props;
+    const { readOnly, required } = this.props;
     const { value } = this.state;
 
     return (
@@ -29,7 +29,9 @@ class IntegerBox extends AbstractField {
         label={this.label}
         readOnly={readOnly}
         disabled={readOnly}
+        required={required}
         value={value || ''}
+        error={!this.isValid()}
         type="number"
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
         onChange={this.onChange}
@@ -38,4 +40,4 @@ class IntegerBox extends AbstractField {
   }
 }
 
-export default withStyles(styles)(IntegerBox);
+export default withStyles(styles)(NumberBox);

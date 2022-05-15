@@ -18,51 +18,66 @@ export default class AbstractField extends AbstractComponent {
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
     readOnly: PropTypes.bool,
+    required: PropTypes.bool,
     moduleId: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     onError: PropTypes.func,
   }
 
   static defaultProps = {
-    onChange: null, onError: null, className: '', value: '', readOnly: false,
+    onChange: null,
+    onError: null,
+    className: '',
+    value: '',
+    readOnly: false,
+    required: false,
   };
 
   constructor(props) {
     super(props);
     this.state.value = props.value;
 
-    this.addMessagingListener('reset', this.onReset);
+    this.setMessagingListener('reset', this.onReset);
+    this.setMessagingListener(`init:${props.name}`, this.onInit);
   }
 
   get label() {
     return this.props.label;
   }
 
+  isBlack = () => {
+    const { value } = this.state;
+
+    return value === '' || value === null || value === undefined;
+  }
+
+  isValid = () => !(this.props.required && this.isBlack());
+
+  transValue = (value) => value;
+
   renderField() {
     return <TextField value={this.state.value} />;
   }
 
   render() {
-    const { classes, className } = this.props;
+    const { classes, className, required, sx } = this.props;
     const { componentId } = this;
     const labelId = `${componentId}-label`;
     const { label } = this;
 
     return (
-      <FormControl variant="outlined" className={`${classes.root} ${className}`}>
-        <InputLabel id={labelId} variant="outlined" shrink>{label}</InputLabel>
+      <FormControl variant="outlined" sx={sx} className={`${classes.root} ${className}`}>
+        <InputLabel id={labelId} variant="outlined" required={required} shrink>{label}</InputLabel>
         {this.renderField()}
       </FormControl>
     );
   }
 
-  isValid = () => true;
-
-  transValue = (value) => value;
-
   onChange = (e) => this.setState({ value: e.target.value });
 
   onReset = () => this.setState({ value: this.props.value });
+
+  onInit = (value) => this.setState({ value });
 
   componentDidMount = () => this.triggerChange();
 

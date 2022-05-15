@@ -20,6 +20,8 @@ class TextBox extends AbstractField {
     style: PropTypes.instanceOf(Object),
     rows: PropTypes.number,
     maxRows: PropTypes.number,
+    type: PropTypes.string,
+    pattern: PropTypes.instanceOf(RegExp),
   }
 
   static defaultProps = {
@@ -27,12 +29,20 @@ class TextBox extends AbstractField {
     style: null,
     rows: null,
     maxRows: null,
+    pattern: /.*/,
+    type: 'text',
   };
+
+  isValid = () => {
+    const { required, pattern } = this.props;
+
+    return !((required && this.isBlack()) || !pattern.test(this.state.value));
+  }
 
   renderField() {
     const { value } = this.state;
     const {
-      readOnly, multiline, style, rows, maxRows,
+      readOnly, multiline, style, rows, maxRows, required, type,
     } = this.props;
 
     return (
@@ -42,7 +52,10 @@ class TextBox extends AbstractField {
         multiline={multiline}
         readOnly={readOnly}
         disabled={readOnly}
+        required={required}
         value={value || ''}
+        type={type}
+        error={!this.isValid()}
         style={style}
         rows={rows}
         maxRows={maxRows}

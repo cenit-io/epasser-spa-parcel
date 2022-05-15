@@ -44,6 +44,10 @@ const styles = (theme) => ({
     '& legend': {
       maxWidth: 1000,
     },
+
+    '& .MuiInputLabel-asterisk': {
+      color: 'red',
+    },
   }),
 });
 
