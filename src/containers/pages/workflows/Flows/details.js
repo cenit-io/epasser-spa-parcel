@@ -14,6 +14,7 @@ import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
+import CustomSectionForm from '../../../../components/forms/sections/CustomSectionForm';
 import ListAction from '../../../../components/actions/List';
 import SelectBoxFlowType from '../../../../components/forms/fields/SelectBoxFlowType';
 import SelectBoxIntegration from '../../../../components/forms/fields/SelectBoxIntegration';
@@ -66,32 +67,27 @@ export default class Details extends AbstractPageDetails {
     const integrationId = item.integration ? item.integration.id : '';
 
     return (
-      <FormGroup>
-        <fieldset className={classes.formSection}>
-          <legend><FormattedMessage {...messages.title} /></legend>
-          <FormGroup row>
-            <SelectBoxFlowType
-              value={item.type}
-              name="type"
-              moduleId={this.moduleId}
-              className={classes.col3}
-              readOnly={this.isEdit}
-              onChange={this.onChange}
-            />
-            <SelectBoxIntegration
-              value={integrationId}
-              name="integration_id"
-              moduleId={this.moduleId}
-              className={classes.col3}
-              readOnly={this.isEdit}
-              onChange={this.onChange}
-            />
-          </FormGroup>
-        </fieldset>
+      <>
+        <CustomSectionForm title={messages.title}>
+          <SelectBoxFlowType
+            value={item.type}
+            name="type"
+            moduleId={this.moduleId}
+            className={classes.col3}
+            readOnly={this.isEdit}
+            onChange={this.onChange}
+          />
+          <SelectBoxIntegration
+            value={integrationId}
+            name="integration_id"
+            moduleId={this.moduleId}
+            className={classes.col3}
+            readOnly={this.isEdit}
+            onChange={this.onChange}
+          />
+        </CustomSectionForm>
 
-        <fieldset className={classes.formSection}>
-          <legend><FormattedMessage {...messages.field_scheduler} /></legend>
-
+        <CustomSectionForm title={messages.field_scheduler}>
           <FormGroup row>
             <DateBox
               name="scheduler.start_date"
@@ -123,13 +119,12 @@ export default class Details extends AbstractPageDetails {
             {this.renderTimeField(scheduler)}
             <SwitchBox
               name="scheduler.active"
-              value={scheduler.active}
+              value={!!scheduler.active}
               moduleId={this.moduleId}
               className={classes.col2}
               label={<FormattedMessage {...messages.field_active} />}
               onChange={this.onChange}
             />
-
           </FormGroup>
 
           <FormGroup row>
@@ -159,8 +154,8 @@ export default class Details extends AbstractPageDetails {
             />
           </FormGroup>
 
-        </fieldset>
-      </FormGroup>
+        </CustomSectionForm>
+      </>
     );
   }
 

@@ -83,7 +83,7 @@ export class List extends AbstractPageList {
   onConfirmedStart = (value, items) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/start`,
       method: 'POST',
       data: { data: this.parseRequestIdentifiers(items) },
@@ -101,7 +101,7 @@ export class List extends AbstractPageList {
   onConfirmedToggleScheduler = (value, item) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/${item.id}/toggle/scheduler/status`,
       method: 'POST',
     }).then(() => {

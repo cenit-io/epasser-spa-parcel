@@ -71,7 +71,7 @@ export class List extends AbstractPageList {
   onConfirmedRetry = (value, items) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/retry`,
       method: 'PUT',
       data: { data: this.parseRequestIdentifiers(items) },

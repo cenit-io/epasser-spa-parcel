@@ -56,25 +56,6 @@ export default class AbstractModule extends AbstractPage {
     return parseRequestItemsIDs(items, this.attrIds);
   }
 
-  /* eslint no-param-reassign: ["error", { "props": false }] */
-  request = (options) => {
-    this.startWaiting();
-
-    const skipNotify = options.skipNotify === true;
-    const skipOpenTasksModule = options.skipOpenTasksModule === true;
-    delete options.skipNotify;
-    delete options.skipOpenTasksModule;
-
-    return request(options).then((response) => {
-      if (response.type === 'task' && !skipOpenTasksModule) this.onOpenTasksModule();
-    }).catch((error) => {
-      if (!skipNotify) this.notify(error);
-      throw error;
-    }).finally(() => {
-      this.releaseWaiting();
-    });
-  }
-
   onReload = () => {
     this.emitMessage('reload');
   }
@@ -102,7 +83,7 @@ export default class AbstractModule extends AbstractPage {
   onConfirmedDelete = (value, items) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: this.apiPath,
       method: 'DELETE',
       data: this.parseRequestIdentifiers(items),
@@ -119,21 +100,12 @@ export default class AbstractModule extends AbstractPage {
   onConfirmedToggleState = (value, items) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/toggle`,
       method: 'POST',
       data: this.parseRequestIdentifiers(items),
     }).then((response) => {
       this.emitMessage('reload', response);
     });
-  }
-
-  onOpenTasksModule = () => {
-    const data = [this.confirmOpenTasksModuleMsg, (value) => this.onConfirmedOpenTasksModule(value)];
-    this.emitMessage('confirm', data, 'main');
-  }
-
-  onConfirmedOpenTasksModule = (value) => {
-    if (value) this.emitMessage('openModule', 'Tasks', 'MainTabs');
   }
 }

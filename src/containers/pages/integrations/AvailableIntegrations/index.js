@@ -68,7 +68,7 @@ export class List extends AbstractPageList {
   onConfirmedInstall = (value, item) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/${item.id}`,
       method: 'PATCH',
     }).then(() => {
@@ -79,7 +79,7 @@ export class List extends AbstractPageList {
   onConfirmedUnInstall = (value, item) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/${item.id}`,
       method: 'DELETE',
     }).then(() => {

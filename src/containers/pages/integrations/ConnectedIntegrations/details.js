@@ -14,6 +14,7 @@ import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
+import CustomSectionForm from '../../../../components/forms/sections/CustomSectionForm';
 import ListAction from '../../../../components/actions/List';
 import TextBox from '../../../../components/forms/fields/TextBox';
 import SelectBoxChannel from '../../../../components/forms/fields/SelectBoxChannel';
@@ -36,8 +37,7 @@ export default class Details extends AbstractPageDetails {
     const { item } = this.state;
 
     return (
-      <fieldset className={classes.formSection}>
-        <legend><FormattedMessage {...messages.title} /></legend>
+      <CustomSectionForm title={messages.title}>
         <FormGroup row>
           <TextBox
             name="name"
@@ -67,7 +67,7 @@ export default class Details extends AbstractPageDetails {
             onChange={this.onChange}
           />
         </FormGroup>
-      </fieldset>
+      </CustomSectionForm>
     );
   }
 

@@ -72,14 +72,28 @@ export default class AbstractComponent extends React.Component {
     this._subscriptions = null;
   }
 
+  onOpenTasksModule = () => {
+    const data = [this.confirmOpenTasksModuleMsg, (value) => this.onConfirmedOpenTasksModule(value)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedOpenTasksModule = (value) => {
+    if (value) this.emitMessage('openModule', 'Tasks', 'MainTabs');
+  }
+
   /* eslint no-param-reassign: ["error", { "props": false }] */
   sendRequest = (options) => {
     this.startWaiting(0);
 
     const skipNotify = options.skipNotify === true;
+    const skipOpenTasksModule = options.skipOpenTasksModule === true;
     delete options.skipNotify;
+    delete options.skipOpenTasksModule;
 
-    return request(options).catch((error) => {
+    return request(options).then((response) => {
+      if (response.type === 'task' && !skipOpenTasksModule) this.onOpenTasksModule();
+      return response;
+    }).catch((error) => {
       if (!skipNotify) this.notify(error);
       throw error;
     }).finally(() => {

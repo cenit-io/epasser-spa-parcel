@@ -93,7 +93,7 @@ export class List extends AbstractPageList {
   onConfirmedUnAuthorize = (value, items) => {
     if (!value) return;
 
-    this.request({
+    this.sendRequest({
       url: `${this.apiPath}/authorize`,
       method: 'DELETE',
       data: this.parseRequestIdentifiers(items),

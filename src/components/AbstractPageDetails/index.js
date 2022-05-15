@@ -122,8 +122,6 @@ export default class AbstractPageDetails extends AbstractModule {
   onCancel = this.onBackToList;
 
   onStartLoadItem = () => {
-    this.startWaiting(0);
-
     const options = {
       url: this.apiPath,
       method: 'GET',
