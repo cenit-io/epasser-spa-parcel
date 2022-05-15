@@ -22,6 +22,7 @@ import settings from './settings';
 import styles from './styles.jss';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
+import CustomSectionForm from '../../../../components/forms/sections/CustomSectionForm';
 import ListAction from '../../../../components/actions/List';
 import ReloadAction from '../../../../components/actions/Reload';
 
@@ -38,6 +39,10 @@ class Show extends AbstractPageDetails {
 
   get apiPath() {
     return `${settings.apiPath}/${this.state.item.id}`;
+  }
+
+  get loadItemOptions() {
+    return { skipOpenTasksModule: true };
   }
 
   get actions() {
@@ -77,8 +82,7 @@ class Show extends AbstractPageDetails {
     if (!alreadyLoaded) return this.emitMessage('startLoadItem');
 
     return (
-      <fieldset className={classes.formSection}>
-        <legend><FormattedMessage {...messages.taskDetails} /></legend>
+      <CustomSectionForm title={messages.taskDetails}>
         <Card className={classes.details}>
           <CardHeader
             avatar={this.renderStatusIcon(item.status)}
@@ -101,7 +105,7 @@ class Show extends AbstractPageDetails {
             </FormGroup>
           </CardContent>
         </Card>
-      </fieldset>
+      </CustomSectionForm>
     );
   }
 

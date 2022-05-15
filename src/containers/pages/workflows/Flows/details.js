@@ -72,14 +72,16 @@ export default class Details extends AbstractPageDetails {
           <SelectBoxFlowType
             value={item.type}
             name="type"
+            required
             moduleId={this.moduleId}
             className={classes.col3}
             readOnly={this.isEdit}
             onChange={this.onChange}
           />
           <SelectBoxIntegration
-            value={integrationId}
             name="integration_id"
+            value={integrationId}
+            required
             moduleId={this.moduleId}
             className={classes.col3}
             readOnly={this.isEdit}

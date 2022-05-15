@@ -34,6 +34,10 @@ export default class AbstractPageDetails extends AbstractModule {
     return this.state.item;
   }
 
+  get loadItemOptions() {
+    return {};
+  }
+
   get isEdit() {
     return !!this.componentId.match(/Edit$/);
   }
@@ -122,10 +126,7 @@ export default class AbstractPageDetails extends AbstractModule {
   onCancel = this.onBackToList;
 
   onStartLoadItem = () => {
-    const options = {
-      url: this.apiPath,
-      method: 'GET',
-    };
+    const options = { url: this.apiPath, method: 'GET', ...this.loadItemOptions };
 
     this.sendRequest(options).then((response) => {
       this.setState({ alreadyLoaded: true, item: response.data });

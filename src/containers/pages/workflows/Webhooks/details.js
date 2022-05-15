@@ -9,13 +9,13 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import FormGroup from '@mui/material/FormGroup';
 import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
+import CustomSectionForm from '../../../../components/forms/sections/CustomSectionForm';
 import ListAction from '../../../../components/actions/List';
-import TextBox from '../../../../components/forms/fields/TextBox';
+import UrlBox from '../../../../components/forms/fields/UrlBox';
 import SelectBoxTopic from '../../../../components/forms/fields/SelectBoxTopic';
 import SelectBoxIntegration from '../../../../components/forms/fields/SelectBoxIntegration';
 
@@ -38,33 +38,33 @@ export default class Details extends AbstractPageDetails {
     const integrationId = item.integration ? item.integration.id : '';
 
     return (
-      <fieldset className={classes.formSection}>
-        <legend><FormattedMessage {...messages.title} /></legend>
-        <FormGroup row>
-          <SelectBoxTopic
-            value={item.topic}
-            name="topic"
-            moduleId={this.moduleId}
-            className={classes.col3}
-            onChange={this.onChange}
-          />
-          <SelectBoxIntegration
-            value={integrationId}
-            name="integration_id"
-            moduleId={this.moduleId}
-            className={classes.col3}
-            onChange={this.onChange}
-          />
-          <TextBox
-            name="address"
-            value={item.address}
-            moduleId={this.moduleId}
-            label={<FormattedMessage {...messages.field_address} />}
-            className={classes.col6}
-            onChange={this.onChange}
-          />
-        </FormGroup>
-      </fieldset>
+      <CustomSectionForm title={messages.title}>
+        <SelectBoxTopic
+          name="topic"
+          value={item.topic}
+          required
+          moduleId={this.moduleId}
+          className={classes.col3}
+          onChange={this.onChange}
+        />
+        <SelectBoxIntegration
+          name="integration_id"
+          value={integrationId}
+          required
+          moduleId={this.moduleId}
+          className={classes.col3}
+          onChange={this.onChange}
+        />
+        <UrlBox
+          name="address"
+          value={item.address}
+          required
+          moduleId={this.moduleId}
+          label={<FormattedMessage {...messages.field_address} />}
+          className={classes.col6}
+          onChange={this.onChange}
+        />
+      </CustomSectionForm>
     );
   }
 
