@@ -19,6 +19,10 @@ const styles = (theme) => ({
     '& .MuiCard-root': {
       boxShadow: 'none',
     },
+
+    '& .MuiCardHeader-title:after': {
+      content: '":"',
+    },
   },
 
   separator: {
