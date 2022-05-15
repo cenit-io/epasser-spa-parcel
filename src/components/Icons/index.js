@@ -13,8 +13,8 @@ import WebhooksIcon from '@mui/icons-material/NotificationImportant';
 import ConfirmationIcon from '@mui/icons-material/HelpOutline';
 import SaveIcon from '@mui/icons-material/Save';
 import ResetIcon from '@mui/icons-material/RotateLeft';
+import CancelIcon from '@mui/icons-material/CancelOutlined';
 import InstallIcon from '@mui/icons-material/GetAppOutlined';
-import UnInstallIcon from '@mui/icons-material/CancelOutlined';
 import StartIcon from '@mui/icons-material/PlayCircleOutlineOutlined';
 import ToggleIcon from '@mui/icons-material/ToggleOffOutlined';
 import RetryIcon from '@mui/icons-material/SlowMotionVideoOutlined';
@@ -32,9 +32,11 @@ import StockItemsIcon from './StockItemsIcon';
 import AuthorizeIcon from './AuthorizeIcon';
 import UnAuthorizeIcon from './UnAuthorizeIcon';
 
+const UnInstallIcon = CancelIcon;
+
 export {
   HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
-  SaveIcon, ResetIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon, StartIcon,
+  SaveIcon, ResetIcon, CancelIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon, StartIcon,
   ToggleIcon, RetryIcon, EmailIcon, UserIcon, TenantIcon, ThemesIcon, ShowIcon, ManagementIcon,
 };

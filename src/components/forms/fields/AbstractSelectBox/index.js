@@ -10,6 +10,7 @@ import Select from '@mui/material/Select';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import AbstractField from '../AbstractField';
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 export default class AbstractSelectBox extends AbstractField {
   constructor(props) {
@@ -72,6 +73,7 @@ export default class AbstractSelectBox extends AbstractField {
         readOnly={readOnly}
         disabled={readOnly || !alreadyLoaded}
         required={required}
+        error={!this.isValid()}
         renderValue={multiple ? this.renderMultiValue : null}
         onChange={this.onChange}
       >

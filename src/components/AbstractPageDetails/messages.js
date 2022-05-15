@@ -18,6 +18,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.reset`,
     defaultMessage: 'Reset',
   },
+  cancel: {
+    id: `${scope}.cancel`,
+    defaultMessage: 'Cancel',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

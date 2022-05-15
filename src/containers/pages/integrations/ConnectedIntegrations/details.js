@@ -42,14 +42,17 @@ export default class Details extends AbstractPageDetails {
           <TextBox
             name="name"
             value={item.name}
+            required
+            pattern={/^[\w-]+( [\w-]+)*$/}
             moduleId={this.moduleId}
             className={classes.col2}
             label={<FormattedMessage {...messages.field_name} />}
             onChange={this.onChange}
           />
           <SelectBoxChannel
-            value={item.channel}
             name="channel"
+            value={item.channel}
+            required
             moduleId={this.moduleId}
             className={classes.col2}
             readOnly={this.isEdit}

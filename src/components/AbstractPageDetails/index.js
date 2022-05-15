@@ -11,13 +11,12 @@ import { FormattedMessage } from 'react-intl';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
-import { request } from '../../base/request';
 
 import messages from './messages';
 
 import AbstractModule from '../AbstractModule';
 
-import { SaveIcon, ResetIcon } from '../Icons';
+import { SaveIcon, ResetIcon, CancelIcon } from '../Icons';
 
 /* eslint class-methods-use-this: ['off'] */
 export default class AbstractPageDetails extends AbstractModule {
@@ -43,10 +42,45 @@ export default class AbstractPageDetails extends AbstractModule {
     return !!this.componentId.match(/Add$/);
   }
 
+  get isValid() {
+    return Object.values(this.state.validations).indexOf(false) === -1;
+  }
+
+  get defaultItem() {
+    return {};
+  }
+
+  get submitActions() {
+    const { classes } = this.props;
+
+    return (
+      <CardActions className={classes.actions}>
+        <Button size="small" color="success" startIcon={<SaveIcon />} onClick={this.onSave}>
+          <FormattedMessage {...messages.save} />
+        </Button>
+        <Button size="small" color="warning" startIcon={<ResetIcon />} onClick={this.onReset}>
+          <FormattedMessage {...messages.reset} />
+        </Button>
+        {this.cancelAction}
+      </CardActions>
+    );
+  }
+
+  get cancelAction() {
+    if (!this.onCancel) return null;
+
+    return (
+      <Button size="small" color="error" startIcon={<CancelIcon />} onClick={this.onCancel}>
+        <FormattedMessage {...messages.cancel} />
+      </Button>
+    );
+  }
+
   constructor(props) {
     super(props);
-    this.state.item = props.item || {};
+    this.state.item = props.item || this.defaultItem;
     this.state.alreadyLoaded = this.isAdd;
+    this.state.validations = {};
 
     this.addMessagingListener('startLoadItem', this.onStartLoadItem);
   }
@@ -60,21 +94,18 @@ export default class AbstractPageDetails extends AbstractModule {
     return (
       <Card className={classes.form}>
         {this.form}
-        <CardActions className={classes.actions}>
-          <Button size="small" color="primary" startIcon={<SaveIcon />} onClick={this.onSave}>
-            <FormattedMessage {...messages.save} />
-          </Button>
-          <Button size="small" color="primary" startIcon={<ResetIcon />} onClick={this.onReset}>
-            <FormattedMessage {...messages.reset} />
-          </Button>
-        </CardActions>
+        {this.submitActions}
       </Card>
     );
   }
 
   /* eslint no-param-reassign: ["off"] */
   onChange = (field, value, valid, scope) => {
-    scope = scope || this.state.item;
+    const { validations, item } = this.state;
+
+    if (scope === undefined) validations[field] = valid;
+
+    scope = scope || item;
 
     if (field.match(/\w+\.\w+/)) {
       const attrs = field.split('.');
@@ -86,9 +117,9 @@ export default class AbstractPageDetails extends AbstractModule {
     }
   }
 
-  onReset = () => {
-    this.emitMessage('reset');
-  }
+  onReset = () => this.emitMessage('reset');
+
+  onCancel = this.onBackToList;
 
   onStartLoadItem = () => {
     this.startWaiting(0);
@@ -98,31 +129,25 @@ export default class AbstractPageDetails extends AbstractModule {
       method: 'GET',
     };
 
-    request(options).then((response) => {
+    this.sendRequest(options).then((response) => {
       this.setState({ alreadyLoaded: true, item: response.data });
-    }).catch((error) => {
-      this.notify(error);
-    }).finally(() => {
-      this.releaseWaiting();
     });
   }
 
   onSave = () => {
-    this.startWaiting();
+    if (this.isValid) {
+      const options = {
+        url: this.apiPath,
+        method: 'POST',
+        data: { data: this.requestData },
+      };
 
-    const options = {
-      url: this.apiPath,
-      method: 'POST',
-      data: { data: this.requestData },
-    };
-
-    request(options).then(() => {
-      this.notify({ message: this.successfulMessage, severity: 'success' });
-      if (this.isAdd) this.onReset();
-    }).catch((error) => {
-      this.notify(error);
-    }).finally(() => {
-      this.releaseWaiting();
-    });
+      this.sendRequest(options).then(() => {
+        this.notify({ message: this.successfulMessage, severity: 'success' });
+        if (this.isAdd) this.onReset();
+      });
+    } else {
+      this.notify(Error('Some fields are invalid, please correct them.'));
+    }
   }
 }
