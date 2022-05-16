@@ -21,7 +21,7 @@ import EditAction from '../../../../components/actions/Edit';
 import StartAction from '../../../../components/actions/Start';
 import ToggleAction from '../../../../components/actions/Toggle';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
-import BoolFormat from '../../../../components/formats/BoolFormat';
+import SchedulerFormat from '../../../../components/formats/SchedulerFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
@@ -43,7 +43,7 @@ export class List extends AbstractPageList {
     return [
       { id: 'type', format: this.typeFormat },
       { id: 'integration', format: IntegrationFormat },
-      { id: 'scheduler', width: 100, align: 'center', format: this.schedulerFormat },
+      { id: 'scheduler', width: 100, align: 'center', format: SchedulerFormat },
       columnDateTime('updated_at'),
     ];
   }
@@ -66,13 +66,6 @@ export class List extends AbstractPageList {
   }
 
   typeFormat = (value, row) => row.title;
-
-  /* eslint no-param-reassign: ["off"] */
-  schedulerFormat = (value, row, column) => {
-    value = row.task && row.task.scheduler && row.task.scheduler.active;
-
-    return <BoolFormat value={value} row={row} column={column} />;
-  }
 
   onStart = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmStartMsg} />;

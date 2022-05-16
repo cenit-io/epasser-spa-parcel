@@ -35,12 +35,14 @@ class EnhancedHead extends AbstractComponent {
   }
 
   renderColumnLabel(column) {
-    if (column.label !== undefined) return column.label;
+    const label = column.label || column.id;
+
+    if (typeof label !== 'string') return label;
 
     const { messages } = this.props;
-    const msg = messages[`field_${column.id}`] || messages[column.id];
+    const msg = messages[`field_${label}`] || messages[label];
 
-    return msg ? <FormattedMessage {...msg} /> : column.id;
+    return msg ? <FormattedMessage {...msg} /> : label;
   }
 
   renderSelectAllCell() {

@@ -19,6 +19,7 @@ import DeleteAction from '../../../../components/actions/Delete';
 import RetryAction from '../../../../components/actions/Retry';
 import ShowAction from '../../../../components/actions/Show';
 import columnDateTime from '../../../../components/columns/dateTime';
+import SchedulerFormat from '../../../../components/formats/SchedulerFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -37,12 +38,9 @@ export class List extends AbstractPageList {
 
   get columns() {
     return [
-      {
-        id: 'status', width: 120, format: this.statusFormat,
-      },
-      {
-        id: 'progress', align: 'center', width: 100,
-      },
+      { id: 'status', width: 120, format: this.statusFormat },
+      { id: 'progress', width: 100, align: 'center' },
+      { id: 'scheduler', width: 100, align: 'center', format: SchedulerFormat },
       { id: 'description' },
       columnDateTime('created_at'),
       columnDateTime('updated_at'),
