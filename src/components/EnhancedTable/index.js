@@ -51,10 +51,10 @@ class EnhancedTable extends AbstractComponent {
     this.state.searchTerm = props.searchTerm || '';
     this.selectionItems = {};
 
-    this.addMessagingListener('reload', this.onReload);
-    this.addMessagingListener('loadItemsSuccessful', this.onLoadItemsSuccessful);
-    this.addMessagingListener('loadItemsFailed', this.onLoadItemsFailed);
-    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm);
+    this.setMessagingListener('reload', this.onReload);
+    this.setMessagingListener('loadItemsSuccessful', this.onLoadItemsSuccessful);
+    this.setMessagingListener('loadItemsFailed', this.onLoadItemsFailed);
+    this.setMessagingListener('changeSearchTerm', this.onChangeSearchTerm);
   }
 
   loadItems() {

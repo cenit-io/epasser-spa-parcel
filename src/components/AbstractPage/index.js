@@ -17,7 +17,7 @@ export default class AbstractPage extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state.searchTerm = '';
-    this.addMessagingListener('changeSearchTerm', this.onChangeSearchTerm, this.constructor.id);
+    this.setMessagingListener('changeSearchTerm', this.onChangeSearchTerm, this.constructor.id);
   }
 
   get currentAccount() {

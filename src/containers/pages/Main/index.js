@@ -28,7 +28,7 @@ class Main extends AbstractPage {
   constructor(props) {
     super(props);
     this.state.currentAccount = session.currentAccount;
-    this.addMessagingListener('setSessionAccount', this.onSetSessionAccount);
+    this.setMessagingListener('setSessionAccount', this.onSetSessionAccount);
   }
 
   onGotoCenitIOSignInPage = () => {

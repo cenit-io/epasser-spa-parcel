@@ -27,7 +27,7 @@ class MainTabs extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state = { activeTab: null, tabsModules: {} };
-    this.addMessagingListener('openModule', this.onOpenTab);
+    this.setMessagingListener('openModule', this.onOpenTab);
   }
 
   get moduleId() {

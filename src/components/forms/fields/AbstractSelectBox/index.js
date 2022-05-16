@@ -20,8 +20,8 @@ export default class AbstractSelectBox extends AbstractField {
     this.state.items = [];
     this.state.value = props.value;
 
-    this.addMessagingListener('loadItemsSuccessful', this.onLoadItemsSuccessful, this.componentId);
-    this.addMessagingListener('loadItemsFailed', this.onLoadItemsFailed, this.componentId);
+    this.setMessagingListener('loadItemsSuccessful', this.onLoadItemsSuccessful, this.componentId);
+    this.setMessagingListener('loadItemsFailed', this.onLoadItemsFailed, this.componentId);
   }
 
   get parsedValue() {

@@ -30,7 +30,7 @@ class Notification extends AbstractComponent {
     this.state.message = null;
     this.state.severity = null;
 
-    this.addMessagingListener('notify', this.onNotify);
+    this.setMessagingListener('notify', this.onNotify);
   }
 
   get message() {

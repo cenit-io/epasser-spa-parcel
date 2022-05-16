@@ -33,7 +33,7 @@ class ConfirmDialog extends AbstractComponent {
     this.state.content = null;
     this.state.onClose = null;
 
-    this.addMessagingListener('confirm', this.onOpen, this.moduleId);
+    this.setMessagingListener('confirm', this.onOpen, this.moduleId);
   }
 
   render() {

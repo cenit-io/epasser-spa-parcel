@@ -86,7 +86,7 @@ export default class AbstractPageDetails extends AbstractModule {
     this.state.alreadyLoaded = this.isAdd;
     this.state.validations = {};
 
-    this.addMessagingListener('startLoadItem', this.onStartLoadItem);
+    this.setMessagingListener('startLoadItem', this.onStartLoadItem);
   }
 
   renderContent() {

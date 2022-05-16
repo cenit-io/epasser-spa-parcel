@@ -21,8 +21,8 @@ class Waiting extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state.enabled = 0;
-    this.addMessagingListener('start', this.onStartWaiting, 'waiting');
-    this.addMessagingListener('release', this.onReleaseWaiting, 'waiting');
+    this.setMessagingListener('start', this.onStartWaiting, 'waiting');
+    this.setMessagingListener('release', this.onReleaseWaiting, 'waiting');
   }
 
   render() {
