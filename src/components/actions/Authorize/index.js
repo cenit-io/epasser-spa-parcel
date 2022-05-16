@@ -5,20 +5,20 @@
  */
 
 import React from 'react';
+
 import { withStyles } from '@mui/styles';
-import { FormattedMessage } from 'react-intl';
+
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
+
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 import { AuthorizeIcon } from '../../Icons';
 
 class Authorize extends AbstractWithSelectionAction {
+  static messages = messages
+
   get icon() {
     return <AuthorizeIcon />;
-  }
-
-  get label() {
-    return <FormattedMessage {...messages.label} />;
   }
 
   get disabled() {

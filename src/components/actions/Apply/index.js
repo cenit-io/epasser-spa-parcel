@@ -1,31 +1,34 @@
 /**
  *
- * Retry
+ * Apply
  *
  */
 
 import React from 'react';
 
 import { withStyles } from '@mui/styles';
-import { RetryIcon } from '../../Icons';
 
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
 
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
+import { ToggleIcon } from '../../Icons';
 
-class Retry extends AbstractWithSelectionAction {
+class Apply extends AbstractWithSelectionAction {
   static messages = messages
 
   get icon() {
-    return <RetryIcon />;
+    return <ToggleIcon />;
   }
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;
-    const hasNoFailedTasks = (items.find((item) => item.status !== 'failed')) !== undefined;
-    return locked || items.length === 0 || hasNoFailedTasks;
+    return locked || items.length !== 1;
+  }
+
+  onClick = (e) => {
+    this.props.onClick(e, this.state.selectionItems[0]);
   }
 }
 
-export default withStyles(styles)(Retry);
+export default withStyles(styles)(Apply);

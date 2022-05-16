@@ -6,6 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { FormattedMessage } from 'react-intl';
+
 import Button from '@mui/material/Button';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import AbstractComponent from '../../AbstractComponent';
@@ -15,7 +18,7 @@ export default class AbstractAction extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     moduleId: PropTypes.string.isRequired,
     disabled: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
     onClick: PropTypes.func.isRequired,
   }
 
@@ -34,8 +37,17 @@ export default class AbstractAction extends AbstractComponent {
     return <SettingsApplicationsIcon />;
   }
 
-  get label() {
-    return '...';
+  get messages() {
+    return this.constructor.messages || {};
+  }
+
+  get actionLabel() {
+    let label = this.props.label || this.label || this.messages.label;
+
+    if (typeof label === 'string' && this.messages[label]) label = this.messages[label];
+    if (typeof label === 'string' || React.isValidElement(label)) return label;
+
+    return <FormattedMessage {...label} />;
   }
 
   get disabled() {
@@ -51,12 +63,12 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   render() {
-    const { classes, label } = this.props;
+    const { classes } = this.props;
 
     return (
       <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
         <div className={classes.label}>
-          {label || this.label}
+          {this.actionLabel}
         </div>
       </Button>
     );

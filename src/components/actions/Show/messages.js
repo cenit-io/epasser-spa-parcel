@@ -11,6 +11,6 @@ export const scope = 'components.actions.Show';
 export default defineMessages({
   label: {
     id: `${scope}.label`,
-    defaultMessage: 'Show',
+    defaultMessage: 'Details',
   },
 });

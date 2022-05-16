@@ -9,7 +9,7 @@ import AbstractAction from '../AbstractAction';
 export default class AbstractWithSelectionAction extends AbstractAction {
   constructor(props) {
     super(props);
-    this.state.selectionItems = [];
+    this.state.selectionItems = props.items || [];
     this.addMessagingListener('changeSelection', this.onChangeSelection);
   }
 

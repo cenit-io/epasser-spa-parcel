@@ -5,12 +5,14 @@
  */
 
 import React from 'react';
+
 import { withStyles } from '@mui/styles';
-import { FormattedMessage } from 'react-intl';
+import { ToggleIcon } from '../../Icons';
+
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
+
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
-import { ToggleIcon } from '../../Icons';
 
 class Toggle extends AbstractWithSelectionAction {
   get icon() {
@@ -18,7 +20,16 @@ class Toggle extends AbstractWithSelectionAction {
   }
 
   get label() {
-    return <FormattedMessage {...messages.label} />;
+    const { selectionItems } = this.state;
+
+    if (selectionItems.length === 0) return messages.enable;
+
+    const hasEnabled = selectionItems.find((i) => i.active === true);
+    const hasDisabled = selectionItems.find((i) => i.active === false);
+
+    if (hasEnabled && hasDisabled) return messages.toggle;
+
+    return hasEnabled ? messages.disable : messages.enable;
   }
 
   get disabled() {
@@ -31,7 +42,7 @@ class Toggle extends AbstractWithSelectionAction {
   }
 
   onClick = (e) => {
-    this.props.onClick(e, this.state.selectionItems[0]);
+    this.props.onClick(e, this.state.selectionItems);
   }
 }
 

@@ -1,13 +1,13 @@
 /**
  *
- * Show
+ * Switch
  *
  */
 
 import React from 'react';
 
 import { withStyles } from '@mui/styles';
-import { ShowIcon as Icon } from '../../Icons';
+import { SwitchTenantIcon as Icon } from '../../Icons';
 
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
