@@ -8,7 +8,7 @@ import React from 'react';
 
 import { withStyles } from '@mui/styles';
 
-import Icon from '@mui/icons-material/ArrowBackIosOutlined';
+import Icon from '@mui/icons-material/List';
 
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';

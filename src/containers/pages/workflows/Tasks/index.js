@@ -40,8 +40,8 @@ export class List extends AbstractPageList {
     return [
       { id: 'status', width: 120, format: this.statusFormat },
       { id: 'progress', width: 100, align: 'center' },
-      { id: 'scheduler', width: 100, align: 'center', format: SchedulerFormat },
       { id: 'description' },
+      { id: 'scheduler', width: 100, align: 'center', format: SchedulerFormat },
       columnDateTime('created_at'),
       columnDateTime('updated_at'),
     ];
@@ -52,11 +52,13 @@ export class List extends AbstractPageList {
       <>
         <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
         <ShowAction moduleId={this.moduleId} onClick={this.onShow} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
+        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
         <RetryAction moduleId={this.moduleId} onClick={this.onRetry} />
       </>
     );
   }
+
+  canNotDelete = (items) => items.find((item) => item.scheduler && item.scheduler.active) !== undefined
 
   statusFormat = (value) => <Typography sx={{ color: settings.color(value) }} variant="body2">{value}</Typography>
 
