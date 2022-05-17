@@ -68,14 +68,6 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_description`,
     defaultMessage: 'Description',
   },
-  field_created_at: {
-    id: `${scope}.field_created_at`,
-    defaultMessage: 'Created at',
-  },
-  field_updated_at: {
-    id: `${scope}.field_updated_at`,
-    defaultMessage: 'Updated at',
-  },
   field_value: {
     id: `${scope}.field_value`,
     defaultMessage: 'Value',

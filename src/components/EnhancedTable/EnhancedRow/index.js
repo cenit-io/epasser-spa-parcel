@@ -20,13 +20,14 @@ class EnhancedRow extends AbstractComponent {
     classes: PropTypes.instanceOf(Object).isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
     multiSelect: PropTypes.bool.isRequired,
+    selectable: PropTypes.bool,
     row: PropTypes.instanceOf(Object).isRequired,
     itemId: PropTypes.string.isRequired,
     padding: PropTypes.string,
     onChangeItemSelection: PropTypes.func.isRequired,
   }
 
-  static defaultProps = { padding: 'normal', multiSelect: true };
+  static defaultProps = { padding: 'normal', multiSelect: true, selectable: true };
 
   constructor(props) {
     super(props);
@@ -73,15 +74,21 @@ class EnhancedRow extends AbstractComponent {
     return <Radio name="itemId" checked={isSelected} onChange={this.onChangeSelection} />;
   }
 
+  renderSelectionCell() {
+    const { classes, selectable } = this.props;
+
+    if (!selectable) return null;
+
+    return <TableCell className={classes.cell} padding="checkbox">{this.renderSelectionComponent()}</TableCell>;
+  }
+
   render() {
     const { classes, row } = this.props;
     const { isSelected } = this.state;
 
     return (
       <TableRow className={classes.row} selected={isSelected} tabIndex={-1}>
-        <TableCell className={classes.cell} padding="checkbox">
-          {this.renderSelectionComponent()}
-        </TableCell>
+        {this.renderSelectionCell()}
         {this.renderCell(row)}
       </TableRow>
     );

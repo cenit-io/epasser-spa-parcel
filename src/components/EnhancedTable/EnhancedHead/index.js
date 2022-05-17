@@ -23,12 +23,13 @@ class EnhancedHead extends AbstractComponent {
     messages: PropTypes.instanceOf(Object).isRequired,
     columns: PropTypes.instanceOf(Object).isRequired,
     multiSelect: PropTypes.bool.isRequired,
+    selectable: PropTypes.bool,
     moduleId: PropTypes.string.isRequired,
     padding: PropTypes.string,
     onChangeSelectAll: PropTypes.func.isRequired,
   }
 
-  static defaultProps = { padding: 'normal' };
+  static defaultProps = { padding: 'normal', selectable: true };
 
   createSortHandler = (columnId) => (event) => {
     this.onChangeSort(event, columnId);
@@ -77,12 +78,12 @@ class EnhancedHead extends AbstractComponent {
   }
 
   render() {
-    const { classes, columns } = this.props;
+    const { classes, columns, selectable } = this.props;
 
     return (
       <TableHead className={classes.head}>
         <TableRow>
-          {this.renderSelectAllCell(columns)}
+          {selectable && this.renderSelectAllCell()}
           {this.renderColumns(columns)}
         </TableRow>
       </TableHead>

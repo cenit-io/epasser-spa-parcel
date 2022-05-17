@@ -45,7 +45,7 @@ export default class AbstractComponent extends React.Component {
 
   get moduleId() {
     const { moduleId } = this.props;
-    return moduleId;
+    return moduleId || this.componentId;
   }
 
   get apiPath() {

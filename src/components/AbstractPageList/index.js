@@ -7,7 +7,6 @@
 import React from 'react';
 
 import { deepmerge } from '@mui/utils';
-import { request } from '../../base/request';
 
 import EnhancedTable from '../EnhancedTable';
 import AbstractModule from '../AbstractModule';
@@ -53,12 +52,13 @@ export default class AbstractPageList extends AbstractModule {
 
     const params = deepmerge(this.baseParams, { limit, offset, term });
     const options = {
+      skipOpenTasksModule: true,
       url: this.apiPath,
       method: 'GET',
       params,
     };
 
-    request(options).then((response) => {
+    this.sendRequest(options).then((response) => {
       this.emitMessage('loadItemsSuccessful', response);
     }).catch((error) => {
       this.emitMessage('loadItemsFailed', error);

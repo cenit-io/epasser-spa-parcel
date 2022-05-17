@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
 import AbstractPage from '../AbstractPage';
 import Notification from '../Notification';
 
-import { request, parseRequestItemsIDs } from '../../base/request';
+import { parseRequestItemsIDs } from '../../base/request';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractModule extends AbstractPage {

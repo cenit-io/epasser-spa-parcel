@@ -12,7 +12,6 @@ import { withStyles } from '@mui/styles';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import FormGroup from '@mui/material/FormGroup';
 import Chip from '@mui/material/Chip';
@@ -20,9 +19,12 @@ import Chip from '@mui/material/Chip';
 import messages from './messages';
 import settings from './settings';
 import styles from './styles.jss';
+import color from '../../../../components/formats/TaskStatusFormat/color';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 import CustomSection from '../../../../components/sections/CustomSection';
+import TaskExecutions from '../../../../components/sections/TaskExecutions';
+import TaskNotifications from '../../../../components/sections/TaskNotifications';
 import ListAction from '../../../../components/actions/List';
 import ReloadAction from '../../../../components/actions/Reload';
 
@@ -56,7 +58,7 @@ class Show extends AbstractPageDetails {
 
   renderStatusIcon(value) {
     return (
-      <Avatar sx={{ bgcolor: settings.color(value) }} aria-label={value}>
+      <Avatar sx={{ bgcolor: color(value) }} aria-label={value}>
         {value[0].toUpperCase()}
       </Avatar>
     );
@@ -68,7 +70,7 @@ class Show extends AbstractPageDetails {
     return (
       <Chip
         className={classes.status}
-        sx={{ color: settings.color(value) }}
+        sx={{ color: color(value) }}
         variant="filled"
         label={messages[value] ? <FormattedMessage {...messages[value]} /> : value}
       />
@@ -94,14 +96,10 @@ class Show extends AbstractPageDetails {
           </Card>
         </CustomSection>
         <FormGroup className={classes.col3}>
-          <CustomSection title={messages.executions}>
-            <span>TODO: ....</span>
-          </CustomSection>
+          <TaskExecutions task={item} />
         </FormGroup>
         <FormGroup className={classes.col3}>
-          <CustomSection title={messages.notifications}>
-            <span>TODO: ....</span>
-          </CustomSection>
+          <TaskNotifications task={item} />
         </FormGroup>
       </>
     );

@@ -32,12 +32,14 @@ class EnhancedTable extends AbstractComponent {
     moduleId: PropTypes.string.isRequired,
     formatValue: PropTypes.func,
     multiSelect: PropTypes.bool,
+    selectable: PropTypes.bool,
     limit: PropTypes.number,
   }
 
   static defaultProps = {
     formatValue: null,
     multiSelect: true,
+    selectable: true,
     limit: 10,
   };
 
@@ -79,7 +81,7 @@ class EnhancedTable extends AbstractComponent {
   }
 
   renderRows() {
-    const { columns, moduleId, multiSelect } = this.props;
+    const { columns, moduleId, multiSelect, selectable } = this.props;
     const { items, alreadyLoaded } = this.state;
 
     if (!alreadyLoaded) return this.loadItems();
@@ -89,6 +91,7 @@ class EnhancedTable extends AbstractComponent {
       <EnhancedRow
         moduleId={moduleId}
         multiSelect={multiSelect}
+        selectable={selectable}
         row={item} columns={columns}
         itemId={item.id || String(idx)}
         key={item.id || String(idx)}
@@ -100,7 +103,13 @@ class EnhancedTable extends AbstractComponent {
   render() {
     const { total, limit, offset } = this.state;
     const {
-      classes, columns, moduleId, className, multiSelect, messages: pMessages,
+      classes,
+      columns,
+      moduleId,
+      className,
+      multiSelect,
+      selectable,
+      messages: pMessages,
     } = this.props;
 
     return (
@@ -112,6 +121,7 @@ class EnhancedTable extends AbstractComponent {
               messages={pMessages}
               moduleId={moduleId}
               multiSelect={multiSelect}
+              selectable={selectable}
               // order={order}
               // orderBy={orderBy}
               onChangeSelectAll={this.onChangeSelectAll}

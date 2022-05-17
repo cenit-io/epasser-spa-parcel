@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 
-import Typography from '@mui/material/Typography';
 import { FormattedMessage } from 'react-intl';
 import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
@@ -20,6 +19,7 @@ import RetryAction from '../../../../components/actions/Retry';
 import ShowAction from '../../../../components/actions/Show';
 import columnDateTime from '../../../../components/columns/dateTime';
 import SchedulerFormat from '../../../../components/formats/SchedulerFormat';
+import TaskStatusFormat from '../../../../components/formats/TaskStatusFormat';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -38,7 +38,7 @@ export class List extends AbstractPageList {
 
   get columns() {
     return [
-      { id: 'status', width: 120, format: this.statusFormat },
+      { id: 'status', width: 120, format: TaskStatusFormat },
       { id: 'progress', width: 100, align: 'center' },
       { id: 'description' },
       { id: 'scheduler', width: 100, align: 'center', format: SchedulerFormat },
@@ -60,8 +60,6 @@ export class List extends AbstractPageList {
 
   canNotDelete = (items) => items.find((item) => item.scheduler && item.scheduler.active) !== undefined
 
-  statusFormat = (value) => <Typography sx={{ color: settings.color(value) }} variant="body2">{value}</Typography>
-
   onRetry = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmRetryMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedRetry(value, items)];
@@ -74,7 +72,7 @@ export class List extends AbstractPageList {
     this.sendRequest({
       url: `${this.apiPath}/retry`,
       method: 'PUT',
-      data: { data: this.parseRequestIdentifiers(items) },
+      data: this.parseRequestIdentifiers(items),
       skipOpenTasksModule: true,
     }).then(() => {
       this.notify({ message: 'successfulOperation', severity: 'success' });

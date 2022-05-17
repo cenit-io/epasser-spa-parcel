@@ -79,7 +79,7 @@ export class List extends AbstractPageList {
     this.sendRequest({
       url: `${this.apiPath}/start`,
       method: 'POST',
-      data: { data: this.parseRequestIdentifiers(items) },
+      data: this.parseRequestIdentifiers(items),
     }).then(() => {
       this.notify({ message: 'successfulStart', severity: 'success' });
     });
