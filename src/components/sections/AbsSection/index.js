@@ -45,7 +45,7 @@ export default class AbsSection extends AbstractComponent {
         />
         <CardContent>
           <Divider className={classes.separator} />
-          {this.renderForm()}
+          {this.renderContent()}
         </CardContent>
       </Card>
     );

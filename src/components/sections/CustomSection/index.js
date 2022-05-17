@@ -23,7 +23,7 @@ class CustomSection extends AbsSection {
     return this.props.actions;
   }
 
-  renderForm() {
+  renderContent() {
     return (<>{this.props.children}</>);
   }
 }
