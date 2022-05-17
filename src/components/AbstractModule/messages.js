@@ -6,10 +6,11 @@
 
 import React from 'react';
 import { defineMessages } from 'react-intl';
+import messagesBase from '../AbstractComponent/messages';
 
 export const scope = 'components.AbstractModule';
 
-export default defineMessages({
+const messagesLocal = defineMessages({
   confirmDeleteMsg: {
     id: `${scope}.confirmDeleteMsg`,
     defaultMessage: 'Please confirm whether you really want to delete the selected items?',
@@ -84,3 +85,5 @@ export default defineMessages({
     defaultMessage: 'Type',
   },
 });
+
+export default { ...messagesBase, ...messagesLocal };
