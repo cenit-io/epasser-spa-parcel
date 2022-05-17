@@ -1,6 +1,6 @@
 /**
  *
- * CustomSectionForm
+ * CustomSection
  *
  */
 
@@ -11,9 +11,9 @@ import { withStyles } from '@mui/styles';
 
 import styles from './styles.jss';
 
-import AbsSectionForm from '../AbsSectionForm';
+import AbsSection from '../AbsSection';
 
-class CustomSectionForm extends AbsSectionForm {
+class CustomSection extends AbsSection {
   static propTypes = {
     children: PropTypes.node.isRequired,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
@@ -28,4 +28,4 @@ class CustomSectionForm extends AbsSectionForm {
   }
 }
 
-export default withStyles(styles)(CustomSectionForm);
+export default withStyles(styles)(CustomSection);

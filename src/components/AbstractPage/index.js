@@ -29,7 +29,8 @@ export default class AbstractPage extends AbstractComponent {
   }
 
   get messages() {
-    return this.constructor.messages || messages;
+    const { messages: customMessages } = this.props;
+    return customMessages || this.constructor.messages || messages;
   }
 
   get actions() {

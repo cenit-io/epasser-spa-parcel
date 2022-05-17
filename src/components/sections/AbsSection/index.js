@@ -1,6 +1,6 @@
 /**
  *
- * AbsSectionForm
+ * AbsSection
  *
  */
 
@@ -13,10 +13,10 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 
-import AbstractComponent from '../../../AbstractComponent';
-import Divider from '../../../Divider';
+import AbstractComponent from '../../AbstractComponent';
+import Divider from '../../Divider';
 
-export default class AbsSectionForm extends AbstractComponent {
+export default class AbsSection extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     titleVariant: PropTypes.string,
@@ -26,7 +26,7 @@ export default class AbsSectionForm extends AbstractComponent {
   static defaultProps = { titleVariant: 'body1' }
 
   get sectionTitle() {
-    const title = this.props.title || this.title || this.constructor.messages.title;
+    const title = this.props.title || this.title || this.messages.title;
 
     if (typeof title === 'string' || React.isValidElement(title)) return title;
 

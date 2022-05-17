@@ -3,14 +3,15 @@
  * Styles
  *
  */
-import baseStyles from '../../../../styles';
+import baseStyles from '../../../styles';
 
 const styles = (theme) => ({
   ...baseStyles(theme),
 
   cardForm: {
-    width: `calc(100% - ${theme.spacing(4)})`,
-    margin: theme.spacing(2),
+    width: `calc(100% - ${theme.spacing(1)})`,
+    margin: theme.spacing(0.5),
+    marginBottom: theme.spacing(2),
 
     '& .MuiCardContent-root': {
       paddingTop: 0,

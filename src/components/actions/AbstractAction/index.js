@@ -37,10 +37,6 @@ export default class AbstractAction extends AbstractComponent {
     return <SettingsApplicationsIcon />;
   }
 
-  get messages() {
-    return this.constructor.messages || {};
-  }
-
   get actionLabel() {
     let label = this.props.label || this.label || this.messages.label;
 

@@ -14,7 +14,7 @@ import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
-import CustomSectionForm from '../../../../components/forms/sections/CustomSectionForm';
+import CustomSection from '../../../../components/sections/CustomSection';
 import ListAction from '../../../../components/actions/List';
 import SelectBoxFlowType from '../../../../components/forms/fields/SelectBoxFlowType';
 import SelectBoxIntegration from '../../../../components/forms/fields/SelectBoxIntegration';
@@ -68,7 +68,7 @@ export default class Details extends AbstractPageDetails {
 
     return (
       <>
-        <CustomSectionForm title={messages.title}>
+        <CustomSection title={messages.title}>
           <SelectBoxFlowType
             value={item.type}
             name="type"
@@ -87,9 +87,9 @@ export default class Details extends AbstractPageDetails {
             readOnly={this.isEdit}
             onChange={this.onChange}
           />
-        </CustomSectionForm>
+        </CustomSection>
 
-        <CustomSectionForm title={messages.field_scheduler}>
+        <CustomSection title={messages.field_scheduler}>
           <FormGroup row>
             <DateBox
               name="scheduler.start_date"
@@ -156,7 +156,7 @@ export default class Details extends AbstractPageDetails {
             />
           </FormGroup>
 
-        </CustomSectionForm>
+        </CustomSection>
       </>
     );
   }

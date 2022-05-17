@@ -16,14 +16,20 @@ export default class AbstractComponent extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     moduleId: PropTypes.string,
+    messages: PropTypes.instanceOf(Object),
   }
 
-  static defaultProps = { id: null, moduleId: null }
+  static defaultProps = { id: null, moduleId: null, messages: null }
 
   constructor(props) {
     super(props);
     this._subscriptions = [];
     this.state = {};
+  }
+
+  get messages() {
+    const { messages } = this.props;
+    return messages || this.constructor.messages || {};
   }
 
   get componentId() {

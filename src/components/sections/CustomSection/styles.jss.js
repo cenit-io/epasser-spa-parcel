@@ -3,7 +3,7 @@
  * Styles
  *
  */
-import baseStyles from '../AbsSectionForm/styles.jss';
+import baseStyles from '../AbsSection/styles.jss';
 
 const styles = (theme) => ({
   ...baseStyles(theme),

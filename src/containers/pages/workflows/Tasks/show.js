@@ -22,7 +22,7 @@ import settings from './settings';
 import styles from './styles.jss';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
-import CustomSectionForm from '../../../../components/forms/sections/CustomSectionForm';
+import CustomSection from '../../../../components/sections/CustomSection';
 import ListAction from '../../../../components/actions/List';
 import ReloadAction from '../../../../components/actions/Reload';
 
@@ -82,30 +82,28 @@ class Show extends AbstractPageDetails {
     if (!alreadyLoaded) return this.emitMessage('startLoadItem');
 
     return (
-      <CustomSectionForm title={messages.taskDetails}>
-        <Card className={classes.details}>
-          <CardHeader
-            avatar={this.renderStatusIcon(item.status)}
-            title={<FormattedMessage {...messages.field_description} />}
-            subheader={item.description}
-            action={this.renderStatus(item.status)}
-          />
-          <CardContent>
-            <FormGroup className={classes.col3}>
-              <fieldset className={classes.formSection}>
-                <legend><FormattedMessage {...messages.executions} /></legend>
-                <span>TODO: ....</span>
-              </fieldset>
-            </FormGroup>
-            <FormGroup className={classes.col3}>
-              <fieldset className={classes.formSection}>
-                <legend><FormattedMessage {...messages.notifications} /></legend>
-                <span>TODO: ....</span>
-              </fieldset>
-            </FormGroup>
-          </CardContent>
-        </Card>
-      </CustomSectionForm>
+      <>
+        <CustomSection title={messages.taskDetails}>
+          <Card className={classes.details}>
+            <CardHeader
+              avatar={this.renderStatusIcon(item.status)}
+              title={<FormattedMessage {...messages.field_description} />}
+              subheader={item.description}
+              action={this.renderStatus(item.status)}
+            />
+          </Card>
+        </CustomSection>
+        <FormGroup className={classes.col3}>
+          <CustomSection title={messages.executions}>
+            <span>TODO: ....</span>
+          </CustomSection>
+        </FormGroup>
+        <FormGroup className={classes.col3}>
+          <CustomSection title={messages.notifications}>
+            <span>TODO: ....</span>
+          </CustomSection>
+        </FormGroup>
+      </>
     );
   }
 
