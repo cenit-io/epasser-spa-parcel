@@ -7,8 +7,7 @@
 import HomeIcon from '@mui/icons-material/Home';
 import OrdersIcon from '@mui/icons-material/ShoppingCart';
 import StockLocationsIcon from '@mui/icons-material/LocalConvenienceStore';
-import FlowsIcon from '@mui/icons-material/Schedule';
-import TasksIcon from '@mui/icons-material/PermDataSettingOutlined';
+import FlowsIcon from '@mui/icons-material/AccountTreeOutlined';
 import WebhooksIcon from '@mui/icons-material/NotificationImportant';
 import ConfirmationIcon from '@mui/icons-material/HelpOutline';
 import SaveIcon from '@mui/icons-material/Save';
@@ -32,6 +31,7 @@ import ProductsIcon from './ProductsIcon';
 import StockItemsIcon from './StockItemsIcon';
 import AuthorizeIcon from './AuthorizeIcon';
 import UnAuthorizeIcon from './UnAuthorizeIcon';
+import TasksIcon from './TasksIcon';
 
 const UnInstallIcon = CancelIcon;
 
