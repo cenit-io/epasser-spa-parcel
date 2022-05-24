@@ -17,9 +17,7 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class Start extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <StartIcon />;
-  }
+  static icon = <StartIcon />
 }
 
 export default withStyles(styles)(Start);

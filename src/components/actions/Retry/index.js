@@ -17,9 +17,7 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class Retry extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <RetryIcon />;
-  }
+  static icon = <RetryIcon />
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;

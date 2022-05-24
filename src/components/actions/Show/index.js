@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { withStyles } from '@mui/styles';
-import { ShowIcon as Icon } from '../../Icons';
+import { ShowIcon } from '../../Icons';
 
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
@@ -17,9 +17,7 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class Action extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <Icon />;
-  }
+  static icon = <ShowIcon />
 
   get disabled() {
     let { disabled } = this.props;

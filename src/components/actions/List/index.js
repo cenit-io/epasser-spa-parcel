@@ -18,9 +18,7 @@ import AbstractAction from '../AbstractAction';
 class List extends AbstractAction {
   static messages = messages
 
-  get icon() {
-    return <Icon />;
-  }
+  static icon = <Icon />
 }
 
 export default withStyles(styles)(List);

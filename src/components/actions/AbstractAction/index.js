@@ -34,7 +34,7 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   get icon() {
-    return <SettingsApplicationsIcon />;
+    return this.props.icon || this.constructor.icon || <SettingsApplicationsIcon />;
   }
 
   get actionLabel() {

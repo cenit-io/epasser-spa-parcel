@@ -17,9 +17,7 @@ import { AuthorizeIcon } from '../../Icons';
 class Authorize extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <AuthorizeIcon />;
-  }
+  static icon = <AuthorizeIcon />
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;

@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { withStyles } from '@mui/styles';
-import { SwitchTenantIcon as Icon } from '../../Icons';
+import { SwitchTenantIcon } from '../../Icons';
 
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';
@@ -17,9 +17,7 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class Action extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <Icon />;
-  }
+  static icon = <SwitchTenantIcon />
 
   get disabled() {
     let { disabled } = this.props;

@@ -18,9 +18,7 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class Edit extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <Icon />;
-  }
+  static icon = <Icon />
 
   get disabled() {
     let { disabled } = this.props;

@@ -15,9 +15,7 @@ import styles from '../AbstractAction/styles.jss';
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 
 class Toggle extends AbstractWithSelectionAction {
-  get icon() {
-    return <ToggleIcon />;
-  }
+  static icon = <ToggleIcon />
 
   get label() {
     const { selectionItems } = this.state;

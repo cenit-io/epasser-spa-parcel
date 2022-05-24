@@ -17,9 +17,7 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class Install extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <InstallIcon />;
-  }
+  static icon = <InstallIcon />
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;

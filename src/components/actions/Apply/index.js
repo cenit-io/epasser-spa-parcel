@@ -17,9 +17,7 @@ import { ToggleIcon } from '../../Icons';
 class Apply extends AbstractWithSelectionAction {
   static messages = messages
 
-  get icon() {
-    return <ToggleIcon />;
-  }
+  static icon = <ToggleIcon />
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;
