@@ -2,7 +2,6 @@ import axios from 'axios';
 import addOAuthInterceptor from 'axios-oauth-1.0a';
 import { sha256 } from 'js-sha256';
 import session from './session';
-import messaging from './messaging';
 
 export const { apiBaseUrl } = session;
 
@@ -107,25 +106,6 @@ export function request(options = {}, forceNewInstance = false) {
     .catch((err) => {
       throw Error(err.response ? err.response.data.message : err.message);
     });
-}
-
-export function authWithAuthCode(authCode) {
-  const options = {
-    url: 'get_access_token',
-    method: 'POST',
-    data: { code: authCode },
-  };
-
-  messaging.emitMessage('notify', 'waitFortAuthToken');
-  messaging.emitMessage('start', null, 'waiting');
-
-  request(options).then((response) => {
-    messaging.emitMessage('setSessionAccount', response.data);
-  }).catch((error) => {
-    messaging.emitMessage('notify', error);
-  }).finally(() => {
-    messaging.emitMessage('release', null, 'waiting');
-  });
 }
 
 export function parseRequestItemsIDs(items, attrIds) {

@@ -10,7 +10,6 @@ import Select from '@mui/material/Select';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import AbstractField from '../AbstractField';
-import OutlinedInput from "@mui/material/OutlinedInput";
 
 export default class AbstractSelectBox extends AbstractField {
   constructor(props) {

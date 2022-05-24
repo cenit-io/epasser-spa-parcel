@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { withStyles } from '@mui/styles';
-import { authWithAuthCode } from '../../../base/request';
 
 import styles from './styles.jss';
 import session from '../../../base/session';
@@ -53,6 +52,18 @@ class Main extends AbstractPage {
     );
   }
 
+  authWithAuthCode(authCode) {
+    const options = {
+      url: 'get_access_token',
+      method: 'POST',
+      data: { code: authCode },
+    };
+
+    this.sendRequest(options).then((response) => {
+      this.emitMessage('setSessionAccount', response.data);
+    });
+  }
+
   componentDidMount = () => {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -62,7 +73,7 @@ class Main extends AbstractPage {
       this.notify(Error(description || error));
     } else if (urlParams.has('code')) {
       const authCode = urlParams.get('code');
-      authWithAuthCode(authCode);
+      this.authWithAuthCode(authCode);
     } else if (!this.isAuthenticate) {
       this.notify('gotoSignInPage');
       setTimeout(this.onGotoCenitIOSignInPage, 0);

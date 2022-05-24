@@ -4,11 +4,8 @@
  *
  */
 
-import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-
-import Avatar from '@mui/material/Avatar';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import settings from './settings';

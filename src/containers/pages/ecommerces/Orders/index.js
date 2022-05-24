@@ -4,10 +4,9 @@
  *
  */
 
-import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@mui/styles';
-import Typography from '@mui/material/Typography';
 import { OrdersIcon } from '../../../../components/Icons';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
