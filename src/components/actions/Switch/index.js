@@ -19,18 +19,7 @@ class Action extends AbstractWithSelectionAction {
 
   static icon = <SwitchTenantIcon />
 
-  get disabled() {
-    let { disabled } = this.props;
-    const { locked, selectionItems } = this.state;
-
-    if (typeof disabled === 'function') disabled = disabled(selectionItems);
-
-    return locked || selectionItems.length !== 1 || disabled;
-  }
-
-  onClick = (e) => {
-    this.props.onClick(e, this.state.selectionItems[0]);
-  }
+  static multiSelection = false
 }
 
 export default withStyles(styles)(Action);

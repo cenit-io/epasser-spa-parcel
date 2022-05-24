@@ -23,10 +23,6 @@ class Apply extends AbstractWithSelectionAction {
     const { locked, selectionItems: items } = this.state;
     return locked || items.length !== 1;
   }
-
-  onClick = (e) => {
-    this.props.onClick(e, this.state.selectionItems[0]);
-  }
 }
 
 export default withStyles(styles)(Apply);

@@ -18,7 +18,7 @@ import AbstractAction from '../AbstractAction';
 class Reload extends AbstractAction {
   static messages = messages
 
-  static icon =<Icon />
+  static icon = <Icon />
 }
 
 export default withStyles(styles)(Reload);

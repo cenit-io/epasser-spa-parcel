@@ -54,10 +54,6 @@ export default class AbstractAction extends AbstractComponent {
     return this.state.locked || disabled;
   }
 
-  onClick = (e) => {
-    this.props.onClick(e);
-  }
-
   render() {
     const { classes } = this.props;
 
@@ -68,6 +64,10 @@ export default class AbstractAction extends AbstractComponent {
         </div>
       </Button>
     );
+  }
+
+  onClick = (e) => {
+    this.props.onClick(e);
   }
 
   onLockActions = (locked) => {
