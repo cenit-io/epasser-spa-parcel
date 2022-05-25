@@ -56,11 +56,11 @@ const messagesLocal = defineMessages({
   },
   confirmStartMsg: {
     id: `${scope}.confirmStartMsg`,
-    defaultMessage: 'Please confirm whether you really want to start processing the selected flows?',
+    defaultMessage: 'Please confirm if you really want to start processing the selected flows?',
   },
   confirmToggleSchedulerMsg: {
     id: `${scope}.confirmToggleSchedulerMsg`,
-    defaultMessage: 'Please confirm whether you really want to toggle the scheduler status for the selected flow?',
+    defaultMessage: 'Please confirm if you really want to toggle the scheduler status for the selected flow?',
   },
 });
 

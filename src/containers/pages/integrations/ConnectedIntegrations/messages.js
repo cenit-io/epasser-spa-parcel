@@ -28,11 +28,11 @@ const messagesLocal = defineMessages({
   },
   confirmAuthorizeMsg: {
     id: `${scope}.confirmAuthorizeMsg`,
-    defaultMessage: 'Please confirm whether you really want to authorize the selected integration?',
+    defaultMessage: 'Please confirm if you really want to authorize the selected integration?',
   },
   confirmUnAuthorizeMsg: {
     id: `${scope}.confirmUnAuthorizeMsg`,
-    defaultMessage: 'Please confirm whether you really want to cancel the authorizations for the selected integrations?',
+    defaultMessage: 'Please confirm if you really want to cancel the authorizations for the selected integrations?',
   },
 });
 

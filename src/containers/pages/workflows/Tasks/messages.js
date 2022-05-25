@@ -40,7 +40,7 @@ const messagesLocal = defineMessages({
   },
   confirmRetryMsg: {
     id: `${scope}.confirmRetryMsg`,
-    defaultMessage: 'Please confirm whether you really want to retry the selected tasks?',
+    defaultMessage: 'Please confirm if you really want to retry the selected tasks?',
   },
 });
 
