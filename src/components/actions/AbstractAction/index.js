@@ -74,7 +74,7 @@ export default class AbstractAction extends AbstractComponent {
 
   render() {
     return (
-      <Tooltip title={this.actionTitle} placement="top" arrow disableInteractive>
+      <Tooltip title={this.actionTitle} placement="top" enterDelay={300} arrow disableInteractive>
         <Box>
           <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
             <Typography color={this.color} variant="button">
