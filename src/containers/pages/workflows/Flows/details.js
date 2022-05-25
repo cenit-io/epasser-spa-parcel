@@ -94,6 +94,7 @@ export default class Details extends AbstractPageDetails {
             <DateBox
               name="scheduler.start_date"
               value={scheduler.start_date}
+              required
               moduleId={this.moduleId}
               className={classes.col3}
               label={<FormattedMessage {...messages.field_start_date} />}
@@ -102,6 +103,7 @@ export default class Details extends AbstractPageDetails {
             <DateBox
               name="scheduler.end_date"
               value={scheduler.end_date}
+              required
               moduleId={this.moduleId}
               className={classes.col3}
               label={<FormattedMessage {...messages.field_end_date} />}
@@ -113,6 +115,7 @@ export default class Details extends AbstractPageDetails {
             <SelectBoxSchedulerTimeFrequency
               name="time_frequency"
               value={timeFrequency}
+              required
               moduleId={this.moduleId}
               className={classes.col2}
               label={<FormattedMessage {...messages.field_time_frequency} />}
@@ -122,6 +125,7 @@ export default class Details extends AbstractPageDetails {
             <SwitchBox
               name="scheduler.active"
               value={!!scheduler.active}
+              required
               moduleId={this.moduleId}
               className={classes.col2}
               label={<FormattedMessage {...messages.field_active} />}
