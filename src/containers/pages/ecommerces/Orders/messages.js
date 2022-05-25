@@ -38,6 +38,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_updated_date`,
     defaultMessage: 'Updated at',
   },
+  field_last_import_date: {
+    id: `${scope}.field_last_import_date`,
+    defaultMessage: 'Imported at',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };

@@ -38,8 +38,9 @@ export class List extends AbstractPageList {
       { id: 'total_quantity', width: 155, align: 'right' },
       { id: 'status', format: OrderStatusFormat, align: 'center' },
       { id: 'integration', format: IntegrationFormat },
-      columnDateTime('created_at'),
-      columnDateTime('updated_at'),
+      columnDateTime('last_import_date'),
+      columnDateTime('created_date'),
+      columnDateTime('updated_date'),
     ];
   }
 }
