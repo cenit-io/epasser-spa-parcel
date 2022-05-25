@@ -44,7 +44,7 @@ export class List extends AbstractPageList {
 
   get columns() {
     return [
-      { id: 'icon', width: 40, label: '', format: AvatarFormat },
+      { id: 'icon', width: 40, label: ' ', format: AvatarFormat },
       { id: 'name' },
       { id: 'channel_title' },
       { id: 'authorized', width: 100, align: 'center', format: BoolFormat },
