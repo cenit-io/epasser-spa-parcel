@@ -192,6 +192,8 @@ class EnhancedTable extends AbstractComponent {
   }
 
   onReload = () => {
+    if (!this.state.alreadyLoaded) return;
+
     this.clearSelection();
     this.setState({
       alreadyLoaded: false, items: [], total: 0,

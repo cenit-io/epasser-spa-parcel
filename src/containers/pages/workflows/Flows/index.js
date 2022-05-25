@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 
 import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
+import session from '../../../../base/session';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from '../../../../components/actions/Reload';
@@ -20,6 +21,7 @@ import AddAction from '../../../../components/actions/Add';
 import EditAction from '../../../../components/actions/Edit';
 import StartAction from '../../../../components/actions/Start';
 import ToggleAction from '../../../../components/actions/Toggle';
+import CleanFiltersAction from '../../../../components/actions/CleanFilters';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import SchedulerFormat from '../../../../components/formats/SchedulerFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
@@ -39,6 +41,19 @@ export class List extends AbstractPageList {
 
   static attrIds = settings.attrIds;
 
+  get baseParams() {
+    const filters = session.get('flows-filters', {});
+    const baseParams = {};
+
+    if (filters) {
+      Object.values(filters).forEach((filter) => {
+        baseParams[filter.attr] = filter.value;
+      });
+    }
+
+    return baseParams;
+  }
+
   get columns() {
     return [
       { id: 'type', format: this.typeFormat },
@@ -57,6 +72,7 @@ export class List extends AbstractPageList {
         <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
         <StartAction moduleId={this.moduleId} onClick={this.onStart} />
         <ToggleAction moduleId={this.moduleId} onClick={this.onToggleScheduler} label={this.toggleSchedulerLabel} />
+        <CleanFiltersAction moduleId={this.moduleId} onClick={this.onCleanFilters} disabled={this.canNotCleanFilters} />
       </>
     );
   }
@@ -66,6 +82,8 @@ export class List extends AbstractPageList {
   }
 
   typeFormat = (value, row) => row.title;
+
+  canNotCleanFilters = () => !session.get('flows-filters')
 
   onStart = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmStartMsg} />;
@@ -101,6 +119,11 @@ export class List extends AbstractPageList {
       this.notify({ message: 'successfulOperation', severity: 'success' });
       this.onReload();
     });
+  }
+
+  onCleanFilters = () => {
+    session.del('flows-filters');
+    this.onReload();
   }
 }
 

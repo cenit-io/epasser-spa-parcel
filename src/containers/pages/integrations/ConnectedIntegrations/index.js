@@ -19,6 +19,7 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from '../../../../components/actions/Reload';
 import AddAction from '../../../../components/actions/Add';
 import EditAction from '../../../../components/actions/Edit';
+import FlowsAction from '../../../../components/actions/Flows';
 import DeleteAction from '../../../../components/actions/Delete';
 import AuthorizeAction from '../../../../components/actions/Authorize';
 import UnAuthorizeAction from '../../../../components/actions/UnAuthorize';
@@ -61,11 +62,14 @@ export class List extends AbstractPageList {
         <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
         <AuthorizeAction moduleId={this.moduleId} onClick={this.onAuthorize} />
         <UnAuthorizeAction moduleId={this.moduleId} onClick={this.onUnAuthorize} />
+        <FlowsAction moduleId={this.moduleId} onClick={this.onFlows} disabled={this.canNotStartFlows} />
       </>
     );
   }
 
   canNotDelete = (items) => items.find((item) => item.authorized) !== undefined
+
+  canNotStartFlows = (item) => !item.authorized
 
   onAuthorize = (e, item) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmAuthorizeMsg} />;
@@ -101,6 +105,16 @@ export class List extends AbstractPageList {
       this.notify({ message: 'successfulUnAuthorize', severity: 'success' });
       this.onReload();
     });
+  }
+
+  onFlows = (e, item) => {
+    const filters = {
+      integration: { attr: 'integration_id', value: item.id, title: item.name },
+    };
+
+    session.set('flows-filters', filters);
+    this.emitMessage('openModule', 'Flows', 'MainTabs');
+    this.emitMessage('reload', null, 'Flows');
   }
 }
 
