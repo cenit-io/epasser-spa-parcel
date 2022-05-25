@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Add',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Add a new item',
+  },
 });

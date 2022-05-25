@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Authorize',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Authorize the selected item',
+  },
 });

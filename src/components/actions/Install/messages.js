@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Install',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Start installation process of the selected item',
+  },
 });

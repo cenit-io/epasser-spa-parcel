@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -73,13 +74,15 @@ export default class AbstractAction extends AbstractComponent {
 
   render() {
     return (
-      <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
-        <Tooltip title={this.actionTitle}>
-          <Typography color={this.color} variant="button">
-            {this.actionLabel}
-          </Typography>
-        </Tooltip>
-      </Button>
+      <Tooltip title={this.actionTitle} placement="top" arrow disableInteractive>
+        <Box>
+          <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
+            <Typography color={this.color} variant="button">
+              {this.actionLabel}
+            </Typography>
+          </Button>
+        </Box>
+      </Tooltip>
     );
   }
 

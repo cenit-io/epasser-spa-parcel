@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Unauthorize',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Unauthorize the selected integrations',
+  },
 });

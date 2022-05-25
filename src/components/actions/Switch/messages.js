@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Switch',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Exchange the session with the selected tenant',
+  },
 });

@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Start',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Start the executions of the selected flow',
+  },
 });

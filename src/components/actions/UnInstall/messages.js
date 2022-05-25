@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Uninstall',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Uninstall the selected items',
+  },
 });

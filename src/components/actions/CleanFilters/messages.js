@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Filters',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Clear all applied filters in this module',
+  },
 });

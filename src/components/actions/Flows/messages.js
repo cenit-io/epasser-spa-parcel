@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Flows',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Shows the flows defined for the selected integration',
+  },
 });

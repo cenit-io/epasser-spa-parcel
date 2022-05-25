@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Reload',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Reload the current view',
+  },
 });

@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Retry',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Retry the selected task execution',
+  },
 });

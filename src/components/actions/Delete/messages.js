@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'Delete',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Delete all selected items',
+  },
 });

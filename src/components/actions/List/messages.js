@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.label`,
     defaultMessage: 'List',
   },
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Back to the items list',
+  },
 });
