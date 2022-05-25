@@ -1,11 +1,12 @@
 /**
  * componentExists
  *
- * Check whether the given component exist in either the components or containers directory
+ * Check if the given component exist in either the components or containers directory
  */
 
 const fs = require('fs');
 const path = require('path');
+
 let components;
 
 components = fs.readdirSync(path.join(__dirname, '../../../src/components'));
