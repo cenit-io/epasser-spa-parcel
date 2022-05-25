@@ -22,7 +22,9 @@ export default class AbstractWithSelectionAction extends AbstractAction {
     const { multiSelection } = this;
     let { disabled } = this.props;
 
-    if (typeof disabled === 'function') disabled = disabled(selectionItems);
+    if (typeof disabled === 'function') {
+      disabled = (selectionItems.length > 0) && disabled(multiSelection ? selectionItems : selectionItems[0]);
+    }
 
     return locked || disabled
       || (multiSelection && selectionItems.length === 0)

@@ -89,8 +89,8 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'StockLocations') return <StockLocationsList />;
 
   // Workflows modules
-  if (moduleId === 'Flows') return <FlowsList />;
-  if (moduleId === 'Flows/Add') return <FlowsAdd />;
+  if (moduleId === 'Flows') return <FlowsList {...props} />;
+  if (moduleId === 'Flows/Add') return <FlowsAdd {...props} />;
   if (moduleId === 'Flows/Edit') return <FlowsEdit {...props} />;
 
   if (moduleId === 'Tasks') return <TasksList />;

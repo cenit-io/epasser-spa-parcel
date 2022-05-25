@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import AbstractComponent from '../../AbstractComponent';
 
@@ -19,6 +21,7 @@ export default class AbstractAction extends AbstractComponent {
     moduleId: PropTypes.string.isRequired,
     disabled: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
     onClick: PropTypes.func.isRequired,
   }
 
@@ -46,6 +49,20 @@ export default class AbstractAction extends AbstractComponent {
     return <FormattedMessage {...label} />;
   }
 
+  get actionTitle() {
+    let title = this.props.title
+      || this.title
+      || this.messages.title
+      || this.props.label
+      || this.label
+      || this.messages.label;
+
+    if (typeof title === 'string' && this.messages[title]) title = this.messages[title];
+    if (typeof title === 'string' || React.isValidElement(title)) return title;
+
+    return <FormattedMessage {...title} />;
+  }
+
   get disabled() {
     let { disabled } = this.props;
 
@@ -55,22 +72,18 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   render() {
-    const { classes } = this.props;
-
     return (
       <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
-        <div className={classes.label}>
-          {this.actionLabel}
-        </div>
+        <Tooltip title={this.actionTitle}>
+          <Typography color={this.color} variant="button">
+            {this.actionLabel}
+          </Typography>
+        </Tooltip>
       </Button>
     );
   }
 
-  onClick = (e) => {
-    this.props.onClick(e);
-  }
+  onClick = (e) => this.props.onClick(e);
 
-  onLockActions = (locked) => {
-    this.setState({ locked });
-  }
+  onLockActions = (locked) => this.setState({ locked });
 }

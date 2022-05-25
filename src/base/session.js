@@ -18,21 +18,21 @@ class Session {
   }
 
   get(key, defaultValue) {
-    const item = window.sessionStorage.getItem(key);
+    const item = window.sessionStorage.getItem(LZString.compress(key));
 
     return (item === null) ? defaultValue : JSON.parse(LZString.decompress(item));
   }
 
   set(key, value) {
     try {
-      window.sessionStorage.setItem(key, LZString.compress(JSON.stringify(value)));
+      window.sessionStorage.setItem(LZString.compress(key), LZString.compress(JSON.stringify(value)));
     } catch (e) {
       window.sessionStorage.clear();
     }
   }
 
   del(key) {
-    window.sessionStorage.removeItem(key);
+    window.sessionStorage.removeItem(LZString.compress(key));
   }
 
   clear() {

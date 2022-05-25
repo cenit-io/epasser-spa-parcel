@@ -5,15 +5,18 @@
  */
 
 import React from 'react';
+
 import { withStyles } from '@mui/styles';
-import { FormattedMessage } from 'react-intl';
-import Typography from '@mui/material/Typography';
-import messages from './messages';
-import styles from '../AbstractAction/styles.jss';
-import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 import { UnAuthorizeIcon } from '../../Icons';
 
+import messages from './messages';
+import styles from '../AbstractAction/styles.jss';
+
+import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
+
 class UnAuthorize extends AbstractWithSelectionAction {
+  static messages = messages
+
   get color() {
     return this.disabled ? 'inherit' : 'error';
   }
@@ -22,21 +25,9 @@ class UnAuthorize extends AbstractWithSelectionAction {
     return <UnAuthorizeIcon color={this.color} />;
   }
 
-  get label() {
-    return (
-      <Typography color={this.color} variant="button">
-        <FormattedMessage {...messages.label} />
-      </Typography>
-    );
-  }
-
   get disabled() {
     const { locked, selectionItems: items } = this.state;
     return locked || items.length === 0 || (items.find((item) => !item.authorized) !== undefined);
-  }
-
-  onClick = (e) => {
-    this.props.onClick(e, this.state.selectionItems);
   }
 }
 

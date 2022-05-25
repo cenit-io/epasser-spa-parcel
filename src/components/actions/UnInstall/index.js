@@ -7,8 +7,6 @@
 import React from 'react';
 
 import { withStyles } from '@mui/styles';
-import { FormattedMessage } from 'react-intl';
-import Typography from '@mui/material/Typography';
 import { UnInstallIcon } from '../../Icons';
 
 import messages from './messages';
@@ -16,20 +14,14 @@ import styles from '../AbstractAction/styles.jss';
 import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 
 class UnInstall extends AbstractWithSelectionAction {
+  static messages = messages
+
   get color() {
     return this.disabled ? 'inherit' : 'error';
   }
 
   get icon() {
     return <UnInstallIcon color={this.color} />;
-  }
-
-  get label() {
-    return (
-      <Typography color={this.color} variant="button">
-        <FormattedMessage {...messages.label} />
-      </Typography>
-    );
   }
 
   get disabled() {
