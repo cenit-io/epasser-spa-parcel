@@ -7,6 +7,8 @@
 const themes = {
   default: {
     palette: {
+      // mode: 'dark',
+      mode: 'light',
       primary: {
         light: '#E0F7FA',
         main: '#009688',
@@ -17,12 +19,6 @@ const themes = {
         light: '#F1F8E9',
         main: '#689F38',
         dark: '#33691E',
-        contrastText: '#fff',
-      },
-      error: {
-        light: '#FFC0AF',
-        main: '#FF604F',
-        dark: '#BF200F',
         contrastText: '#fff',
       },
       action: {
@@ -37,6 +33,26 @@ const themes = {
         styleOverrides: {
           colorPrimary: {
             color: 'black',
+          },
+        },
+      },
+      MuiAlert: {
+        styleOverrides: {
+          standard: {
+            borderStyle: 'solid',
+            borderWidth: '1px',
+          },
+          standardWarning: {
+            borderColor: '#ff9800',
+          },
+          standardError: {
+            borderColor: '#ef5350',
+          },
+          standardInfo: {
+            borderColor: '#03a9f4',
+          },
+          standardSuccess: {
+            borderColor: '#4caf50',
           },
         },
       },
@@ -65,7 +81,7 @@ const themes = {
       primary: {
         light: '#E1F5FE',
         main: '#1b6281',
-        dark: '#01579B',
+        dark: '#455A64',
         contrastText: '#fff',
       },
       secondary: {

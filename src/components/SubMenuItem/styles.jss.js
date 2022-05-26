@@ -19,12 +19,12 @@ const styles = (theme) => ({
 
   logo: {
     color: theme.palette.text.primary,
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary[theme.palette.mode],
   },
 
   info: {
     color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary[theme.palette.mode],
     fontSize: '90%',
   },
 });

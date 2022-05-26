@@ -26,14 +26,6 @@ const styles = (theme) => ({
     height: 'calc(100% - 36px)',
     overflow: 'auto',
   },
-
-  table: {
-    '& .MuiTableCell-head': {
-      backgroundColor: theme.palette.primary.light,
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-  },
 });
 
 export default styles;

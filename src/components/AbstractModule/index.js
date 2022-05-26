@@ -88,6 +88,7 @@ export default class AbstractModule extends AbstractPage {
       method: 'DELETE',
       data: this.parseRequestIdentifiers(items),
     }).then((response) => {
+      if (response.type === 'task') this.notify({ message: 'successfulTaskCreation', severity: 'warning' });
       this.emitMessage('reload', response);
     });
   }

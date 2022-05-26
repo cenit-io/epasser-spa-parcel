@@ -30,16 +30,6 @@ const styles = (theme) => ({
     top: 0,
   },
 
-  row: {
-    '&.Mui-selected': {
-      // backgroundColor: theme.palette.secondary.light,
-    },
-
-    '&.Mui-selected:hover': {
-      // backgroundColor: theme.palette.primary.light,
-    },
-  },
-
   cell: {
     borderColor: theme.palette.divider,
     borderStyle: 'solid',
@@ -49,7 +39,7 @@ const styles = (theme) => ({
 
     '&.MuiTableCell-head': {
       position: 'sticky',
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.primary[theme.palette.mode],
       zIndex: 2,
       top: 0,
     },

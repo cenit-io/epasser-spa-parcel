@@ -41,7 +41,7 @@ export default class Alert extends React.Component {
     if (!children || children === '') return null;
 
     return (
-      <MuiAlert variant="filled" severity={severity} style={style} action={this.renderAction()}>
+      <MuiAlert variant="standard" severity={severity} style={style} action={this.renderAction()}>
         {children}
       </MuiAlert>
     );
