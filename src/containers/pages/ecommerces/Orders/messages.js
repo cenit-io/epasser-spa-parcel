@@ -6,6 +6,7 @@
 
 import { defineMessages } from 'react-intl';
 import messagesBase from '../../../../components/AbstractPageList/messages';
+import React from "react";
 
 export const scope = 'containers.pages.Orders';
 
@@ -41,6 +42,11 @@ const messagesLocal = defineMessages({
   field_last_import_date: {
     id: `${scope}.field_last_import_date`,
     defaultMessage: 'Imported at',
+  },
+  confirmReImportMsg: {
+    id: `${scope}.confirmReImportMsg`,
+    defaultMessage: 'Please confirm if you really want to re-import the selected orders?',
+    values: { br: <br /> },
   },
 });
 
