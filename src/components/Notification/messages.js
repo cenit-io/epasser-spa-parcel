@@ -49,4 +49,8 @@ export default defineMessages({
     id: `${scope}.successfulStart`,
     defaultMessage: 'Some background task has been created to start the selected flows.',
   },
+  successfulTaskCreation: {
+    id: `${scope}.successfulTaskCreation`,
+    defaultMessage: 'A background task has been created to process the requested action.',
+  },
 });

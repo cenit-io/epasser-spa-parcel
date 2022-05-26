@@ -73,7 +73,7 @@ export class List extends AbstractPageList {
       method: 'POST',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.notify({ message: 'successfulTaskCreation', severity: 'success' });
     });
   }
 
@@ -91,7 +91,7 @@ export class List extends AbstractPageList {
       method: 'PUT',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.notify({ message: 'successfulTaskCreation', severity: 'success' });
     });
   }
 }
