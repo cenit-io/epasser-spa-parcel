@@ -43,10 +43,13 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_last_import_date`,
     defaultMessage: 'Imported at',
   },
-  confirmReImportMsg: {
-    id: `${scope}.confirmReImportMsg`,
+  confirmImportMsg: {
+    id: `${scope}.confirmImportMsg`,
     defaultMessage: 'Please confirm if you really want to re-import the selected orders?',
-    values: { br: <br /> },
+  },
+  confirmExportMsg: {
+    id: `${scope}.confirmImportMsg`,
+    defaultMessage: 'Please confirm if you really want to export the selected orders?',
   },
 });
 

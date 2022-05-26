@@ -18,7 +18,8 @@ import columnDateTime from '../../../../components/columns/dateTime';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import OrderStatusFormat from '../../../../components/formats/OrderStatusFormat';
 import ReloadAction from '../../../../components/actions/Reload';
-import ReImportAction from '../../../../components/actions/ReImport';
+import ImportAction from '../../../../components/actions/Import';
+import ExportAction from '../../../../components/actions/Export';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -38,8 +39,8 @@ export class List extends AbstractPageList {
   get columns() {
     return [
       { id: 'number' },
-      { id: 'total_price', width: 155, align: 'right' },
-      { id: 'total_quantity', width: 155, align: 'right' },
+      { id: 'total_price', width: 150, align: 'right' },
+      { id: 'total_quantity', width: 150, align: 'right' },
       { id: 'status', format: OrderStatusFormat, align: 'center' },
       { id: 'integration', format: IntegrationFormat },
       columnDateTime('last_import_date'),
@@ -52,23 +53,42 @@ export class List extends AbstractPageList {
     return (
       <>
         <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <ReImportAction moduleId={this.moduleId} onClick={this.onReImport} />
+        <ImportAction moduleId={this.moduleId} onClick={this.onImport} />
+        <ExportAction moduleId={this.moduleId} onClick={this.onExport} />
       </>
     );
   }
 
-  onReImport = (e, items) => {
-    const confirmReImportMsg = <FormattedMessage {...messages.confirmReImportMsg} />;
-    const data = [confirmReImportMsg, (value) => this.onConfirmedReImport(value, items)];
+  onImport = (e, items) => {
+    const msg = <FormattedMessage {...messages.confirmImportMsg} />;
+    const data = [msg, (value) => this.onConfirmedImport(value, items)];
     this.emitMessage('confirm', data, 'main');
   }
 
-  onConfirmedReImport = (value, items) => {
+  onConfirmedImport = (value, items) => {
     if (!value) return;
 
     this.sendRequest({
-      url: this.apiPath,
+      url: `${this.apiPath}/import`,
       method: 'POST',
+      data: this.parseRequestIdentifiers(items),
+    }).then(() => {
+      this.notify({ message: 'successfulOperation', severity: 'success' });
+    });
+  }
+
+  onExport = (e, items) => {
+    const msg = <FormattedMessage {...messages.confirmExportMsg} />;
+    const data = [msg, (value) => this.onConfirmedExport(value, items)];
+    this.emitMessage('confirm', data, 'main');
+  }
+
+  onConfirmedExport = (value, items) => {
+    if (!value) return;
+
+    this.sendRequest({
+      url: `${this.apiPath}/export`,
+      method: 'PUT',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
       this.notify({ message: 'successfulOperation', severity: 'success' });
