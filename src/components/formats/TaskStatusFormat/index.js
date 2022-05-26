@@ -13,7 +13,7 @@ import color from './color';
 
 export default class Format extends React.Component {
   static propTypes = {
-    value: PropTypes.bool.isRequired,
+    value: PropTypes.string.isRequired,
   }
 
   render() {

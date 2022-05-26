@@ -17,7 +17,7 @@ import messages from './messages';
 
 export default class Format extends React.Component {
   static propTypes = {
-    value: PropTypes.bool.isRequired,
+    value: PropTypes.string.isRequired,
     row: PropTypes.instanceOf(Object).isRequired,
   }
 
