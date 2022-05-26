@@ -6,7 +6,6 @@
 
 import { defineMessages } from 'react-intl';
 import messagesBase from '../../../../components/AbstractPageList/messages';
-import React from "react";
 
 export const scope = 'containers.pages.Orders';
 
@@ -14,6 +13,10 @@ const messagesLocal = defineMessages({
   title: {
     id: `${scope}.title`,
     defaultMessage: 'Orders',
+  },
+  documents: {
+    id: `${scope}.documents`,
+    defaultMessage: 'Order documents',
   },
   field_number: {
     id: `${scope}.field_number`,
