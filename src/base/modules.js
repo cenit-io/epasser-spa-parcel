@@ -9,6 +9,7 @@ import ConnectedIntegrationsAdd from '../containers/pages/integrations/Connected
 import ConnectedIntegrationsEdit from '../containers/pages/integrations/ConnectedIntegrations/edit';
 
 import OrdersList from '../containers/pages/ecommerces/Orders';
+import OrdersDocs from '../containers/pages/ecommerces/Orders/docs';
 
 import ProductsList from '../containers/pages/ecommerces/Products';
 import ProductsAdd from '../containers/pages/ecommerces/Products/add';
@@ -43,6 +44,7 @@ export function requireModuleComponent(moduleId) {
 
   // eCommerces modules
   if (moduleId === 'Orders') return OrdersList;
+  if (moduleId === 'Orders/Docs') return OrdersDocs;
 
   if (moduleId === 'Products') return ProductsList;
   if (moduleId === 'Products/Add') return ProductsAdd;
@@ -80,6 +82,7 @@ export function requireModuleInstance(moduleId, props) {
 
   // eCommerces modules
   if (moduleId === 'Orders') return <OrdersList />;
+  if (moduleId === 'Orders/Docs') return <OrdersDocs {...props} />;
 
   if (moduleId === 'Products') return <ProductsList />;
   if (moduleId === 'Products/Add') return <ProductsAdd />;
