@@ -117,9 +117,16 @@ export default class AbstractComponent extends React.Component {
     this.emitMessage('release', null, 'waiting');
   }
 
+  /* eslint no-param-reassign: ["off"] */
   notify(message, severity) {
-    // eslint-disable-next-line no-param-reassign
-    if (typeof message === 'string') message = { message };
+    if (typeof message === 'string') {
+      if (!severity) {
+        const match = message.match(/^(success|warning|info)/);
+        match && ({ 1: severity } = match);
+      }
+
+      message = { message };
+    }
     if (typeof severity === 'string') message.severity = severity;
 
     this.emitMessage('notify', message);

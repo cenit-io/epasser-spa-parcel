@@ -75,7 +75,7 @@ export class List extends AbstractPageList {
       data: this.parseRequestIdentifiers(items),
       skipOpenTasksModule: true,
     }).then(() => {
-      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.notify('successfulOperation');
       this.onReload();
     });
   }

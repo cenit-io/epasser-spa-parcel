@@ -102,7 +102,7 @@ export class List extends AbstractPageList {
       method: 'DELETE',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify({ message: 'successfulUnAuthorize', severity: 'success' });
+      this.notify('successfulUnAuthorize');
       this.onReload();
     });
   }

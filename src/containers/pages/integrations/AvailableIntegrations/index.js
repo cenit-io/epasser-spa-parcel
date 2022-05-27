@@ -72,7 +72,7 @@ export class List extends AbstractPageList {
       url: `${this.apiPath}/${item.id}`,
       method: 'PATCH',
     }).then(() => {
-      this.notify({ message: 'successfulInstallTask', severity: 'success' });
+      this.notify('successfulInstallTask', 'warning');
     });
   }
 
@@ -83,7 +83,7 @@ export class List extends AbstractPageList {
       url: `${this.apiPath}/${item.id}`,
       method: 'DELETE',
     }).then(() => {
-      this.notify({ message: 'successfulUnInstallTask', severity: 'success' });
+      this.notify('successfulUnInstallTask', 'warning');
     });
   }
 }

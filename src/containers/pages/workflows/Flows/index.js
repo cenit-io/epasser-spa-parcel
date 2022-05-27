@@ -99,7 +99,7 @@ export class List extends AbstractPageList {
       method: 'POST',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify({ message: 'successfulStart', severity: 'success' });
+      this.notify('successfulStart', 'warning');
     });
   }
 
@@ -116,7 +116,7 @@ export class List extends AbstractPageList {
       url: `${this.apiPath}/${item.id}/toggle/scheduler/status`,
       method: 'POST',
     }).then(() => {
-      this.notify({ message: 'successfulOperation', severity: 'success' });
+      this.notify('successfulOperation');
       this.onReload();
     });
   }

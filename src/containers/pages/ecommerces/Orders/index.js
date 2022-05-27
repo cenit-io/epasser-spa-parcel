@@ -75,7 +75,7 @@ export class List extends AbstractPageList {
       method: 'POST',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify({ message: 'successfulTaskCreation', severity: 'warning' });
+      this.notify('successfulTaskCreation', 'warning');
     });
   }
 

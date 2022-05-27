@@ -142,7 +142,7 @@ export default class AbstractPageDetails extends AbstractModule {
       };
 
       this.sendRequest(options).then(() => {
-        this.notify({ message: this.successfulMessage, severity: 'success' });
+        this.notify(this.successfulMessage);
         if (this.isAdd) this.onReset();
       });
     } else {
