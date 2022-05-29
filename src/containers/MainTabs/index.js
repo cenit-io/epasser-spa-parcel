@@ -27,7 +27,9 @@ class MainTabs extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state = { activeTab: null, tabsModules: {} };
-    this.setMessagingListener('openModule', this.onOpenTab);
+    this.setMessagingListener('openModule', this.onOpenModule);
+    this.setMessagingListener('closeModules', this.onCloseModules);
+    this.setMessagingListener('closeModule', this.onCloseModule);
   }
 
   get moduleId() {
@@ -43,7 +45,7 @@ class MainTabs extends AbstractComponent {
     this.setActiveTabModule(activeTab);
   }
 
-  onOpenTab = (moduleId, props) => {
+  onOpenModule = (moduleId, props) => {
     const { tabsModules } = this.state;
     const tabId = moduleId.split('/')[0];
 
@@ -57,6 +59,24 @@ class MainTabs extends AbstractComponent {
     const { tabsModules } = this.state;
     delete tabsModules[tabId];
     this.setActiveTabModule('Home');
+  }
+
+  onCloseModule = (tabId) => {
+    const { tabsModules, activeTab } = this.state;
+    delete tabsModules[tabId];
+    this.setActiveTabModule(activeTab === tabId ? 'Home' : activeTab);
+  }
+
+  onCloseModules = (options) => {
+    const { tabsModules, activeTab } = this.state;
+    const except = (options || {}).except || [];
+    except.push('Home');
+
+    Object.keys(tabsModules).forEach((tabId) => {
+      if (except.indexOf(tabId) === -1) delete tabsModules[tabId];
+    });
+
+    if (!tabsModules[activeTab]) this.setActiveTabModule('Home');
   }
 
   renderTabButton(module, idx) {
@@ -78,12 +98,10 @@ class MainTabs extends AbstractComponent {
     const { activeTab } = this.state;
     const tabId = module.id.split('/')[0];
 
+    if (activeTab !== tabId) return null;
+
     return (
-      <div
-        className={classes.tabPanel} role="tabpanel" key={idx}
-        id={`tabpanel-${tabId}`}
-        hidden={activeTab !== tabId}
-      >
+      <div className={classes.tabPanel} role="tabpanel" key={idx} id={`tabpanel-${tabId}`}>
         {requireModuleInstance(module.id, module.props)}
       </div>
     );
