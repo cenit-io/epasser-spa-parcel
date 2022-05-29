@@ -11,7 +11,7 @@ import messages from './messages';
 export default {
   id: 'Tenants',
   icon: TenantsIcon,
-  messages,
   apiPath: 'tenants',
   attrIds: 'tenant_ids',
+  messages,
 };

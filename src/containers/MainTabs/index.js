@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import Tabs from '@mui/material/Tabs';
-import { requireModuleInstance, requireModuleComponent } from '../../base/modules';
+import { requireModuleInstance } from '../../base/modules';
 
 import styles from './styles.jss';
 
@@ -16,8 +16,6 @@ import AbstractComponent from '../../components/AbstractComponent';
 import Divider from '../../components/Divider';
 import Loading from '../../components/Loading';
 import TabButton from '../../components/TabButton';
-
-import HomeMain from '../pages/Home';
 
 class MainTabs extends AbstractComponent {
   static propTypes = {
@@ -49,8 +47,7 @@ class MainTabs extends AbstractComponent {
     const { tabsModules } = this.state;
     const tabId = moduleId.split('/')[0];
 
-    tabsModules[tabId] = requireModuleComponent(moduleId);
-    tabsModules[tabId].props = props;
+    tabsModules[tabId] = { id: moduleId, props };
 
     this.setActiveTabModule(tabId);
   }
@@ -82,11 +79,11 @@ class MainTabs extends AbstractComponent {
   renderTabButton(module, idx) {
     const { activeTab } = this.state;
     const tabId = module.id.split('/')[0];
-
     return (
       <TabButton
         tab={module} key={idx}
         value={tabId}
+        tabId={tabId}
         active={activeTab === tabId}
         onClose={tabId !== 'Home' ? this.onCloseTab : undefined}
       />
@@ -97,11 +94,10 @@ class MainTabs extends AbstractComponent {
     const { classes } = this.props;
     const { activeTab } = this.state;
     const tabId = module.id.split('/')[0];
-
-    if (activeTab !== tabId) return null;
+    const hidden = activeTab !== tabId;
 
     return (
-      <div className={classes.tabPanel} role="tabpanel" key={idx} id={`tabpanel-${tabId}`}>
+      <div id={`tabpanel-${tabId}`} role="tabpanel" key={idx} className={classes.tabPanel} hidden={hidden}>
         {requireModuleInstance(module.id, module.props)}
       </div>
     );
@@ -140,7 +136,7 @@ class MainTabs extends AbstractComponent {
   }
 
   componentDidMount = () => {
-    this.emitMessage('openModule', HomeMain.id);
+    this.emitMessage('openModule', 'Home');
   }
 }
 

@@ -16,17 +16,18 @@ import messages from './messages';
 
 import AbstractComponent from '../../components/AbstractComponent';
 import SubMenuModules from '../../components/SubMenuModules';
-import AvailableIntegrations from '../pages/integrations/AvailableIntegrations';
-import ConnectedIntegrations from '../pages/integrations/ConnectedIntegrations';
-import Orders from '../pages/ecommerces/Orders';
-import Products from '../pages/ecommerces/Products';
-import StockLocations from '../pages/ecommerces/StockLocations';
-import StockItems from '../pages/ecommerces/StockItems';
-import Flows from '../pages/workflows/Flows';
-import Tasks from '../pages/workflows/Tasks';
-import Webhooks from '../pages/workflows/Webhooks';
-import Tenants from '../pages/settings/Tenants';
-import Themes from '../pages/settings/Themes';
+
+import AvailableIntegrations from '../pages/integrations/AvailableIntegrations/settings';
+import ConnectedIntegrations from '../pages/integrations/ConnectedIntegrations/settings';
+import Orders from '../pages/ecommerces/Orders/settings';
+import Products from '../pages/ecommerces/Products/settings';
+import StockLocations from '../pages/ecommerces/StockLocations/settings';
+import StockItems from '../pages/ecommerces/StockItems/settings';
+import Flows from '../pages/workflows/Flows/settings';
+import Tasks from '../pages/workflows/Tasks/settings';
+import Webhooks from '../pages/workflows/Webhooks/settings';
+import Tenants from '../pages/settings/Tenants/settings';
+import Themes from '../pages/settings/Themes/settings';
 
 class LeftSlider extends AbstractComponent {
   static propTypes = {

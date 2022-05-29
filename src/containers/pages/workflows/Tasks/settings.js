@@ -1,6 +1,6 @@
 /**
  *
- * Webhooks/settings
+ * Tasks/settings
  *
  */
 
@@ -12,9 +12,9 @@ import messages from './messages';
 export default {
   id: 'Tasks',
   icon: TasksIcon,
-  messages,
   apiPath: 'tasks',
   attrIds: 'task_ids',
+  messages,
 
   color: (value) => {
     if (/pending/i.test(value)) return grey[500];

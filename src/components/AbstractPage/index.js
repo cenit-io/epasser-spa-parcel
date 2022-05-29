@@ -33,6 +33,10 @@ export default class AbstractPage extends AbstractComponent {
     return customMessages || this.constructor.messages || messages;
   }
 
+  get icon() {
+    return this.props.icon || this.constructor.icon;
+  }
+
   get actions() {
     return (
       <>
@@ -70,5 +74,9 @@ export default class AbstractPage extends AbstractComponent {
 
   onChangeSearchTerm = (searchTerm) => {
     this.setState({ searchTerm });
+  }
+
+  componentDidMount = () => {
+    this.emitMessage('setTabSettings', { id: this.moduleId, icon: this.icon, messages: this.messages });
   }
 }

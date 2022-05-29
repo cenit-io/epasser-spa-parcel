@@ -8,8 +8,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import { StockLocationsIcon } from '../../../../components/Icons';
 
+import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
-import messages from './messages';
+
 import AbstractPageList from '../../../../components/AbstractPageList';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
@@ -19,15 +20,15 @@ export class List extends AbstractPageList {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
-  static id = 'StockLocations';
+  static id = settings.id;
 
-  static icon = StockLocationsIcon;
+  static icon = settings.icon;
 
-  static messages = messages;
+  static messages = settings.messages;
 
-  static apiPath = 'stock/locations';
+  static apiPath = settings.apiPath;
 
-  static attrIds = 'stock_location_ids';
+  static attrIds = settings.attrIds;
 
   get columns() {
     return [
