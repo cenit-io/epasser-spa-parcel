@@ -25,6 +25,7 @@ import StockItems from '../pages/ecommerces/StockItems';
 import Flows from '../pages/workflows/Flows';
 import Tasks from '../pages/workflows/Tasks';
 import Webhooks from '../pages/workflows/Webhooks';
+import Tenants from '../pages/settings/Tenants';
 import Themes from '../pages/settings/Themes';
 
 class LeftSlider extends AbstractComponent {
@@ -75,7 +76,7 @@ class LeftSlider extends AbstractComponent {
           <SubMenuModules
             title={messages.settings}
             onTapItem={this.onTapItem}
-            modules={[Themes]}
+            modules={[Tenants, Themes]}
           />
         </div>
       </Drawer>

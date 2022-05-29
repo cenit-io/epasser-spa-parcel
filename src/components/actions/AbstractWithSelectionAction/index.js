@@ -14,7 +14,8 @@ export default class AbstractWithSelectionAction extends AbstractAction {
   }
 
   get multiSelection() {
-    return this.constructor.multiSelection !== false;
+    const { multiSelection = this.constructor.multiSelection } = this.props;
+    return multiSelection !== false;
   }
 
   get disabled() {

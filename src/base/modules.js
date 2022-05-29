@@ -32,6 +32,9 @@ import WebhooksEdit from '../containers/pages/workflows/Webhooks/edit';
 
 import ThemesList from '../containers/pages/settings/Themes';
 
+import TenantsList from '../containers/pages/settings/Tenants';
+import TenantsAdd from '../containers/pages/settings/Tenants/add';
+
 export function requireModuleComponent(moduleId) {
   // Integrations modules
   if (moduleId === 'Home') return HomeMain;
@@ -67,6 +70,9 @@ export function requireModuleComponent(moduleId) {
 
   // Miscellany modules
   if (moduleId === 'Themes') return ThemesList;
+
+  if (moduleId === 'Tenants') return TenantsList;
+  if (moduleId === 'Tenants/Add') return TenantsAdd;
 
   throw Error(`Invalid module id: ${moduleId}`);
 }
@@ -105,6 +111,9 @@ export function requireModuleInstance(moduleId, props) {
 
   // Miscellany modules
   if (moduleId === 'Themes') return <ThemesList />;
+
+  if (moduleId === 'Tenants') return <TenantsList />;
+  if (moduleId === 'Tenants/Add') return <TenantsAdd />;
 
   throw Error(`Invalid module id: ${moduleId}`);
 }
