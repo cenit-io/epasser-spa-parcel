@@ -58,6 +58,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_content`,
     defaultMessage: 'Content',
   },
+  field_images: {
+    id: `${scope}.field_images`,
+    defaultMessage: 'Images',
+  },
 });
 
 export default { ...messagesBase, ...messagesLocal };
