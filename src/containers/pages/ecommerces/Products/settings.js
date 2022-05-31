@@ -12,6 +12,6 @@ export default {
   id: 'Products',
   icon: ProductsIcon,
   apiPath: 'products',
-  attrIds: 'products_ids',
+  attrIds: 'product_ids',
   messages,
 };

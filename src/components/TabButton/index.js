@@ -13,13 +13,17 @@ import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Clear';
 import Avatar from '@mui/material/Avatar';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 import styles from './styles.jss';
 
-class TabButton extends React.Component {
+import AbstractComponent from '../AbstractComponent';
+
+class TabButton extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    tab: PropTypes.instanceOf(Object).isRequired,
     value: PropTypes.string.isRequired,
+    tabId: PropTypes.string.isRequired,
     active: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func,
@@ -29,7 +33,8 @@ class TabButton extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { hover: false };
+    this.state = { hover: false, settings: null };
+    this.setMessagingListener('setTabSettings', this.onSetTabSettings, props.tabId);
   }
 
   get buttonCloseClass() {
@@ -45,15 +50,17 @@ class TabButton extends React.Component {
   onMouseLeave = () => this.setState({ hover: false });
 
   onChange = (e) => {
-    const { value, onChange } = this.props;
-    onChange && onChange(e, value);
+    const { tabId, onChange } = this.props;
+    onChange && onChange(e, tabId);
   }
 
   onCloseButtonClick = (e) => {
     e.stopPropagation();
-    const { value, onClose } = this.props;
-    onClose && onClose(e, value);
+    const { tabId, onClose } = this.props;
+    onClose && onClose(e, tabId);
   }
+
+  onSetTabSettings = (settings) => this.setState({ settings })
 
   renderCloseButton() {
     const { onClose } = this.props;
@@ -68,24 +75,26 @@ class TabButton extends React.Component {
   }
 
   render() {
-    const { classes, tab, active } = this.props;
-    const Icon = tab.icon;
-    const title = tab.title || tab.messages.title;
+    const { settings } = this.state;
+    const { classes, active } = this.props;
+    const { icon: Icon, messages: { title } = {} } = settings || {};
+    const loading = settings === null;
 
     return (
-      <Button
+      <LoadingButton
+        loading={loading}
         role="tab"
         className={classes.root}
         color="primary"
-        variant={active ? 'contained' : 'outlined'}
+        variant={active && !loading ? 'contained' : 'outlined'}
         startIcon={Icon ? <Icon /> : undefined}
         onClick={this.onChange}
         onMouseMove={this.onMouseMove}
         onMouseLeave={this.onMouseLeave}
       >
-        <span><FormattedMessage {...title} /></span>
+        <span>{title ? <FormattedMessage {...title} /> : '...'}</span>
         {this.renderCloseButton()}
-      </Button>
+      </LoadingButton>
     );
   }
 }

@@ -14,9 +14,11 @@ import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
+import CustomSection from '../../../../components/sections/CustomSection';
 import ListAction from '../../../../components/actions/List';
 import TextBox from '../../../../components/forms/fields/TextBox';
 import NumberBox from '../../../../components/forms/fields/NumberBox';
+import SelectBoxPackageOverwrite from '../../../../components/forms/fields/SelectBoxPackageOverwrite';
 
 export default class Details extends AbstractPageDetails {
   static propTypes = {
@@ -31,26 +33,51 @@ export default class Details extends AbstractPageDetails {
 
   static apiPath = settings.apiPath;
 
+  get requestData() {
+    const { item: { name, price, description, package: pk } } = this.state;
+    const { weight, height, length, width, content } = pk;
+    const data = {
+      name,
+      price,
+      description,
+      package: {
+        weight, height, length, width, content,
+      },
+    };
+
+    if (this.isEdit) data.package.overwrite = pk.overwrite;
+
+    return data;
+  }
+
+  parsePkValue(value, defaultValue = 10) {
+    if (value === null || value === undefined) return defaultValue;
+    // eslint-disable-next-line radix
+    return parseInt(value);
+  }
+
   get form() {
     const { classes } = this.props;
     const { item: { name, price, description, package: pk = {} } } = this.state;
 
     return (
-      <FormGroup>
-        <fieldset className={classes.formSection}>
-          <legend><FormattedMessage {...messages.basic} /></legend>
+      <>
+        <CustomSection title={messages.basic}>
           <FormGroup row>
             <TextBox
               name="name"
               value={name}
+              required
               moduleId={this.moduleId}
               className={classes.col4}
               label={<FormattedMessage {...messages.field_name} />}
               onChange={this.onChange}
             />
-            <TextBox
+            <NumberBox
               name="price"
-              value={price}
+              value={price || 0}
+              min={0}
+              required
               moduleId={this.moduleId}
               className={classes.col2}
               label={<FormattedMessage {...messages.field_price} />}
@@ -59,6 +86,7 @@ export default class Details extends AbstractPageDetails {
             <TextBox
               name="description"
               value={description}
+              required
               moduleId={this.moduleId}
               multiline
               rows={5}
@@ -67,47 +95,54 @@ export default class Details extends AbstractPageDetails {
               onChange={this.onChange}
             />
           </FormGroup>
-        </fieldset>
+        </CustomSection>
 
-        <fieldset className={classes.formSection}>
-          <legend><FormattedMessage {...messages.package} /></legend>
+        <CustomSection title={messages.package}>
           <FormGroup row>
             <FormGroup className={classes.col2}>
               <NumberBox
-                name="weight"
-                value={pk.weight}
+                name="package.weight"
+                value={this.parsePkValue(pk.weight)}
+                min={10}
+                required
                 moduleId={this.moduleId}
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_weight} />}
                 onChange={this.onChange}
               />
               <NumberBox
-                name="height"
-                value={pk.height}
+                name="package.height"
+                value={this.parsePkValue(pk.height)}
+                min={10}
+                required
                 moduleId={this.moduleId}
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_height} />}
                 onChange={this.onChange}
               />
               <NumberBox
-                name="length"
-                value={pk.length}
+                name="package.length"
+                value={this.parsePkValue(pk.length)}
+                min={10}
                 moduleId={this.moduleId}
+                required
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_length} />}
                 onChange={this.onChange}
               />
               <NumberBox
-                name="width"
-                value={pk.width}
+                name="package.width"
+                value={this.parsePkValue(pk.width)}
+                min={10}
                 moduleId={this.moduleId}
+                required
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_width} />}
                 onChange={this.onChange}
               />
             </FormGroup>
             <TextBox
-              name="content"
+              name="package.content"
               value={pk.content}
               multiline
               moduleId={this.moduleId}
@@ -116,8 +151,18 @@ export default class Details extends AbstractPageDetails {
               onChange={this.onChange}
             />
           </FormGroup>
-        </fieldset>
-      </FormGroup>
+          {
+            this.isEdit && (
+              <SelectBoxPackageOverwrite
+                name="package.overwrite"
+                required
+                className={classes.col6}
+                onChange={this.onChange}
+              />
+            )
+          }
+        </CustomSection>
+      </>
     );
   }
 

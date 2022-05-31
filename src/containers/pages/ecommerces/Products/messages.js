@@ -16,11 +16,11 @@ const messagesLocal = defineMessages({
   },
   basic: {
     id: `${scope}.basic`,
-    defaultMessage: 'Basic',
+    defaultMessage: 'Basic info',
   },
   package: {
     id: `${scope}.package`,
-    defaultMessage: 'Package',
+    defaultMessage: 'Package info',
   },
   field_price: {
     id: `${scope}.field_price`,
@@ -57,6 +57,10 @@ const messagesLocal = defineMessages({
   field_content: {
     id: `${scope}.field_content`,
     defaultMessage: 'Content',
+  },
+  field_images: {
+    id: `${scope}.field_images`,
+    defaultMessage: 'Images',
   },
 });
 

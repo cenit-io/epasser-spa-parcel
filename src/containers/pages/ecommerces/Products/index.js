@@ -50,7 +50,7 @@ export class List extends AbstractPageList {
         <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
         <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
         <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
+        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
       </>
     );
   }
@@ -58,6 +58,8 @@ export class List extends AbstractPageList {
   integrationsFormat = (value, row, column) => value.map(
     (integration) => <IntegrationFormat key={integration.id} value={integration} row={row} column={column} />,
   )
+
+  canNotDelete = (items) => items.find((item) => item.integrations.length !== 0) !== undefined
 }
 
 export default withStyles(styles)(List);

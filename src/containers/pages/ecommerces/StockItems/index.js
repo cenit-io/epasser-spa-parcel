@@ -7,10 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
-import { StockItemsIcon } from '../../../../components/Icons';
 
+import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
-import messages from './messages';
+
 import AbstractPageList from '../../../../components/AbstractPageList';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
@@ -20,15 +20,15 @@ export class List extends AbstractPageList {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
-  static id = 'StockItems';
+  static id = settings.id;
 
-  static icon = StockItemsIcon;
+  static icon = settings.icon;
 
-  static messages = messages;
+  static messages = settings.messages;
 
-  static apiPath = 'stock/items';
+  static apiPath = settings.apiPath;
 
-  static attrIds = 'stock_item_ids';
+  static attrIds = settings.attrIds;
 
   get columns() {
     return [

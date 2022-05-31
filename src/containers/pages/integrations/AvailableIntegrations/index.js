@@ -6,12 +6,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
-import { AvailableIntegrationsIcon } from '../../../../components/Icons';
 
+import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
-import messages from './messages';
+
 import AbstractPageList from '../../../../components/AbstractPageList';
 import ReloadAction from '../../../../components/actions/Reload';
 import InstallAction from '../../../../components/actions/Install';
@@ -22,15 +23,15 @@ export class List extends AbstractPageList {
     classes: PropTypes.instanceOf(Object).isRequired,
   }
 
-  static id = 'AvailableIntegrations';
+  static id = settings.id;
 
-  static icon = AvailableIntegrationsIcon;
+  static icon = settings.icon;
 
-  static messages = messages;
+  static messages = settings.messages;
 
-  static apiPath = 'available/integrations';
+  static apiPath = settings.apiPath;
 
-  static attrIds = 'collection_ids';
+  static attrIds = settings.attrIds;
 
   get columns() {
     return [

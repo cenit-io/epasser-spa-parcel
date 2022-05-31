@@ -16,12 +16,11 @@ import { ProductsIcon } from '../../Icons';
 class Format extends React.Component {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
-    row: PropTypes.string.isRequired,
+    value: PropTypes.arrayOf(PropTypes.string).isRequired,
   }
 
   render() {
-    const { classes, row } = this.props;
-    const image = row.images[0];
+    const { classes, value: { 0: image } } = this.props;
     const defaultImage = image ? null : <ProductsIcon />;
 
     return (

@@ -48,7 +48,6 @@ class BoardModules extends AbstractComponent {
 
   renderSubMenuItem(item) {
     if (typeof item === 'string') return <SubMenuItem key={item} title={item} />;
-
     return (
       <SubMenuItem
         key={item.id}
