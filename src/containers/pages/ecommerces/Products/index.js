@@ -12,10 +12,11 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import settings from './settings';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import AddAction from '../../../../components/actions/Add';
-import EditAction from '../../../../components/actions/Edit';
-import DeleteAction from '../../../../components/actions/Delete';
+import ActReload from '../../../../components/actions/Reload';
+import ActAdd from '../../../../components/actions/Add';
+import ActEdit from '../../../../components/actions/Edit';
+import ActEditProp from '../../../../components/actions/EditProductProperties';
+import ActDelete from '../../../../components/actions/Delete';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import AvatarProductFormat from '../../../../components/formats/AvatarProductFormat';
 
@@ -47,10 +48,11 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
-        <EditAction moduleId={this.moduleId} onClick={this.onEdit} title={this.messages.editActionTitle} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
+        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} title={this.messages.editBasicTitle} />
+        <ActEditProp moduleId={this.moduleId} onClick={this.onEditProp} title={this.messages.editPropertiesTitle} />
+        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
       </>
     );
   }
@@ -60,6 +62,11 @@ export class List extends AbstractPageList {
   )
 
   canNotDelete = (items) => items.find((item) => item.integrations.length !== 0) !== undefined
+
+  onEditProp = (e, item) => {
+    const moduleId = `${this.moduleBaseId}/EditProp`;
+    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+  }
 }
 
 export default withStyles(styles)(List);
