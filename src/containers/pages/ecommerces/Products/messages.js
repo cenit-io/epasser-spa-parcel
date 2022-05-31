@@ -22,6 +22,10 @@ const messagesLocal = defineMessages({
     id: `${scope}.package`,
     defaultMessage: 'Package info',
   },
+  editActionTitle: {
+    id: `${scope}.editActionTitle`,
+    defaultMessage: 'Edit the basic attributes of the selected product',
+  },
   field_price: {
     id: `${scope}.field_price`,
     defaultMessage: 'Price',

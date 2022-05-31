@@ -49,7 +49,7 @@ export class List extends AbstractPageList {
       <>
         <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
         <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
-        <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
+        <EditAction moduleId={this.moduleId} onClick={this.onEdit} title={this.messages.editActionTitle} />
         <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
       </>
     );
