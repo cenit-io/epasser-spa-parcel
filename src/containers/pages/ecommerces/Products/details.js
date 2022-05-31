@@ -18,6 +18,7 @@ import CustomSection from '../../../../components/sections/CustomSection';
 import ListAction from '../../../../components/actions/List';
 import TextBox from '../../../../components/forms/fields/TextBox';
 import NumberBox from '../../../../components/forms/fields/NumberBox';
+import SelectBoxPackageOverwrite from '../../../../components/forms/fields/SelectBoxPackageOverwrite';
 
 export default class Details extends AbstractPageDetails {
   static propTypes = {
@@ -31,6 +32,23 @@ export default class Details extends AbstractPageDetails {
   static messages = settings.messages;
 
   static apiPath = settings.apiPath;
+
+  get requestData() {
+    const { item: { name, price, description, package: pk } } = this.state;
+    const { weight, height, length, width, content } = pk;
+    const data = {
+      name,
+      price,
+      description,
+      package: {
+        weight, height, length, width, content,
+      },
+    };
+
+    if (this.isEdit) data.package.overwrite = pk.overwrite;
+
+    return data;
+  }
 
   parsePkValue(value, defaultValue = 10) {
     if (value === null || value === undefined) return defaultValue;
@@ -133,6 +151,16 @@ export default class Details extends AbstractPageDetails {
               onChange={this.onChange}
             />
           </FormGroup>
+          {
+            this.isEdit && (
+              <SelectBoxPackageOverwrite
+                name="package.overwrite"
+                required
+                className={classes.col6}
+                onChange={this.onChange}
+              />
+            )
+          }
         </CustomSection>
       </>
     );

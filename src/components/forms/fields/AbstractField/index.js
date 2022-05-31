@@ -7,6 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { FormattedMessage } from 'react-intl';
+
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
@@ -42,13 +44,18 @@ export default class AbstractField extends AbstractComponent {
   }
 
   get label() {
-    return this.props.label;
+    let label = this.props.label || this.messages.label;
+
+    if (typeof label === 'string' && this.messages[label]) label = this.messages[label];
+    if (typeof label === 'string' || React.isValidElement(label)) return label;
+
+    return <FormattedMessage {...label} />;
   }
 
   isBlack = () => {
     const { value } = this.state;
 
-    return value === '' || value === null || value === undefined;
+    return value === '' || value === null || value === undefined || value.length === 0;
   }
 
   isValid = () => !(this.props.required && this.isBlack());
