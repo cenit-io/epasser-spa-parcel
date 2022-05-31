@@ -23,7 +23,7 @@ class SelectBoxPackageOverwrite extends AbstractSelectBox {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   }
 
-  static defaultProps = { value: '' };
+  static defaultProps = { value: false };
 
   static messages = messages;
 
