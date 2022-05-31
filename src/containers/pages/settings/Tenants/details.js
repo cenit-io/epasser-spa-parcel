@@ -14,7 +14,7 @@ import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
-import ListAction from '../../../../components/actions/List';
+import ActList from '../../../../components/actions/List';
 import TextBox from '../../../../components/forms/fields/TextBox';
 import CustomSection from "../../../../components/sections/CustomSection";
 
@@ -56,7 +56,7 @@ export default class Details extends AbstractPageDetails {
   get actions() {
     return (
       <>
-        <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
       </>
     );
   }

@@ -17,10 +17,10 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import columnDateTime from '../../../../components/columns/dateTime';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import OrderStatusFormat from '../../../../components/formats/OrderStatusFormat';
-import ReloadAction from '../../../../components/actions/Reload';
-import ImportAction from '../../../../components/actions/Import';
-import ExportAction from '../../../../components/actions/Export';
-import DocumentsAction from '../../../../components/actions/Documents';
+import ActReload from '../../../../components/actions/Reload';
+import ActImport from '../../../../components/actions/Import';
+import ActExport from '../../../../components/actions/Export';
+import ActDocuments from '../../../../components/actions/Documents';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -53,10 +53,10 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <ImportAction moduleId={this.moduleId} onClick={this.onImport} />
-        <ExportAction moduleId={this.moduleId} onClick={this.onExport} />
-        <DocumentsAction moduleId={this.moduleId} onClick={this.onShowDocuments} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActImport moduleId={this.moduleId} onClick={this.onImport} />
+        <ActExport moduleId={this.moduleId} onClick={this.onExport} />
+        <ActDocuments moduleId={this.moduleId} onClick={this.onShowDocuments} />
       </>
     );
   }

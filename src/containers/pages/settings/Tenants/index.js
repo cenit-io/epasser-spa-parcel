@@ -15,11 +15,11 @@ import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import AddAction from '../../../../components/actions/Add';
-import EditAction from '../../../../components/actions/Edit';
-import DeleteAction from '../../../../components/actions/Delete';
-import SwitchAction from '../../../../components/actions/Switch';
+import ActReload from '../../../../components/actions/Reload';
+import ActAdd from '../../../../components/actions/Add';
+import ActEdit from '../../../../components/actions/Edit';
+import ActDelete from '../../../../components/actions/Delete';
+import ActSwitch from '../../../../components/actions/Switch';
 import columnDateTime from '../../../../components/columns/dateTime';
 import BoolFormat from '../../../../components/formats/BoolFormat';
 
@@ -57,15 +57,15 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
-        <DeleteAction
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
+        <ActDelete
           multiSelection={false}
           moduleId={this.moduleId}
           onClick={this.onDelete}
           disabled={this.isCurrentAccount}
         />
-        <SwitchAction moduleId={this.moduleId} onClick={this.onSwitch} disabled={this.isCurrentAccount} />
+        <ActSwitch moduleId={this.moduleId} onClick={this.onSwitch} disabled={this.isCurrentAccount} />
       </>
     );
   }

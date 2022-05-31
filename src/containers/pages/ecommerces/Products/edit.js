@@ -9,8 +9,8 @@ import { withStyles } from '@mui/styles';
 
 import styles from '../../../../components/AbstractPageDetails/styles.jss';
 import Details from './details';
-import ListAction from '../../../../components/actions/List';
-import DeleteAction from '../../../../components/actions/Delete';
+import ActList from '../../../../components/actions/List';
+import ActDelete from '../../../../components/actions/Delete';
 
 export class Edit extends Details {
   static id = `${Details.id}/Edit`;
@@ -32,8 +32,8 @@ export class Edit extends Details {
     const { item } = this.props;
     return (
       <>
-        <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
+        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
       </>
     );
   }

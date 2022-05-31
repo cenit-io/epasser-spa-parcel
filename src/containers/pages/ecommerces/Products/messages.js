@@ -22,9 +22,13 @@ const messagesLocal = defineMessages({
     id: `${scope}.package`,
     defaultMessage: 'Package info',
   },
-  editActionTitle: {
-    id: `${scope}.editActionTitle`,
-    defaultMessage: 'Edit the basic attributes of the selected product',
+  editBasicTitle: {
+    id: `${scope}.editBasicTitle`,
+    defaultMessage: 'Edit the basic attributes of the selected item',
+  },
+  editPropertiesTitle: {
+    id: `${scope}.editPropertiesTitle`,
+    defaultMessage: 'Edit the specific properties of the selected item in each of its associated integrations',
   },
   field_price: {
     id: `${scope}.field_price`,

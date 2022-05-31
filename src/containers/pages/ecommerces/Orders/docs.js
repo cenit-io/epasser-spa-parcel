@@ -23,8 +23,8 @@ import color from '../../../../components/formats/TaskStatusFormat/color';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 import CustomSection from '../../../../components/sections/CustomSection';
-import ListAction from '../../../../components/actions/List';
-import ReloadAction from '../../../../components/actions/Reload';
+import ActList from '../../../../components/actions/List';
+import ActReload from '../../../../components/actions/Reload';
 
 class Show extends AbstractPageDetails {
   static propTypes = {
@@ -44,8 +44,8 @@ class Show extends AbstractPageDetails {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
       </>
     );
   }

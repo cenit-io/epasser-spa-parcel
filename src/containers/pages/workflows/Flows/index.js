@@ -15,13 +15,13 @@ import styles from '../../../../components/AbstractPageList/styles.jss';
 import session from '../../../../base/session';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import DeleteAction from '../../../../components/actions/Delete';
-import AddAction from '../../../../components/actions/Add';
-import EditAction from '../../../../components/actions/Edit';
-import StartAction from '../../../../components/actions/Start';
-import ToggleAction from '../../../../components/actions/Toggle';
-import CleanFiltersAction from '../../../../components/actions/CleanFilters';
+import ActReload from '../../../../components/actions/Reload';
+import ActDelete from '../../../../components/actions/Delete';
+import ActAdd from '../../../../components/actions/Add';
+import ActEdit from '../../../../components/actions/Edit';
+import ActStart from '../../../../components/actions/Start';
+import ActToggle from '../../../../components/actions/Toggle';
+import ActCleanFilters from '../../../../components/actions/CleanFilters';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import SchedulerFormat from '../../../../components/formats/SchedulerFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
@@ -66,13 +66,13 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
-        <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
-        <StartAction moduleId={this.moduleId} onClick={this.onStart} />
-        <ToggleAction moduleId={this.moduleId} onClick={this.onToggleScheduler} label={this.toggleSchedulerLabel} />
-        <CleanFiltersAction moduleId={this.moduleId} onClick={this.onCleanFilters} disabled={this.canNotCleanFilters} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
+        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} />
+        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} />
+        <ActStart moduleId={this.moduleId} onClick={this.onStart} />
+        <ActToggle moduleId={this.moduleId} onClick={this.onToggleScheduler} label={this.toggleSchedulerLabel} />
+        <ActCleanFilters moduleId={this.moduleId} onClick={this.onCleanFilters} disabled={this.canNotCleanFilters} />
       </>
     );
   }
