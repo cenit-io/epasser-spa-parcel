@@ -22,6 +22,10 @@ export default class AbstractModule extends AbstractPage {
     return this._moduleId;
   }
 
+  get moduleBaseId() {
+    return this.moduleId.split('/')[0];
+  }
+
   get attrIds() {
     return this.constructor.attrIds || 'ids';
   }
@@ -61,18 +65,17 @@ export default class AbstractModule extends AbstractPage {
   }
 
   onAdd = () => {
-    const moduleId = `${this.moduleId.split('/')[0]}/Add`;
+    const moduleId = `${this.moduleBaseId}/Add`;
     this.emitMessage('openModule', moduleId, 'MainTabs');
   }
 
   onEdit = (e, item) => {
-    const moduleId = `${this.moduleId.split('/')[0]}/Edit`;
+    const moduleId = `${this.moduleBaseId}/Edit`;
     this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
   }
 
   onBackToList = () => {
-    const moduleId = this.moduleId.split('/')[0];
-    this.emitMessage('openModule', moduleId, 'MainTabs');
+    this.emitMessage('openModule', this.moduleBaseId, 'MainTabs');
   }
 
   onDelete = (e, items) => {
@@ -89,7 +92,11 @@ export default class AbstractModule extends AbstractPage {
       data: this.parseRequestIdentifiers(items),
     }).then((response) => {
       if (response.type === 'task') this.notify('successfulTaskCreation', 'warning');
-      this.emitMessage('reload', response);
+      if (this.moduleId.match(/\//)) {
+        this.onBackToList();
+      } else {
+        this.emitMessage('reload', response);
+      }
     });
   }
 
