@@ -22,6 +22,15 @@ class Local {
   clear() {
     window.localStorage.clear();
   }
+
+  get theme() {
+    const theme = this.get('theme', { id: 'default', mode: 'light' });
+    return (typeof theme === 'string') ? { id: theme, model: 'light' } : theme;
+  }
+
+  setTheme(value) {
+    this.set('theme', value);
+  }
 }
 
 const local = new Local();
