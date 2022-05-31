@@ -1,6 +1,6 @@
 /**
  *
- * EditProductProperties
+ * EditProps
  *
  */
 
@@ -8,7 +8,6 @@ import React from 'react';
 
 import { withStyles } from '@mui/styles';
 
-// import Icon from '@mui/icons-material/EditLocationOutlined';
 import Icon from '@mui/icons-material/AppRegistrationOutlined';
 
 import messages from './messages';

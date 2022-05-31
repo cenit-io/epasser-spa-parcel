@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import FormGroup from '@mui/material/FormGroup';
-import messages from './messages';
 import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
@@ -57,7 +56,7 @@ export default class Details extends AbstractPageDetails {
   }
 
   get form() {
-    const { classes } = this.props;
+    const { props: { classes }, messages, moduleId } = this;
     const { item: { name, price, description, package: pk = {} } } = this.state;
 
     return (
@@ -68,7 +67,7 @@ export default class Details extends AbstractPageDetails {
               name="name"
               value={name}
               required
-              moduleId={this.moduleId}
+              moduleId={moduleId}
               className={classes.col4}
               label={<FormattedMessage {...messages.field_name} />}
               onChange={this.onChange}
@@ -78,7 +77,7 @@ export default class Details extends AbstractPageDetails {
               value={price || 0}
               min={0}
               required
-              moduleId={this.moduleId}
+              moduleId={moduleId}
               className={classes.col2}
               label={<FormattedMessage {...messages.field_price} />}
               onChange={this.onChange}
@@ -87,7 +86,7 @@ export default class Details extends AbstractPageDetails {
               name="description"
               value={description}
               required
-              moduleId={this.moduleId}
+              moduleId={moduleId}
               multiline
               rows={5}
               className={classes.col6}
@@ -105,7 +104,7 @@ export default class Details extends AbstractPageDetails {
                 value={this.parsePkValue(pk.weight)}
                 min={10}
                 required
-                moduleId={this.moduleId}
+                moduleId={moduleId}
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_weight} />}
                 onChange={this.onChange}
@@ -115,7 +114,7 @@ export default class Details extends AbstractPageDetails {
                 value={this.parsePkValue(pk.height)}
                 min={10}
                 required
-                moduleId={this.moduleId}
+                moduleId={moduleId}
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_height} />}
                 onChange={this.onChange}
@@ -124,7 +123,7 @@ export default class Details extends AbstractPageDetails {
                 name="package.length"
                 value={this.parsePkValue(pk.length)}
                 min={10}
-                moduleId={this.moduleId}
+                moduleId={moduleId}
                 required
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_length} />}
@@ -134,7 +133,7 @@ export default class Details extends AbstractPageDetails {
                 name="package.width"
                 value={this.parsePkValue(pk.width)}
                 min={10}
-                moduleId={this.moduleId}
+                moduleId={moduleId}
                 required
                 className={classes.col6}
                 label={<FormattedMessage {...messages.field_width} />}
@@ -145,7 +144,7 @@ export default class Details extends AbstractPageDetails {
               name="package.content"
               value={pk.content}
               multiline
-              moduleId={this.moduleId}
+              moduleId={moduleId}
               className={classes.col4}
               label={<FormattedMessage {...messages.field_content} />}
               onChange={this.onChange}

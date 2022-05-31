@@ -15,7 +15,7 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import ActReload from '../../../../components/actions/Reload';
 import ActAdd from '../../../../components/actions/Add';
 import ActEdit from '../../../../components/actions/Edit';
-import ActEditProp from '../../../../components/actions/EditProductProperties';
+import ActEditProps from '../../../../components/actions/EditProps';
 import ActDelete from '../../../../components/actions/Delete';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import AvatarProductFormat from '../../../../components/formats/AvatarProductFormat';
@@ -46,13 +46,23 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const {
+      moduleId: mId,
+      messages: { editBasicTitle, editPropsTitle },
+    } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
-        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} title={this.messages.editBasicTitle} />
-        <ActEditProp moduleId={this.moduleId} onClick={this.onEditProp} title={this.messages.editPropertiesTitle} />
-        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
+        <ActReload moduleId={mId} onClick={this.onReload} />
+        <ActAdd moduleId={mId} onClick={this.onAdd} />
+        <ActEdit moduleId={mId} onClick={this.onEdit} title={editBasicTitle} />
+        <ActEditProps
+          moduleId={mId}
+          onClick={this.onEditProps}
+          title={editPropsTitle}
+          disabled={this.canNotEditProps}
+        />
+        <ActDelete moduleId={mId} onClick={this.onDelete} disabled={this.canNotDelete} />
       </>
     );
   }
@@ -61,10 +71,12 @@ export class List extends AbstractPageList {
     (integration) => <IntegrationFormat key={integration.id} value={integration} row={row} column={column} />,
   )
 
-  canNotDelete = (items) => items.find((item) => item.integrations.length !== 0) !== undefined
+  canNotDelete = (items) => items.find((item) => item.integrations.length !== 0) !== undefined;
 
-  onEditProp = (e, item) => {
-    const moduleId = `${this.moduleBaseId}/EditProp`;
+  canNotEditProps = (item) => item.integrations.length === 0;
+
+  onEditProps = (e, item) => {
+    const moduleId = `${this.moduleBaseId}/EditProps`;
     this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
   }
 }
