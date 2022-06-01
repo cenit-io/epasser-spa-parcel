@@ -14,9 +14,9 @@ import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import InstallAction from '../../../../components/actions/Install';
-import UnInstallAction from '../../../../components/actions/UnInstall';
+import ActReload from '../../../../components/actions/Reload';
+import ActInstall from '../../../../components/actions/Install';
+import ActUnInstall from '../../../../components/actions/UnInstall';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -47,9 +47,9 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <InstallAction moduleId={this.moduleId} onClick={this.onInstall} />
-        <UnInstallAction moduleId={this.moduleId} onClick={this.onUnInstall} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActInstall moduleId={this.moduleId} onClick={this.onInstall} />
+        <ActUnInstall moduleId={this.moduleId} onClick={this.onUnInstall} />
       </>
     );
   }

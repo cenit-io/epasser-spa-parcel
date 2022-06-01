@@ -15,7 +15,7 @@ import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 import CustomSection from '../../../../components/sections/CustomSection';
-import ListAction from '../../../../components/actions/List';
+import ActList from '../../../../components/actions/List';
 import SelectBoxFlowType from '../../../../components/forms/fields/SelectBoxFlowType';
 import SelectBoxIntegration from '../../../../components/forms/fields/SelectBoxIntegration';
 import SelectBoxSchedulerTimeFrequency from '../../../../components/forms/fields/SelectBoxSchedulerTimeFrequency';
@@ -168,7 +168,7 @@ export default class Details extends AbstractPageDetails {
   get actions() {
     return (
       <>
-        <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
       </>
     );
   }

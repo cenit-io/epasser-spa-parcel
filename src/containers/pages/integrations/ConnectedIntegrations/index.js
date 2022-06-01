@@ -16,13 +16,13 @@ import settings from './settings';
 import session from '../../../../base/session';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import AddAction from '../../../../components/actions/Add';
-import EditAction from '../../../../components/actions/Edit';
-import FlowsAction from '../../../../components/actions/Flows';
-import DeleteAction from '../../../../components/actions/Delete';
-import AuthorizeAction from '../../../../components/actions/Authorize';
-import UnAuthorizeAction from '../../../../components/actions/UnAuthorize';
+import ActReload from '../../../../components/actions/Reload';
+import ActAdd from '../../../../components/actions/Add';
+import ActEdit from '../../../../components/actions/Edit';
+import ActFlows from '../../../../components/actions/Flows';
+import ActDelete from '../../../../components/actions/Delete';
+import ActAuthorize from '../../../../components/actions/Authorize';
+import ActUnAuthorize from '../../../../components/actions/UnAuthorize';
 import AvatarFormat from '../../../../components/formats/AvatarFormat';
 import BoolFormat from '../../../../components/formats/BoolFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
@@ -56,13 +56,13 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
-        <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
-        <AuthorizeAction moduleId={this.moduleId} onClick={this.onAuthorize} />
-        <UnAuthorizeAction moduleId={this.moduleId} onClick={this.onUnAuthorize} />
-        <FlowsAction moduleId={this.moduleId} onClick={this.onFlows} disabled={this.canNotStartFlows} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
+        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} />
+        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
+        <ActAuthorize moduleId={this.moduleId} onClick={this.onAuthorize} />
+        <ActUnAuthorize moduleId={this.moduleId} onClick={this.onUnAuthorize} />
+        <ActFlows moduleId={this.moduleId} onClick={this.onFlows} disabled={this.canNotStartFlows} />
       </>
     );
   }

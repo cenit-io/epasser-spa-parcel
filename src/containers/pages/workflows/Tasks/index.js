@@ -13,10 +13,10 @@ import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import DeleteAction from '../../../../components/actions/Delete';
-import RetryAction from '../../../../components/actions/Retry';
-import ShowAction from '../../../../components/actions/Show';
+import ActReload from '../../../../components/actions/Reload';
+import ActDelete from '../../../../components/actions/Delete';
+import ActRetry from '../../../../components/actions/Retry';
+import ActShow from '../../../../components/actions/Show';
 import columnDateTime from '../../../../components/columns/dateTime';
 import SchedulerFormat from '../../../../components/formats/SchedulerFormat';
 import TaskStatusFormat from '../../../../components/formats/TaskStatusFormat';
@@ -50,10 +50,10 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <ShowAction moduleId={this.moduleId} onClick={this.onShow} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
-        <RetryAction moduleId={this.moduleId} onClick={this.onRetry} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActShow moduleId={this.moduleId} onClick={this.onShow} />
+        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
+        <ActRetry moduleId={this.moduleId} onClick={this.onRetry} />
       </>
     );
   }
@@ -81,7 +81,7 @@ export class List extends AbstractPageList {
   }
 
   onShow = (e, item) => {
-    const moduleId = `${this.moduleId.split('/')[0]}/Show`;
+    const moduleId = `${this.moduleBaseId}/Show`;
     this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
   }
 }

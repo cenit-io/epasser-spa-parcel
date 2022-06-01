@@ -30,8 +30,8 @@ export default class Root extends AbstractComponent {
 
   constructor(props) {
     super(props);
-    this.state.theme = localStorage.get('theme');
-    this.setMessagingListener('applyTheme', this.onApplyTheme);
+    this.state.theme = localStorage.theme;
+    this.setMessagingListener('applyTheme', this.onApplyTheme, 'Global');
   }
 
   onApplyTheme = (theme) => {

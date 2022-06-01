@@ -4,15 +4,19 @@
  *
  */
 
+import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@mui/styles';
 
 import styles from '../../../../components/AbstractPageList/styles.jss';
 import settings from './settings';
+import localStorage from '../../../../base/localStorage';
+import themes from '../../../../styles/themes';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
 import PaletteFormat from '../../../../components/formats/PaletteFormat';
-import themes from '../../../../styles/themes';
+import ThemeMode from '../../../../components/actions/ThemeMode';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -46,7 +50,11 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
-    return false;
+    return (
+      <>
+        <ThemeMode moduleId={this.moduleId} onClick={this.onChangeMode} />
+      </>
+    );
   }
 
   onStartLoadItems = (limit, offset, term) => {
@@ -68,7 +76,13 @@ export class List extends AbstractPageList {
   }
 
   onApply = (e, item) => {
-    this.emitMessage('applyTheme', item.id, 'Global');
+    this.emitMessage('applyTheme', { id: item.id, mode: 'light' }, 'Global');
+  }
+
+  onChangeMode = (e) => {
+    const { theme } = localStorage;
+    theme.mode = (theme.mode === 'light') ? 'dark' : 'light';
+    this.emitMessage('applyTheme', theme, 'Global');
   }
 
   onChangeSelection = (selectedItems) => {

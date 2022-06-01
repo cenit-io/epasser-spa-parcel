@@ -12,10 +12,10 @@ import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
-import ReloadAction from '../../../../components/actions/Reload';
-import DeleteAction from '../../../../components/actions/Delete';
-import AddAction from '../../../../components/actions/Add';
-import EditAction from '../../../../components/actions/Edit';
+import ActReload from '../../../../components/actions/Reload';
+import ActDelete from '../../../../components/actions/Delete';
+import ActAdd from '../../../../components/actions/Add';
+import ActEdit from '../../../../components/actions/Edit';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import columnDateTime from '../../../../components/columns/dateTime';
 
@@ -46,10 +46,10 @@ export class List extends AbstractPageList {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
-        <AddAction moduleId={this.moduleId} onClick={this.onAdd} />
-        <EditAction moduleId={this.moduleId} onClick={this.onEdit} />
-        <DeleteAction moduleId={this.moduleId} onClick={this.onDelete} />
+        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
+        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
+        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} />
+        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} />
       </>
     );
   }

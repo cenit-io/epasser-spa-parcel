@@ -12,8 +12,14 @@ import {
   ConnectedIntegrationsEdit,
 } from '../containers/pages/integrations/ConnectedIntegrations/loadable';
 
+import {
+  ProductsList,
+  ProductsAdd,
+  ProductsEdit,
+  ProductsEditProps,
+} from '../containers/pages/ecommerces/Products/loadable';
+
 import { OrdersList, OrdersDocs } from '../containers/pages/ecommerces/Orders/loadable';
-import { ProductsList, ProductsAdd, ProductsEdit } from '../containers/pages/ecommerces/Products/loadable';
 import { FlowsList, FlowsAdd, FlowsEdit } from '../containers/pages/workflows/Flows/loadable';
 import { TasksList, TasksShow } from '../containers/pages/workflows/Tasks/loadable';
 import { WebhooksList, WebhooksAdd, WebhooksEdit } from '../containers/pages/workflows/Webhooks/loadable';
@@ -36,6 +42,7 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Products') return <ProductsList />;
   if (moduleId === 'Products/Add') return <ProductsAdd />;
   if (moduleId === 'Products/Edit') return <ProductsEdit {...props} />;
+  if (moduleId === 'Products/EditProps') return <ProductsEditProps {...props} />;
 
   if (moduleId === 'StockItems') return <StockItemsList />;
   if (moduleId === 'StockLocations') return <StockLocationsList />;

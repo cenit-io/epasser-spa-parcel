@@ -14,7 +14,7 @@ import settings from './settings';
 
 import AbstractPageDetails from '../../../../components/AbstractPageDetails';
 import CustomSection from '../../../../components/sections/CustomSection';
-import ListAction from '../../../../components/actions/List';
+import ActList from '../../../../components/actions/List';
 import UrlBox from '../../../../components/forms/fields/UrlBox';
 import SelectBoxTopic from '../../../../components/forms/fields/SelectBoxTopic';
 import SelectBoxIntegration from '../../../../components/forms/fields/SelectBoxIntegration';
@@ -71,7 +71,7 @@ export default class Details extends AbstractPageDetails {
   get actions() {
     return (
       <>
-        <ListAction moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
       </>
     );
   }
