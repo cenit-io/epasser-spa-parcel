@@ -16,6 +16,6 @@ export default class Format extends React.Component {
   render() {
     const { value } = this.props;
 
-    return moment(value).format('YYYY-MM-DD hh:mm:ss');
+    return value ? moment(value).format('YYYY-MM-DD hh:mm:ss') : '';
   }
 }
