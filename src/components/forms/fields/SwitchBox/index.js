@@ -20,6 +20,8 @@ class SwitchBox extends AbstractField {
     value: PropTypes.bool,
   }
 
+  static defaultProps = { value: false }
+
   renderField() {
     const { readOnly } = this.props;
     const { value } = this.state;
