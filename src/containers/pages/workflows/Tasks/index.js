@@ -58,7 +58,7 @@ export class List extends AbstractPageList {
     );
   }
 
-  canNotDelete = (items) => items.find((item) => item.scheduler && item.scheduler.active) !== undefined
+  canNotDelete = (items) => items.some((item) => item.scheduler && item.scheduler.active)
 
   onRetry = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmRetryMsg} />;

@@ -22,8 +22,8 @@ class Toggle extends AbstractWithSelectionAction {
 
     if (selectionItems.length === 0) return messages.enable;
 
-    const hasEnabled = selectionItems.find((i) => i.active === true);
-    const hasDisabled = selectionItems.find((i) => i.active === false);
+    const hasEnabled = selectionItems.some((i) => i.active === true);
+    const hasDisabled = selectionItems.some((i) => i.active === false);
 
     if (hasEnabled && hasDisabled) return messages.toggle;
 
