@@ -28,7 +28,6 @@ class SelectBoxMonthsOfYear extends AbstractSelectBox {
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = true;
-    this.state.multiple = true;
     this.state.items = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   }
 
@@ -44,7 +43,9 @@ class SelectBoxMonthsOfYear extends AbstractSelectBox {
 
   renderItemLabel = (item) => <FormattedMessage key={item} {...messages[item]} />
 
-  renderMultiValue = (selected) => selected.map((item) => <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />)
+  renderMultiValue = (selected) => selected.map((item) => (
+    <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />
+  ))
 }
 
 export default withStyles(styles)(SelectBoxMonthsOfYear);

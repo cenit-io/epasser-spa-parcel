@@ -28,7 +28,6 @@ class SelectBoxDaysOfWeek extends AbstractSelectBox {
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = true;
-    this.state.multiple = true;
     this.state.items = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   }
 
@@ -44,7 +43,9 @@ class SelectBoxDaysOfWeek extends AbstractSelectBox {
 
   renderItemLabel = (item) => <FormattedMessage key={item} {...messages[item]} />
 
-  renderMultiValue = (selected) => selected.map((item) => <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />)
+  renderMultiValue = (selected) => selected.map((item) => (
+    <Chip label={this.renderItemLabel(item)} key={item} variant="outlined" />
+  ))
 }
 
 export default withStyles(styles)(SelectBoxDaysOfWeek);

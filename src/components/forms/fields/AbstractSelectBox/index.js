@@ -15,7 +15,6 @@ export default class AbstractSelectBox extends AbstractField {
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = false;
-    this.state.multiple = false;
     this.state.items = [];
     this.state.value = props.value;
 
@@ -23,10 +22,14 @@ export default class AbstractSelectBox extends AbstractField {
     this.setMessagingListener('loadItemsFailed', this.onLoadItemsFailed, this.componentId);
   }
 
-  get parsedValue() {
-    const { multiple, value } = this.state;
+  get isMultiSelect() {
+    return this.renderMultiValue !== undefined || this.constructor.isMultiSelect === true;
+  }
 
-    if (!multiple || Array.isArray(value)) return value;
+  get parsedValue() {
+    const { value } = this.state;
+
+    if (!this.isMultiSelect || Array.isArray(value)) return value;
     if (value === '') return [];
     if (typeof value === 'string') return value.split(/\s*,\s*/);
 
@@ -53,12 +56,12 @@ export default class AbstractSelectBox extends AbstractField {
 
   renderField() {
     const { readOnly } = this.props;
-    const { alreadyLoaded, multiple, items } = this.state;
+    const { alreadyLoaded, items } = this.state;
 
     if (!alreadyLoaded) this.loadItems();
 
     const { classes, required } = this.props;
-    const { componentId } = this;
+    const { componentId, isMultiSelect } = this;
     const labelId = `${componentId}-label`;
 
     return (
@@ -67,13 +70,13 @@ export default class AbstractSelectBox extends AbstractField {
         labelId={labelId}
         label={this.renderLabel()}
         value={alreadyLoaded ? this.parsedValue : ''}
-        classes={{ select: multiple ? classes.multiSelectBox : classes.selectBox }}
-        multiple={multiple}
+        classes={{ select: isMultiSelect ? classes.multiSelectBox : classes.selectBox }}
+        multiple={isMultiSelect}
         readOnly={readOnly}
         disabled={readOnly || !alreadyLoaded}
         required={required}
         error={!this.isValid()}
-        renderValue={multiple ? this.renderMultiValue : null}
+        renderValue={isMultiSelect ? this.renderMultiValue : null}
         onChange={this.onChange}
       >
         {items.map(this.renderItem)}
