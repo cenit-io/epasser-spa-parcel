@@ -16,10 +16,7 @@ import Details from './details';
 import ActList from '../../../../components/actions/List';
 import ActEdit from '../../../../components/actions/Edit';
 import ActDelete from '../../../../components/actions/Delete';
-import CustomSection from '../../../../components/sections/CustomSection'
-import TextBox from '../../../../components/forms/fields/TextBox';
-import NumberBox from '../../../../components/forms/fields/NumberBox';
-import SelectBoxPackageOverwrite from '../../../../components/forms/fields/SelectBoxPackageOverwrite';
+import CustomSection from '../../../../components/sections/CustomSection';
 
 export class EditProperties extends Details {
   static id = `${Details.id}/EditProperties`;
@@ -43,7 +40,7 @@ export class EditProperties extends Details {
     );
   }
 
-  canNotDelete = (items) => items[0].integrations.length !== 0;
+  get needLoadData() { return true; }
 
   get form() {
     const { props: { classes }, messages } = this;
@@ -59,6 +56,8 @@ export class EditProperties extends Details {
       </>
     );
   }
+
+  canNotDelete = (items) => items[0].integrations.length !== 0;
 }
 
 export default withStyles(styles)(EditProperties);

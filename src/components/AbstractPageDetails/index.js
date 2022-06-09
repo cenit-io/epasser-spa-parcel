@@ -34,6 +34,10 @@ export default class AbstractPageDetails extends AbstractModule {
     return this.state.item;
   }
 
+  get requestMethod() {
+    return this.constructor.requestMethod || 'POST';
+  }
+
   get loadItemOptions() {
     return {};
   }
@@ -80,10 +84,12 @@ export default class AbstractPageDetails extends AbstractModule {
     );
   }
 
+  get needLoadData() { return this.isEdit; }
+
   constructor(props) {
     super(props);
     this.state.item = props.item || this.defaultItem;
-    this.state.alreadyLoaded = this.isAdd;
+    this.state.alreadyLoaded = !this.needLoadData;
     this.state.validations = {};
 
     this.setMessagingListener('startLoadItem', this.onStartLoadItem);
@@ -137,7 +143,7 @@ export default class AbstractPageDetails extends AbstractModule {
     if (this.isValid) {
       const options = {
         url: this.apiPath,
-        method: 'POST',
+        method: this.requestMethod,
         data: { data: this.requestData },
       };
 

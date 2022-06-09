@@ -17,6 +17,8 @@ import {
   ProductsAdd,
   ProductsEdit,
   ProductsEditProps,
+  ProductsLink,
+  ProductsUnlink,
 } from '../containers/pages/ecommerces/Products/loadable';
 
 import { OrdersList, OrdersDocs } from '../containers/pages/ecommerces/Orders/loadable';
@@ -43,6 +45,8 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Products/Add') return <ProductsAdd />;
   if (moduleId === 'Products/Edit') return <ProductsEdit {...props} />;
   if (moduleId === 'Products/EditProps') return <ProductsEditProps {...props} />;
+  if (moduleId === 'Products/Link') return <ProductsLink {...props} />;
+  if (moduleId === 'Products/Unlink') return <ProductsUnlink {...props} />;
 
   if (moduleId === 'StockItems') return <StockItemsList />;
   if (moduleId === 'StockLocations') return <StockLocationsList />;

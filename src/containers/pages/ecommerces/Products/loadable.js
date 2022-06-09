@@ -11,3 +11,5 @@ export const ProductsList = Loadable({ loader: () => import('./index'), loading:
 export const ProductsAdd = Loadable({ loader: () => import('./add'), loading: Loading });
 export const ProductsEdit = Loadable({ loader: () => import('./edit'), loading: Loading });
 export const ProductsEditProps = Loadable({ loader: () => import('./editProperties'), loading: Loading });
+export const ProductsLink = Loadable({ loader: () => import('./link'), loading: Loading });
+export const ProductsUnlink = Loadable({ loader: () => import('./unlink'), loading: Loading });

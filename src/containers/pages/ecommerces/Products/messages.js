@@ -14,6 +14,14 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Products',
   },
+  title_for_link: {
+    id: `${scope}.title_for_link`,
+    defaultMessage: 'Linking products and integrations',
+  },
+  title_for_unlink: {
+    id: `${scope}.title_for_unlink`,
+    defaultMessage: 'Unlinking products and integrations',
+  },
   basic: {
     id: `${scope}.basic`,
     defaultMessage: 'Basic info',
@@ -77,6 +85,10 @@ const messagesLocal = defineMessages({
   field_images: {
     id: `${scope}.field_images`,
     defaultMessage: 'Images',
+  },
+  field_products: {
+    id: `${scope}.field_products`,
+    defaultMessage: 'Products',
   },
 });
 
