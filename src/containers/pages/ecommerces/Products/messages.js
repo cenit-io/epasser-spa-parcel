@@ -34,6 +34,14 @@ const messagesLocal = defineMessages({
     id: `${scope}.properties`,
     defaultMessage: 'Properties info',
   },
+  link_up: {
+    id: `${scope}.link_up`,
+    defaultMessage: 'Link up',
+  },
+  unlink: {
+    id: `${scope}.unlink`,
+    defaultMessage: 'Unlink',
+  },
   editBasicLabel: {
     id: `${scope}.editBasicLabel`,
     defaultMessage: 'Basic',

@@ -8,7 +8,7 @@ import React from 'react';
 
 import { withStyles } from '@mui/styles';
 
-import Icon from '@mui/icons-material/LinkOff';
+import { UnlinkIcon as Icon } from '../../Icons';
 
 import messages from './messages';
 import styles from '../AbstractAction/styles.jss';

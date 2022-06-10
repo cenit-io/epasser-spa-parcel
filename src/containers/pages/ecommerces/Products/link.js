@@ -20,6 +20,8 @@ import LinkProductsBox from '../../../../components/forms/fields/LinkProductsBox
 import SelectBoxIntegrations from '../../../../components/forms/fields/SelectBoxIntegrations';
 import SelectBoxLinkVariantsAction from '../../../../components/forms/fields/SelectBoxLinkVariantsAction';
 
+import { LinkIcon } from '../../../../components/Icons';
+
 class Link extends AbstractPageDetails {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
@@ -34,6 +36,10 @@ class Link extends AbstractPageDetails {
   static apiPath = `${settings.apiPath}/link`;
 
   static requestMethod = 'PUT';
+
+  static saveActionLabel = 'link_up';
+
+  static saveActionIcon = <LinkIcon />;
 
   get form() {
     const { classes, products } = this.props;

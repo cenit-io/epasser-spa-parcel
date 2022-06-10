@@ -63,14 +63,42 @@ export default class AbstractPageDetails extends AbstractModule {
 
     return (
       <CardActions className={classes.actions}>
-        <Button size="small" color="success" startIcon={<SaveIcon />} onClick={this.onSave}>
-          <FormattedMessage {...messages.save} />
-        </Button>
-        <Button size="small" color="warning" startIcon={<ResetIcon />} onClick={this.onReset}>
-          <FormattedMessage {...messages.reset} />
-        </Button>
+        {this.saveAction}
+        {this.resetAction}
         {this.cancelAction}
       </CardActions>
+    );
+  }
+
+  get saveActionLabel() {
+    let label = this.constructor.saveActionLabel || this.messages.save || messages.save;
+
+    if (typeof label === 'string' && this.messages[label]) label = this.messages[label];
+    if (typeof label === 'string' && messages[label]) label = messages[label];
+    if (typeof label === 'string' || React.isValidElement(label)) return label;
+
+    return <FormattedMessage {...label} />;
+  }
+
+  get saveActionIcon() {
+    return this.constructor.saveActionIcon || <SaveIcon />;
+  }
+
+  get saveAction() {
+    return (
+      <Button size="small" color="success" startIcon={this.saveActionIcon} onClick={this.onSave}>
+        {this.saveActionLabel}
+      </Button>
+    );
+  }
+
+  get resetAction() {
+    if (!this.onReset) return null;
+
+    return (
+      <Button size="small" color="warning" startIcon={<ResetIcon />} onClick={this.onReset}>
+        <FormattedMessage {...messages.reset} />
+      </Button>
     );
   }
 

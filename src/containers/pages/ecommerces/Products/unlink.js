@@ -20,6 +20,8 @@ import LinkProductsBox from '../../../../components/forms/fields/LinkProductsBox
 import SelectBoxIntegrations from '../../../../components/forms/fields/SelectBoxIntegrations';
 import SelectBoxAfterUnlinkAction from '../../../../components/forms/fields/SelectBoxAfterUnlinkAction';
 
+import { UnlinkIcon } from '../../../../components/Icons';
+
 class Unlink extends AbstractPageDetails {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
@@ -34,6 +36,10 @@ class Unlink extends AbstractPageDetails {
   static apiPath = `${settings.apiPath}/link`;
 
   static requestMethod = 'DELETE';
+
+  static saveActionLabel = 'unlink';
+
+  static saveActionIcon = <UnlinkIcon />;
 
   get form() {
     const { classes, products } = this.props;
