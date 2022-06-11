@@ -21,7 +21,6 @@ import ActEditProps from '../../../../components/actions/EditProps';
 import ActDelete from '../../../../components/actions/Delete';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import AvatarProductFormat from '../../../../components/formats/AvatarProductFormat';
-import SelectBoxLinkVariantsAction from '../../../../components/forms/fields/SelectBoxLinkVariantsAction';
 
 export class List extends AbstractPageList {
   static propTypes = {

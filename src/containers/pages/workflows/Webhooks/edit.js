@@ -16,10 +16,6 @@ export class Edit extends Details {
     return `${Details.apiPath}/${this.state.item.id}`;
   }
 
-  get successfulMessage() {
-    return 'successfulUpdate';
-  }
-
   get requestData() {
     const { topic, integration, integration_id: integrationId, address } = this.state.item;
     return {

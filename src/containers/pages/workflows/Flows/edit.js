@@ -15,10 +15,6 @@ export class Edit extends Details {
   get apiPath() {
     return `${Details.apiPath}/${this.state.item.id}`;
   }
-
-  get successfulMessage() {
-    return 'successfulUpdate';
-  }
 }
 
 export default withStyles(styles)(Edit);

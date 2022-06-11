@@ -42,6 +42,8 @@ class Notification extends AbstractComponent {
 
     if (!(msg instanceof Object)) {
       id = String(msg);
+    } else if (msg.id && msg.defaultMessage) {
+      id = msg;
     } else if (!response) {
       id = msg.message || String(msg);
     } else if (response.data && (response.data.error)) {
@@ -69,13 +71,13 @@ class Notification extends AbstractComponent {
 
   get messageTranslation() {
     const { id, text } = this.message;
-    const fmId = messages[id] || messages[text];
+    const fmId = (id instanceof Object) ? id : (messages[id] || messages[text]);
     return fmId ? (<FormattedMessage {...fmId} />) : text;
   }
 
   onNotify = (notification) => {
-    let message; let
-      severity;
+    let message;
+    let severity;
 
     if (typeof notification === 'string') {
       message = notification;
@@ -83,6 +85,9 @@ class Notification extends AbstractComponent {
     } else if (notification instanceof Error) {
       message = notification;
       severity = 'error';
+    } else if (notification.id && notification.defaultMessage) {
+      message = notification;
+      severity = notification.severity;
     } else {
       message = notification.message;
       severity = notification.severity;

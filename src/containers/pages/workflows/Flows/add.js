@@ -27,10 +27,6 @@ export class Add extends Details {
       },
     };
   }
-
-  get successfulMessage() {
-    return 'successfulCreation';
-  }
 }
 
 export default withStyles(styles)(Add);

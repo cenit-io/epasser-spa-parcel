@@ -27,6 +27,10 @@ export default class AbstractPageDetails extends AbstractModule {
   static defaultProps = { item: null };
 
   get successfulMessage() {
+    if (this.constructor.successfulMessage) return this.constructor.successfulMessage;
+    if (this.isAdd) return 'successfulCreation';
+    if (this.isEdit) return 'successfulUpdate';
+
     return 'successfulOperation';
   }
 

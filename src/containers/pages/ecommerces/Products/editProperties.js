@@ -21,10 +21,6 @@ import CustomSection from '../../../../components/sections/CustomSection';
 export class EditProperties extends Details {
   static id = `${Details.id}/EditProperties`;
 
-  get successfulMessage() {
-    return 'successfulUpdate';
-  }
-
   get actions() {
     const {
       moduleId,
