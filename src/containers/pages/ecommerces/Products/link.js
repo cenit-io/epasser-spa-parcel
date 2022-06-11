@@ -81,6 +81,8 @@ class Link extends AbstractPageDetails {
       </>
     );
   }
+
+  onSaveSuccessful = () => this.onBackToList();
 }
 
 export default withStyles(styles)(Link);

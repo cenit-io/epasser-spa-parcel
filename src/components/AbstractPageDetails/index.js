@@ -173,14 +173,18 @@ export default class AbstractPageDetails extends AbstractModule {
         url: this.apiPath,
         method: this.requestMethod,
         data: { data: this.requestData },
+        successfulMessage: this.successfulMessage,
       };
 
       this.sendRequest(options).then(() => {
-        this.notify(this.successfulMessage);
-        if (this.isAdd) this.onReset();
+        this.onSaveSuccessful();
       });
     } else {
       this.notify(Error('Some fields are invalid, please correct them.'));
     }
+  }
+
+  onSaveSuccessful() {
+    if (this.isAdd) this.onReset();
   }
 }

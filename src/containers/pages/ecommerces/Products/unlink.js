@@ -81,6 +81,8 @@ class Unlink extends AbstractPageDetails {
       </>
     );
   }
+
+  onSaveSuccessful = () => this.onBackToList();
 }
 
 export default withStyles(styles)(Unlink);
