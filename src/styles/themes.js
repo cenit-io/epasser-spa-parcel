@@ -62,16 +62,16 @@ const themes = {
   'cenit-io': {
     palette: {
       primary: {
-        light: '#484848',
-        main: '#212121',
-        dark: '#000000',
-        contrastText: '#FFFFFF',
+        light: 'rgba(0, 0, 0, 0.55)',
+        main: 'rgba(0, 0, 0, 0.8)',
+        dark: 'rgba(0, 0, 0, 1)',
+        contrastText: 'rgba(255, 255, 255, 1)',
       },
       secondary: {
-        light: '#FFFFFF',
-        main: '#FFFFFF',
-        dark: '#FFFFFF',
-        contrastText: '#000000',
+        light: 'rgba(100, 100, 100, 0.25)',
+        main: 'rgba(100, 100, 100, 0.8)',
+        dark: 'rgba(100, 100, 100, 1)',
+        contrastText: 'rgba(0, 0, 0, 1)',
       },
     },
   },
