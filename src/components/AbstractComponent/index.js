@@ -52,6 +52,14 @@ export default class AbstractComponent extends React.Component {
     return this.constructor.apiPath;
   }
 
+  get iFrameDetected() {
+    return window !== window.parent;
+  }
+
+  get mainModuleId() {
+    return this.iFrameDetected ? 'MainPage' : 'MainTabs';
+  }
+
   addMessagingListener = (messageId, callBack, senderId) => {
     const subscription = messaging.addMessagingListener(messageId, callBack, senderId || this.moduleId);
     this._subscriptions.push(subscription);
@@ -79,7 +87,7 @@ export default class AbstractComponent extends React.Component {
   }
 
   onConfirmedOpenTasksModule = (value, done) => {
-    if (value) this.emitMessage('openModule', 'Tasks', 'MainTabs');
+    if (value) this.emitMessage('openModule', 'Tasks', this.mainModuleId);
     done();
   }
 

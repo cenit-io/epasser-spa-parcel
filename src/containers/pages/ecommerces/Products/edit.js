@@ -48,7 +48,7 @@ export class Edit extends Details {
 
   onEditProps = (e, item) => {
     const moduleId = `${this.moduleBaseId}/EditProps`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

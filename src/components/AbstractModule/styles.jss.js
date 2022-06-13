@@ -12,6 +12,10 @@ const styles = (theme) => ({
   root: {
     width: '100%',
     height: '100%',
+
+    '& .MuiButton-root, .MuiTypography-button': {
+      textTransform: 'none',
+    },
   },
 
   toolbar: {

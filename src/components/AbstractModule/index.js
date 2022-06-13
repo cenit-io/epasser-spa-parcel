@@ -48,7 +48,7 @@ export default class AbstractModule extends AbstractPage {
     return (
       <div className={classes.root}>
         {this.renderToolbar()}
-        <Notification moduleId={this.moduleId} />
+        <Notification moduleId={this.moduleId} className={this.iFrameDetected ? 'embedded' : 'unembedded'} />
         <div className={classes.content}>
           {this.renderContent()}
         </div>
@@ -66,16 +66,16 @@ export default class AbstractModule extends AbstractPage {
 
   onAdd = () => {
     const moduleId = `${this.moduleBaseId}/Add`;
-    this.emitMessage('openModule', moduleId, 'MainTabs');
+    this.emitMessage('openModule', moduleId, this.mainModuleId);
   }
 
   onEdit = (e, item) => {
     const moduleId = `${this.moduleBaseId}/Edit`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 
   onBackToList = () => {
-    this.emitMessage('openModule', this.moduleBaseId, 'MainTabs');
+    this.emitMessage('openModule', this.moduleBaseId, this.mainModuleId);
   }
 
   onDelete = (e, items) => {

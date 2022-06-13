@@ -85,17 +85,17 @@ export class List extends AbstractPageList {
 
   onLink = (e, products) => {
     const moduleId = `${this.moduleBaseId}/Link`;
-    this.emitMessage('openModule', [moduleId, { products }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { products }], this.mainModuleId);
   }
 
   onUnLink = (e, products) => {
     const moduleId = `${this.moduleBaseId}/Unlink`;
-    this.emitMessage('openModule', [moduleId, { products }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { products }], this.mainModuleId);
   }
 
   onEditProps = (e, item) => {
     const moduleId = `${this.moduleBaseId}/EditProps`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

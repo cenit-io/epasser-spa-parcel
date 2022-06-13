@@ -82,7 +82,7 @@ export class List extends AbstractPageList {
 
   onShow = (e, item) => {
     const moduleId = `${this.moduleBaseId}/Show`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

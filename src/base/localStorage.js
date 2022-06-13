@@ -2,29 +2,33 @@ import LZString from 'lz-string';
 
 class Local {
   get(key, defaultValue) {
-    const item = window.localStorage.getItem(key);
+    const item = window.localStorage.getItem(LZString.compress(key));
 
     return (item === null) ? defaultValue : JSON.parse(LZString.decompress(item));
   }
 
   set(key, value) {
     try {
-      window.localStorage.setItem(key, LZString.compress(JSON.stringify(value)));
+      window.localStorage.setItem(LZString.compress(key), LZString.compress(JSON.stringify(value)));
     } catch (e) {
       window.localStorage.clear();
     }
   }
 
   del(key) {
-    window.localStorage.removeItem(key);
+    window.localStorage.removeItem(LZString.compress(key));
   }
 
   clear() {
     window.localStorage.clear();
   }
 
+  get iFrameDetected() {
+    return window !== window.parent;
+  }
+
   get theme() {
-    const theme = this.get('theme', { id: 'default', mode: 'light' });
+    const theme = this.get('theme', { id: this.iFrameDetected ? 'cenit-io' : 'ecapi', mode: 'light' });
     return (typeof theme === 'string') ? { id: theme, model: 'light' } : theme;
   }
 
