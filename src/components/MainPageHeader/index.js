@@ -11,7 +11,8 @@ import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 
 import CardHeader from '@mui/material/CardHeader';
-import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import MoreIcon from '@mui/icons-material/MoreVert';
 
 import styles from './styles.jss';
 
@@ -32,6 +33,16 @@ class MainPageHeader extends AbstractComponent {
     this.onOpenModule(props.moduleId);
   }
 
+  get actions() {
+    if (this.moduleId === 'Home') return null;
+
+    return (
+      <IconButton aria-label="settings" onClick={this.onGotoHome}>
+        <MoreIcon />
+      </IconButton>
+    );
+  }
+
   onSetTabSettings = (settings) => this.setState({ settings })
 
   render() {
@@ -50,6 +61,10 @@ class MainPageHeader extends AbstractComponent {
 
   onOpenModule = (moduleId) => {
     this.setMessagingListener('setTabSettings', this.onSetTabSettings, moduleId);
+  }
+
+  onGotoHome = () => {
+    this.emitMessage('openModule', 'Home', this.mainModuleId);
   }
 }
 
