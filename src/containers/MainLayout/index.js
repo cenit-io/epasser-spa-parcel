@@ -43,7 +43,7 @@ class MainLayout extends AbstractComponent {
   }
 
   onTapHome = () => {
-    this.emitMessage('openModule', Home.id, 'MainTabs');
+    this.emitMessage('openModule', Home.id, this.mainModuleId);
   }
 
   render() {

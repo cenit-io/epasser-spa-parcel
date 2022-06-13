@@ -67,7 +67,7 @@ export class List extends AbstractPageList {
     );
   }
 
-  canNotDelete = (items) => items.find((item) => item.authorized) !== undefined
+  canNotDelete = (items) => items.some((item) => item.authorized)
 
   canNotStartFlows = (item) => !item.authorized
 
@@ -113,7 +113,7 @@ export class List extends AbstractPageList {
     };
 
     session.set('flows-filters', filters);
-    this.emitMessage('openModule', 'Flows', 'MainTabs');
+    this.emitMessage('openModule', 'Flows', this.mainModuleId);
     this.emitMessage('reload', null, 'Flows');
   }
 }

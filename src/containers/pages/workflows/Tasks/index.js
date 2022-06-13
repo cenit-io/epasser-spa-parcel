@@ -58,7 +58,7 @@ export class List extends AbstractPageList {
     );
   }
 
-  canNotDelete = (items) => items.find((item) => item.scheduler && item.scheduler.active) !== undefined
+  canNotDelete = (items) => items.some((item) => item.scheduler && item.scheduler.active)
 
   onRetry = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmRetryMsg} />;
@@ -82,7 +82,7 @@ export class List extends AbstractPageList {
 
   onShow = (e, item) => {
     const moduleId = `${this.moduleBaseId}/Show`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

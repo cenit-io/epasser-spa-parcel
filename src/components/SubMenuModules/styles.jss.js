@@ -8,7 +8,8 @@ const styles = (theme) => ({
 
   subMenu: {
     '& .MuiAccordionSummary-root': {
-      backgroundColor: theme.palette.primary[theme.palette.mode],
+      // backgroundColor: theme.palette.primary[theme.palette.mode],
+      backgroundColor: theme.palette.secondary[theme.palette.mode],
 
       '& .MuiTypography-button': {
         textTransform: 'uppercase !important',

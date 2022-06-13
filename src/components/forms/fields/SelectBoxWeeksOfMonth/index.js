@@ -28,7 +28,6 @@ class SelectBoxMonthsOfYear extends AbstractSelectBox {
   constructor(props) {
     super(props);
     this.state.alreadyLoaded = true;
-    this.state.multiple = true;
     this.state.items = ['First', 'Second', 'Third', 'Fourth', 'Last'];
   }
 

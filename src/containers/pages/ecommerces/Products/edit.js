@@ -16,18 +16,9 @@ import ActDelete from '../../../../components/actions/Delete';
 export class Edit extends Details {
   static id = `${Details.id}/Edit`;
 
-  get apiPath() {
-    return `${Details.apiPath}/${this.state.item.id}`;
-  }
+  get apiPath() { return `${Details.apiPath}/${this.state.item.id}`; }
 
-  get successfulMessage() {
-    return 'successfulUpdate';
-  }
-
-  constructor(props) {
-    super(props);
-    this.state.alreadyLoaded = true;
-  }
+  get needLoadData() { return false; }
 
   get actions() {
     const {
@@ -57,7 +48,7 @@ export class Edit extends Details {
 
   onEditProps = (e, item) => {
     const moduleId = `${this.moduleBaseId}/EditProps`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

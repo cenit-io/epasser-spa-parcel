@@ -52,6 +52,14 @@ export default class AbstractComponent extends React.Component {
     return this.constructor.apiPath;
   }
 
+  get iFrameDetected() {
+    return window !== window.parent;
+  }
+
+  get mainModuleId() {
+    return this.iFrameDetected ? 'MainPage' : 'MainTabs';
+  }
+
   addMessagingListener = (messageId, callBack, senderId) => {
     const subscription = messaging.addMessagingListener(messageId, callBack, senderId || this.moduleId);
     this._subscriptions.push(subscription);
@@ -78,26 +86,37 @@ export default class AbstractComponent extends React.Component {
     this._subscriptions = null;
   }
 
-  onOpenTasksModule = () => {
-    const data = [this.confirmOpenTasksModuleMsg, (value) => this.onConfirmedOpenTasksModule(value)];
+  onConfirmedOpenTasksModule = (value, done) => {
+    if (value) this.emitMessage('openModule', 'Tasks', this.mainModuleId);
+    done();
+  }
+
+  openTasksModule(done) {
+    const data = [this.confirmOpenTasksModuleMsg, (value) => this.onConfirmedOpenTasksModule(value, done)];
     this.emitMessage('confirm', data, 'main');
   }
 
-  onConfirmedOpenTasksModule = (value) => {
-    if (value) this.emitMessage('openModule', 'Tasks', 'MainTabs');
-  }
-
   /* eslint no-param-reassign: ["error", { "props": false }] */
-  sendRequest = (options) => {
+  sendRequest(options) {
     this.startWaiting(0);
 
     const skipNotify = options.skipNotify === true;
     const skipOpenTasksModule = options.skipOpenTasksModule === true;
+    const { successfulMessage } = options;
+
     delete options.skipNotify;
     delete options.skipOpenTasksModule;
+    delete options.successfulMessage;
 
-    return request(options).then((response) => {
-      if (response.type === 'task' && !skipOpenTasksModule) this.onOpenTasksModule();
+    return request(options).then(async (response) => {
+      if (successfulMessage) this.notify(successfulMessage);
+
+      if (response.type === 'task' && !skipOpenTasksModule) {
+        await new Promise((done) => {
+          this.releaseWaiting();
+          this.openTasksModule(done);
+        });
+      }
       return response;
     }).catch((error) => {
       if (!skipNotify) this.notify(error);

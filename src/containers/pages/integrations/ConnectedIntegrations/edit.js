@@ -16,10 +16,6 @@ export class Edit extends Details {
     return `${Details.apiPath}/${this.state.item.id}`;
   }
 
-  get successfulMessage() {
-    return 'successfulUpdate';
-  }
-
   get requestData() {
     const { name, keys_to_import_brands: keys } = this.state.item;
     return { name, keys_to_import_brands: keys };

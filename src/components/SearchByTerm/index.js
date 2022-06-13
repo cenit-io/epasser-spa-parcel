@@ -22,7 +22,7 @@ class SearchByTerm extends AbstractComponent {
   constructor(props) {
     super(props);
     this.state = { activeModuleId: null, appliedSearchTerm: '' };
-    this.setMessagingListener('changeActiveTabModule', this.onChangeActiveModule, 'MainTabs');
+    this.setMessagingListener('changeActiveTabModule', this.onChangeActiveModule, this.mainModuleId);
   }
 
   render() {

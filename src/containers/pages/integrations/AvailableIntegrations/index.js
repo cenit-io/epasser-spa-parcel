@@ -17,6 +17,8 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import ActReload from '../../../../components/actions/Reload';
 import ActInstall from '../../../../components/actions/Install';
 import ActUnInstall from '../../../../components/actions/UnInstall';
+import AvatarFormat from '../../../../components/formats/AvatarFormat';
+import columnDateTime from "../../../../components/columns/dateTime";
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -35,12 +37,13 @@ export class List extends AbstractPageList {
 
   get columns() {
     return [
+      { id: 'icon', width: 40, label: ' ', format: AvatarFormat },
       { id: 'title' },
       { id: 'summary' },
       { id: 'version' },
       { id: 'status' },
-      { id: 'updated_at' },
-      { id: 'installed_at' },
+      columnDateTime('updated_at'),
+      columnDateTime('installed_at'),
     ];
   }
 

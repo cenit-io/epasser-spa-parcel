@@ -27,7 +27,7 @@ class UnAuthorize extends AbstractWithSelectionAction {
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;
-    return locked || items.length === 0 || (items.find((item) => !item.authorized) !== undefined);
+    return locked || items.length === 0 || items.some((item) => !item.authorized);
   }
 }
 

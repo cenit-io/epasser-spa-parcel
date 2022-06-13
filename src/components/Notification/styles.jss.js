@@ -8,9 +8,13 @@ const styles = (theme) => ({
 
   root: {
     position: 'fixed',
-    right: 10,
-    top: 70,
+    right: 20,
+    top: 66,
     zIndex: 2000,
+
+    '&.embedded': {
+      top: 6,
+    },
   },
 
 });

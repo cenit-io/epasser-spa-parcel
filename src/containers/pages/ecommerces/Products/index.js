@@ -15,6 +15,8 @@ import AbstractPageList from '../../../../components/AbstractPageList';
 import ActReload from '../../../../components/actions/Reload';
 import ActAdd from '../../../../components/actions/Add';
 import ActEdit from '../../../../components/actions/Edit';
+import ActLink from '../../../../components/actions/Link';
+import ActUnLink from '../../../../components/actions/UnLink';
 import ActEditProps from '../../../../components/actions/EditProps';
 import ActDelete from '../../../../components/actions/Delete';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
@@ -62,6 +64,8 @@ export class List extends AbstractPageList {
           title={editPropsTitle}
           disabled={this.canNotEditProps}
         />
+        <ActLink moduleId={mId} onClick={this.onLink} />
+        <ActUnLink moduleId={mId} onClick={this.onUnLink} disabled={this.canNotUnLink} />
         <ActDelete moduleId={mId} onClick={this.onDelete} disabled={this.canNotDelete} />
       </>
     );
@@ -71,13 +75,27 @@ export class List extends AbstractPageList {
     (integration) => <IntegrationFormat key={integration.id} value={integration} row={row} column={column} />,
   )
 
-  canNotDelete = (items) => items.find((item) => item.integrations.length !== 0) !== undefined;
+  hasSomeIntegrations = (items) => items.some((item) => item.integrations.length !== 0);
+
+  canNotDelete = (items) => this.hasSomeIntegrations(items);
+
+  canNotUnLink = (items) => !this.hasSomeIntegrations(items);
 
   canNotEditProps = (item) => item.integrations.length === 0;
 
+  onLink = (e, products) => {
+    const moduleId = `${this.moduleBaseId}/Link`;
+    this.emitMessage('openModule', [moduleId, { products }], this.mainModuleId);
+  }
+
+  onUnLink = (e, products) => {
+    const moduleId = `${this.moduleBaseId}/Unlink`;
+    this.emitMessage('openModule', [moduleId, { products }], this.mainModuleId);
+  }
+
   onEditProps = (e, item) => {
     const moduleId = `${this.moduleBaseId}/EditProps`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

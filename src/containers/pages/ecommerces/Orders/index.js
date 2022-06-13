@@ -99,7 +99,7 @@ export class List extends AbstractPageList {
 
   onShowDocuments = (e, item) => {
     const moduleId = `${this.moduleBaseId}/Docs`;
-    this.emitMessage('openModule', [moduleId, { item }], 'MainTabs');
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

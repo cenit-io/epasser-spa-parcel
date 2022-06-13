@@ -25,7 +25,8 @@ const styles = (theme) => ({
 
   head: {
     position: 'sticky',
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.primary[theme.palette.mode],
+    backgroundColor: theme.palette.secondary[theme.palette.mode],
     zIndex: 2,
     top: 0,
   },
@@ -36,13 +37,6 @@ const styles = (theme) => ({
     borderWidth: 1,
     zIndex: 1,
     padding: '6px 16px',
-
-    '&.MuiTableCell-head': {
-      position: 'sticky',
-      backgroundColor: theme.palette.primary[theme.palette.mode],
-      zIndex: 2,
-      top: 0,
-    },
 
     '& .MuiCheckbox-root': {
       padding: theme.spacing(0.5),

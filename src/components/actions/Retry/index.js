@@ -21,7 +21,7 @@ class Retry extends AbstractWithSelectionAction {
 
   get disabled() {
     const { locked, selectionItems: items } = this.state;
-    const hasNoFailedTasks = (items.find((item) => item.status !== 'failed')) !== undefined;
+    const hasNoFailedTasks = items.some((item) => item.status !== 'failed');
     return locked || items.length === 0 || hasNoFailedTasks;
   }
 }

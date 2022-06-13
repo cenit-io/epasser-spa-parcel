@@ -62,16 +62,16 @@ const themes = {
   'cenit-io': {
     palette: {
       primary: {
-        light: '#484848',
-        main: '#212121',
-        dark: '#000000',
-        contrastText: '#FFFFFF',
+        light: 'rgba(0, 0, 0, 0.55)',
+        main: 'rgba(0, 0, 0, 0.8)',
+        dark: 'rgba(0, 0, 0, 1)',
+        contrastText: 'rgba(255, 255, 255, 1)',
       },
       secondary: {
-        light: '#FFFFFF',
-        main: '#FFFFFF',
-        dark: '#FFFFFF',
-        contrastText: '#000000',
+        light: 'rgba(100, 100, 100, 0.55)',
+        main: 'rgba(100, 100, 100, 0.8)',
+        dark: 'rgba(100, 100, 100, 1)',
+        contrastText: 'rgba(255, 255, 255, 1)',
       },
     },
   },
@@ -79,16 +79,16 @@ const themes = {
   ecapi: {
     palette: {
       primary: {
-        light: '#E1F5FE',
-        main: '#1b6281',
-        dark: '#455A64',
-        contrastText: '#fff',
+        light: 'rgba(225, 245, 254, 1)',
+        main: 'rgba(27, 98, 129, 1)',
+        dark: 'rgba(69, 90, 100, 1)',
+        contrastText: 'rgba(255, 255, 255, 1)',
       },
       secondary: {
-        light: '#FFF3E0',
-        main: '#1b6281',
-        dark: '#E65100',
-        contrastText: '#fff',
+        light: 'rgba(225, 245, 254, 0.55)',
+        main: 'rgba(27, 98, 129, 0.55)',
+        dark: 'rgba(69, 90, 100, 0.55)',
+        contrastText: 'rgba(255, 255, 255, 1)',
       },
     },
   },

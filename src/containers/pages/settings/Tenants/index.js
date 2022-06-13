@@ -95,7 +95,7 @@ export class List extends AbstractPageList {
   onConfirmedSwitch = (value, item) => {
     if (!value) return;
 
-    this.emitMessage('closeModules', { except: [this.moduleId] }, 'MainTabs');
+    this.emitMessage('closeModules', { except: [this.moduleId] }, this.mainModuleId);
     this.emitMessage('setSessionAccount', item, 'Main');
   }
 }

@@ -27,11 +27,19 @@ export default class AbstractPageDetails extends AbstractModule {
   static defaultProps = { item: null };
 
   get successfulMessage() {
+    if (this.constructor.successfulMessage) return this.constructor.successfulMessage;
+    if (this.isAdd) return 'successfulCreation';
+    if (this.isEdit) return 'successfulUpdate';
+
     return 'successfulOperation';
   }
 
   get requestData() {
     return this.state.item;
+  }
+
+  get requestMethod() {
+    return this.constructor.requestMethod || 'POST';
   }
 
   get loadItemOptions() {
@@ -59,14 +67,42 @@ export default class AbstractPageDetails extends AbstractModule {
 
     return (
       <CardActions className={classes.actions}>
-        <Button size="small" color="success" startIcon={<SaveIcon />} onClick={this.onSave}>
-          <FormattedMessage {...messages.save} />
-        </Button>
-        <Button size="small" color="warning" startIcon={<ResetIcon />} onClick={this.onReset}>
-          <FormattedMessage {...messages.reset} />
-        </Button>
+        {this.saveAction}
+        {this.resetAction}
         {this.cancelAction}
       </CardActions>
+    );
+  }
+
+  get saveActionLabel() {
+    let label = this.constructor.saveActionLabel || this.messages.save || messages.save;
+
+    if (typeof label === 'string' && this.messages[label]) label = this.messages[label];
+    if (typeof label === 'string' && messages[label]) label = messages[label];
+    if (typeof label === 'string' || React.isValidElement(label)) return label;
+
+    return <FormattedMessage {...label} />;
+  }
+
+  get saveActionIcon() {
+    return this.constructor.saveActionIcon || <SaveIcon />;
+  }
+
+  get saveAction() {
+    return (
+      <Button size="small" color="success" startIcon={this.saveActionIcon} onClick={this.onSave}>
+        {this.saveActionLabel}
+      </Button>
+    );
+  }
+
+  get resetAction() {
+    if (!this.onReset) return null;
+
+    return (
+      <Button size="small" color="warning" startIcon={<ResetIcon />} onClick={this.onReset}>
+        <FormattedMessage {...messages.reset} />
+      </Button>
     );
   }
 
@@ -80,10 +116,12 @@ export default class AbstractPageDetails extends AbstractModule {
     );
   }
 
+  get needLoadData() { return this.isEdit; }
+
   constructor(props) {
     super(props);
     this.state.item = props.item || this.defaultItem;
-    this.state.alreadyLoaded = this.isAdd;
+    this.state.alreadyLoaded = !this.needLoadData;
     this.state.validations = {};
 
     this.setMessagingListener('startLoadItem', this.onStartLoadItem);
@@ -137,16 +175,20 @@ export default class AbstractPageDetails extends AbstractModule {
     if (this.isValid) {
       const options = {
         url: this.apiPath,
-        method: 'POST',
+        method: this.requestMethod,
         data: { data: this.requestData },
+        successfulMessage: this.successfulMessage,
       };
 
       this.sendRequest(options).then(() => {
-        this.notify(this.successfulMessage);
-        if (this.isAdd) this.onReset();
+        this.onSaveSuccessful();
       });
     } else {
       this.notify(Error('Some fields are invalid, please correct them.'));
     }
+  }
+
+  onSaveSuccessful() {
+    if (this.isAdd) this.onReset();
   }
 }
