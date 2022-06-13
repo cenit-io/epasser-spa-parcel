@@ -53,12 +53,26 @@ class MainEmbedded extends AbstractPage {
     return (
       <Card className={classes.cardPage}>
         <MainPageHeader moduleId={module.id} />
+        <Notification className="embedded" moduleId={this.moduleId} />
         <CardContent>
           <Divider className={classes.separator} />
           {requireModuleInstance(module.id, module.props)}
         </CardContent>
       </Card>
     );
+  }
+
+  authWithOauth2(code, tenantId) {
+    const options = {
+      url: 'get_access_token',
+      method: 'POST',
+      data: { code, tenant_id: tenantId },
+    };
+
+    this.sendRequest(options).then((response) => {
+      session.set('account', response.data);
+      this.setState({ isAuthenticate: true, module: { id: 'Home', props: {} } });
+    });
   }
 
   componentDidMount = () => {
@@ -85,8 +99,8 @@ class MainEmbedded extends AbstractPage {
 
       if (access) {
         const { access_token: accessToken, expiration_date: expirationDate } = access;
-        session.set('account', { tenantId, accessToken, expirationDate });
-        this.setState({ isAuthenticate: true, module: { id: 'Home', props: {} } });
+        session.set('authorization', { tenantId, accessToken, expirationDate });
+        this.authWithOauth2(accessToken, tenantId);
       }
     });
 
