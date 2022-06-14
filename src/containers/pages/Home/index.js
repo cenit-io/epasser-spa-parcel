@@ -36,6 +36,11 @@ export class Home extends AbstractPage {
 
   static messages = settings.messages;
 
+  constructor(props) {
+    super(props);
+    this.setMessagingListener('changeAccountStatus', this.onChangeAccountStatus, 'Global');
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -72,6 +77,8 @@ export class Home extends AbstractPage {
     this.emitMessage('setTabSettings', { id: this.moduleId, icon: this.icon, messages: this.messages });
     if (!isReady) this.notify(this.messages.tenant_not_ready, 'warning');
   }
+
+  onChangeAccountStatus = () => this.setState({ time: Date.now() });
 }
 
 export default withStyles(styles)(Home);

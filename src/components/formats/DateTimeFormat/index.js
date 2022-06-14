@@ -10,8 +10,10 @@ import moment from 'moment';
 
 export default class Format extends React.Component {
   static propTypes = {
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
   }
+
+  static defaultProps = { value: null };
 
   render() {
     const { value } = this.props;

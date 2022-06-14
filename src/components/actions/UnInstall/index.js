@@ -16,6 +16,8 @@ import AbstractWithSelectionAction from '../AbstractWithSelectionAction';
 class UnInstall extends AbstractWithSelectionAction {
   static messages = messages
 
+  static multiSelection = false
+
   get color() {
     return this.disabled ? 'inherit' : 'error';
   }

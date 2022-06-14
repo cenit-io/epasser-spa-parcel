@@ -19,6 +19,8 @@ class Install extends AbstractWithSelectionAction {
 
   static icon = <InstallIcon />
 
+  static multiSelection = false
+
   get disabled() {
     const { locked, selectionItems: items } = this.state;
     return locked || items.length !== 1 || items[0].status === 'installed';

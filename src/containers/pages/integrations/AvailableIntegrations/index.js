@@ -12,13 +12,14 @@ import { FormattedMessage } from 'react-intl';
 
 import settings from './settings';
 import styles from '../../../../components/AbstractPageList/styles.jss';
+import session from '../../../../base/session';
 
 import AbstractPageList from '../../../../components/AbstractPageList';
 import ActReload from '../../../../components/actions/Reload';
 import ActInstall from '../../../../components/actions/Install';
 import ActUnInstall from '../../../../components/actions/UnInstall';
 import AvatarFormat from '../../../../components/formats/AvatarFormat';
-import columnDateTime from "../../../../components/columns/dateTime";
+import columnDateTime from '../../../../components/columns/dateTime';
 
 export class List extends AbstractPageList {
   static propTypes = {
@@ -41,7 +42,7 @@ export class List extends AbstractPageList {
       { id: 'title' },
       { id: 'summary' },
       { id: 'version' },
-      { id: 'status' },
+      { id: 'status', format: this.checkTenantReady },
       columnDateTime('updated_at'),
       columnDateTime('installed_at'),
     ];
@@ -55,6 +56,17 @@ export class List extends AbstractPageList {
         <ActUnInstall moduleId={this.moduleId} onClick={this.onUnInstall} />
       </>
     );
+  }
+
+  checkTenantReady = (value, row) => {
+    const { currentAccount: account } = session;
+
+    if (!account.is_ready && row.name === 'edge_integration_core' && row.status !== 'not_installed') {
+      session.set('account', { ...account, is_ready: true });
+      this.emitMessage('changeAccountStatus', null, 'Global');
+    }
+
+    return value;
   }
 
   onInstall = (e, item) => {
@@ -75,8 +87,7 @@ export class List extends AbstractPageList {
     this.sendRequest({
       url: `${this.apiPath}/${item.id}`,
       method: 'PATCH',
-    }).then(() => {
-      this.notify('successfulInstallTask', 'warning');
+      successfulMessage: 'warningInstallTask',
     });
   }
 
@@ -86,8 +97,7 @@ export class List extends AbstractPageList {
     this.sendRequest({
       url: `${this.apiPath}/${item.id}`,
       method: 'DELETE',
-    }).then(() => {
-      this.notify('successfulUnInstallTask', 'warning');
+      successfulMessage: 'warningUnInstallTask',
     });
   }
 }

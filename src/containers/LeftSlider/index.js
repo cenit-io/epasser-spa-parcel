@@ -36,8 +36,9 @@ class LeftSlider extends AbstractComponent {
     size: PropTypes.number.isRequired,
   }
 
-  onTapItem = (item) => {
-    this.emitMessage('openModule', item.id, this.mainModuleId);
+  constructor(props) {
+    super(props);
+    this.setMessagingListener('changeAccountStatus', this.onChangeAccountStatus, 'Global');
   }
 
   render() {
@@ -83,6 +84,10 @@ class LeftSlider extends AbstractComponent {
       </Drawer>
     );
   }
+
+  onTapItem = (item) => this.emitMessage('openModule', item.id, this.mainModuleId);
+
+  onChangeAccountStatus = () => this.setState({ time: Date.now() });
 }
 
 export default withStyles(styles)(LeftSlider);

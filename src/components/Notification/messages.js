@@ -33,11 +33,11 @@ export default defineMessages({
     id: `${scope}.successfulUpdate`,
     defaultMessage: 'The update was completed successfully',
   },
-  successfulInstallTask: {
+  warningInstallTask: {
     id: `${scope}.successfulInstallTask`,
     defaultMessage: 'A background task has been created to install of the selected integration.',
   },
-  successfulUnInstallTask: {
+  warningUnInstallTask: {
     id: `${scope}.successfulUnInstallTask`,
     defaultMessage: 'A background task has been created to uninstall of the selected integration.',
   },
