@@ -17,6 +17,7 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
+import session from '../../base/session';
 import styles from './styles.jss';
 
 import AbstractComponent from '../AbstractComponent';
@@ -76,7 +77,10 @@ class BoardModules extends AbstractComponent {
     );
   }
 
-  onTapItem = (item) => () => this.emitMessage('openModule', item.id, this.mainModuleId)
+  onTapItem = (item) => {
+    if (!this.isAccessible(item.id)) return null;
+    return () => this.emitMessage('openModule', item.id, this.mainModuleId);
+  }
 }
 
 export default withStyles(styles)(BoardModules);

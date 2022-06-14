@@ -20,7 +20,7 @@ import Loading from '../../../components/Loading';
 import AbstractPage from '../../../components/AbstractPage';
 import MainPageHeader from '../../../components/MainPageHeader';
 import Divider from '../../../components/Divider';
-import Notification from "../../../components/Notification";
+import Notification from '../../../components/Notification';
 
 class MainEmbedded extends AbstractPage {
   static propTypes = {
@@ -48,7 +48,14 @@ class MainEmbedded extends AbstractPage {
     const { classes } = this.props;
     const { module, isAuthenticate } = this.state;
 
-    if (!isAuthenticate) return <Loading />;
+    if (!isAuthenticate) {
+      return (
+        <>
+          <Notification className="embedded" moduleId={this.moduleId} />
+          <Loading />
+        </>
+      );
+    }
 
     return (
       <Card className={classes.cardPage}>

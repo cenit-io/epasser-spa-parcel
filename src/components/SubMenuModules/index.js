@@ -15,12 +15,15 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import styles from './styles.jss';
+import session from '../../base/session';
+
+import AbstractComponent from '../AbstractComponent';
 import SubMenuItem from '../SubMenuItem';
 
-class SubMenuModules extends React.Component {
+class SubMenuModules extends AbstractComponent {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
     onTapItem: PropTypes.func.isRequired,
@@ -29,6 +32,7 @@ class SubMenuModules extends React.Component {
   }
 
   onTapItem(item) {
+    if (!this.isAccessible(item.id)) return null;
     const { onTapItem } = this.props;
     return () => onTapItem(item);
   }

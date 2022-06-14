@@ -77,8 +77,6 @@ class MainUnrmbedded extends AbstractPage {
     } else if (!this.isAuthenticate) {
       this.notify('gotoSignInPage');
       setTimeout(this.onGotoCenitIOSignInPage, 0);
-    } else {
-      this.goto('/');
     }
   }
 

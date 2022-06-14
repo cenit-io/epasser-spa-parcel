@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 import { request } from '../../base/request';
 
 import messaging from '../../base/messaging';
+import session from '../../base/session';
 
 export default class AbstractComponent extends React.Component {
   static propTypes = {
@@ -89,6 +90,12 @@ export default class AbstractComponent extends React.Component {
   onConfirmedOpenTasksModule = (value, done) => {
     if (value) this.emitMessage('openModule', 'Tasks', this.mainModuleId);
     done();
+  }
+
+  isAccessible(moduleId) {
+    const { is_ready: isReady } = session.currentAccount || {};
+
+    return !!(isReady || moduleId.match(/^(Home|Tasks|AvailableIntegrations|Tenants|Themes)$/));
   }
 
   openTasksModule(done) {
