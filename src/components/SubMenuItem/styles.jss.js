@@ -20,6 +20,8 @@ const styles = (theme) => ({
   logo: {
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.secondary[theme.palette.mode],
+    width: 32,
+    height: 32,
   },
 
   info: {
