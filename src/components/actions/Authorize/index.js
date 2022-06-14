@@ -19,6 +19,8 @@ class Authorize extends AbstractWithSelectionAction {
 
   static icon = <AuthorizeIcon />
 
+  static multiSelection = false
+
   get disabled() {
     const { locked, selectionItems: items } = this.state;
     return locked || items.length !== 1 || items[0].authorized;
