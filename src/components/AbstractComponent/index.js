@@ -54,7 +54,9 @@ export default class AbstractComponent extends React.Component {
   }
 
   get iFrameDetected() {
-    return window !== window.parent;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    return urlParams.has('embedded') || (window !== window.parent);
   }
 
   get mainModuleId() {
