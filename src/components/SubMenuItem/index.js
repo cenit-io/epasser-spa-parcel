@@ -73,7 +73,7 @@ class SubMenuItem extends React.Component {
     return (
       <ListItem className={classes.root} button onClick={this.onClick} disabled={!onClick}>
         <ListItemAvatar>
-          <Avatar className={classes.logo}><Icon /></Avatar>
+          <Avatar className={classes.logo}><Icon fontSize="small" /></Avatar>
         </ListItemAvatar>
         <ListItemText primary={this.title} />
         {this.renderInfo()}
