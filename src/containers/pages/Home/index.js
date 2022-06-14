@@ -23,7 +23,7 @@ import StockItems from '../ecommerces/StockItems/settings';
 import Flows from '../workflows/Flows/settings';
 import Webhooks from '../workflows/Webhooks/settings';
 import Tasks from '../workflows/Tasks/settings';
-import Notification from "../../../components/Notification";
+import Notification from '../../../components/Notification';
 
 export class Home extends AbstractPage {
   static propTypes = {
@@ -68,6 +68,8 @@ export class Home extends AbstractPage {
 
   componentDidMount = () => {
     const { is_ready: isReady } = session.currentAccount || {};
+
+    this.emitMessage('setTabSettings', { id: this.moduleId, icon: this.icon, messages: this.messages });
     if (!isReady) this.notify(this.messages.tenant_not_ready, 'warning');
   }
 }
