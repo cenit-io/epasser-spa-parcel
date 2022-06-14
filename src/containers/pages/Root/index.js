@@ -19,6 +19,7 @@ import routes from '../../../base/routes';
 import buildTheme from '../../../styles/theme';
 import Waiting from '../../../components/Waiting';
 import AbstractComponent from '../../../components/AbstractComponent';
+import ConfirmDialog from "../../../components/ConfirmDialog";
 
 const enTranslationMessages = require('../../../translations/en.json');
 
@@ -49,6 +50,7 @@ export default class Root extends AbstractComponent {
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={buildTheme(theme)}>
               <CssBaseline />
+              <ConfirmDialog moduleId="main" />
               <Routes>
                 {
                   routes.map((route) => (

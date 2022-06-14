@@ -76,7 +76,7 @@ class MainLayout extends AbstractComponent {
         </AppBar>
 
         <LeftSlider open={open} size={size} />
-        <ConfirmDialog moduleId="main" />
+
         <main className={classes.mainContent} style={{ width: `calc(100% - ${size})` }}>
           {children}
         </main>
