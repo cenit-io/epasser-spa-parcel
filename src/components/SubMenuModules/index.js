@@ -38,7 +38,7 @@ class SubMenuModules extends AbstractComponent {
   }
 
   renderSubMenuItem(item) {
-    if (typeof item === 'string') return <SubMenuItem key={item} title={item} />;
+    if (typeof item === 'string') return <SubMenuItem key={item} title={item} feature />;
 
     return (
       <SubMenuItem
