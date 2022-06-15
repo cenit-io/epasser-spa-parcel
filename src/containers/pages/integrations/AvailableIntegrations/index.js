@@ -39,10 +39,9 @@ export class List extends AbstractPageList {
   get columns() {
     return [
       { id: 'icon', width: 40, label: ' ', format: AvatarFormat },
-      { id: 'title' },
+      { id: 'title', width: 300 },
       { id: 'summary' },
-      { id: 'version' },
-      { id: 'status', format: this.checkTenantReady },
+      { id: 'status', width: 150, format: this.statusFormat },
       columnDateTime('updated_at'),
       columnDateTime('installed_at'),
     ];
@@ -58,7 +57,7 @@ export class List extends AbstractPageList {
     );
   }
 
-  checkTenantReady = (value, row) => {
+  statusFormat = (value, row) => {
     const { currentAccount: account } = session;
 
     if (!account.is_ready && row.name === 'edge_integration_core' && row.status !== 'not_installed') {
@@ -66,7 +65,7 @@ export class List extends AbstractPageList {
       this.emitMessage('changeAccountStatus', null, 'Global');
     }
 
-    return value;
+    return this.messages[value] ? <FormattedMessage {...this.messages[value]} /> : value;
   }
 
   onInstall = (e, item) => {

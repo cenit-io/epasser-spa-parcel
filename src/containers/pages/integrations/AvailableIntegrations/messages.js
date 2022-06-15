@@ -15,6 +15,21 @@ const messagesLocal = defineMessages({
     defaultMessage: 'Available Integrations',
   },
 
+  installed: {
+    id: `${scope}.installed`,
+    defaultMessage: 'Installed',
+  },
+
+  not_installed: {
+    id: `${scope}.not_installed`,
+    defaultMessage: 'Not installed',
+  },
+
+  outdated: {
+    id: `${scope}.outdated`,
+    defaultMessage: 'Outdate',
+  },
+
   field_title: {
     id: `${scope}.field_title`,
     defaultMessage: 'Title',
