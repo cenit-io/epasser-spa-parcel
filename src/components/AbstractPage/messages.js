@@ -1,7 +1,7 @@
 /*
  * AbstractPage Messages
  *
- * This contains all the text for the AbstractPage container.
+ * This contains all the text for the AbstractPage component.
  */
 
 import { defineMessages } from 'react-intl';

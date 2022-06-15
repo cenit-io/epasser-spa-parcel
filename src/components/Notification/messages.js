@@ -1,7 +1,7 @@
 /*
- * Main Messages
+ * Notification Messages
  *
- * This contains all the text for the Main container.
+ * This contains all the text for the Notification component.
  */
 
 import { defineMessages } from 'react-intl';

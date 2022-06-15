@@ -1,7 +1,7 @@
 /*
  * AbstractPageList Messages
  *
- * This contains all the text for the AbstractPageList container.
+ * This contains all the text for the AbstractPageList component.
  */
 
 import { defineMessages } from 'react-intl';

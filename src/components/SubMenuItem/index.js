@@ -14,11 +14,13 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
 
 import { ManagementIcon } from '../Icons';
 
 import styles from './styles.jss';
 import history from '../../base/history';
+import messages from './messages';
 
 class SubMenuItem extends React.Component {
   static propTypes = {
@@ -27,12 +29,14 @@ class SubMenuItem extends React.Component {
     icon: PropTypes.elementType,
     path: PropTypes.string,
     info: PropTypes.string,
+    feature: PropTypes.bool,
     onClick: PropTypes.func,
   }
 
   static defaultProps = {
     path: null,
     info: null,
+    feature: false,
     onClick: null,
     icon: ManagementIcon,
   }
@@ -68,9 +72,8 @@ class SubMenuItem extends React.Component {
   }
 
   render() {
-    const { classes, icon: Icon, onClick } = this.props;
-
-    return (
+    const { classes, icon: Icon, onClick, feature } = this.props;
+    const item = (
       <ListItem className={classes.root} button onClick={this.onClick} disabled={!onClick}>
         <ListItemAvatar>
           <Avatar className={classes.logo}><Icon fontSize="small" /></Avatar>
@@ -78,6 +81,18 @@ class SubMenuItem extends React.Component {
         <ListItemText primary={this.title} />
         {this.renderInfo()}
       </ListItem>
+    );
+
+    if (!feature) return item;
+
+    return (
+      <Tooltip
+        placement="top"
+        title={<FormattedMessage {...messages.upcoming_feature} />}
+        arrow followCursor disableInteractive
+      >
+        <span>{item}</span>
+      </Tooltip>
     );
   }
 }

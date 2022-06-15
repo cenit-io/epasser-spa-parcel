@@ -1,7 +1,7 @@
 /*
  * AbstractModule Messages
  *
- * This contains all the text for the Products container.
+ * This contains all the text for the Products component.
  */
 
 import React from 'react';

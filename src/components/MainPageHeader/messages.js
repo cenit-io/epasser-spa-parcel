@@ -1,7 +1,7 @@
 /*
  * MainPageHeader Messages
  *
- * This contains all the text for the MainPageHeader container.
+ * This contains all the text for the MainPageHeader component.
  */
 
 import { defineMessages } from 'react-intl';

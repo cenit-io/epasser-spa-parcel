@@ -17,11 +17,13 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
+import Tooltip from '@mui/material/Tooltip';
 import session from '../../base/session';
 import styles from './styles.jss';
 
 import AbstractComponent from '../AbstractComponent';
 import SubMenuItem from '../SubMenuItem';
+import messages from '../MainPageHeader/messages';
 
 class BoardModules extends AbstractComponent {
   static propTypes = {
@@ -48,7 +50,7 @@ class BoardModules extends AbstractComponent {
   }
 
   renderSubMenuItem(item) {
-    if (typeof item === 'string') return <SubMenuItem key={item} title={item} />;
+    if (typeof item === 'string') return <SubMenuItem key={item} title={item} feature />;
     return (
       <SubMenuItem
         key={item.id}
