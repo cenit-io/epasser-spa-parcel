@@ -60,8 +60,8 @@ export class List extends AbstractPageList {
   statusFormat = (value, row) => {
     const { currentAccount: account } = session;
 
-    if (!account.is_ready && row.name === 'edge_integration_core' && row.status !== 'not_installed') {
-      session.set('account', { ...account, is_ready: true });
+    if (account.status === 'not_installed' && row.name === 'edge_integration_core' && row.status !== 'not_installed') {
+      session.set('account', { ...account, status: 'ready' });
       this.emitMessage('changeAccountStatus', null, 'Global');
     }
 

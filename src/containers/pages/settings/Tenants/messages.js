@@ -18,9 +18,25 @@ const messagesLocal = defineMessages({
     id: `${scope}.field_user`,
     defaultMessage: 'User',
   },
-  field_is_ready: {
-    id: `${scope}.field_is_ready`,
-    defaultMessage: 'Is ready',
+  field_status: {
+    id: `${scope}.field_status`,
+    defaultMessage: 'Status',
+  },
+  ready: {
+    id: `${scope}.ready`,
+    defaultMessage: 'Ready',
+  },
+  locked: {
+    id: `${scope}.locked`,
+    defaultMessage: 'Locked',
+  },
+  not_allowed: {
+    id: `${scope}.not_allowed`,
+    defaultMessage: 'Not allowed',
+  },
+  not_installed: {
+    id: `${scope}.not_installed`,
+    defaultMessage: 'Not installed',
   },
   confirmSwitchMsg: {
     id: `${scope}.confirmSwitchMsg`,

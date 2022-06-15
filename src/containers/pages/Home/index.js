@@ -72,10 +72,11 @@ export class Home extends AbstractPage {
   }
 
   componentDidMount = () => {
-    const { is_ready: isReady } = session.currentAccount || {};
+    const { status } = session.currentAccount || {};
 
     this.emitMessage('setTabSettings', { id: this.moduleId, icon: this.icon, messages: this.messages });
-    if (!isReady) this.notify(this.messages.tenant_not_ready, 'warning');
+
+    if (status !== 'ready') this.notify(this.messages[`tenant_${status}`], 'warning');
   }
 
   onChangeAccountStatus = () => this.setState({ time: Date.now() });

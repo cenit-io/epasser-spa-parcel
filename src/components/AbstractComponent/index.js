@@ -95,9 +95,12 @@ export default class AbstractComponent extends React.Component {
   }
 
   isAccessible(moduleId) {
-    const { is_ready: isReady } = session.currentAccount || {};
+    const { status } = session.currentAccount || {};
 
-    return !!(isReady || moduleId.match(/^(Home|Tasks|AvailableIntegrations|Tenants|Themes)$/));
+    if (status.match(/^(locked|not_allowed)$/)) return moduleId.match(/^(Home|Tenants|Themes)$/);
+    if (status === 'not_installed') return moduleId.match(/^(Home|Tasks|AvailableIntegrations|Tenants|Themes)$/);
+
+    return true;
   }
 
   openTasksModule(done) {

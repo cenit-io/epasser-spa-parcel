@@ -48,7 +48,7 @@ export class List extends AbstractPageList {
     return [
       { id: 'name', width: 200, format: this.nameFormat },
       { id: 'user', format: this.userFormat },
-      { id: 'is_ready', width: 150, align: 'center', format: BoolFormat },
+      { id: 'status', width: 150, format: this.statusFormat },
       columnDateTime('created_at'),
       columnDateTime('updated_at'),
     ];
@@ -86,6 +86,8 @@ export class List extends AbstractPageList {
   }
 
   userFormat = (value) => value.name || value.email;
+
+  statusFormat = (value, row) => (this.messages[value] ? <FormattedMessage {...this.messages[value]} /> : value)
 
   onSwitch = (e, item) => {
     const data = [this.confirmSwitchMsg, (value) => this.onConfirmedSwitch(value, item)];
