@@ -91,7 +91,7 @@ export class List extends AbstractPageList {
     const data = signRequest('GET', path, { redirect_uri: appUri });
     const qs = toQueryParams(data);
 
-    window.location.href = `${session.apiBaseUrl}/${path}?${qs}`;
+    window.open(`${session.apiBaseUrl}/${path}?${qs}`, '_blank');
   }
 
   onConfirmedUnAuthorize = (value, items) => {
