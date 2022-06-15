@@ -93,7 +93,9 @@ class MainEmbedded extends AbstractPage {
       if (origin !== CenitUIUrl) return false;
 
       if (cmd === 'refresh') {
-        session.set('account', { ...session.currentAccount, tenantId });
+        const authorization = session.get('authorization');
+
+        this.authWithOauth2(authorization.accessToken, tenantId);
 
         const { module: { id: moduleId } } = this.state;
 
