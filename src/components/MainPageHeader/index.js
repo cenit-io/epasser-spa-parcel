@@ -47,7 +47,7 @@ class MainPageHeader extends AbstractComponent {
 
   constructor(props) {
     super(props);
-    this.state = { settings: null, open: false };
+    this.state = { module: null, open: false };
     this.setMessagingListener('openModule', this.onOpenModule, this.mainModuleId);
     this.onOpenModule(props.moduleId);
   }
@@ -114,8 +114,8 @@ class MainPageHeader extends AbstractComponent {
   }
 
   render() {
-    const { settings } = this.state;
-    const { icon: Icon, messages: { title } = {} } = settings || {};
+    const { module } = this.state;
+    const { icon: Icon, title } = module || {};
 
     return (
       <>
@@ -130,7 +130,7 @@ class MainPageHeader extends AbstractComponent {
     );
   }
 
-  onSetTabSettings = (settings) => this.setState({ settings })
+  onSetModuleInstance = (module) => this.setState({ module })
 
   onTapItem = (item) => {
     if (!this.isAccessible(item.id)) return null;
@@ -138,7 +138,7 @@ class MainPageHeader extends AbstractComponent {
   }
 
   onOpenModule = (moduleId) => {
-    this.setMessagingListener('setTabSettings', this.onSetTabSettings, moduleId);
+    this.setMessagingListener('setModuleInstance', this.onSetModuleInstance, moduleId);
   }
 
   onOpen = (e) => {

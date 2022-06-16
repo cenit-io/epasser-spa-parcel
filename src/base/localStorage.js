@@ -1,4 +1,5 @@
 import LZString from 'lz-string';
+import session from './session';
 
 class Local {
   get(key, defaultValue) {
@@ -23,12 +24,11 @@ class Local {
     window.localStorage.clear();
   }
 
-  get iFrameDetected() {
-    return window !== window.parent;
-  }
-
   get theme() {
-    const theme = this.get('theme', { id: this.iFrameDetected ? 'cenit-io' : 'ecapi', mode: 'light' });
+    const theme = this.get('theme', {
+      id: session.iFrameDetected ? 'cenit-io' : 'ecapi',
+      mode: 'light',
+    });
     return (typeof theme === 'string') ? { id: theme, model: 'light' } : theme;
   }
 

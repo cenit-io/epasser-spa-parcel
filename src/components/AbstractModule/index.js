@@ -9,6 +9,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 
+import session from '../../base/session';
+
 import AbstractPage from '../AbstractPage';
 import Notification from '../Notification';
 
@@ -48,7 +50,7 @@ export default class AbstractModule extends AbstractPage {
     return (
       <div className={classes.root}>
         {this.renderToolbar()}
-        <Notification moduleId={this.moduleId} className={this.iFrameDetected ? 'embedded' : 'unembedded'} />
+        <Notification moduleId={this.moduleId} className={session.iFrameDetected ? 'embedded' : 'unembedded'} />
         <div className={classes.content}>
           {this.renderContent()}
         </div>

@@ -53,14 +53,8 @@ export default class AbstractComponent extends React.Component {
     return this.constructor.apiPath;
   }
 
-  get iFrameDetected() {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    return urlParams.has('embedded') || (window !== window.parent);
-  }
-
   get mainModuleId() {
-    return this.iFrameDetected ? 'MainPage' : 'MainTabs';
+    return session.iFrameDetected ? 'MainPage' : 'MainTabs';
   }
 
   addMessagingListener = (messageId, callBack, senderId) => {

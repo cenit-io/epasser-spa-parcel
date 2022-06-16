@@ -13,6 +13,10 @@ export const scope = 'containers.Home';
 const messagesLocal = defineMessages({
   title: {
     id: `${scope}.title`,
+    defaultMessage: 'Home',
+  },
+  title_for_embedded: {
+    id: `${scope}.title`,
     defaultMessage: 'Ecommerce Connector',
   },
   tenant_not_installed: {

@@ -31,7 +31,7 @@ class MainEmbedded extends AbstractPage {
     super(props);
     this.state = {
       module: { id: 'Home', props: {} },
-      isAuthenticate: false,
+      isAuthenticate: session.isAuthenticate,
     };
     this.setMessagingListener('openModule', this.onOpenModule);
   }

@@ -36,6 +36,8 @@ export class Home extends AbstractPage {
 
   static messages = settings.messages;
 
+  static title = session.iFrameDetected ? settings.messages.title_for_embedded : settings.messages.title;
+
   constructor(props) {
     super(props);
     this.setMessagingListener('changeAccountStatus', this.onChangeAccountStatus, 'Global');
@@ -74,7 +76,7 @@ export class Home extends AbstractPage {
   componentDidMount = () => {
     const { status } = session.currentAccount || {};
 
-    this.emitMessage('setTabSettings', { id: this.moduleId, icon: this.icon, messages: this.messages });
+    this.emitMessage('setModuleInstance', this);
 
     if (status !== 'ready') this.notify(this.messages[`tenant_${status}`], 'warning');
   }

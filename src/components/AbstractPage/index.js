@@ -37,6 +37,10 @@ export default class AbstractPage extends AbstractComponent {
     return this.props.icon || this.constructor.icon;
   }
 
+  get title() {
+    return this.props.title || this.constructor.title || this.messages.title;
+  }
+
   get actions() {
     return (
       <>
@@ -77,6 +81,6 @@ export default class AbstractPage extends AbstractComponent {
   }
 
   componentDidMount = () => {
-    this.emitMessage('setTabSettings', { id: this.moduleId, icon: this.icon, messages: this.messages });
+    this.emitMessage('setModuleInstance', this);
   }
 }

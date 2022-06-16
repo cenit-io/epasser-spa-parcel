@@ -32,8 +32,8 @@ class TabButton extends AbstractComponent {
 
   constructor(props) {
     super(props);
-    this.state = { hover: false, settings: null };
-    this.setMessagingListener('setTabSettings', this.onSetTabSettings, props.tabId);
+    this.state = { hover: false, module: null };
+    this.setMessagingListener('setModuleInstance', this.onSetModuleInstance, props.tabId);
   }
 
   get buttonCloseClass() {
@@ -59,7 +59,7 @@ class TabButton extends AbstractComponent {
     onClose && onClose(e, tabId);
   }
 
-  onSetTabSettings = (settings) => this.setState({ settings })
+  onSetModuleInstance = (module) => this.setState({ module })
 
   renderCloseButton() {
     const { onClose } = this.props;
@@ -74,10 +74,10 @@ class TabButton extends AbstractComponent {
   }
 
   render() {
-    const { settings } = this.state;
+    const { module } = this.state;
     const { classes, active } = this.props;
-    const { icon: Icon, messages: { title } = {} } = settings || {};
-    const loading = settings === null;
+    const { icon: Icon, messages: { title } = {} } = module || {};
+    const loading = (module === null);
 
     return (
       <LoadingButton
