@@ -11,8 +11,10 @@ import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 
 import CloseIcon from '@mui/icons-material/Clear';
+
 import Avatar from '@mui/material/Avatar';
-import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import styles from './styles.jss';
 
@@ -44,7 +46,7 @@ class TabButton extends AbstractComponent {
     return `${classes.buttonClose} ${hoverClass}`;
   }
 
-  onMouseMove = () => this.setState({ hover: true });
+  onMouseOver = () => this.setState({ hover: true });
 
   onMouseLeave = () => this.setState({ hover: false });
 
@@ -73,27 +75,36 @@ class TabButton extends AbstractComponent {
     );
   }
 
-  render() {
+  renderIcon() {
     const { module } = this.state;
+    const { icon: Icon } = module || {};
+    const loading = (module === null);
+
+    if (loading) return <CircularProgress size="1em" thickness={3} color="secondary" />;
+
+    return Icon ? <Icon /> : undefined;
+  }
+
+  render() {
     const { classes, active } = this.props;
-    const { icon: Icon, messages: { title } = {} } = module || {};
+    const { module } = this.state;
+    const { messages: { title } = {} } = module || {};
     const loading = (module === null);
 
     return (
-      <LoadingButton
-        loading={loading}
+      <Button
         role="tab"
         className={classes.root}
         color="primary"
         variant={active && !loading ? 'contained' : 'outlined'}
-        startIcon={Icon ? <Icon /> : undefined}
+        startIcon={this.renderIcon()}
         onClick={this.onChange}
-        onMouseMove={this.onMouseMove}
+        onMouseOver={this.onMouseOver}
         onMouseLeave={this.onMouseLeave}
       >
         <span>{title ? <FormattedMessage {...title} /> : '...'}</span>
         {this.renderCloseButton()}
-      </LoadingButton>
+      </Button>
     );
   }
 }
