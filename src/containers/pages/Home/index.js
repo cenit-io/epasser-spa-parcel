@@ -48,7 +48,7 @@ export class Home extends AbstractPage {
 
     return (
       <div className={classes.root}>
-        <Notification moduleId={this.moduleId} />
+        <Notification moduleId={this.moduleId} className={session.iFrameDetected ? 'embedded' : 'unembedded'} />
         <BoardModules
           width="24%" height={350}
           title={this.messages.integrations}
