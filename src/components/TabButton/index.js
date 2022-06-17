@@ -11,7 +11,6 @@ import { withStyles } from '@mui/styles';
 import { FormattedMessage } from 'react-intl';
 
 import CloseIcon from '@mui/icons-material/Clear';
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
