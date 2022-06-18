@@ -78,7 +78,13 @@ export class Home extends AbstractPage {
 
     this.emitMessage('setModuleInstance', this);
 
-    if (status !== 'ready') this.notify(this.messages[`tenant_${status}`], 'warning');
+    if (status !== 'ready') {
+      if (this.messages[`tenant_${status}`]) {
+        this.notify(this.messages[`tenant_${status}`], 'warning');
+      } else {
+        this.notify(this.messages.tenant_not_valid, 'warning');
+      }
+    }
   }
 
   onChangeAccountStatus = () => this.setState({ time: Date.now() });
