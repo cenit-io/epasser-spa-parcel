@@ -39,17 +39,18 @@ const styles = (theme) => ({
   cell: {
     borderColor: theme.palette.divider,
     borderLeftStyle: iFrameDetected ? 'none' : 'solid',
+    borderRightStyle: iFrameDetected ? 'none' : 'solid',
+    borderTopStyle: iFrameDetected ? 'inherit' : 'solid',
     borderWidth: 1,
     zIndex: 1,
-    padding: '6px 16px',
 
     '& .MuiCheckbox-root': {
-      padding: iFrameDetected ? 'inherit' : theme.spacing(0.5),
+      padding: theme.spacing(iFrameDetected ? 1 : 0.5),
     },
   },
 
   cellSelection: {
-    width: theme.spacing(3),
+    width: theme.spacing(2),
   },
 
   pagination: {
