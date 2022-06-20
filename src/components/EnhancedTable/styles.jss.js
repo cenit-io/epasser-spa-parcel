@@ -43,14 +43,17 @@ const styles = (theme) => ({
     borderTopStyle: iFrameDetected ? 'inherit' : 'solid',
     borderWidth: 1,
     zIndex: 1,
+    padding: '6px 16px',
 
     '& .MuiCheckbox-root': {
-      padding: theme.spacing(iFrameDetected ? 1 : 0.5),
+      padding: theme.spacing(iFrameDetected ? 1.5 : 0.5),
     },
   },
 
   cellSelection: {
-    width: theme.spacing(2),
+    padding: `${theme.spacing(0.5)} !important`,
+    width: theme.spacing(iFrameDetected ? 6 : 5.25),
+    textAlign: 'center',
   },
 
   pagination: {
