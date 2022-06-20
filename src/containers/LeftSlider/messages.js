@@ -17,10 +17,6 @@ export default defineMessages({
     id: `${scope}.eCommerces`,
     defaultMessage: 'eCommerces',
   },
-  documents: {
-    id: `${scope}.documents`,
-    defaultMessage: 'Documents',
-  },
   workflows: {
     id: `${scope}.workflows`,
     defaultMessage: 'Workflows',

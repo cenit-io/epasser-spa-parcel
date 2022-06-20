@@ -64,12 +64,6 @@ class LeftSlider extends AbstractComponent {
           />
 
           <SubMenuModules
-            title={messages.documents}
-            onTapItem={this.onTapItem}
-            modules={['Contacts']}
-          />
-
-          <SubMenuModules
             title={messages.workflows}
             onTapItem={this.onTapItem}
             modules={[Flows, Tasks, Webhooks]}

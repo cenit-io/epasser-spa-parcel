@@ -63,11 +63,6 @@ export class Home extends AbstractPage {
         />
         <BoardModules
           width="24%" height={350}
-          title={this.messages.documents}
-          modules={['Contacts']}
-        />
-        <BoardModules
-          width="24%" height={350}
           title={this.messages.workflows}
           modules={[Flows, Webhooks, Tasks]}
         />
