@@ -100,6 +100,17 @@ export class List extends AbstractPageList {
     this.emitMessage('closeModules', { except: [this.moduleId] }, this.mainModuleId);
     this.emitMessage('setSessionAccount', item, 'Main');
   }
+
+  onConfirmedDelete = (value, item) => {
+    if (!value) return;
+
+    this.sendRequest({
+      url: `${this.apiPath}/${item.id}`,
+      method: 'DELETE',
+    }).then(() => {
+      this.emitMessage('reload');
+    });
+  }
 }
 
 export default withStyles(styles)(List);
