@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import messages from './messages';
 
 import AbstractModule from '../AbstractModule';
+import AdaptiveButton from '../AdaptiveButton';
 
 import { SaveIcon, ResetIcon, CancelIcon } from '../Icons';
 
@@ -90,9 +91,12 @@ export default class AbstractPageDetails extends AbstractModule {
 
   get saveAction() {
     return (
-      <Button size="small" color="success" startIcon={this.saveActionIcon} onClick={this.onSave}>
-        {this.saveActionLabel}
-      </Button>
+      <AdaptiveButton
+        label={this.saveActionLabel}
+        color="success"
+        icon={this.saveActionIcon}
+        onClick={this.onSave}
+      />
     );
   }
 
@@ -100,9 +104,12 @@ export default class AbstractPageDetails extends AbstractModule {
     if (!this.onReset) return null;
 
     return (
-      <Button size="small" color="warning" startIcon={<ResetIcon />} onClick={this.onReset}>
-        <FormattedMessage {...messages.reset} />
-      </Button>
+      <AdaptiveButton
+        label={<FormattedMessage {...messages.reset} />}
+        color="warning"
+        icon={<ResetIcon />}
+        onClick={this.onReset}
+      />
     );
   }
 
@@ -110,9 +117,12 @@ export default class AbstractPageDetails extends AbstractModule {
     if (!this.onCancel) return null;
 
     return (
-      <Button size="small" color="error" startIcon={<CancelIcon />} onClick={this.onCancel}>
-        <FormattedMessage {...messages.cancel} />
-      </Button>
+      <AdaptiveButton
+        label={<FormattedMessage {...messages.cancel} />}
+        color="error"
+        icon={<CancelIcon />}
+        onClick={this.onCancel}
+      />
     );
   }
 

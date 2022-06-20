@@ -12,8 +12,11 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
-import AbstractComponent from '../../AbstractComponent';
+
 import styles from '../styles.jss';
+import session from '../../../base/session';
+
+import AbstractComponent from '../../AbstractComponent';
 
 class EnhancedRow extends AbstractComponent {
   static propTypes = {
@@ -56,7 +59,8 @@ class EnhancedRow extends AbstractComponent {
     return columns.map((column) => (
       <TableCell
         className={classes.cell} key={column.id} component="td"
-        scope="row" size="small"
+        scope="row"
+        size="small"
         align={column.align || 'left'}
         padding={column.padding || padding}
       >
@@ -79,7 +83,14 @@ class EnhancedRow extends AbstractComponent {
 
     if (!selectable) return null;
 
-    return <TableCell className={classes.cell} padding="checkbox">{this.renderSelectionComponent()}</TableCell>;
+    return (
+      <TableCell
+        className={`${classes.cell} ${classes.cellSelection}`}
+        padding={session.iFrameDetected ? 'normal' : 'checkbox'}
+      >
+        {this.renderSelectionComponent()}
+      </TableCell>
+    );
   }
 
   render() {

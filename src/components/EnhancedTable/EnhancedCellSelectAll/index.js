@@ -9,7 +9,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 import TableCell from '@mui/material/TableCell';
 import Checkbox from '@mui/material/Checkbox';
+
 import styles from '../styles.jss';
+import session from '../../../base/session';
 
 import AbstractComponent from '../../AbstractComponent';
 
@@ -34,7 +36,10 @@ class EnhancedCellSelectAll extends AbstractComponent {
     const { selectedCount, itemsCount } = this.state;
 
     return (
-      <TableCell className={classes.cell} padding="checkbox">
+      <TableCell
+        className={`${classes.cell} ${classes.cellSelection}`}
+        padding={session.iFrameDetected ? 'normal' : 'checkbox'}
+      >
         <Checkbox
           indeterminate={selectedCount > 0 && selectedCount < itemsCount}
           checked={itemsCount > 0 && selectedCount === itemsCount}

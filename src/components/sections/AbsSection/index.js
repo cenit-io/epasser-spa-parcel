@@ -37,7 +37,7 @@ export default class AbsSection extends AbstractComponent {
     const { classes, titleVariant } = this.props;
 
     return (
-      <Card className={classes.cardForm}>
+      <Card className={classes.cardSection}>
         <CardHeader
           titleTypographyProps={{ variant: titleVariant }}
           title={this.sectionTitle}

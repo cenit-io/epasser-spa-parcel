@@ -8,7 +8,7 @@ import baseStyles from '../../../styles';
 const styles = (theme) => ({
   ...baseStyles(theme),
 
-  cardForm: {
+  cardSection: {
     width: `calc(100% - ${theme.spacing(1)})`,
     margin: theme.spacing(0.5),
     marginBottom: theme.spacing(2),

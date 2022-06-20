@@ -1,15 +1,21 @@
+import session from '../../base/session';
+
 /**
  *
  * Styles
  *
  */
 
+const { iFrameDetected } = session;
+
 const paginationHeight = 36;
+const rootMargin = iFrameDetected ? 2 : 0;
 
 const styles = (theme) => ({
   root: {
-    width: '100%',
-    height: '100%',
+    width: `calc(100% - ${rootMargin * 2}px)`,
+    height: `calc(100% - ${rootMargin * 2}px)`,
+    margin: rootMargin,
     overflow: 'hidden',
   },
 
@@ -25,22 +31,25 @@ const styles = (theme) => ({
 
   head: {
     position: 'sticky',
-    // backgroundColor: theme.palette.primary[theme.palette.mode],
-    backgroundColor: theme.palette.secondary[theme.palette.mode],
+    backgroundColor: iFrameDetected ? 'inherit' : theme.palette.secondary[theme.palette.mode],
     zIndex: 2,
     top: 0,
   },
 
   cell: {
     borderColor: theme.palette.divider,
-    borderStyle: 'solid',
+    borderLeftStyle: iFrameDetected ? 'none' : 'solid',
     borderWidth: 1,
     zIndex: 1,
     padding: '6px 16px',
 
     '& .MuiCheckbox-root': {
-      padding: theme.spacing(0.5),
+      padding: iFrameDetected ? 'inherit' : theme.spacing(0.5),
     },
+  },
+
+  cellSelection: {
+    width: theme.spacing(3),
   },
 
   pagination: {

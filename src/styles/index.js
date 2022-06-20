@@ -23,6 +23,10 @@ const styles = (theme) => ({
     borderColor: theme.palette.primary.main,
   },
 
+  withoutShadow: {
+    boxShadow: 'none',
+  },
+
   col1: {
     width: `calc(${(100 / 6) * 1}% - ${theme.spacing(2)})`,
 

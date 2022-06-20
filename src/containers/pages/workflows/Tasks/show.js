@@ -86,7 +86,7 @@ class Show extends AbstractPageDetails {
     return (
       <>
         <CustomSection title={messages.taskDetails}>
-          <Card className={classes.details}>
+          <Card className={classes.withoutShadow}>
             <CardHeader
               avatar={this.renderStatusIcon(item.status)}
               title={<FormattedMessage {...messages.field_description} />}

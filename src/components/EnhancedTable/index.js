@@ -113,7 +113,7 @@ class EnhancedTable extends AbstractComponent {
     } = this.props;
 
     return (
-      <Paper className={className || classes.root}>
+      <Paper className={className || classes.root} elevation={1}>
         <TableContainer className={classes.container}>
           <Table className={classes.table} size="small">
             <EnhancedHead

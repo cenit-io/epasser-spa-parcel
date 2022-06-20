@@ -16,11 +16,6 @@ const styles = (theme) => ({
     },
   },
 
-  appBar: {
-    // zIndex: theme.zIndex.appBar + 1,
-    boxShadow: `0 0 5px 0 ${alpha(theme.palette.primary.main, 0.8)}`,
-  },
-
   menuButton: {
     marginRight: theme.spacing(1),
   },

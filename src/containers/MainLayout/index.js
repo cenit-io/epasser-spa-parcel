@@ -54,7 +54,7 @@ class MainLayout extends AbstractComponent {
       <div className={classes.root}>
         <Helmet><title>{`Passer: ${pageTitle}`}</title></Helmet>
 
-        <AppBar position="fixed" className={classes.appBar} color="primary">
+        <AppBar position="fixed" color="primary">
           <Toolbar>
             <IconButton
               edge="start"

@@ -28,9 +28,9 @@ const styles = (theme) => ({
     margin: theme.spacing(0.5),
     marginBottom: theme.spacing(2),
 
-    '&.MuiCard-root': {
-      boxShadow: 'none',
-    },
+    // '&.MuiCard-root': {
+    //   boxShadow: 'none',
+    // },
 
     '& .MuiCardContent-root': {
       paddingTop: 0,
