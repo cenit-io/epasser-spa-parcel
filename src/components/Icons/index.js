@@ -28,6 +28,7 @@ import SwitchTenantIcon from '@mui/icons-material/SwitchAccountOutlined';
 import LinkIcon from '@mui/icons-material/AddLink';
 import UnlinkIcon from '@mui/icons-material/LinkOff';
 import SendIcon from '@mui/icons-material/Outbox';
+import ShopIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import AvailableIntegrationsIcon from './AvailableIntegrationsIcon';
 import ConnectedIntegrationsIcon from './ConnectedIntegrationsIcon';
@@ -44,5 +45,5 @@ export {
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
   SaveIcon, ResetIcon, CancelIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon, StartIcon,
   ToggleIcon, RetryIcon, EmailIcon, UserIcon, TenantIcon, TenantsIcon, ThemesIcon, ShowIcon, ManagementIcon,
-  SwitchTenantIcon, LinkIcon, UnlinkIcon, SendIcon,
+  SwitchTenantIcon, LinkIcon, UnlinkIcon, SendIcon, ShopIcon,
 };

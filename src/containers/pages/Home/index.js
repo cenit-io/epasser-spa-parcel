@@ -25,6 +25,8 @@ import Webhooks from '../workflows/Webhooks/settings';
 import Tasks from '../workflows/Tasks/settings';
 import Notification from '../../../components/Notification';
 
+import { HomeIcon, ShopIcon } from '../../../components/Icons';
+
 export class Home extends AbstractPage {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
@@ -32,7 +34,7 @@ export class Home extends AbstractPage {
 
   static id = settings.id;
 
-  static icon = settings.icon;
+  static icon = session.iFrameDetected ? ShopIcon : HomeIcon;
 
   static messages = settings.messages;
 
