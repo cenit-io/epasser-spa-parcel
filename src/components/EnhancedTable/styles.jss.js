@@ -1,3 +1,4 @@
+import { alpha } from '@mui/material/styles';
 import session from '../../base/session';
 
 /**
@@ -8,7 +9,7 @@ import session from '../../base/session';
 
 const { iFrameDetected } = session;
 
-const paginationHeight = 36;
+const paginationHeight = 48;
 const rootMargin = iFrameDetected ? 2 : 0;
 
 const styles = (theme) => ({
@@ -29,11 +30,22 @@ const styles = (theme) => ({
     tableLayout: 'auto',
   },
 
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: alpha(theme.palette.action.hover, 0.02),
+    },
+
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+
   head: {
     position: 'sticky',
-    backgroundColor: iFrameDetected ? 'inherit' : theme.palette.secondary[theme.palette.mode],
+    backgroundColor: iFrameDetected ? '#ffffff' : theme.palette.secondary[theme.palette.mode],
     zIndex: 2,
     top: 0,
+    height: iFrameDetected ? theme.spacing(7) : 'auto',
   },
 
   cell: {
@@ -45,13 +57,13 @@ const styles = (theme) => ({
     zIndex: 1,
     padding: '6px 16px',
 
-    '& .MuiCheckbox-root': {
+    '& .MuiCheckbox-root, .MuiRadio-root': {
       padding: theme.spacing(iFrameDetected ? 1.5 : 0.5),
     },
   },
 
   cellSelection: {
-    padding: `${theme.spacing(0.5)} !important`,
+    padding: `${iFrameDetected ? `${theme.spacing(1)} 0px` : theme.spacing(0.5)} !important`,
     width: theme.spacing(iFrameDetected ? 6 : 5.25),
     textAlign: 'center',
   },
