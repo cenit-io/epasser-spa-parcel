@@ -38,6 +38,10 @@ const styles = (theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
+
+    '&.Mui-selected': {
+      backgroundColor: theme.palette.action.selected,
+    },
   },
 
   head: {
