@@ -14,14 +14,14 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
-import localStorage from '../../../base/localStorage';
-import routes from '../../../base/routes';
-import buildTheme from '../../../styles/theme';
-import Waiting from '../../../components/Waiting';
-import AbstractComponent from '../../../components/AbstractComponent';
-import ConfirmDialog from "../../../components/ConfirmDialog";
+import localStorage from '../../base/localStorage';
+import routes from '../../base/routes';
+import buildTheme from '../../styles/theme';
+import Waiting from '../../components/Waiting';
+import AbstractComponent from '../../components/AbstractComponent';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
-const enTranslationMessages = require('../../../translations/en.json');
+const enTranslationMessages = require('../../translations/en.json');
 
 export default class Root extends AbstractComponent {
   static propTypes = {

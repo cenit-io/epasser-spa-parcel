@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Root from './containers/pages/Root';
+import Root from './containers/Root';
 import history from './base/history';
 import configureStore from './store';
 
