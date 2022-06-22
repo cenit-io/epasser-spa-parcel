@@ -35,12 +35,12 @@ const styles = (theme) => ({
       backgroundColor: alpha(theme.palette.action.hover, 0.02),
     },
 
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
-
     '&.Mui-selected': {
       backgroundColor: theme.palette.action.selected,
+    },
+
+    '&:hover': {
+      backgroundColor: `${theme.palette.action.hover} !important`,
     },
   },
 
