@@ -46,10 +46,14 @@ const styles = (theme) => ({
 
   head: {
     position: 'sticky',
-    backgroundColor: iFrameDetected ? '#ffffff' : theme.palette.secondary[theme.palette.mode],
+    backgroundColor: '#FFFFFF',
     zIndex: 2,
     top: 0,
     height: iFrameDetected ? theme.spacing(7) : 'auto',
+
+    '& tr': {
+      backgroundColor: iFrameDetected ? '#FFFFFF' : theme.palette.secondary[theme.palette.mode],
+    },
   },
 
   cell: {
