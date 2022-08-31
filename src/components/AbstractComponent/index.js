@@ -85,7 +85,7 @@ export default class AbstractComponent extends React.Component {
 
   onConfirmedOpenTasksModule = (value, done) => {
     if (value) this.emitMessage('openModule', 'Tasks', this.mainModuleId);
-    done();
+    done(value);
   }
 
   isAccessible(moduleId) {

@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 
 import messages from './messages';
 
@@ -190,9 +189,7 @@ export default class AbstractPageDetails extends AbstractModule {
         successfulMessage: this.successfulMessage,
       };
 
-      this.sendRequest(options).then(() => {
-        this.onSaveSuccessful();
-      });
+      this.sendRequest(options).then(() => this.onSaveSuccessful());
     } else {
       this.notify(Error('Some fields are invalid, please correct them.'));
     }

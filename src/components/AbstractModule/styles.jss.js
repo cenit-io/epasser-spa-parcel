@@ -30,6 +30,11 @@ const styles = (theme) => ({
     height: 'calc(100% - 36px)',
     overflow: 'auto',
   },
+
+  contentFullSize: {
+    height: '100%',
+    overflow: 'auto',
+  },
 });
 
 export default styles;

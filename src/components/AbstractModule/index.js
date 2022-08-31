@@ -46,12 +46,13 @@ export default class AbstractModule extends AbstractPage {
 
   render() {
     const { classes } = this.props;
+    const toolbar = this.renderToolbar();
 
     return (
       <div className={classes.root}>
-        {this.renderToolbar()}
+        {toolbar}
         <Notification moduleId={this.moduleId} className={session.iFrameDetected ? 'embedded' : 'unembedded'} />
-        <div className={classes.content}>
+        <div className={toolbar ? classes.content : classes.contentFullSize}>
           {this.renderContent()}
         </div>
       </div>
