@@ -33,6 +33,7 @@ import ShopIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AvailableIntegrationsIcon from './AvailableIntegrationsIcon';
 import ConnectedIntegrationsIcon from './ConnectedIntegrationsIcon';
 import ProductsIcon from './ProductsIcon';
+import VariantsIcon from './VariantsIcon';
 import StockItemsIcon from './StockItemsIcon';
 import AuthorizeIcon from './AuthorizeIcon';
 import UnAuthorizeIcon from './UnAuthorizeIcon';
@@ -41,7 +42,7 @@ import TasksIcon from './TasksIcon';
 const UnInstallIcon = CancelIcon;
 
 export {
-  HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon,
+  HomeIcon, ConnectedIntegrationsIcon, AvailableIntegrationsIcon, OrdersIcon, ProductsIcon, VariantsIcon,
   StockItemsIcon, StockLocationsIcon, FlowsIcon, TasksIcon, WebhooksIcon, ConfirmationIcon,
   SaveIcon, ResetIcon, CancelIcon, AuthorizeIcon, UnAuthorizeIcon, InstallIcon, UnInstallIcon, StartIcon,
   ToggleIcon, RetryIcon, EmailIcon, UserIcon, TenantIcon, TenantsIcon, ThemesIcon, ShowIcon, ManagementIcon,

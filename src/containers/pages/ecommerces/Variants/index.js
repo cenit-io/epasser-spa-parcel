@@ -1,6 +1,6 @@
 /**
  *
- * Products/List
+ * Variants/List
  *
  */
 
@@ -17,8 +17,8 @@ import ActAdd from '../../../../components/actions/Add';
 import ActEdit from '../../../../components/actions/Edit';
 import ActLink from '../../../../components/actions/Link';
 import ActUnLink from '../../../../components/actions/UnLink';
+import ActEditProps from '../../../../components/actions/EditProps';
 import ActDelete from '../../../../components/actions/Delete';
-import ActVariants from '../../../../components/actions/Variants';
 import IntegrationFormat from '../../../../components/formats/IntegrationFormat';
 import AvatarProductFormat from '../../../../components/formats/AvatarProductFormat';
 
@@ -33,29 +33,38 @@ export class List extends AbstractPageList {
 
   static messages = settings.messages;
 
-  static apiPath = settings.apiPath;
-
   static attrIds = settings.attrIds;
+
+  get apiPath() {
+    return `products/${this.props.product_id}/variants`;
+  }
 
   get columns() {
     return [
       { id: 'images', width: 40, label: '', format: AvatarProductFormat },
       { id: 'name' },
       { id: 'price', width: 100, align: 'right' },
-      { id: 'variants', width: 100, align: 'right' },
       { id: 'integrations', format: this.integrationsFormat },
     ];
   }
 
   get actions() {
-    const { moduleId: mId } = this;
+    const {
+      moduleId: mId,
+      messages: { editBasicTitle, editPropsTitle },
+    } = this;
 
     return (
       <>
         <ActReload moduleId={mId} onClick={this.onReload} />
         <ActAdd moduleId={mId} onClick={this.onAdd} />
-        <ActEdit moduleId={mId} onClick={this.onEdit} />
-        <ActVariants moduleId={mId} onClick={this.onShowVariants} />
+        <ActEdit moduleId={mId} onClick={this.onEdit} title={editBasicTitle} />
+        <ActEditProps
+          moduleId={mId}
+          onClick={this.onEditProps}
+          title={editPropsTitle}
+          disabled={this.canNotEditProps}
+        />
         <ActLink moduleId={mId} onClick={this.onLink} />
         <ActUnLink moduleId={mId} onClick={this.onUnLink} disabled={this.canNotUnLink} />
         <ActDelete moduleId={mId} onClick={this.onDelete} disabled={this.canNotDelete} />
@@ -73,18 +82,21 @@ export class List extends AbstractPageList {
 
   canNotUnLink = (items) => !this.hasSomeIntegrations(items);
 
-  onLink = (e, products) => {
+  canNotEditProps = (item) => item.integrations.length === 0;
+
+  onLink = (e, variants) => {
     const moduleId = `${this.moduleBaseId}/Link`;
-    this.emitMessage('openModule', [moduleId, { products }], this.mainModuleId);
+    this.emitMessage('openModule', [moduleId, { variants }], this.mainModuleId);
   }
 
-  onUnLink = (e, products) => {
+  onUnLink = (e, variants) => {
     const moduleId = `${this.moduleBaseId}/Unlink`;
-    this.emitMessage('openModule', [moduleId, { products }], this.mainModuleId);
+    this.emitMessage('openModule', [moduleId, { variants }], this.mainModuleId);
   }
 
-  onShowVariants = (e, item) => {
-    this.emitMessage('openModule', ['Variants', { product_id: item.id }], this.mainModuleId);
+  onEditProps = (e, item) => {
+    const moduleId = `${this.moduleBaseId}/EditProps`;
+    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
   }
 }
 

@@ -21,6 +21,15 @@ import {
   ProductsUnlink,
 } from '../containers/pages/ecommerces/Products/loadable';
 
+import {
+  VariantsList,
+  // VariantsAdd,
+  // VariantsEdit,
+  // VariantsEditProps,
+  // VariantsLink,
+  // VariantsUnlink,
+} from '../containers/pages/ecommerces/Variants/loadable';
+
 import { OrdersList, OrdersDocs } from '../containers/pages/ecommerces/Orders/loadable';
 import { FlowsList, FlowsAdd, FlowsEdit } from '../containers/pages/workflows/Flows/loadable';
 import { TasksList, TasksShow } from '../containers/pages/workflows/Tasks/loadable';
@@ -47,6 +56,13 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Products/EditProps') return <ProductsEditProps {...props} />;
   if (moduleId === 'Products/Link') return <ProductsLink {...props} />;
   if (moduleId === 'Products/Unlink') return <ProductsUnlink {...props} />;
+
+  if (moduleId === 'Variants') return <VariantsList {...props} />;
+  // if (moduleId === 'Variants/Add') return <VariantsAdd />;
+  // if (moduleId === 'Variants/Edit') return <VariantsEdit {...props} />;
+  // if (moduleId === 'Variants/EditProps') return <VariantsEditProps {...props} />;
+  // if (moduleId === 'Variants/Link') return <VariantsLink {...props} />;
+  // if (moduleId === 'Variants/Unlink') return <ProductsUnlink {...props} />;
 
   if (moduleId === 'StockItems') return <StockItemsList />;
   if (moduleId === 'StockLocations') return <StockLocationsList />;

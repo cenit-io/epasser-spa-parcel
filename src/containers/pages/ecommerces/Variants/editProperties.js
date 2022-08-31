@@ -1,6 +1,6 @@
 /**
  *
- * Products/EditProperties
+ * Variants/EditProperties
  *
  */
 
@@ -13,13 +13,27 @@ import FormGroup from '@mui/material/FormGroup';
 
 import styles from '../../../../components/AbstractPageDetails/styles.jss';
 import Details from './details';
+import ActList from '../../../../components/actions/List';
+import ActEdit from '../../../../components/actions/Edit';
+import ActDelete from '../../../../components/actions/Delete';
 import CustomSection from '../../../../components/sections/CustomSection';
 
 export class EditProperties extends Details {
   static id = `${Details.id}/EditProperties`;
 
   get actions() {
-    return null;
+    const {
+      moduleId,
+      props: { item },
+    } = this;
+
+    return (
+      <>
+        <ActList moduleId={moduleId} onClick={this.onBackToList} />
+        <ActEdit moduleId={moduleId} onClick={this.onEdit} items={[item]} />
+        <ActDelete moduleId={moduleId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
+      </>
+    );
   }
 
   get needLoadData() { return true; }
@@ -38,6 +52,8 @@ export class EditProperties extends Details {
       </>
     );
   }
+
+  canNotDelete = (items) => items[0].integrations.length !== 0;
 }
 
 export default withStyles(styles)(EditProperties);
