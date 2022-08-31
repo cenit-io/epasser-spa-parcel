@@ -12,8 +12,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "parcel build src/index.html",
-    "parcel:server": "parcel ./src/index.html --open",
-    "parcel:build": "parcel build src/index.html",
+    "start:dev": "parcel ./src/index.html --open",
     "heroku-postbuild": "parcel build src/index.html",
     "generate": "plop",
     "extract-intl": "extract-messages -l=en -o src/translations 'src/**/messages.js'",
