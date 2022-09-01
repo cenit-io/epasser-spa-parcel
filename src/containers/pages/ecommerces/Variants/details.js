@@ -172,4 +172,9 @@ export default class Details extends AbstractPageDetails {
       </>
     );
   }
+
+  onBackToList = (e) => {
+    const { product: { id: productId } } = this.props.item;
+    this.emitMessage('openModule', ['Variants', { product_id: productId }], this.mainModuleId);
+  }
 }
