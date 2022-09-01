@@ -29,9 +29,9 @@ export class EditProperties extends Details {
 
     return (
       <>
-        <ActList moduleId={moduleId} onClick={this.onBackToList} />
-        <ActEdit moduleId={moduleId} onClick={this.onEdit} items={[item]} />
-        <ActDelete moduleId={moduleId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
+        <ActList moduleId={moduleId} />
+        <ActEdit moduleId={moduleId} items={[item]} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} items={[item]} />
       </>
     );
   }

@@ -19,6 +19,12 @@ class Add extends AbstractAction {
   static messages = messages
 
   static icon = <Icon />
+
+  onClick = (e) => {
+    const { withProps: props = {} } = this.props;
+    const moduleId = `${this.moduleBaseId}/Add`;
+    this.emitMessage('openModule', [moduleId, props], this.mainModuleId);
+  }
 }
 
 export default withStyles(styles)(Add);

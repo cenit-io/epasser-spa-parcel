@@ -24,6 +24,22 @@ class Delete extends AbstractWithSelectionAction {
   get icon() {
     return <Icon color={this.color} />;
   }
+
+  onClick = (e) => {
+    const data = [this.confirmMsg, (value) => this.onConfirmedAction(value, this.state.selectionItems)];
+    this.emitMessage('confirm', data, this.mainModuleId);
+  }
+
+  onConfirmedAction = (value, selection) => {
+    if (value) {
+      const { onConfirmedAction } = this.props;
+      if (onConfirmedAction) {
+        onConfirmedAction(selection);
+      } else {
+        this.emitMessage('delete', [selection]);
+      }
+    }
+  }
 }
 
 export default withStyles(styles)(Delete);

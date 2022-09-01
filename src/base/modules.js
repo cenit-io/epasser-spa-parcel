@@ -43,7 +43,7 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'AvailableIntegrations') return <AvailableIntegrationsList />;
 
   if (moduleId === 'ConnectedIntegrations') return <ConnectedIntegrationsList />;
-  if (moduleId === 'ConnectedIntegrations/Add') return <ConnectedIntegrationsAdd />;
+  if (moduleId === 'ConnectedIntegrations/Add') return <ConnectedIntegrationsAdd {...props} />;
   if (moduleId === 'ConnectedIntegrations/Edit') return <ConnectedIntegrationsEdit {...props} />;
 
   // eCommerces modules
@@ -51,14 +51,14 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Orders/Docs') return <OrdersDocs {...props} />;
 
   if (moduleId === 'Products') return <ProductsList />;
-  if (moduleId === 'Products/Add') return <ProductsAdd />;
+  if (moduleId === 'Products/Add') return <ProductsAdd {...props} />;
   if (moduleId === 'Products/Edit') return <ProductsEdit {...props} />;
   if (moduleId === 'Products/EditProps') return <ProductsEditProps {...props} />;
   if (moduleId === 'Products/Link') return <ProductsLink {...props} />;
   if (moduleId === 'Products/Unlink') return <ProductsUnlink {...props} />;
 
   if (moduleId === 'Variants') return <VariantsList {...props} />;
-  if (moduleId === 'Variants/Add') return <VariantsAdd />;
+  if (moduleId === 'Variants/Add') return <VariantsAdd {...props} />;
   if (moduleId === 'Variants/Edit') return <VariantsEdit {...props} />;
   if (moduleId === 'Variants/EditProps') return <VariantsEditProps {...props} />;
   if (moduleId === 'Variants/Link') return <VariantsLink {...props} />;
@@ -76,14 +76,14 @@ export function requireModuleInstance(moduleId, props) {
   if (moduleId === 'Tasks/Show') return <TasksShow {...props} />;
 
   if (moduleId === 'Webhooks') return <WebhooksList />;
-  if (moduleId === 'Webhooks/Add') return <WebhooksAdd />;
+  if (moduleId === 'Webhooks/Add') return <WebhooksAdd {...props} />;
   if (moduleId === 'Webhooks/Edit') return <WebhooksEdit {...props} />;
 
   // Miscellany modules
   if (moduleId === 'Themes') return <ThemesList />;
 
   if (moduleId === 'Tenants') return <TenantsList />;
-  if (moduleId === 'Tenants/Add') return <TenantsAdd />;
+  if (moduleId === 'Tenants/Add') return <TenantsAdd {...props} />;
 
   throw Error(`Invalid module id: ${moduleId}`);
 }

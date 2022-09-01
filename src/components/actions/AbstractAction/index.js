@@ -7,8 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FormattedMessage } from 'react-intl';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -23,12 +21,15 @@ export default class AbstractAction extends AbstractComponent {
     disabled: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
-    onClick: PropTypes.func.isRequired,
+    withProps: PropTypes.instanceOf(Object),
+    onClick: PropTypes.func,
   }
 
   static defaultProps = {
     disabled: null,
     label: null,
+    onClick: null,
+    withProps: null,
   };
 
   constructor(props) {
@@ -42,26 +43,15 @@ export default class AbstractAction extends AbstractComponent {
   }
 
   get actionLabel() {
-    let label = this.props.label || this.label || this.messages.label;
-
-    if (typeof label === 'string' && this.messages[label]) label = this.messages[label];
-    if (typeof label === 'string' || React.isValidElement(label)) return label;
-
-    return <FormattedMessage {...label} />;
+    return this.translate(this.props.label || this.label || this.messages.label);
   }
 
   get actionTitle() {
-    let title = this.props.title
-      || this.title
-      || this.messages.title
-      || this.props.label
-      || this.label
-      || this.messages.label;
+    return this.translate(this.props.title || this.title || this.messages.title || this.actionLabel);
+  }
 
-    if (typeof title === 'string' && this.messages[title]) title = this.messages[title];
-    if (typeof title === 'string' || React.isValidElement(title)) return title;
-
-    return <FormattedMessage {...title} />;
+  get confirmMsg() {
+    return this.translate(this.props.confirmMsg || this.messages.confirm_msg);
   }
 
   get disabled() {
@@ -76,7 +66,13 @@ export default class AbstractAction extends AbstractComponent {
     return (
       <Tooltip title={this.actionTitle} placement="top" enterDelay={300} arrow disableInteractive>
         <Box>
-          <Button variant="text" color="primary" startIcon={this.icon} disabled={this.disabled} onClick={this.onClick}>
+          <Button
+            variant="text"
+            color="primary"
+            startIcon={this.icon}
+            disabled={this.disabled}
+            onClick={this.onClick}
+          >
             <Typography color={this.color} variant="button">
               {this.actionLabel}
             </Typography>
@@ -86,7 +82,10 @@ export default class AbstractAction extends AbstractComponent {
     );
   }
 
-  onClick = (e) => this.props.onClick(e);
-
   onLockActions = (locked) => this.setState({ locked });
+
+  onClick = (e) => {
+    const { onClick } = this.props;
+    onClick && onClick(e);
+  }
 }

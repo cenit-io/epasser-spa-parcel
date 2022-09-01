@@ -51,12 +51,14 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActImport moduleId={this.moduleId} onClick={this.onImport} />
-        <ActExport moduleId={this.moduleId} onClick={this.onExport} />
-        <ActDocuments moduleId={this.moduleId} onClick={this.onShowDocuments} />
+        <ActReload moduleId={moduleId} />
+        <ActImport moduleId={moduleId} onClick={this.onImport} />
+        <ActExport moduleId={moduleId} onClick={this.onExport} />
+        <ActDocuments moduleId={moduleId} onClick={this.onShowDocuments} />
       </>
     );
   }
@@ -64,7 +66,7 @@ export class List extends AbstractPageList {
   onImport = (e, items) => {
     const msg = <FormattedMessage {...this.messages.confirmImportMsg} />;
     const data = [msg, (value) => this.onConfirmedImport(value, items)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedImport = (value, items) => {
@@ -75,14 +77,14 @@ export class List extends AbstractPageList {
       method: 'POST',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify('successfulTaskCreation', 'warning');
+      this.notify('successful_task_creation', 'warning');
     });
   }
 
   onExport = (e, items) => {
     const msg = <FormattedMessage {...this.messages.confirmExportMsg} />;
     const data = [msg, (value) => this.onConfirmedExport(value, items)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedExport = (value, items) => {
@@ -93,7 +95,7 @@ export class List extends AbstractPageList {
       method: 'PUT',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify('successfulTaskCreation', 'warning');
+      this.notify('successful_task_creation', 'warning');
     });
   }
 

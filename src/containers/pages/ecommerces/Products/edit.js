@@ -41,15 +41,15 @@ export class Edit extends AbstractPageDetails {
   get apiPath() { return `${settings.apiPath}/${this.state.item.id}`; }
 
   get actions() {
-    const { moduleId: mId, props: { item } } = this;
+    const { moduleId, props: { item } } = this;
 
     return (
       <>
-        <ActList moduleId={mId} onClick={this.onBackToList} />
-        <ActVariants moduleId={mId} onClick={this.onShowVariants} items={[item]} />
-        <ActLink moduleId={mId} onClick={this.onLink} items={[item]} />
-        <ActUnLink moduleId={mId} onClick={this.onUnLink} disabled={this.canNotUnLink} items={[item]} />
-        <ActDelete moduleId={mId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
+        <ActList moduleId={moduleId} />
+        <ActVariants moduleId={moduleId} onClick={this.onShowVariants} items={[item]} />
+        <ActLink moduleId={moduleId} onClick={this.onLink} items={[item]} />
+        <ActUnLink moduleId={moduleId} onClick={this.onUnLink} disabled={this.canNotUnLink} items={[item]} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} items={[item]} />
       </>
     );
   }
@@ -148,7 +148,7 @@ export class Edit extends AbstractPageDetails {
   }
 
   onShowVariants = (e, item) => {
-    this.emitMessage('openModule', ['Variants', { product_id: item.id }], this.mainModuleId);
+    this.emitMessage('openModule', ['Variants', { productId: item.id }], this.mainModuleId);
   }
 }
 

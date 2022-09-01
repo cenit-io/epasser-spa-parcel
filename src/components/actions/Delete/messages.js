@@ -17,4 +17,8 @@ export default defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Delete all selected items',
   },
+  confirm_msg: {
+    id: `${scope}.confirm_msg`,
+    defaultMessage: 'Please confirm if you really want to delete the selected items?',
+  },
 });

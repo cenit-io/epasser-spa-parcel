@@ -55,17 +55,18 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
+        <ActReload moduleId={moduleId} />
+        <ActAdd moduleId={moduleId} />
         <ActDelete
           multiSelection={false}
-          moduleId={this.moduleId}
-          onClick={this.onDelete}
+          moduleId={moduleId}
           disabled={this.isCurrentAccount}
         />
-        <ActSwitch moduleId={this.moduleId} onClick={this.onSwitch} disabled={this.isCurrentAccount} />
+        <ActSwitch moduleId={moduleId} onClick={this.onSwitch} disabled={this.isCurrentAccount} />
       </>
     );
   }
@@ -91,19 +92,17 @@ export class List extends AbstractPageList {
 
   onSwitch = (e, item) => {
     const data = [this.confirmSwitchMsg, (value) => this.onConfirmedSwitch(value, item)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedSwitch = (value, item) => {
     if (!value) return;
 
     this.emitMessage('closeModules', { except: [this.moduleId] }, this.mainModuleId);
-    this.emitMessage('setSessionAccount', item, 'Main');
+    this.emitMessage('setSessionAccount', item, this.mainModuleId);
   }
 
-  onConfirmedDelete = (value, item) => {
-    if (!value) return;
-
+  onDelete = (item) => {
     this.sendRequest({
       url: `${this.apiPath}/${item.id}`,
       method: 'DELETE',

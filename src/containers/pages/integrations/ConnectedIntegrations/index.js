@@ -54,15 +54,17 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
-        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} />
-        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
-        <ActAuthorize moduleId={this.moduleId} onClick={this.onAuthorize} />
-        <ActUnAuthorize moduleId={this.moduleId} onClick={this.onUnAuthorize} />
-        <ActFlows moduleId={this.moduleId} onClick={this.onFlows} disabled={this.canNotStartFlows} />
+        <ActReload moduleId={moduleId} />
+        <ActAdd moduleId={moduleId} />
+        <ActEdit moduleId={moduleId} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} />
+        <ActAuthorize moduleId={moduleId} onClick={this.onAuthorize} />
+        <ActUnAuthorize moduleId={moduleId} onClick={this.onUnAuthorize} />
+        <ActFlows moduleId={moduleId} onClick={this.onFlows} disabled={this.canNotStartFlows} />
       </>
     );
   }
@@ -74,13 +76,13 @@ export class List extends AbstractPageList {
   onAuthorize = (e, item) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmAuthorizeMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedAuthorize(value, item)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onUnAuthorize = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmUnAuthorizeMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedUnAuthorize(value, items)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedAuthorize = (value, item) => {
@@ -102,8 +104,8 @@ export class List extends AbstractPageList {
       method: 'DELETE',
       data: this.parseRequestIdentifiers(items),
     }).then(() => {
-      this.notify('successfulUnAuthorize');
-      this.onReload();
+      this.notify('successful_un_authorize');
+      this.emitMessage('reload');
     });
   }
 

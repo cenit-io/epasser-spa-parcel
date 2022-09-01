@@ -18,6 +18,12 @@ import { parseRequestItemsIDs } from '../../base/request';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractModule extends AbstractPage {
+  constructor(props) {
+    super(props);
+    this.setMessagingListener('delete', this.onDelete);
+    this.setMessagingListener('toggle', this.onToggleState);
+  }
+
   get moduleId() {
     if (this._moduleId) return this._moduleId;
     this._moduleId = this.constructor.id || uuid();
@@ -34,10 +40,6 @@ export default class AbstractModule extends AbstractPage {
 
   get confirmDeleteMsg() {
     return <FormattedMessage {...this.messages.confirmDeleteMsg} />;
-  }
-
-  get confirmToggleStateMsg() {
-    return <FormattedMessage {...this.messages.confirmToggleStateMsg} />;
   }
 
   get confirmOpenTasksModuleMsg() {
@@ -63,38 +65,17 @@ export default class AbstractModule extends AbstractPage {
     return parseRequestItemsIDs(items, this.attrIds);
   }
 
-  onReload = () => {
-    this.emitMessage('reload');
-  }
-
-  onAdd = () => {
-    const moduleId = `${this.moduleBaseId}/Add`;
-    this.emitMessage('openModule', moduleId, this.mainModuleId);
-  }
-
-  onEdit = (e, item) => {
-    const moduleId = `${this.moduleBaseId}/Edit`;
-    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
-  }
-
   onBackToList = () => {
     this.emitMessage('openModule', this.moduleBaseId, this.mainModuleId);
   }
 
-  onDelete = (e, items) => {
-    const data = [this.confirmDeleteMsg, (value) => this.onConfirmedDelete(value, items)];
-    this.emitMessage('confirm', data, 'main');
-  }
-
-  onConfirmedDelete = (value, items) => {
-    if (!value) return;
-
+  onDelete = (items) => {
     this.sendRequest({
       url: this.apiPath,
       method: 'DELETE',
       data: this.parseRequestIdentifiers(items),
     }).then((response) => {
-      if (response.type === 'task') this.notify('successfulTaskCreation', 'warning');
+      if (response.type === 'task') this.notify('successful_task_creation', 'warning');
       if (this.moduleId.match(/\//)) {
         this.onBackToList();
       } else {
@@ -103,14 +84,7 @@ export default class AbstractModule extends AbstractPage {
     });
   }
 
-  onToggleState = (e, items) => {
-    const data = [this.confirmToggleStateMsg, (value) => this.onConfirmedToggleState(value, items)];
-    this.emitMessage('confirm', data, 'main');
-  }
-
-  onConfirmedToggleState = (value, items) => {
-    if (!value) return;
-
+  onToggleState = (items) => {
     this.sendRequest({
       url: `${this.apiPath}/toggle`,
       method: 'POST',

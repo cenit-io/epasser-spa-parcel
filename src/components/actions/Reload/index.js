@@ -19,6 +19,10 @@ class Reload extends AbstractAction {
   static messages = messages
 
   static icon = <Icon />
+
+  onClick = (e) => {
+    this.emitMessage('reload');
+  }
 }
 
 export default withStyles(styles)(Reload);

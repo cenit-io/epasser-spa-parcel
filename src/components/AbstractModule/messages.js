@@ -20,10 +20,6 @@ const messagesLocal = defineMessages({
     defaultMessage: 'The processed action has generated a background task.{br}Please confirm if you want to go to the task management module?',
     values: { br: <br /> },
   },
-  confirmToggleStateMsg: {
-    id: `${scope}.confirmToggleStateMsg`,
-    defaultMessage: 'Please confirm if you really want to toggle the state of the selected items?',
-  },
   active: {
     id: `${scope}.active`,
     defaultMessage: 'Active',

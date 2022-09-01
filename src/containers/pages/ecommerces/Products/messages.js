@@ -46,14 +46,6 @@ const messagesLocal = defineMessages({
     id: `${scope}.editBasicLabel`,
     defaultMessage: 'Basic',
   },
-  editBasicTitle: {
-    id: `${scope}.editBasicTitle`,
-    defaultMessage: 'Edit the basic attributes of the selected item',
-  },
-  editPropsTitle: {
-    id: `${scope}.editPropsTitle`,
-    defaultMessage: 'Edit the specific properties of the selected item in each of its associated integrations',
-  },
   field_price: {
     id: `${scope}.field_price`,
     defaultMessage: 'Price',

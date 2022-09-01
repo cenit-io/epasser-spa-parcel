@@ -12,6 +12,9 @@ import Details from './details';
 import ActList from '../../../../components/actions/List';
 import ActEditProps from '../../../../components/actions/EditProps';
 import ActDelete from '../../../../components/actions/Delete';
+import ActVariants from "../../../../components/actions/Variants";
+import ActLink from "../../../../components/actions/Link";
+import ActUnLink from "../../../../components/actions/UnLink";
 
 export class Edit extends Details {
   static id = `${Details.id}/Edit`;
@@ -23,33 +26,24 @@ export class Edit extends Details {
   get actions() {
     const {
       moduleId,
-      props: { item },
-      messages: { editPropsTitle },
+      props: { item, productId },
     } = this;
 
     return (
       <>
-        <ActList moduleId={moduleId} onClick={this.onBackToList} />
-        <ActEditProps
-          moduleId={moduleId}
-          onClick={this.onEditProps}
-          items={[item]}
-          title={editPropsTitle}
-          disabled={this.canNotEditProps}
-        />
-        <ActDelete moduleId={moduleId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
+        <ActList moduleId={moduleId} withProps={{ productId }} />
+        <ActLink moduleId={moduleId} onClick={this.onLink} items={[item]} />
+        <ActUnLink moduleId={moduleId} onClick={this.onUnLink} disabled={this.canNotUnLink} items={[item]} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} items={[item]} />
       </>
     );
   }
 
-  canNotDelete = (items) => items[0].integrations.length !== 0;
+  hasSomeIntegrations = (items) => items.some((item) => item.integrations.length !== 0);
 
-  canNotEditProps = (item) => item.integrations.length === 0;
+  canNotDelete = (items) => this.hasSomeIntegrations(items);
 
-  onEditProps = (e, item) => {
-    const moduleId = `${this.moduleBaseId}/EditProps`;
-    this.emitMessage('openModule', [moduleId, { item }], this.mainModuleId);
-  }
+  canNotUnLink = (items) => !this.hasSomeIntegrations(items);
 }
 
 export default withStyles(styles)(Edit);

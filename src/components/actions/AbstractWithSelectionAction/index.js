@@ -32,8 +32,14 @@ export default class AbstractWithSelectionAction extends AbstractAction {
       || (!multiSelection && selectionItems.length !== 1);
   }
 
+  get selection() {
+    const { selectionItems } = this.state;
+    return this.multiSelection ? selectionItems : selectionItems[0];
+  }
+
   onClick = (e) => {
-    this.props.onClick(e, this.multiSelection ? this.state.selectionItems : this.state.selectionItems[0]);
+    const { onClick } = this.props;
+    onClick && onClick(e, this.selection);
   }
 
   onChangeSelection = (selectionItems) => {

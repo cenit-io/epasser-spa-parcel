@@ -48,11 +48,13 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActInstall moduleId={this.moduleId} onClick={this.onInstall} />
-        <ActUnInstall moduleId={this.moduleId} onClick={this.onUnInstall} />
+        <ActReload moduleId={moduleId} />
+        <ActInstall moduleId={moduleId} onClick={this.onInstall} />
+        <ActUnInstall moduleId={moduleId} onClick={this.onUnInstall} />
       </>
     );
   }
@@ -71,13 +73,13 @@ export class List extends AbstractPageList {
   onInstall = (e, item) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmInstallMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedInstall(value, item)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onUnInstall = (e, item) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmUnInstallMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedUnInstall(value, item)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedInstall = (value, item) => {

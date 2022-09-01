@@ -22,6 +22,7 @@ import SelectBoxPackageOverwrite from '../../../../components/forms/fields/Selec
 export default class Details extends AbstractPageDetails {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
+    productId: PropTypes.string.isRequired,
   }
 
   static id = settings.id;
@@ -166,15 +167,17 @@ export default class Details extends AbstractPageDetails {
   }
 
   get actions() {
+    const { moduleId, props: { productId } } = this;
+
     return (
       <>
-        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActList moduleId={moduleId} withProps={{ productId }} />
       </>
     );
   }
 
   onBackToList = (e) => {
     const { product: { id: productId } } = this.props.item;
-    this.emitMessage('openModule', ['Variants', { product_id: productId }], this.mainModuleId);
+    this.emitMessage('openModule', ['Variants', { productId }], this.mainModuleId);
   }
 }

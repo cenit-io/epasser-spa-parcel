@@ -10,7 +10,7 @@ import AbstractComponent from '../AbstractComponent';
 import session from '../../base/session';
 import history from '../../base/history';
 import messages from './messages';
-import ReloadAction from '../actions/Reload';
+import ActReload from '../actions/Reload';
 
 /* eslint class-methods-use-this: ["off"] */
 export default class AbstractPage extends AbstractComponent {
@@ -44,7 +44,7 @@ export default class AbstractPage extends AbstractComponent {
   get actions() {
     return (
       <>
-        <ReloadAction moduleId={this.moduleId} onClick={this.onReload} />
+        <ActReload moduleId={this.moduleId} />
       </>
     );
   }

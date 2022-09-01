@@ -54,9 +54,11 @@ export default class Details extends AbstractPageDetails {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActList moduleId={moduleId} />
       </>
     );
   }

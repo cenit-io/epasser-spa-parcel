@@ -21,6 +21,12 @@ class Edit extends AbstractWithSelectionAction {
   static icon = <Icon />
 
   static multiSelection = false
+
+  onClick = (e) => {
+    const { withProps: props = {} } = this.props;
+    const moduleId = `${this.moduleBaseId}/Edit`;
+    this.emitMessage('openModule', [moduleId, { ...props, item: this.selection }], this.mainModuleId);
+  }
 }
 
 export default withStyles(styles)(Edit);

@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { v4 as uuid } from 'uuid';
+import { FormattedMessage } from 'react-intl';
 import { request } from '../../base/request';
 
 import messaging from '../../base/messaging';
@@ -49,6 +50,10 @@ export default class AbstractComponent extends React.Component {
     return moduleId || this.componentId;
   }
 
+  get moduleBaseId() {
+    return this.moduleId.split('/')[0];
+  }
+
   get apiPath() {
     return this.constructor.apiPath;
   }
@@ -88,18 +93,27 @@ export default class AbstractComponent extends React.Component {
     done(value);
   }
 
+  translate(msg) {
+    // eslint-disable-next-line no-param-reassign
+    if (typeof msg === 'string' && this.messages[msg]) msg = this.messages[msg];
+    if (typeof msg === 'string' || React.isValidElement(msg)) return msg;
+
+    return <FormattedMessage {...msg} />;
+  }
+
   isAccessible(moduleId) {
-    const { status } = session.currentAccount || {};
-
-    if (status.match(/^(locked|not_allowed)$/)) return moduleId.match(/^(Home|Tenants|Themes)$/);
-    if (status === 'not_installed') return moduleId.match(/^(Home|Tasks|AvailableIntegrations|Tenants|Themes)$/);
-
+    // TODO: Check if current tenant has access to the given module.
     return true;
   }
 
+  isTaskResponse(response) {
+    return response.task && response.task.status;
+  }
+
   openTasksModule(done) {
-    const data = [this.confirmOpenTasksModuleMsg, (value) => this.onConfirmedOpenTasksModule(value, done)];
-    this.emitMessage('confirm', data, 'main');
+    const confirmMsg = this.translate('confirm_open_tasks_module_msg');
+    const data = [confirmMsg, (value) => this.onConfirmedOpenTasksModule(value, done)];
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -115,14 +129,16 @@ export default class AbstractComponent extends React.Component {
     delete options.successfulMessage;
 
     return request(options).then(async (response) => {
-      if (successfulMessage) this.notify(successfulMessage);
-
-      if (response.type === 'task' && !skipOpenTasksModule) {
+      if (this.isTaskResponse(response) && !skipOpenTasksModule) {
+        this.notify('warning_task_creation');
         await new Promise((done) => {
           this.releaseWaiting();
           this.openTasksModule(done);
         });
+      } else if (successfulMessage) {
+        this.notify(successfulMessage);
       }
+
       return response;
     }).catch((error) => {
       if (!skipNotify) this.notify(error);
@@ -130,6 +146,27 @@ export default class AbstractComponent extends React.Component {
     }).finally(() => {
       this.releaseWaiting();
     });
+  }
+
+  loadItemId(dataTypeName, criteria) {
+    const options = {
+      url: `setup/${dataTypeName}`,
+      method: 'GET',
+      // params: { ...criteria, only: 'id', limit: 1 },
+      headers: {
+        'X-Query-Selector': JSON.stringify(criteria),
+        'X-Query-Options': JSON.stringify({ limit: 1 }),
+        'X-Template-Options': JSON.stringify({ only: 'id' }),
+      },
+    };
+
+    return this.sendRequest(options).then((response) => ((response.count !== 0) ? response.items[0].id : null));
+  }
+
+  loadDataTypeId(name, namespace = 'Setup') {
+    if (name.match(/::/)) [namespace, name] = name.split('::');
+
+    return this.loadItemId('cenit_data_type', { namespace, name });
   }
 
   startWaiting(timeout) {

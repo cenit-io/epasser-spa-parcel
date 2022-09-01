@@ -44,12 +44,14 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
-        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} />
-        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} />
+        <ActReload moduleId={moduleId} />
+        <ActAdd moduleId={moduleId} />
+        <ActEdit moduleId={moduleId} />
+        <ActDelete moduleId={moduleId} />
       </>
     );
   }

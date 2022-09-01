@@ -21,16 +21,16 @@ export default defineMessages({
     id: `${scope}.waitFortAuthToken`,
     defaultMessage: 'Waiting for authorization',
   },
-  successfulOperation: {
-    id: `${scope}.successfulOperation`,
+  successful_operation: {
+    id: `${scope}.successful_operation`,
     defaultMessage: 'The operation was completed successfully',
   },
-  successfulCreation: {
-    id: `${scope}.successfulCreation`,
+  successful_creation: {
+    id: `${scope}.successful_creation`,
     defaultMessage: 'The creation was completed successfully',
   },
-  successfulUpdate: {
-    id: `${scope}.successfulUpdate`,
+  successful_update: {
+    id: `${scope}.successful_update`,
     defaultMessage: 'The update was completed successfully',
   },
   warningInstallTask: {
@@ -41,16 +41,16 @@ export default defineMessages({
     id: `${scope}.successfulUnInstallTask`,
     defaultMessage: 'A background task has been created to uninstall of the selected integration.',
   },
-  successfulUnAuthorize: {
-    id: `${scope}.successfulUnAuthorize`,
+  successful_un_authorize: {
+    id: `${scope}.successful_un_authorize`,
     defaultMessage: 'The selected integrations are successfully deauthorized.',
   },
   successfulStart: {
     id: `${scope}.successfulStart`,
     defaultMessage: 'Some background task has been created to start the selected flows.',
   },
-  successfulTaskCreation: {
-    id: `${scope}.successfulTaskCreation`,
+  successful_task_creation: {
+    id: `${scope}.successful_task_creation`,
     defaultMessage: 'A background task has been created to process the requested action.',
   },
 });

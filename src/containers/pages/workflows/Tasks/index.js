@@ -48,12 +48,14 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActShow moduleId={this.moduleId} onClick={this.onShow} />
-        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} disabled={this.canNotDelete} />
-        <ActRetry moduleId={this.moduleId} onClick={this.onRetry} />
+        <ActReload moduleId={moduleId} />
+        <ActShow moduleId={moduleId} onClick={this.onShow} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} />
+        <ActRetry moduleId={moduleId} onClick={this.onRetry} />
       </>
     );
   }
@@ -63,7 +65,7 @@ export class List extends AbstractPageList {
   onRetry = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmRetryMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedRetry(value, items)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedRetry = (value, items) => {
@@ -75,8 +77,8 @@ export class List extends AbstractPageList {
       data: this.parseRequestIdentifiers(items),
       skipOpenTasksModule: true,
     }).then(() => {
-      this.notify('successfulOperation');
-      this.onReload();
+      this.notify('successful_operation');
+      this.emitMessage('reload');
     });
   }
 

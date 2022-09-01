@@ -50,7 +50,7 @@ export default class Root extends AbstractComponent {
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={buildTheme(theme)}>
               <CssBaseline />
-              <ConfirmDialog moduleId="main" />
+              <ConfirmDialog moduleId={this.mainModuleId} />
               <Routes>
                 {
                   routes.map((route) => (

@@ -48,17 +48,17 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
-    const { moduleId: mId } = this;
+    const { moduleId } = this;
 
     return (
       <>
-        <ActReload moduleId={mId} onClick={this.onReload} />
-        <ActAdd moduleId={mId} onClick={this.onAdd} />
-        <ActEdit moduleId={mId} onClick={this.onEdit} />
-        <ActVariants moduleId={mId} onClick={this.onShowVariants} />
-        <ActLink moduleId={mId} onClick={this.onLink} />
-        <ActUnLink moduleId={mId} onClick={this.onUnLink} disabled={this.canNotUnLink} />
-        <ActDelete moduleId={mId} onClick={this.onDelete} disabled={this.canNotDelete} />
+        <ActReload moduleId={moduleId} />
+        <ActAdd moduleId={moduleId} />
+        <ActEdit moduleId={moduleId} />
+        <ActVariants moduleId={moduleId} onClick={this.onShowVariants} />
+        <ActLink moduleId={moduleId} onClick={this.onLink} />
+        <ActUnLink moduleId={moduleId} onClick={this.onUnLink} disabled={this.canNotUnLink} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} />
       </>
     );
   }
@@ -84,7 +84,7 @@ export class List extends AbstractPageList {
   }
 
   onShowVariants = (e, item) => {
-    this.emitMessage('openModule', ['Variants', { product_id: item.id }], this.mainModuleId);
+    this.emitMessage('openModule', ['Variants', { productId: item.id }], this.mainModuleId);
   }
 }
 

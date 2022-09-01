@@ -64,21 +64,25 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActAdd moduleId={this.moduleId} onClick={this.onAdd} />
-        <ActEdit moduleId={this.moduleId} onClick={this.onEdit} />
-        <ActDelete moduleId={this.moduleId} onClick={this.onDelete} />
-        <ActStart moduleId={this.moduleId} onClick={this.onStart} />
-        <ActToggle moduleId={this.moduleId} onClick={this.onToggleScheduler} label={this.toggleSchedulerLabel} />
-        <ActCleanFilters moduleId={this.moduleId} onClick={this.onCleanFilters} disabled={this.canNotCleanFilters} />
+        <ActReload moduleId={moduleId} />
+        <ActAdd moduleId={moduleId} />
+        <ActEdit moduleId={moduleId} />
+        <ActDelete moduleId={moduleId} />
+        <ActStart moduleId={moduleId} onClick={this.onStart} />
+        <ActToggle
+          moduleId={moduleId}
+          confirmMsg={this.messages.confirm_toggle_scheduler_msg}
+          label={this.messages.toggle_scheduler}
+          multiSelection={false}
+          onConfirmedAction={this.onConfirmedToggleScheduler}
+        />
+        <ActCleanFilters moduleId={moduleId} onClick={this.onCleanFilters} disabled={this.canNotCleanFilters} />
       </>
     );
-  }
-
-  get toggleSchedulerLabel() {
-    return <FormattedMessage {...this.messages.toggleScheduler} />;
   }
 
   typeFormat = (value, row) => row.title;
@@ -88,7 +92,7 @@ export class List extends AbstractPageList {
   onStart = (e, items) => {
     const confirmMsg = <FormattedMessage {...this.messages.confirmStartMsg} />;
     const data = [confirmMsg, (value) => this.onConfirmedStart(value, items)];
-    this.emitMessage('confirm', data, 'main');
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
   onConfirmedStart = (value, items) => {
@@ -103,27 +107,19 @@ export class List extends AbstractPageList {
     });
   }
 
-  onToggleScheduler = (e, item) => {
-    const confirmMsg = <FormattedMessage {...this.messages.confirmToggleSchedulerMsg} />;
-    const data = [confirmMsg, (value) => this.onConfirmedToggleScheduler(value, item)];
-    this.emitMessage('confirm', data, 'main');
-  }
-
-  onConfirmedToggleScheduler = (value, item) => {
-    if (!value) return;
-
+  onConfirmedToggleScheduler = (items) => {
     this.sendRequest({
-      url: `${this.apiPath}/${item.id}/toggle/scheduler/status`,
+      url: `${this.apiPath}/${items[0].id}/toggle/scheduler/status`,
       method: 'POST',
     }).then(() => {
-      this.notify('successfulOperation');
-      this.onReload();
+      this.notify('successful_operation');
+      this.emitMessage('reload');
     });
   }
 
   onCleanFilters = () => {
     session.del('flows-filters');
-    this.onReload();
+    this.emitMessage('reload');
   }
 }
 

@@ -19,6 +19,11 @@ class List extends AbstractAction {
   static messages = messages
 
   static icon = <Icon />
+
+  onClick = (e) => {
+    const { withProps: props = {} } = this.props;
+    this.emitMessage('openModule', [this.moduleBaseId, props], this.mainModuleId);
+  }
 }
 
 export default withStyles(styles)(List);

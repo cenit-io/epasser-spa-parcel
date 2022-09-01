@@ -14,8 +14,8 @@ const messagesLocal = defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Flows',
   },
-  toggleScheduler: {
-    id: `${scope}.toggleScheduler`,
+  toggle_scheduler: {
+    id: `${scope}.toggle_scheduler`,
     defaultMessage: 'Scheduler',
   },
   field_type: {
@@ -58,8 +58,8 @@ const messagesLocal = defineMessages({
     id: `${scope}.confirmStartMsg`,
     defaultMessage: 'Please confirm if you really want to start processing the selected flows?',
   },
-  confirmToggleSchedulerMsg: {
-    id: `${scope}.confirmToggleSchedulerMsg`,
+  confirm_toggle_scheduler_msg: {
+    id: `${scope}.confirm_toggle_scheduler_msg`,
     defaultMessage: 'Please confirm if you really want to toggle the scheduler status for the selected flow?',
   },
 });

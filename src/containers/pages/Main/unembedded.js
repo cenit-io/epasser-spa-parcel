@@ -27,7 +27,7 @@ class MainUnrmbedded extends AbstractPage {
   constructor(props) {
     super(props);
     this.state.currentAccount = session.currentAccount;
-    this.setMessagingListener('setSessionAccount', this.onSetSessionAccount, 'Main');
+    this.setMessagingListener('setSessionAccount', this.onSetSessionAccount, this.mainModuleId);
   }
 
   onGotoCenitIOSignInPage = () => {
@@ -60,7 +60,7 @@ class MainUnrmbedded extends AbstractPage {
     };
 
     this.sendRequest(options).then((response) => {
-      this.emitMessage('setSessionAccount', response.data, 'Main');
+      this.emitMessage('setSessionAccount', response.data, this.mainModuleId);
     });
   }
 

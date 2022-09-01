@@ -21,4 +21,8 @@ export default defineMessages({
     id: `${scope}.toggle`,
     defaultMessage: 'Toggle',
   },
+  confirm_msg: {
+    id: `${scope}.confirm_msg`,
+    defaultMessage: 'Please confirm if you really want to toggle the state of the selected items?',
+  },
 });

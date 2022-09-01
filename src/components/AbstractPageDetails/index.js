@@ -28,10 +28,10 @@ export default class AbstractPageDetails extends AbstractModule {
 
   get successfulMessage() {
     if (this.constructor.successfulMessage) return this.constructor.successfulMessage;
-    if (this.isAdd) return 'successfulCreation';
-    if (this.isEdit) return 'successfulUpdate';
+    if (this.isAdd) return 'successful_creation';
+    if (this.isEdit) return 'successful_update';
 
-    return 'successfulOperation';
+    return 'successful_operation';
   }
 
   get requestData() {
@@ -170,7 +170,7 @@ export default class AbstractPageDetails extends AbstractModule {
 
   onReset = () => this.emitMessage('reset');
 
-  onCancel = this.onBackToList;
+  onCancel = () => this.onBackToList();
 
   onStartLoadItem = () => {
     const options = { url: this.apiPath, method: 'GET', ...this.loadItemOptions };

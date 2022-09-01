@@ -48,10 +48,12 @@ class Show extends AbstractPageDetails {
   }
 
   get actions() {
+    const { moduleId } = this;
+
     return (
       <>
-        <ActReload moduleId={this.moduleId} onClick={this.onReload} />
-        <ActList moduleId={this.moduleId} onClick={this.onBackToList} />
+        <ActReload moduleId={moduleId} onClick={this.onReload} />
+        <ActList moduleId={moduleId} />
       </>
     );
   }

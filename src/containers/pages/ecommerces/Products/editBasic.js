@@ -9,9 +9,6 @@ import { withStyles } from '@mui/styles';
 
 import styles from '../../../../components/AbstractPageDetails/styles.jss';
 import Details from './details';
-import ActList from '../../../../components/actions/List';
-import ActEditProps from '../../../../components/actions/EditProps';
-import ActDelete from '../../../../components/actions/Delete';
 
 export class EditBasic extends Details {
   static id = `${Details.id}/Edit`;
@@ -22,25 +19,6 @@ export class EditBasic extends Details {
 
   get actions() {
     return null;
-    const {
-      moduleId,
-      props: { item },
-      messages: { editPropsTitle },
-    } = this;
-
-    return (
-      <>
-        <ActList moduleId={moduleId} onClick={this.onBackToList} />
-        <ActEditProps
-          moduleId={moduleId}
-          onClick={this.onEditProps}
-          items={[item]}
-          title={editPropsTitle}
-          disabled={this.canNotEditProps}
-        />
-        <ActDelete moduleId={moduleId} onClick={this.onDelete} disabled={this.canNotDelete} items={[item]} />
-      </>
-    );
   }
 
   canNotDelete = (items) => items[0].integrations.length !== 0;

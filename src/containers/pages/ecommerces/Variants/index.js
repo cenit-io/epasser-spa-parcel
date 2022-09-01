@@ -25,6 +25,7 @@ import AvatarProductFormat from '../../../../components/formats/AvatarProductFor
 export class List extends AbstractPageList {
   static propTypes = {
     classes: PropTypes.instanceOf(Object).isRequired,
+    productId: PropTypes.string.isRequired,
   }
 
   static id = settings.id;
@@ -36,7 +37,7 @@ export class List extends AbstractPageList {
   static attrIds = settings.attrIds;
 
   get apiPath() {
-    return `products/${this.props.product_id}/variants`;
+    return `products/${this.props.productId}/variants`;
   }
 
   get columns() {
@@ -49,25 +50,16 @@ export class List extends AbstractPageList {
   }
 
   get actions() {
-    const {
-      moduleId: mId,
-      messages: { editBasicTitle, editPropsTitle },
-    } = this;
+    const { moduleId, props: { productId } } = this;
 
     return (
       <>
-        <ActReload moduleId={mId} onClick={this.onReload} />
-        <ActAdd moduleId={mId} onClick={this.onAdd} />
-        <ActEdit moduleId={mId} onClick={this.onEdit} title={editBasicTitle} />
-        <ActEditProps
-          moduleId={mId}
-          onClick={this.onEditProps}
-          title={editPropsTitle}
-          disabled={this.canNotEditProps}
-        />
-        <ActLink moduleId={mId} onClick={this.onLink} />
-        <ActUnLink moduleId={mId} onClick={this.onUnLink} disabled={this.canNotUnLink} />
-        <ActDelete moduleId={mId} onClick={this.onDelete} disabled={this.canNotDelete} />
+        <ActReload moduleId={moduleId} />
+        <ActAdd moduleId={moduleId} withProps={{ productId }} />
+        <ActEdit moduleId={moduleId} withProps={{ productId }} />
+        <ActLink moduleId={moduleId} onClick={this.onLink} />
+        <ActUnLink moduleId={moduleId} onClick={this.onUnLink} disabled={this.canNotUnLink} />
+        <ActDelete moduleId={moduleId} disabled={this.canNotDelete} />
       </>
     );
   }

@@ -30,17 +30,20 @@ class Toggle extends AbstractWithSelectionAction {
     return hasEnabled ? messages.disable : messages.enable;
   }
 
-  get disabled() {
-    let { disabled } = this.props;
-    const { locked, selectionItems } = this.state;
-
-    if (typeof disabled === 'function') disabled = disabled(selectionItems);
-
-    return locked || selectionItems.length === 0 || disabled;
+  onClick = (e) => {
+    const data = [this.confirmMsg, (value) => this.onConfirmedAction(value, this.state.selectionItems)];
+    this.emitMessage('confirm', data, this.mainModuleId);
   }
 
-  onClick = (e) => {
-    this.props.onClick(e, this.state.selectionItems);
+  onConfirmedAction = (value, selection) => {
+    if (value) {
+      const { onConfirmedAction } = this.props;
+      if (onConfirmedAction) {
+        onConfirmedAction(selection);
+      } else {
+        this.emitMessage('toggle', [selection]);
+      }
+    }
   }
 }
 
