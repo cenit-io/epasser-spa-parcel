@@ -44,7 +44,7 @@
     "immutable": "^4.0.0",
     "js-sha256": "^0.9.0",
     "lz-string": "^1.4.4",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "openapi-types": "^10.0.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.0",
