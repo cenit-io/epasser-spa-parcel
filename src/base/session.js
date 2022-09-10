@@ -9,8 +9,12 @@ class Session {
     return !!this.currentAccount;
   }
 
+  get serverBaseUrl() {
+    return process.env.CENIT_BACKEND_BASE_URL || 'https://server.cenit.io';
+  }
+
   get apiBaseUrl() {
-    return process.env.eCAPI_BASE_URL || 'https://server.cenit.io/app/ecapi-v1';
+    return `${this.serverBaseUrl}/app/${eCAPI_APP_ID}`;
   }
 
   get appBaseUrl() {

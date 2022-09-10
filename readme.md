@@ -18,10 +18,22 @@ You can try the app at the link below: https://epasser.onrender.com/
 
 ## Environment Variables
 
-**Base URL of the Cenit-IO-eCommerce-API server application:**
+**Base URL of the Cenit-IO server:**
 
 ```
- eCAPI_BASE_URL="https://cenit.io/app/ecapi_v1"
+ CENIT_BACKEND_BASE_URL="https://server.cenit.io"
+```
+
+**Base URL of the Cenit-UI application:**
+
+```
+ CENIT_FRONTEND_BASE_URL="https://app.cenit.io"
+```
+
+**Cenit-IO-eCommerce-API application ID:**
+
+```
+ eCAPI_APP_ID="ecapi_v1_dev"
 ```
 
 ## Start the local server:

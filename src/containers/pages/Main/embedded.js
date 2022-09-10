@@ -88,7 +88,7 @@ class MainEmbedded extends AbstractPage {
     // eslint-disable-next-line consistent-return
     window.addEventListener('message', (event) => {
       const { origin, data: { cmd, tenantId, access } } = event;
-      const CenitUIUrl = process.env.CENIT_UI_URL || 'https://app.cenit.io';
+      const CenitUIUrl = process.env.CENIT_FRONTEND_BASE_URL || 'https://app.cenit.io';
 
       if (origin !== CenitUIUrl) return false;
 
