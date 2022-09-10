@@ -14,7 +14,7 @@ class Session {
   }
 
   get apiBaseUrl() {
-    return `${this.serverBaseUrl}/app/${eCAPI_APP_ID}`;
+    return `${this.serverBaseUrl}/app/${process.env.eCAPI_APP_ID || 'ecapi_v1'}`;
   }
 
   get appBaseUrl() {
