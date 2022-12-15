@@ -37,7 +37,7 @@
     "axios-oauth-1.0a": "^0.3.4",
     "classnames": "^2.3.1",
     "connected-react-router": "^6.9.2",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "express-static-gzip": "^2.1.1",
     "fbemitter": "^3.0.0",
     "history": "^5.2.0",
